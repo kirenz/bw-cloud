@@ -27,7 +27,7 @@ Follow the instructions provided in bwCloud: [SSH-Key Paar erzeugen](https://www
 
 ### MacOS
 
-#### Terminal
+#### Create key
 
 Open a terminal and run the following command:
 
@@ -68,6 +68,28 @@ The key's randomart image is:
 +----[SHA256]-----+
 ```
 
+#### Set permissions
+
+Next, we use chmod to change permissions (otherwise, bwCloud will refuse the connection). 
+
+
+::: {.callout-note}
+In Unix and Unix-like operating systems, `chmod` is the command and system call used to change the access permissions of files and directories. The name chmod was chosen as an abbreviation of **ch**ange **mod**e.
+:::
+
+Chmod 700 sets folder permissions so that only the owner can read, write and execute files in this folder:
+
+```bash
+chmod 700 .ssh
+```
+
+Permissions of 600 mean that the owner has full read and write access to the file, while no other user can access the file:
+
+```bash
+chmod 600 .ssh/id_rsa
+```
+
+
 #### Mac Finder
 
 1. Open Finder and navigate to `your/Users/username/`
@@ -76,6 +98,7 @@ The key's randomart image is:
 ## How to show your home folder in Finder
 If you don't find your home: In Finder, click on the menue and choose: `Finder > Preference > Sidebar > Show these items in the sidebar` and checkmark the box beside the home icon.
 :::
+
 
 1. Now press the `Command + Shift + .` (period) keys at the same time. The hidden files will show up as translucent in your folder.
 
