@@ -1,0 +1,93 @@
+---
+title: "Log into instance" 
+format: 
+  html: 
+    embed-resources: true
+    theme: 
+      - cosmo 
+      - custom.scss 
+    toc: true 
+    number-depth: 3  
+    toc-title: Contents 
+    toc-location: left 
+    number-sections: true 
+    html-math-method: mathjax 
+    smooth-scroll: true 
+---
+
+## Docker
+
+First, we install Docker Engine on Ubuntu. We follow the installation stapes outlined in the [official Docker documentation](https://docs.docker.com/engine/install/ubuntu/)
+
+### Set up Docker repository
+
+Before you install Docker Engine for the first time on a new host machine, you need to set up the Docker repository. Afterward, you can install and update Docker from the repository.
+
+Update the apt package index:
+
+```bash
+sudo apt-get update
+```
+
+Install packages to allow apt to use a repository over HTTPS:
+
+```bash
+sudo apt-get install \
+    ca-certificates \
+    curl \
+    gnupg \
+    lsb-release
+```
+
+Confirm the installation with `Y`
+
+Add Docker’s official GPG key:
+
+```bash
+sudo mkdir -p /etc/apt/keyrings
+```
+
+```bash
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+```
+
+Use the following command to set up the repository:
+
+```bash
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+```
+
+
+### Install Docker Engine
+
+Again, update the apt package index:
+
+```bash
+sudo apt-get update
+```
+
+Install Docker Engine, containerd, and Docker Compose:
+
+```bash
+sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin
+```
+
+Press `Y` to continue
+
+Verify that the Docker Engine installation is successful by running the hello-world image:
+
+```bash
+sudo docker run hello-world
+```
+
+This command downloads a test image and runs it in a container. When the container runs, it prints a confirmation message and exits.
+
+You have now successfully installed and started Docker Engine. 
+
+The docker user group exists but contains no users, which is why you’re required to use sudo to run Docker commands. 
+
+You may optionally continue to Linux post-install to allow non-privileged users to run Docker commands and for other optional configuration steps.
+
+You can follow these optional [post-installation procedures](https://docs.docker.com/engine/install/linux-postinstall/) which shows you how to configure your Linux host machine to work better with Docker.
