@@ -15,19 +15,19 @@ format:
     smooth-scroll: true 
 ---
 
-# Create SSH-Key
+## Create SSH-Key
 
 You can use the SSH-key to access remote servers and to handle authentication for command line programs.
 
 
-## Windows
+### Windows
 
 Follow the instructions provided in bwCloud: [SSH-Key Paar erzeugen](https://www.bw-cloud.org/de/bwcloud_scope/nutzen)
 
 
-## MacOS
+### MacOS
 
-### Terminal
+#### Terminal
 
 Open a terminal and run the following command:
 
@@ -68,7 +68,7 @@ The key's randomart image is:
 +----[SHA256]-----+
 ```
 
-### Mac Finder
+#### Mac Finder
 
 1. Open Finder and navigate to `your/Users/username/`
 
@@ -84,7 +84,7 @@ If you don't find your home: In Finder, click on the menue and choose: `Finder >
 1. You should see your public SSH key (`id_rsa.pub`) and private SSH key (`id_rsa`) 
 
 
-# Import public key
+## Import public key
 
 1. Open your [bwCloud Dashboard](https://portal.bw-cloud.org)
 

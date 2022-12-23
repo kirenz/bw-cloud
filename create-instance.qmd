@@ -2,6 +2,7 @@
 title: "Create a launch instance" 
 format: 
   html: 
+    embed-resources: true
     theme: 
       - cosmo 
       - custom.scss 
@@ -15,9 +16,20 @@ format:
 ---
 
 
+
+1. Open your [bwCloud Dashboard](https://portal.bw-cloud.org)
+
+1. Navigate to *Instances* in the left side menue.
+
+1. Select *Launch Instance*
+
+
+Now follow the steps outlined below.
+
 ## Details
 
- - Provide the initial hostname and a description for the instance
+ - Provide the instance name. We choose: `ml-pipeline-01`
+ - Provide a description for the instance, e.g. `Example ML Pipeline`
  - Choose count `1`
 
 ![]()
@@ -46,4 +58,16 @@ Networks provide the communication channels for instances in the cloud.
 Ports provide extra communication channels to your instances. You can select ports instead of networks or a mix of both.
 
 - We dont use network ports
+
+## Security Groups
+
+- Choose default and your custom security groups
+
+## Key Pair
+
+- Select the key pair from step create-key-pairs. Here, it's called id-rsa-pub
+
+## Launch Instance
+
+We are done and you can click on Launch Instance.
 
