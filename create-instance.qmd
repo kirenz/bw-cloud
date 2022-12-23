@@ -1,0 +1,49 @@
+---
+title: "Create a launch instance" 
+format: 
+  html: 
+    theme: 
+      - cosmo 
+      - custom.scss 
+    toc: true 
+    number-depth: 3  
+    toc-title: Contents 
+    toc-location: left 
+    number-sections: true 
+    html-math-method: mathjax 
+    smooth-scroll: true 
+---
+
+
+## Details
+
+ - Provide the initial hostname and a description for the instance
+ - Choose count `1`
+
+![]()
+
+
+## Source
+
+- Instance source is the template used to create an instance.
+- Choose `Ubuntu 22.04`
+
+
+## Flavor
+
+Flavors manage the sizing for the compute, memory and storage capacity of the instance.
+
+- Choose `m1.large` (4 VCPUS, 8 GB Ram, 12 GB storage)
+
+## Networks
+
+Networks provide the communication channels for instances in the cloud.
+
+- We use public-belwue
+
+## Network Ports
+
+Ports provide extra communication channels to your instances. You can select ports instead of networks or a mix of both.
+
+- We dont use network ports
+
