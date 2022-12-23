@@ -91,3 +91,25 @@ The docker user group exists but contains no users, which is why you’re requir
 You may optionally continue to Linux post-install to allow non-privileged users to run Docker commands and for other optional configuration steps.
 
 You can follow these optional [post-installation procedures](https://docs.docker.com/engine/install/linux-postinstall/) which shows you how to configure your Linux host machine to work better with Docker.
+
+Let's take a look at
+
+```bash
+sudo docker info
+```
+
+Search for TFX images on Docker Hub:
+
+
+```bash
+sudo docker search tfx
+```
+
+Once you’ve identified the image that you would like to use, you can download it using the `pull` subcommand.
+
+Execute the following command to download the latest official TFX image (8.81 GB):
+
+
+```bash
+sudo docker pull tensorflow/tfx:latest
+```
