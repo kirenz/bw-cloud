@@ -69,5 +69,8 @@ Ports provide extra communication channels to your instances. You can select por
 
 ## Launch Instance
 
-We are done and you can click on Launch Instance.
+We are done and you can click on Launch Instance. 
 
+You should see your newly created instance in your dashboard.
+
+Click on the instance name to see more details
