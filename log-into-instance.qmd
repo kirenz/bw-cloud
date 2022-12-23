@@ -1,0 +1,31 @@
+---
+title: "Log into instance" 
+format: 
+  html: 
+    embed-resources: true
+    theme: 
+      - cosmo 
+      - custom.scss 
+    toc: true 
+    number-depth: 3  
+    toc-title: Contents 
+    toc-location: left 
+    number-sections: true 
+    html-math-method: mathjax 
+    smooth-scroll: true 
+---
+
+
+## Terminal
+
+### Mac
+
+Change the IP adress
+
+ssh -i .ssh/id_rsa ubuntu@193.196.52.36
+
+Provide your password
+
+
+
+
