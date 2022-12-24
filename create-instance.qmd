@@ -155,9 +155,7 @@ Once you have successfully attempted the above steps of partition; now you must 
 quit
 ```
 
-
 The final step to active the partition is assigning file format for the new partition; so, you have to choose the file system (.ext4) of the newly made partition by using the below-mentioned command:
-
 
 
 ```bash
@@ -176,29 +174,39 @@ sudo mkdir /mnt/vdb
 
 Once the directory is created, you can mount the inserted drive by using the command written below:
 
-$ sudo mount /dev/vdb /mnt/vdb
+
+```bash
+sudo mount /dev/vdb /mnt/vdb
+
+```
 
 However, it is observed that the below command will temporarily mount the drive, whenever you will restart the system, you must mount it again. To avoid such happening you must edit the file system table “fstab” by using the nano editor:
 
+
+```bash
 sudo nano /etc/fstab
+
+```
 
 Now, add the following content at the end of the file:
 
+
+
+```bash
 /dev/vdb    /mnt/vdb     ext4      defaults        0             0
 
+```
+
+
+Ctrl+O will save the modifications you've made to the file. Ctrl+X will close nano. 
 
 
 How to check the drive is mounted or not
 
 You can check the mounted drive by using the command mentioned below: you can specify the directory name (sdb in our case) after “grep” to get the pointed information; otherwise, the mount command will list down all the mounted drives and partitions in your system:
 
+
+```bash
 sudo mount | grep vdb
 
-
-
-
-via SSH and mount the volume using the 'mount' command.
-
-mount -t /dev/vdb
-
-sudo mount /dev/vdb (1db64654-eaa9)
+```

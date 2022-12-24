@@ -17,7 +17,7 @@ format:
 
 ## Docker
 
-First, we install Docker Engine on Ubuntu. We follow the installation stapes outlined in the [official Docker documentation](https://docs.docker.com/engine/install/ubuntu/)
+First, we install Docker Engine on Ubuntu. We simply follow the installation steps outlined in the [official Docker documentation](https://docs.docker.com/engine/install/ubuntu/)
 
 ### Set up Docker repository
 
@@ -90,7 +90,8 @@ The docker user group exists but contains no users, which is why you’re requir
 
 You may optionally continue to Linux post-install to allow non-privileged users to run Docker commands and for other optional configuration steps.
 
-You can follow these optional [post-installation procedures](https://docs.docker.com/engine/install/linux-postinstall/) which shows you how to configure your Linux host machine to work better with Docker.
+You can follow these optional [post-installation procedures](https://docs.docker.com/engine/install/linux-postinstall/) which shows you how to configure your Linux host machine to work better with Docker. In particular, it let's you run the Docker daemon as a non-root user (Rootless mode). In this tutorial, I 
+
 
 Let's take a look at
 
