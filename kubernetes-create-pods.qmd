@@ -126,22 +126,72 @@ The sidecar container is long-lives and runs alongside the main application cont
 
 The first container "ctr-web" is the main app container. It serves as a static web page.
 
-The second container is called "ctr-sync" and is teh sidecar. It watches a GitHub repo and syncs changes into the same shared volume.
+The second container is called "ctr-sync" and is the sidecar. It watches a GitHub repo and syncs changes into the same shared volume.
 
 If the content of the repo change, the "ctr-sync" sidecar will notice and update the web page.
 
-Change directory to our github directory:
+To see it in action, you’ll need a fork of the following GitHub repo. This is so you can make a change to the repo and see those changes reflected by the app. 
 
-cd ../..
+https://github.com/nigelpoulton/ps-sidecar
 
-You should be in our github directory. Confirm this by listing the content of this directory:
-
-ls
-
-This should output TheK8sBook.
+Be sure to update the `GIT_SYNC_REPO` value in the sidecarpod.yml to reflect your forked repo and save your changes:
 
 
-To see it in action, you’ll need a fork of the following GitHub repo. This is so you can make a change to the repo and see those changes reflected by the app. https://github.com/nigelpoulton/ps-sidecar
- Be sure to update the GIT_SYNC_REPO value in the sidecarpod.yml to reflect your forked repo and save your changes. Run one of the following commands to deploy the application. This will deploy the multi-container Pod as well as a Service object you can use to connect to the app. Run this command if you’re running a Docker Desktop or other local cluster.
+```bash
+sudo nano sidecarpod.yml 
 
-Poulton, Nigel. The Kubernetes Book: 2022 Edition (S.66). leanpub.com. Kindle-Version. 
+```
+
+Change https://github.com/nigelpoulton/ps-sidecar.git with your GitHub Repo. In my case https://github.com/kirenz/ps-sidecar
+
+Save with Control + O and press enter. Close nano with Control + X.
+
+Run the following command to deploy the application. This will deploy the multi-container Pod as well as a Service object you can use to connect to the app.
+
+
+```bash
+sudo kubectl apply -f sidecar-local.yml
+
+```
+
+Monitor the status with:
+
+
+```bash
+sudo kubectl get pods
+
+```
+
+If the STATUS is running, use this command to get the connection details:
+
+
+```bash
+sudo kubectl get svc
+
+```
+
+```
+sudo kubectl describe services svc-sidecar
+```
+
+In this example, the external IP address is 10.96.157.189 Also note the value of Port and NodePort. In this example, the Port is 8080 and the NodePort is 30001.
+
+In the preceding output, you can see that the service has an endpoints: 10.244.0.6:80 This is the internal address of the pod that is running the application. To verify the pod address, enter this command:
+
+```bash
+sudo kubectl get pods --output=wide
+
+```
+
+
+sudo curl http://10.96.157.189:30001
+
+sudo curl http://10.244.0.6:30001
+
+Copy the public IP of the svc-sidecar Service and paste it into your browser to see the webpage
+
+
+Create a Service object that exposes the deployment:
+
+sudo kubectl expose pod --type=NodePort --name=my-svc-sidecar
+
