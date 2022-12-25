@@ -1,0 +1,126 @@
+---
+title: "How to install ZSH" 
+format: 
+  html: 
+    embed-resources: true
+    theme: 
+      - cosmo 
+      - custom.scss 
+    toc: true 
+    number-depth: 3  
+    toc-title: Contents 
+    toc-location: left 
+    number-sections: true 
+    html-math-method: mathjax 
+    smooth-scroll: true 
+---
+
+ZSH also known as Z shell, is a Unix shell that is an extended version of the Bourne Shell (sh), with many new features and supports many plugins and themes. It is the best alternative to Bash with a cool and stylish shell interface including some features of Bash, KSH, and tcsh.
+
+ZSH is an awesome shell that just makes everything a bit simpler with its plugins like auto-suggestions, syntax-completing tasks, etc. ZSH has many features like autosuggestion, spelling correction, auto jump, syntax-highlighting, or many more plugins and theme suppo
+
+https://linuxips.com/how-to-install-zsh-on-ubuntu/
+
+
+sudo apt update
+
+We have to install the ZSH using this command:
+
+
+```bash
+sudo apt install zsh
+
+```
+
+Type y to confirm
+
+If necessary, confirm Update and use the defaults press enter
+
+
+Now we have to completely switch Bash to Zsh so you have to type the following command:
+
+
+```bash
+sudo chsh -s /bin/zsh ubuntu
+
+```
+
+Restart
+
+And after that, you have to log out from the current user and log in again. Your ZSH is installed. You can check by this:
+
+
+
+This is the Z Shell configuration function for new users,
+zsh-newuser-install.
+You are seeing this message because you have no zsh startup files
+(the files .zshenv, .zprofile, .zshrc, .zlogin in the directory
+~).  This function can help you with a few settings that should
+make your use of the shell easier.
+
+You can:
+
+(q)  Quit and do nothing.  The function will be run again next time.
+
+(0)  Exit, creating the file ~/.zshrc containing just a comment.
+     That will prevent this function being run again.
+
+(1)  Continue to the main menu.
+
+(2)  Populate your ~/.zshrc with the configuration recommended
+     by the system administrator and exit (you will need to edit
+     the file by hand, if so desired).
+
+--- Type one of the keys in parentheses ---
+
+
+
+type q
+
+Install oh-my-zsh
+
+sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+Install zsh-autosuggestions
+
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+
+
+Install zsh-syntax-highlighting
+
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+
+
+
+10kpower Theme
+
+git clone https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k
+
+
+
+Now you have installed all the dependencies which are required, so now we will change the ZSH theme you have to edit the .zshrc file to change the themes.
+
+sudo nano /home/ubuntu/.zshrc
+
+
+```bash
+ZSH_THEME="powerlevel10k/powerlevel10k"
+
+```
+
+
+Enabling Plugins
+Once you select a plugin that you want to use with Oh My Zsh, you have to enable them in the .zshrc file. Open it with your favorite text editor and you have to see a spot to list all the plugins you want to load.
+
+
+```bash
+plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
+```
+
+Restart
+
+ This is Powerlevel10k configuration wizard. You are seeing it because you
+ haven't defined any Powerlevel10k configuration options. It will ask you a few
+                      questions and configure your prompt.
+
+                      
