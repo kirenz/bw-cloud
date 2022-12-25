@@ -56,7 +56,7 @@ cd TheK8sBook/pods
 ```
 
 
-## Create Pods from a manifest file
+## Deploying Pods from a manifest file
 
 
 Create your Pod with the manifest file *pod.yml*:
@@ -119,3 +119,29 @@ Type exit to get back to the terminal
 ```bash
 exit
 ```
+
+## Multi-container Pod - sidecar container
+
+The sidecar container is long-lives and runs alongside the main application container for the entire lifecycle of the Pod.
+
+The first container "ctr-web" is the main app container. It serves as a static web page.
+
+The second container is called "ctr-sync" and is teh sidecar. It watches a GitHub repo and syncs changes into the same shared volume.
+
+If the content of the repo change, the "ctr-sync" sidecar will notice and update the web page.
+
+Change directory to our github directory:
+
+cd ../..
+
+You should be in our github directory. Confirm this by listing the content of this directory:
+
+ls
+
+This should output TheK8sBook.
+
+
+To see it in action, you’ll need a fork of the following GitHub repo. This is so you can make a change to the repo and see those changes reflected by the app. https://github.com/nigelpoulton/ps-sidecar
+ Be sure to update the GIT_SYNC_REPO value in the sidecarpod.yml to reflect your forked repo and save your changes. Run one of the following commands to deploy the application. This will deploy the multi-container Pod as well as a Service object you can use to connect to the app. Run this command if you’re running a Docker Desktop or other local cluster.
+
+Poulton, Nigel. The Kubernetes Book: 2022 Edition (S.66). leanpub.com. Kindle-Version. 
