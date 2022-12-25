@@ -16,32 +16,26 @@ format:
 ---
 
 
+## Prepare environment
 
-We make a new directory
-
+We make a new directory:
 
 ```bash
 mkdir github
-
 ```
 
-Change into the directory
+Change into the directory:
 
 
 ```bash
 cd github
 ```
 
-Clone this GitHub-repo
-
+Clone this GitHub-repo into the directory:
 
 ```bash
 git clone https://github.com/nigelpoulton/TheK8sBook.git
-
 ```
-
-## Hands on with Pods
-
 
 List any existing Pods
 
@@ -53,20 +47,19 @@ sudo kubectl get pods
 This should output: No resources found in default namespace.
 
 
-## Pod manifest files
-
-Poulton, Nigel. The Kubernetes Book: 2022 Edition (S.58). leanpub.com. Kindle-Version. 
-
-
-You need to run the following commands from the pods folder where you cloned the book’s GitHub repo to.
+You need to run the following commands from the `pods` folder where you cloned the book’s GitHub repo to:
 
 
 ```bash
-cd github/TheK8sBook/pods
+cd TheK8sBook/pods
 
 ```
 
-Create your Pod with the manifest file pod.yml
+
+## Create Pods from a manifest file
+
+
+Create your Pod with the manifest file *pod.yml*:
 
 
 ```bash
@@ -74,8 +67,9 @@ sudo kubectl apply -f pod.yml
 ```
 
 
-Check for the status
+## Check the status of Pods
 
+Show status of your Pod with:
 
 ```bash
 sudo kubectl get Pods
@@ -91,3 +85,25 @@ To get a more detailed overview use:
 sudo kubectl get pods -o yaml
 ```
 
+Another option is:
+
+
+```bash
+sudo kubectl describe pods hello-pod
+```
+
+## Running commands in Pods 
+
+Execute commands inside the Pod:
+
+
+```bash
+sudo kubectl exec -it hello-pod -- sh
+
+```
+
+- it makes the session interactive
+
+Show
+
+env | grep HOSTNAME
