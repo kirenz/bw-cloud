@@ -104,6 +104,18 @@ sudo kubectl exec -it hello-pod -- sh
 
 - it makes the session interactive
 
-Show
+Show Pod hostname inside interactive session:
 
+
+```bash
 env | grep HOSTNAME
+```
+
+The hostname of the container is set to the Pod's name.Note that you should alwasy set Pad names as valid DNS names (a-z and 0-9, the minus sign and the period sign).
+
+Type exit to get back to the terminal
+
+
+```bash
+exit
+```
