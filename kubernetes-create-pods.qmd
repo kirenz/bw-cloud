@@ -225,23 +225,10 @@ METAL
 
 https://kind.sigs.k8s.io/docs/user/loadbalancer/
 
-
-sudo kubectl edit configmap -n kube-system kube-proxy
-
-
-https://mauilion.dev/posts/kind-metallb/
+sudo kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.13.7/config/manifests/metallb-native.yaml
 
 
-
-```bash
-sudo docker network inspect bridge
-
-```
-
-IPAM": {
-            "Driver": "default",
-            "Options": null,
-            "Config": [
-                {
-                    "Subnet": "172.17.0.0/16",
-                    "Gateway": "172.17.0.1"
+sudo kubectl wait --namespace metallb-system \
+                --for=condition=ready pod \
+                --selector=app=metallb \
+                --timeout=90s
