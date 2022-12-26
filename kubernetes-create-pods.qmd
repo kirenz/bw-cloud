@@ -44,20 +44,17 @@ sudo kubectl get pods
 
 ```
 
-This should output: No resources found in default namespace.
+This should output: "No resources found in default namespace."
 
-
-You need to run the following commands from the `pods` folder where you cloned the book’s GitHub repo to:
-
-
-```bash
-cd TheK8sBook/pods
-
-```
 
 
 ## Deploying Pods from a manifest file
 
+Run the following commands from the `pods` folder where you cloned the book’s GitHub repo to:
+
+```bash
+cd TheK8sBook/pods
+```
 
 Create your Pod with the manifest file *pod.yml*:
 
@@ -76,7 +73,6 @@ sudo kubectl get Pods
 ```
 
 The Pod is running on a node and is being monitored by the local kubelet process.
-
 
 To get a more detailed overview use:
 
@@ -99,19 +95,18 @@ Execute commands inside the Pod:
 
 ```bash
 sudo kubectl exec -it hello-pod -- sh
-
 ```
 
-- it makes the session interactive
+- `it` makes the session interactive
 
 Show Pod hostname inside interactive session:
-
 
 ```bash
 env | grep HOSTNAME
 ```
 
-The hostname of the container is set to the Pod's name.Note that you should alwasy set Pad names as valid DNS names (a-z and 0-9, the minus sign and the period sign).
+The hostname of the container is set to the Pod's name. Note that you should alwasy set Pad names as valid DNS names (a-z and 0-9, the minus sign and the period sign).
+
 
 Type exit to get back to the terminal
 
@@ -122,7 +117,7 @@ exit
 
 ## Multi-container Pod - sidecar container
 
-The sidecar container is long-lives and runs alongside the main application container for the entire lifecycle of the Pod.
+The sidecar container is long-lived and runs alongside the main application container for the entire lifecycle of the Pod.
 
 The first container "ctr-web" is the main app container. It serves as a static web page.
 
@@ -136,6 +131,7 @@ https://github.com/nigelpoulton/ps-sidecar
 
 Be sure to update the `GIT_SYNC_REPO` value in the sidecarpod.yml to reflect your forked repo and save your changes:
 
+Open the file in VS Code or use nano:
 
 ```bash
 sudo nano sidecarpod.yml 
@@ -144,20 +140,17 @@ sudo nano sidecarpod.yml
 
 Change https://github.com/nigelpoulton/ps-sidecar.git with your GitHub Repo. In my case https://github.com/kirenz/ps-sidecar
 
-Save with Control + O and press enter. Close nano with Control + X.
+If you use nano, save with Control + O and press enter. Close nano with Control + X.
 
 Run the following command to deploy the application. This will deploy the multi-container Pod as well as a Service object you can use to connect to the app.
 
 
 ```bash
-sudo kubectl apply -f sidecar-local.yml
+sudo kubectl apply -f sidecar-cloud.yml
 
 ```
 
-
-
 Monitor the status with:
-
 
 ```bash
 sudo kubectl get pods
@@ -165,7 +158,6 @@ sudo kubectl get pods
 ```
 
 If the STATUS is running, use this command to get the connection details:
-
 
 ```bash
 sudo kubectl get svc
@@ -176,44 +168,17 @@ sudo kubectl get svc
 sudo kubectl describe services svc-sidecar
 ```
 
-In this example, the external IP address is 10.96.157.189 Also note the value of Port and NodePort. In this example, the Port is 8080 and the NodePort is 30001.
+In this example, the external IP address is pending.
 
 
-to open a webpage simply type in a terminal window: w3m <url_of_the_webpage>
-
-For example:
+To verify the pod address, enter this command:
 
 
-```bash
-w3m http://172.17.0.1:30001
-```
-
-w3m http://172.18.0.2:30001  ??
-
-w3m http://localhost:80:30001
-
-
-w3m http://10.244.0.8:30001
-
-In the preceding output, you can see that the service has an endpoints: 10.244.0.6:80 This is the internal address of the pod that is running the application. To verify the pod address, enter this command:
-
+?????
 ```bash
 sudo kubectl get pods --output=wide
 
 ```
-
-
-sudo curl http://10.96.157.189:30001
-
-sudo curl http://10.244.0.6:30001
-
-Copy the public IP of the svc-sidecar Service and paste it into your browser to see the webpage
-
-
-Create a Service object that exposes the deployment:
-
-sudo kubectl expose pod --type=NodePort --name=my-svc-sidecar
-
 
 
 
@@ -221,14 +186,75 @@ sudo kubectl expose pod --type=NodePort --name=my-svc-sidecar
 
 ----
 
-METAL
+## Get external IP
+
+This guide covers how to get service of type LoadBalancer working in a kind cluster using Metallb.
 
 https://kind.sigs.k8s.io/docs/user/loadbalancer/
 
 sudo kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.13.7/config/manifests/metallb-native.yaml
 
 
+
+```bash
 sudo kubectl wait --namespace metallb-system \
                 --for=condition=ready pod \
                 --selector=app=metallb \
                 --timeout=90s
+
+
+```
+
+
+```bash
+sudo docker network inspect -f '{{.IPAM.Config}}' kind
+```
+
+This will output
+
+[{172.18.0.0/16  172.18.0.1 map[]} {fc00:f853:ccd:e793::/64   map[]}]
+
+Create a YAML file called: metal-config.yaml 
+
+
+```bash
+apiVersion: metallb.io/v1beta1
+kind: IPAddressPool
+metadata:
+  name: example
+  namespace: metallb-system
+spec:
+  addresses:
+  - 172.18.255.1-172.18.255.250
+---
+apiVersion: metallb.io/v1beta1
+kind: L2Advertisement
+metadata:
+  name: empty
+  namespace: metallb-system
+```
+Apply the contents
+
+
+
+```bash
+sudo kubectl apply -f metal-config.yaml 
+```
+
+Get the external IP
+
+```bash
+sudo kubectl get svc 
+
+```
+
+
+```bash
+sudo curl http://172.18.255.1:80 
+```
+
+Go to VS Code PORTS and add a new port
+
+172.18.255.1:80
+
+Open the browser symbol
