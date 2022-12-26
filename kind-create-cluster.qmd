@@ -14,3 +14,13 @@ format:
     html-math-method: mathjax 
     smooth-scroll: true 
 ---
+
+ Kubernetes cluster is a group of nodes that are used to run containerized applications, and it is managed by a central control plane that ensures that the desired state of the cluster is maintained.
+
+This guide covers how to configure KIND cluster creation.
+https://kind.sigs.k8s.io/docs/user/configuration/
+
+
+To configure kind cluster creation, you will need to create a YAML config file. This file follows Kubernetes conventions for versioning etc.
+
+See config.yaml
