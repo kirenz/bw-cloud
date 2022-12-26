@@ -46,3 +46,21 @@ sudo kind create cluster --config=config.yaml
 from the same directory.
 
 You can also include a full file path like kind create cluster --config=/foo/bar/config.yaml.
+
+
+This sould take a few minutes and output
+
+Set kubectl context to "kind-ml-cluster"
+You can now use your cluster with:
+kubectl cluster-info --context kind-ml-cluster
+
+
+Run this command
+
+```bash
+kubectl cluster-info --context kind-ml-cluster
+```
+
+Kubernetes control plane is running at https://xxx.xxx.xx.xx:6443
+CoreDNS is running at https://xxx.xxx.xx.xx:6443/api/v1/namespaces/kube-system/services/kube-dns:dns/proxy
+
