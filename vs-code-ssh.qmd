@@ -1,0 +1,72 @@
+---
+title: "Remote development over SSH"
+subtitle: "VS Code & SSH" 
+format: 
+  html: 
+    embed-resources: true
+    theme: 
+      - cosmo 
+      - custom.scss 
+    toc: true 
+    number-depth: 3  
+    toc-title: Contents 
+    toc-location: left 
+    number-sections: true 
+    html-math-method: mathjax 
+    smooth-scroll: true 
+---
+ 
+This tutorial walks you through creating and connecting to a virtual machine (VM) using the Visual Studio Code Remote - SSH extension.
+
+https://code.visualstudio.com/docs/remote/ssh-tutorial
+
+
+## Prerequisites
+
+To get started, you need to have done the following steps:
+
+1. Install an [OpenSSH compatible SSH client (PuTTY is not supported)](https://code.visualstudio.com/docs/remote/troubleshooting#_installing-a-supported-ssh-client)
+2. Install [Visual Studio Code](https://code.visualstudio.com/)
+
+
+## Install extension
+
+The Remote - SSH extension is used to connect to SSH hosts.
+
+
+[Install the extension](vscode:extension/ms-vscode-remote.remote-ssh)
+
+## Remote SSH
+
+With the Remote - SSH extension installed, you will see a new Status bar item at the far left.
+
+
+The Remote Status bar item can quickly show you in which context VS Code is running (local or remote) and clicking on the item will bring up the Remote - SSH command
+
+## Connect using SSH
+
+
+You'll have noticed an indicator on the bottom-left corner of the Status bar. This indicator tells you in which context VS Code is running (local or remote). Click on the indicator to bring up a list of Remote extension commands.
+
+Choose the Connect to Host... command in the Remote-SSH section and connect to the host by entering connection information for your VM in the following format
+
+Replace x with your IP
+
+ubuntu@xxx.xxx.xx.xx
+
+
+Once you're connected to your SSH host, you can interact with files and open folders on the remote machine. If you open the integrated terminal (⌃`), you'll see you're working inside a bash shell while you're on Windows
+
+
+## Port forwarding
+
+To be able to browse to the web app on your local machine, you can leverage another feature called Port forwarding.
+
+To be able to access a port on the remote machine that may not be publicly exposed, you need to establish a connection or a tunnel between a port on your local machine and the server.
+
+[Port Forwarding](https://code.visualstudio.com/docs/remote/ssh#_forwarding-a-port-creating-ssh-tunnel)
+
+With the app still running, open the SSH Explorer and find the Forwarded Ports view. Click on the Forward a port link and indicate that you want to forward port 3000:
+
+Name the connection "browser":
+
