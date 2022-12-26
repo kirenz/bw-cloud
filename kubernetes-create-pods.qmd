@@ -154,6 +154,8 @@ sudo kubectl apply -f sidecar-local.yml
 
 ```
 
+
+
 Monitor the status with:
 
 
@@ -176,6 +178,23 @@ sudo kubectl describe services svc-sidecar
 
 In this example, the external IP address is 10.96.157.189 Also note the value of Port and NodePort. In this example, the Port is 8080 and the NodePort is 30001.
 
+
+to open a webpage simply type in a terminal window: w3m <url_of_the_webpage>
+
+For example:
+
+
+```bash
+w3m http://172.17.0.1:30001
+```
+
+w3m http://172.18.0.2:30001  ??
+
+w3m http://localhost:80:30001
+
+
+w3m http://10.244.0.8:30001
+
 In the preceding output, you can see that the service has an endpoints: 10.244.0.6:80 This is the internal address of the pod that is running the application. To verify the pod address, enter this command:
 
 ```bash
@@ -195,3 +214,34 @@ Create a Service object that exposes the deployment:
 
 sudo kubectl expose pod --type=NodePort --name=my-svc-sidecar
 
+
+
+
+
+
+----
+
+METAL
+
+https://kind.sigs.k8s.io/docs/user/loadbalancer/
+
+
+sudo kubectl edit configmap -n kube-system kube-proxy
+
+
+https://mauilion.dev/posts/kind-metallb/
+
+
+
+```bash
+sudo docker network inspect bridge
+
+```
+
+IPAM": {
+            "Driver": "default",
+            "Options": null,
+            "Config": [
+                {
+                    "Subnet": "172.17.0.0/16",
+                    "Gateway": "172.17.0.1"

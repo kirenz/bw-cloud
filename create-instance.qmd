@@ -210,3 +210,26 @@ You can check the mounted drive by using the command mentioned below: you can sp
 sudo mount | grep vdb
 
 ```
+
+### Install text-based web browser
+
+w3m is a text-based web browser as well as a pager like `more' or `less'. With w3m you can browse web pages through a terminal emulator windo
+
+
+```bash
+sudo apt-get install w3m w3m-img
+```
+
+to open a webpage simply type in a terminal window: w3m <url_of_the_webpage>
+
+For example:
+
+
+```bash
+w3m https://w3m.sourceforge.net/
+```
+
+- to open a new page: type Shift-U
+- to go back one page: Shift-B
+- open a new tab: Shift-T
+- to exit: q
