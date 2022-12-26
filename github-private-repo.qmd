@@ -1,0 +1,25 @@
+---
+title: "GitHub SSH keys" 
+format: 
+  html: 
+    embed-resources: true
+    theme: 
+      - cosmo 
+      - custom.scss 
+    toc: true 
+    number-depth: 3  
+    toc-title: Contents 
+    toc-location: left 
+    number-sections: true 
+    html-math-method: mathjax 
+    smooth-scroll: true 
+---
+
+https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/reviewing-your-ssh-keys?platform=linux
+
+exec ssh-agent zsh
+
+
+eval "$(ssh-agent -s)"
+
+ssh-add -l -E sha256
