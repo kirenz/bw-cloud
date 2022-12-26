@@ -3,7 +3,7 @@ apiVersion: kind.x-k8s.io/v1alpha4
 name: ml-cluster
 networking:
   ipFamily: ipv6
-  apiServerAddress: "193.196.52.36"
+  apiServerAddress: "xxx.196.52.xx" # change
   apiServerPort: 6443
 nodes:
 - role: control-plane
