@@ -15,12 +15,34 @@ format:
     smooth-scroll: true 
 ---
 
- Kubernetes cluster is a group of nodes that are used to run containerized applications, and it is managed by a central control plane that ensures that the desired state of the cluster is maintained.
 
 This guide covers how to configure KIND cluster creation.
 https://kind.sigs.k8s.io/docs/user/configuration/
 
+## What is a Kubernetes cluster?
 
-To configure kind cluster creation, you will need to create a YAML config file. This file follows Kubernetes conventions for versioning etc.
+ Kubernetes cluster is a group of nodes that are used to run containerized applications, and it is managed by a central control plane that ensures that the desired state of the cluster is maintained.
+
+
+## Cluster creation
+
+To configure kind cluster creation, you will need to create a [YAML](https://yaml.org/) config file. This file follows Kubernetes conventions for versioning etc.
+
+The structure of the Cluster type is defined by a "Go struct", which is described [here](https://pkg.go.dev/sigs.k8s.io/kind/pkg/apis/config/v1alpha4#Cluster)
+
+
 
 See config.yaml
+
+To use this config, plac
+
+e the contents in a file config.yaml and then run
+
+
+```bash
+sudo kind create cluster --config=config.yaml 
+```
+
+from the same directory.
+
+You can also include a full file path like kind create cluster --config=/foo/bar/config.yaml.
