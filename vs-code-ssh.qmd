@@ -27,6 +27,13 @@ To get started, you need to have done the following steps:
 
 2. Install [Visual Studio Code](https://code.visualstudio.com/)
 
+3. Open a SSH connection to your VM in a terminal using your key (replace x with your IP-address):
+
+
+```bash
+ssh -i .ssh/id_rsa ubuntu@xxx.xxx.xx.xx
+
+```
 
 ## Install extension
 
@@ -40,6 +47,7 @@ The Remote - SSH extension is used to connect to SSH hosts.
 With the Remote - SSH extension installed, you will see a new green Status bar item at the far left (at the bottom).
 
 The Remote Status bar item can quickly show you in which context VS Code is running (local or remote) and clicking on the item will bring up the Remote - SSH command
+
 
 ## Connect using SSH
 
@@ -66,7 +74,4 @@ To be able to access a port on the remote machine that may not be publicly expos
 
 [Port Forwarding](https://code.visualstudio.com/docs/remote/ssh#_forwarding-a-port-creating-ssh-tunnel)
 
-With the app still running, open the SSH Explorer and find the Forwarded Ports view. Click on the Forward a port link and indicate that you want to forward port 30001:
-
-Name the connection "browser":
-
+With the app still running, open the SSH Explorer and find the Forwarded Ports view. Click on the Forward a port link and indicate that you want to forward  a specific port.
