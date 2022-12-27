@@ -21,46 +21,70 @@ https://kind.sigs.k8s.io/docs/user/configuration/
 
 ## What is a Kubernetes cluster?
 
- Kubernetes cluster is a group of nodes that are used to run containerized applications, and it is managed by a central control plane that ensures that the desired state of the cluster is maintained.
+ Kubernetes cluster is a group of nodes that are used to run containerized applications. It is managed by a central control plane that ensures that the desired state of the cluster is maintained.
 
 
 ## Cluster creation
 
-To configure kind cluster creation, you will need to create a [YAML](https://yaml.org/) config file. This file follows Kubernetes conventions for versioning etc.
+Creating a Kubernetes cluster is as simple as `kind create cluster`:
+
+```bash
+sudo kind create cluster
+```
+
+This will bootstrap a Kubernetes cluster using a [pre-built node image](https://kind.sigs.k8s.io/docs/design/node-image). Prebuilt images are hosted at [kindest/node](https://hub.docker.com/r/kindest/node/).
+
+## Custom Cluster creation
+
+To configure kind cluster creation, you will need to create a [YAML](https://yaml.org/) config file. This file follows Kubernetes conventions for versioning etc. Here is an example of a config file (see file *config.yaml*):
+
+```bash
+kind: Cluster
+apiVersion: kind.x-k8s.io/v1alpha4
+name: ml-cluster
+nodes:
+- role: control-plane
+- role: worker
+- role: worker
+```
 
 The structure of the Cluster type is defined by a "Go struct", which is described [here](https://pkg.go.dev/sigs.k8s.io/kind/pkg/apis/config/v1alpha4#Cluster)
 
 
-
-See config.yaml
-
-To use this config, plac
-
-e the contents in a file config.yaml and then run
+To use this config, place the contents in a file (here we use *config.yaml*) and then run this command from the same directory;
 
 
 ```bash
 sudo kind create cluster --config=config.yaml 
 ```
 
-from the same directory.
 
-You can also include a full file path like kind create cluster --config=/foo/bar/config.yaml.
+You can also include a full file path like 
 
 
-This sould take a few minutes and output
+```bash
+sudo kind create cluster --config=/foo/foo/config-yaml
+```
 
+
+This sould output
+
+```bash
 Set kubectl context to "kind-ml-cluster"
 You can now use your cluster with:
 kubectl cluster-info --context kind-ml-cluster
-
-
-Run this command
-
-```bash
-kubectl cluster-info --context kind-ml-cluster
 ```
 
-Kubernetes control plane is running at https://xxx.xxx.xx.xx:6443
-CoreDNS is running at https://xxx.xxx.xx.xx:6443/api/v1/namespaces/kube-system/services/kube-dns:dns/proxy
+Now run this command
+
+```bash
+sudo kubectl cluster-info --context kind-ml-cluster
+```
+
+
+```bash
+Kubernetes control plane is running at https://...
+CoreDNS is running at https://.../api/v1/namespaces/kube-system/services/kube-dns:dns/proxy
+```
+
 
