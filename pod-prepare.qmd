@@ -1,0 +1,47 @@
+---
+title: "Prepare environment for Pods" 
+format: 
+  html: 
+    embed-resources: true
+    theme: 
+      - cosmo 
+      - custom.scss 
+    toc: true 
+    number-depth: 3  
+    toc-title: Contents 
+    toc-location: left 
+    number-sections: true 
+    html-math-method: mathjax 
+    smooth-scroll: true 
+---
+
+*The following examples are based on Nigel Poulton's "The Kubernetes Book (2022)"*
+
+To prepare the environment we first make a new directory:
+
+```bash
+mkdir github
+```
+
+Change into the directory:
+
+
+```bash
+cd github
+```
+
+Clone this GitHub-repo into the directory:
+
+```bash
+git clone https://github.com/nigelpoulton/TheK8sBook.git
+```
+
+List any existing Pods
+
+```bash
+sudo kubectl get pods
+
+```
+
+This should output: "No resources found in default namespace."
+
