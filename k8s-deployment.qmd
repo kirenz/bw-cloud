@@ -1,0 +1,104 @@
+---
+title: "Kubernetes deployments" 
+format: 
+  html: 
+    embed-resources: true
+    theme: 
+      - cosmo 
+      - custom.scss 
+    toc: true 
+    number-depth: 3  
+    toc-title: Contents 
+    toc-location: left 
+    number-sections: true 
+    html-math-method: mathjax 
+    smooth-scroll: true 
+---
+
+In this tutorial, you’ll see how to use Deployments to bring cloud-native features such as self-healing, scaling, rolling updates, and versioned rollbacks to stateless apps on Kubernetes. 
+
+Deployments are extremely useful and you’ll use them all the time. The chapter is divided as follows: Deployment theory Create a Deployment Perform scaling operations Perform a rollout Perform a rollback
+
+## Prepare environment
+
+
+Be sure to run the following commands from within the deployments folder. 
+
+cd TheK8sBook/deployments
+ 
+
+The following YAML snippet is from the `deploy.yml` file. It defines a single-container Pod wrapped in a Deployment object. It’s been annotated to highlight some important sections.
+
+
+```bash
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-deploy
+spec:
+  replicas: 10
+  selector:
+    matchLabels:
+      app: hello-world
+  revisionHistoryLimit: 5
+  progressDeadlineSeconds: 300
+  minReadySeconds: 10
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
+  template:
+    metadata:
+      labels:
+        app: hello-world
+    spec:
+      containers:
+      - name: hello-pod
+        image: nigelpoulton/k8sbook:1.0
+        ports:
+        - containerPort: 8080
+```
+
+
+Use kubectl apply to deploy it on the cluster.
+
+
+```bash
+sudo kubectl apply -f deploy.yml 
+```
+
+## Inspecting Deployments
+
+
+
+```bash
+sudo kubectl get deploy hello-deploy
+```
+
+```bash
+sudo kubectl describe deploy hello-deploy
+```
+
+Show ReplicaSet:
+
+```bash
+sudo kubectl get rs
+```
+
+In my case, the NAME equals hello-deploy-6bbb5f8946
+
+
+Get more detailed information about the ReplicaSet:
+
+
+sudo kubectl describe rs hello-deploy-6bbb5f8946
+
+## Accessing the app
+
+Open svc.yml in VS Code and change the port to 30005.
+
+Deploy the Service:
+
+sudo kubectl apply -f svc.yml
+
