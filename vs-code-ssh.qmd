@@ -59,6 +59,9 @@ Replace x with your IP
 
 ubuntu@xxx.xxx.xx.xx
 
+If propmted, enter your passphrase in VS Code.
+
+
 Once you're connected to your SSH host, you can interact with files and open folders on the remote machine. 
 
 If you open the integrated terminal (⌃`), you'll see you're working inside a bash shell while you're on Windows

@@ -15,14 +15,27 @@ format:
     smooth-scroll: true 
 ---
 
+Prerequisites:
+
+- key-pairs-create.md
+- instance-create.md
+
 
 ## Terminal
 
 ### Mac
 
-Change the IP adress
+Change the IP adress and enter
 
+```bash
 ssh -i .ssh/id_rsa ubuntu@193.196.52.36
+```
+
+If you are asked: Are you sure you want to continue connecting (yes/no/[fingerprint])? 
+
+Enter "yes".
+
+Enter passphrase for key '.ssh/id_rsa':
 
 Provide your password
 

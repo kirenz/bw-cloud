@@ -96,9 +96,113 @@ sudo kubectl describe rs hello-deploy-6bbb5f8946
 
 ## Accessing the app
 
-Open svc.yml in VS Code and change the port to 30005.
+Open svc.yml and replace it with the following content (we use a LoadBalancer instead of a fixed port) 
+
+```bash
+apiVersion: v1
+kind: Service
+metadata:
+  name: hello-svc
+  labels:
+    app: hello-world
+spec:
+  type: NodePort
+  ports:
+  - port: 8080
+  type: LoadBalancer
+    protocol: TCP
+  selector:
+    app: hello-world
+```
 
 Deploy the Service:
 
+```bash
 sudo kubectl apply -f svc.yml
+```
 
+Obtain the external IP
+
+```bash
+sudo kubectl get svc
+```
+
+
+NAME          TYPE           CLUSTER-IP      EXTERNAL-IP    PORT(S)          AGE
+hello-svc     LoadBalancer   10.96.196.8     172.18.255.2   8080:31142/TCP   30s
+kubernetes    ClusterIP      10.96.0.1       <none>         443/TCP          30h
+svc-sidecar   LoadBalancer   10.96.253.104   172.18.255.1   80:30001/TCP     30h
+
+Quick test:
+
+curl http://172.18.255.2:8080
+
+Now add 172.18.255.2:8080 to PORTS in VS Code and select the browser symbol. 
+
+## Perform scaling operations
+
+Manually scaling the number of replicas in a Deployment is easy. You can do it imperatively with the kubectl scale command, or declaratively by updating the YAML file and re-posting it to the API server. You can use both ways, but the preferred way is the declarative way.
+
+You can edit the YAML file and set a different number of replicas. Let's try 5 and run the code:
+
+sudo kubectl apply -f deploy.yml
+
+
+sudo kubectl get deploy hello-deploy
+
+Edit the YAML file again and set the number of replicas back to 10. Again, run:
+
+
+sudo kubectl apply -f deploy.yml
+
+
+sudo kubectl get deploy hello-deploy
+
+## Perform rolling updates
+
+In this section, you’ll see how to perform a rolling update on the app already deployed. As previously mentioned, terms such as rollout, release, zero-downtime update, and rolling update all mean the same thing.
+
+We’ll assume the new version of the app has already been created and containerized as an image with the 2.0 tag. All that’s left to do is perform the rollout. This means we replace our existing Pods with new ones.
+
+The first step is to update the image version in the Deployment’s resource manifest (deploy.yml). The initial release of the app is using the nigelpoulton/k8sbook:1.0 image. Use your favorite editor to update the image to the newer nigelpoulton/k8sbook:2.0 image and save your changes.
+
+deploy.yml:
+
+```bash
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-deploy
+spec:
+  replicas: 10
+  selector:
+    matchLabels:
+      app: hello-world
+  revisionHistoryLimit: 5
+  progressDeadlineSeconds: 300
+  minReadySeconds: 10
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
+  template:
+    metadata:
+      labels:
+        app: hello-world
+    spec:
+      containers:
+      - name: hello-pod
+        image: nigelpoulton/k8sbook:2.0 # <--
+        ports:
+        - containerPort: 8080
+```
+
+With the updated manifest ready and saved, you can initiate the update by re-posting it to the API server.
+
+
+sudo kubectl apply -f deploy.yml
+
+You can monitor the progress with kubectl rollout status:
+
+sudo kubectl rollout status deployment hello-deploy
