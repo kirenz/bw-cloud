@@ -1,0 +1,52 @@
+---
+title: "Programming toolkit" 
+format: 
+  html: 
+    embed-resources: true
+    theme: 
+      - cosmo 
+      - custom.scss 
+    toc: true 
+    number-depth: 3  
+    toc-title: Contents 
+    toc-location: left 
+    number-sections: true 
+    html-math-method: mathjax 
+    smooth-scroll: true 
+---
+
+
+### Install extensions
+
+VS Code extensions let you add tools to your installation to support your development workflow.
+
+
+```{admonition} To do
+:class: tip
+
+- 💾 Install the [Python extension](https://marketplace.visualstudio.com/items?itemName=ms-python.python)
+
+
+```
+
+### Jupyter Notebook extension
+
+We usually work with Jupyter Notebook files in VS Code. 
+
+```{admonition} To do
+:class: tip
+
+- 💾 Install the [Jupyter extension](https://marketplace.visualstudio.com/items?itemName=ms-toolsai.jupyter)
+
+```
+
+Now close and restart VS Code.
+
+Open a Juptyer Notebook in VS Code:
+
+```{admonition} To do
+:class: tip
+- Learn how to use [Jupyter Notebooks in VS Code](https://code.visualstudio.com/docs/datascience/jupyter-notebooks)
+```
+
+If you can't select a kernel (like the so called `base` kernel), try to close and restart VS Code once again.
