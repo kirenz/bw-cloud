@@ -17,14 +17,20 @@ format:
 
 ## Create environment: ds
 
+Run `sudo su`, that will open a shell as the superuser.
+
+```bash
+sudo su
+```
 
 We install some modules in a new miniforge environment. We call this new environment `ds` (data science). 
+
 
 - Copy this code and run it in your terminal: 
 
 
 ```bash
-conda create -n ds python=3.10 pandas openpyxl jupyter scikit-learn altair vega_datasets matplotlib seaborn requests tweepy beautifulsoup4 streamlit sqlalchemy psycopg2 xgboost
+conda create -n ds python=3.10 pandas jupyter scikit-learn altair vega_datasets matplotlib seaborn streamlit xgboost
 ```
 
 Activate the new environment:
