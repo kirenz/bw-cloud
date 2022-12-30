@@ -23,14 +23,14 @@ Run `sudo su`, that will open a shell as the superuser.
 sudo su
 ```
 
-We install some modules in a new miniforge environment. We call this new environment `ds` (data science). 
+We install some modules in a new environment. We call this new environment `ds` (short for data science). 
 
 
 - Copy this code and run it in your terminal: 
 
 
 ```bash
-conda create -n ds python=3.10 pandas jupyter scikit-learn altair vega_datasets matplotlib seaborn streamlit xgboost
+conda create -n ds python=3.10 pandas jupyter scikit-learn altair vega_datasets matplotlib seaborn
 ```
 
 Activate the new environment:
@@ -43,11 +43,13 @@ conda activate ds
 
 ## Create environment: tf
 
-We install some modules in a new Anaconda environment. We call this new environment `tf` (TensorFlow). 
+Run `sudo su`, that will open a shell as the superuser.
 
-> On *Windows* open the Start menu and open the "Anaconda Command Prompt". 
+```bash
+sudo su
+```
 
-> On *macOS*: Open a terminal ([learn how to open a terminal](https://support.apple.com/guide/terminal/open-or-quit-terminal-apd5265185d-f365-44cb-8b09-71a064a42125/mac)) 
+We install some modules in a new environment. We call this new environment `tf` (TensorFlow). 
 
 
 - Copy this code and run it in your terminal: 
@@ -68,9 +70,26 @@ conda activate tf
 
 ## Create environment: tfx
 
-We install some modules in a new environment. We call this new environment `tfx` (TensorFlowExtended). 
+```bash
+sudo su
+```
 
-- Copy this code and run it in your terminal: 
+```bash
+sudo apt-get install gcc
+```
+
+If asked, type enter and use default settings to restart kernel 
+
+
+```bash
+sudo apt-get install g++
+```
+
+If asked, type enter and use default settings to restart kernel 
+
+
+
+Now create a new environment `tfx` (TensorFlowExtended). Copy this code and run it in your terminal: 
 
 
 ```bash
@@ -83,23 +102,36 @@ Activate the new environment:
 conda activate tfx
 ```
 
-First of all, you have to activate the tf environment:
-
-conda activate tf
 Upgrade pip:
 
+
+```bash
 pip install --upgrade pip
+
+```
+
 
 Now we have to use pip (pip is the package installer for Python) to install TFX. This table describes how the tfx package versions are compatible with its major dependency PyPI packages.
 
+
+Install Tensorflow Extended
+
+
+```bash
 pip install tfx
-TensorFlow is already included in tfx.
+
+```
+
 
 Install additional modules:
 
 pip install tensorflow-datasets
-pip install -U scikit-learn
-Congratulations! You have completed the tutorial and learned how to install:
+
+Export the path
+
+export PATH=/mnt/vdc/miniforge/envs/tfx/bin/python3.9
+
+Now create a new Jupyter Notebook and select the tfx environment
 
 ---
 
@@ -125,7 +157,6 @@ You can also manually specify an interpreter if Visual Studio Code doesn't locat
 1. Select it and you should see a list of your virtual environments
 
 1. Select the environment of your choice and you are ready to go.
-
 
 
 If the steps described above should not work for you, take a look at other tips at [StackOverflow](https://stackoverflow.com/questions/43351596/activating-anaconda-environment-in-vscode).
