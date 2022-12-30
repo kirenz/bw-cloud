@@ -180,8 +180,28 @@ You can change directory into your new volume:
 cd /mnt/vdc
 ```
 
+## Create folders
+
+In directory:
 
 
+```bash
+cd /mnt/vdc
+```
+
+Create a new folder called tfx with a subfolder first-pipeline 
+
+
+```bash
+sudo mkdir tfx/first-pipeline
+
+```
+
+/mnt/vdc/tfx/first-pipeline
+
+sudo chmod a+rwx /mnt/vdc/tfx/first-pipeline
+
+a means "all" (users) + means "add the following rights" and rwx means read, write and execute respectively.
 
 ## Unmount
 
