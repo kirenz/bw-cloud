@@ -18,7 +18,7 @@ format:
 
 ## Prepare environment
 
-Change directory into your vdc volume:
+Change directory into your volume (in may case *vdc*):
 
 
 ```bash
@@ -32,60 +32,45 @@ sudo mkdir bin
 ```
 
 
-
 ## Install miniforge
 
-Change into bin
+Change directory into bin
 
-cd bin
-
-https://github.com/conda-forge/miniforge#unix-like-platforms
 
 ```bash
-sudo curl -L -O "https://github.com/conda-forge/miniforge/releases/latest/download/Mambaforge-$(uname)-$(uname -m).sh"
+cd bin
 ```
 
+Download the latest [Miniforge3 installer](https://github.com/conda-forge/miniforge):
+
+
 ```bash
-sudo bash Mambaforge-$(uname)-$(uname -m).sh
+sudo curl -L -O "https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-$(uname)-$(uname -m).sh"
+```
+
+Start the installation porcess:
+
+```bash
+sudo bash Miniforge3-$(uname)-$(uname -m).sh
 ```
 
 Press enter and scroll down
 
 Type `yes` and press enter.
 
-If asked, select your partition as location to save mambaforge:
-
-`/mnt/vdc/mambaforge`
+If asked, select your partition as location to save miniforge:
 
 
-Accept and type `yes` when asked.
-This will install miniforge to /mnt/vdc/mambaforge
+`/mnt/vdc/miniforge`
 
-Do you wish the installer to initialize Mambaforge
-by running conda init? [yes|no]
+Accept and type `yes` when asked. This will install miniforge to /mnt/vdc/miniforge
+
+
+
+If asked: "Do you wish the installer to initialize Miniforge3
+by running conda init? [yes|no]"
 
 Type `yes`
-
-
-Now add mambaforge to path as shown in the command below:
-
-```bash
-export PATH=/mnt/vdc/mambaforge/bin:$PATH
-```
-
-Initialize all shells with:
-
-
-```bash
-conda init --all
-```
-
-==> For changes to take effect, close and re-open your current shell. <==
-
----
-
-
-## Install ipykernel
 
 
 Run `sudo su`, that will open a shell as the superuser.
@@ -94,13 +79,70 @@ Run `sudo su`, that will open a shell as the superuser.
 sudo su
 ```
 
-Install the package ipykernel
+Now add miniforge to path as shown in the command below:
 
 ```bash
-conda install -p /mnt/vdc/mambaforge ipykernel --update-deps --force-reinstall
+export PATH=/mnt/vdc/miniforge/bin:$PATH
+```
+
+Initialize all shells with:
+
+```bash
+conda init --all
 ```
 
 Type `exit` to exit this shell.
+
+
+## Install ipykernel
+
+
+Run `sudo su`, that will open a shell as the superuser.
+
+
+```bash
+sudo su
+```
+
+Install the package ipykernel
+
+```bash
+conda install ipykernel 
+```
+
+Type `exit` to exit this shell.
+
+
+Now close your connection and restart.
+
+
+## Start Jupyter Notebook in VS Code
+
+In Visual Studio Code:
+
+1. [Create a Jupyter Notebook](https://code.visualstudio.com/docs/datascience/jupyter-notebooks#_create-or-open-a-jupyter-notebook)
+
+1. Next, select a kernel using the kernel picker in the top right (select the miniforge environment)
+
+![](https://code.visualstudio.com/assets/docs/datascience/jupyter/native-kernel-picker.png)
+
+
+If you can't see your miniforge environment:
+
+You can also manually specify an interpreter if Visual Studio Code doesn't locate your kernel automatically.
+
+1. Show command palette: Press `cmd+shift+p` (Mac) or `strl+shift+p` (Windows)
+
+1. Search for `Python: Select Interpreter´
+
+1. Select + enter interpreter path 
+
+1. Choose the path (in my case: /mnt/vdc/miniforge/bin/python3.10 )
+
+
+If the steps described above should not work for you, take a look at other tips at [StackOverflow](https://stackoverflow.com/questions/43351596/activating-anaconda-environment-in-vscode).
+
+
 
 
 -----
@@ -109,10 +151,10 @@ OLD
 
 ## Install packages
 
-Now add mambaforge to path as shown in the command below:
+Now add miniforge to path as shown in the command below:
 
 ```bash
-export PATH=/mnt/vdc/mambaforge/bin:$PATH
+export PATH=/mnt/vdc/miniforge/bin:$PATH
 ```
 
 Initialize your shell with:
@@ -133,4 +175,4 @@ Read+Write+Execute:
 sudo chmod -R a+rwx /var/www
 
 
-sudo chmod a+rwx /mnt/vdc/mambaforge
+sudo chmod a+rwx /mnt/vdc/miniforge
