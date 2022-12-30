@@ -181,14 +181,7 @@ cd /mnt/vdc
 ```
 
 
-## Change permissions
 
-Read+Write+Execute:
-
-sudo chmod -R a+rwx /var/www
-
-
-sudo chmod a+rwx /mnt/vdc
 
 ## Unmount
 
