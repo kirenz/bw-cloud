@@ -64,6 +64,8 @@ Ports provide extra communication channels to your instances. You can select por
 
 - Choose default and your custom security groups
 
+- Follow [this bwCloud-tutorial](https://www.bw-cloud.org/de/bwcloud_scope/nutzen#open_port) to open a port.
+
 ## Key Pair
 
 - Select the key pair from step create-key-pairs. Here, it's called id-rsa-pub
