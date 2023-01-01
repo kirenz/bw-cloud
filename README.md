@@ -19,3 +19,9 @@ We cover the following topics:
 
 5. Set up TensorFlow Extended (TFX) with Docker: tfx-setup
 
+
+---
+
+Resources
+
+https://docs.seldon.io/projects/seldon-core/en/v2/index.html
