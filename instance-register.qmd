@@ -1,0 +1,7 @@
+# Register for bwCloud SCOPE
+
+Registration is required to use the bwCloud infrastructure. 
+
+- Visit this [site](https://login.bwidm.de/) and choose your home organization and click on "Proceed" or press enter.
+
+- Register for "bwCloud SCOPE"

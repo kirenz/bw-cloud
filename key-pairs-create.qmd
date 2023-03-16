@@ -1,23 +1,39 @@
 # Create SSH-Key
 
-You can use a SSH-key to access remote servers and to handle authentication for command line programs.
+To be able to connect to bwCloud from your local machine, you first need to create a SSH-key to handle authentication.
+
+## What is SSH?
+
+[SSH](https://www.ssh.com/academy/ssh) (Secure Shell) is a software package that enables secure system administration and file transfers over insecure networks. It is used in nearly every data center and in every large enterprise.
+
+Although SSH provides an encrypted connection, using passwords with SSH connections would leave our virtual machine (VM) in bwCloud vulnerable to attacks. Therefore, we connect to our VM over SSH using a public-private key pair, also known as SSH keys.
+
+- The *public key* is placed on your VM.
+
+- The *private key* remains on your local system. Protect this private key. Do not share it.
 
 
-## Windows
+When you use an SSH client to connect to your VM (which has the public key), the remote VM tests the client to make sure it has the correct private key. If the client has the private key, it's granted access to the VM.
+
+
+
+## Create SSH-Keys in Windows
 
 Follow the instructions provided in bwCloud: [SSH-Key Paar erzeugen](https://www.bw-cloud.org/de/bwcloud_scope/nutzen)
 
 
-## MacOS
+## Create SSH-Keys in MacOS
 
 ### Create key
 
-Open a terminal and run the following command:
+Open a [terminal](https://support.apple.com/guide/terminal/open-or-quit-terminal-apd5265185d-f365-44cb-8b09-71a064a42125/mac) and run the following command:
 
 ```bash
 ssh-keygen
 ```
+
 This will output:
+
 
 ```bash
 Generating public/private rsa key pair.
@@ -26,7 +42,9 @@ Enter file in which to save the key (/Users/username/.ssh/id_rsa):
 
 Press enter to save your keys to the default `/Users/username/.ssh` directory.
 
+
 After entering and confirming your password, you'll see something like the following:
+
 
 ```bash
 Generating public/private rsa key pair.
@@ -51,29 +69,31 @@ The key's randomart image is:
 +----[SHA256]-----+
 ```
 
-### Set permissions
+## Set permissions
 
-Next, we use chmod to change permissions (otherwise, bwCloud will refuse the connection). 
+Next, we use `chmod` to change permissions (otherwise, bwCloud will refuse the connection). 
 
 
 ::: {.callout-note}
 In Unix and Unix-like operating systems, `chmod` is the command and system call used to change the access permissions of files and directories. The name chmod was chosen as an abbreviation of **ch**ange **mod**e.
 :::
 
-Chmod 700 sets folder permissions so that only the owner can read, write and execute files in this folder:
+
+`Chmod 700` sets folder permissions so that only the owner can read, write and execute files in this folder:
 
 ```bash
 chmod 700 .ssh
 ```
 
-Permissions of 600 mean that the owner has full read and write access to the file, while no other user can access the file:
+Permissions of `600` mean that the owner has full read and write access to the file, while no other user can access the file:
+
 
 ```bash
 chmod 600 .ssh/id_rsa
 ```
 
 
-### Mac Finder
+## Mac Finder
 
 1. Open Finder and navigate to `your/Users/username/`
 
@@ -84,6 +104,7 @@ If you don't find your home: In Finder, click on the menue and choose: `Finder >
 
 
 1. Now press the `Command + Shift + .` (period) keys at the same time. The hidden files will show up as translucent in your folder.
+
 
 1. Open the folder `.ssh`.
 

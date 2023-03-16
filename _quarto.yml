@@ -8,7 +8,8 @@ book:
   title: "Cloud Architecure"
   author: "Jan Kirenz"
   chapters:
-    - intro.qmd
+    - index.qmd
+    - instance-register.qmd
     - key-pairs-create.qmd
     - instance-create.qmd
     - instance-login.qmd

@@ -1,20 +1,7 @@
-# Preface {.unnumbered}
+# Introduction {.unnumbered}
 
-This online book covers the following topics:
+The bwCloud is an "infrastructure-as-a-service" environment, specially developed and operated for research and teaching in Baden-Württemberg. 
 
-1. Create a SSH-key to be able to access the bwCloud server and handle authentication: create-key-pairs
+With the bwCloud, virtual servers or virtual machines (VMs) can be created, started and operated. These virtual machines include resources such as virtual CPUs (vCPUs), main memory (RAM), network access (IPv4 and IPv6 addresses) and storage space (storage) and do not differ in operation and administration from "real" physical machines. 
 
-
-2. Create an instance (i.e. a virtual machine hosted on bwCloud): create-instance
-
-
-3. Set up Docker: setup-docker 
-
-
-4. Increase storage and mount to Docker: increase-storage
-
-
-5. Set up TensorFlow Extended (TFX) with Docker: tfx-setup
-
-See @knuth84 for additional discussion of literate programming.
-
+This online book covers how to set up bwCloud.
