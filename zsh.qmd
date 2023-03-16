@@ -1,19 +1,5 @@
----
-title: "How to install ZSH" 
-format: 
-  html: 
-    embed-resources: true
-    theme: 
-      - cosmo 
-      - custom.scss 
-    toc: true 
-    number-depth: 3  
-    toc-title: Contents 
-    toc-location: left 
-    number-sections: true 
-    html-math-method: mathjax 
-    smooth-scroll: true 
----
+# How to install ZSH" 
+
 
 ZSH also known as Z shell, is a Unix shell that is an extended version of the Bourne Shell (sh), with many new features and supports many plugins and themes. It is the best alternative to Bash with a cool and stylish shell interface including some features of Bash, KSH, and tcsh.
 
