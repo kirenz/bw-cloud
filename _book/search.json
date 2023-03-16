@@ -1,0 +1,135 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Cloud Architecure",
+    "section": "",
+    "text": "Preface\nThis online book covers the following topics:\n\nCreate a SSH-key to be able to access the bwCloud server and handle authentication: create-key-pairs\nCreate an instance (i.e. a virtual machine hosted on bwCloud): create-instance\nSet up Docker: setup-docker\nIncrease storage and mount to Docker: increase-storage\nSet up TensorFlow Extended (TFX) with Docker: tfx-setup"
+  },
+  {
+    "objectID": "key-pairs-create.html#windows",
+    "href": "key-pairs-create.html#windows",
+    "title": "1  Create SSH-Key",
+    "section": "1.1 Windows",
+    "text": "1.1 Windows\nFollow the instructions provided in bwCloud: SSH-Key Paar erzeugen"
+  },
+  {
+    "objectID": "key-pairs-create.html#macos",
+    "href": "key-pairs-create.html#macos",
+    "title": "1  Create SSH-Key",
+    "section": "1.2 MacOS",
+    "text": "1.2 MacOS\n\n1.2.1 Create key\nOpen a terminal and run the following command:\nssh-keygen\nThis will output:\nGenerating public/private rsa key pair.\nEnter file in which to save the key (/Users/username/.ssh/id_rsa):\nPress enter to save your keys to the default /Users/username/.ssh directory.\nAfter entering and confirming your password, you’ll see something like the following:\nGenerating public/private rsa key pair.\nEnter file in which to save the key (/Users/username/.ssh/id_rsa):\nEnter passphrase (empty for no passphrase):\nEnter same passphrase again:\nYour identification has been saved in /Users/username/.ssh/id_rsa\nYour public key has been saved in /Users/username/.ssh/id_rsa.pub\nThe key fingerprint is:\nSHA256:BOJAxs0Rkhusd9Hq/xdqWDnfd1cdxN5Uk+hD2gNwNLA1HvUM username@somename.local\nThe key's randomart image is:\n+---[RSA 3072]----+\n| .o*O ..D.BB+...o|\n|  .*. .  +o+=E...|\n|   ..        ..oo|\n|    . ..    oo o=|\n|   . . .S     o +|\n|           . .  .|\n|   ..o. . D.     |\n|   .+. .   XC    |\n|  .o.o.   L.     |\n+----[SHA256]-----+\n\n\n1.2.2 Set permissions\nNext, we use chmod to change permissions (otherwise, bwCloud will refuse the connection).\n\n\n\n\n\n\nNote\n\n\n\nIn Unix and Unix-like operating systems, chmod is the command and system call used to change the access permissions of files and directories. The name chmod was chosen as an abbreviation of change mode.\n\n\nChmod 700 sets folder permissions so that only the owner can read, write and execute files in this folder:\nchmod 700 .ssh\nPermissions of 600 mean that the owner has full read and write access to the file, while no other user can access the file:\nchmod 600 .ssh/id_rsa\n\n\n1.2.3 Mac Finder\n\nOpen Finder and navigate to your/Users/username/\n\n\n\n\n\n\n\nHow to show your home folder in Finder\n\n\n\n\n\nIf you don’t find your home: In Finder, click on the menue and choose: Finder > Preference > Sidebar > Show these items in the sidebar and checkmark the box beside the home icon.\n\n\n\n\nNow press the Command + Shift + . (period) keys at the same time. The hidden files will show up as translucent in your folder.\nOpen the folder .ssh.\nYou should see your public SSH key (id_rsa.pub) and private SSH key (id_rsa)"
+  },
+  {
+    "objectID": "key-pairs-create.html#import-public-key",
+    "href": "key-pairs-create.html#import-public-key",
+    "title": "1  Create SSH-Key",
+    "section": "1.3 Import public key",
+    "text": "1.3 Import public key\n\nOpen your bwCloud Dashboard\nNavigate to Key Pairs in the left side menue.\nClick on Import Public Key\nProvide a Key Name and choose Key Type SSH Key.\nNow open your public key id_rsa.pub in a code editor like VS Code and copy and paste the content into Public Key"
+  },
+  {
+    "objectID": "instance-create.html#details",
+    "href": "instance-create.html#details",
+    "title": "2  Create a launch instance",
+    "section": "2.1 Details",
+    "text": "2.1 Details\n\nProvide the instance name. We choose: ml-pipeline-01\nProvide a description for the instance, e.g. Example ML Pipeline\nChoose count 1"
+  },
+  {
+    "objectID": "instance-create.html#source",
+    "href": "instance-create.html#source",
+    "title": "2  Create a launch instance",
+    "section": "2.2 Source",
+    "text": "2.2 Source\n\nInstance source is the template used to create an instance.\nChoose Ubuntu 22.04"
+  },
+  {
+    "objectID": "instance-create.html#flavor",
+    "href": "instance-create.html#flavor",
+    "title": "2  Create a launch instance",
+    "section": "2.3 Flavor",
+    "text": "2.3 Flavor\nFlavors manage the sizing for the compute, memory and storage capacity of the instance.\n\nChoose m1.large (4 VCPUS, 8 GB Ram, 12 GB storage)"
+  },
+  {
+    "objectID": "instance-create.html#networks",
+    "href": "instance-create.html#networks",
+    "title": "2  Create a launch instance",
+    "section": "2.4 Networks",
+    "text": "2.4 Networks\nNetworks provide the communication channels for instances in the cloud.\n\nWe use public-belwue"
+  },
+  {
+    "objectID": "instance-create.html#network-ports",
+    "href": "instance-create.html#network-ports",
+    "title": "2  Create a launch instance",
+    "section": "2.5 Network Ports",
+    "text": "2.5 Network Ports\nPorts provide extra communication channels to your instances. You can select ports instead of networks or a mix of both.\n\nWe dont use network ports"
+  },
+  {
+    "objectID": "instance-create.html#security-groups",
+    "href": "instance-create.html#security-groups",
+    "title": "2  Create a launch instance",
+    "section": "2.6 Security Groups",
+    "text": "2.6 Security Groups\n\nChoose default and your custom security groups\nFollow this bwCloud-tutorial to open a port."
+  },
+  {
+    "objectID": "instance-create.html#key-pair",
+    "href": "instance-create.html#key-pair",
+    "title": "2  Create a launch instance",
+    "section": "2.7 Key Pair",
+    "text": "2.7 Key Pair\n\nSelect the key pair from step create-key-pairs. Here, it’s called id-rsa-pub"
+  },
+  {
+    "objectID": "instance-create.html#launch-instance",
+    "href": "instance-create.html#launch-instance",
+    "title": "2  Create a launch instance",
+    "section": "2.8 Launch Instance",
+    "text": "2.8 Launch Instance\nWe are done and you can click on Launch Instance.\nYou should see your newly created instance in your dashboard.\nClick on the instance name to see more details"
+  },
+  {
+    "objectID": "instance-create.html#increae-storage",
+    "href": "instance-create.html#increae-storage",
+    "title": "2  Create a launch instance",
+    "section": "2.9 Increae Storage",
+    "text": "2.9 Increae Storage\n\nLog in to bwCloud Dashboard\nClick on Volumes below Project → Volumes\nAn overview of the volumes you have created so far is displayed. To create a new volume, click on Create Volume\nA dialogue opens. Fill in the fields according to your requirements: block-device-01, We use 25 GiB.\nThen click on Create Volume. The volume is created\n\nIn order for a volume to be used by a virtual machine, it must be added (“attached”) to a VM.\n\nIn the table row of the desired volume, select the subitem Manage Attachments in the context menu at the right end of the row and click on the entry.\n\nA dialogue opens In the dialogue, select the desired virtual machine (ml-pipeline-01) and click on Attach Volume\n\nThe table updates and the path under which the new volume can be reached from within the virtual machine appears in the Attached To field\n\n/dev/vdb on ml-pipeline-01\n\nLog into the virtual machine\n\nCheck the external device:\nsudo fdisk -l\nThis will output\n...\nDisk /dev/vdb: 25 GiB, 26843545600 bytes, 52428800 sectors\nUnits: sectors of 1 * 512 = 512 bytes\nSector size (logical/physical): 512 bytes / 512 bytes\nI/O size (minimum/optimal): 512 bytes / 512 bytes\nso for that you have to partition it first:\nsudo parted /dev/vdb\nAfter executing the above command, within the environment of the command, you should follow the command mentioned below to allow greater than 2GB’s partitions.\nmklabel GPT\nWithin this partition environment, you can also set the size, it depends on the user’s choice to allocate the space, as in our case we are limiting the partition from GB to 3GB by using the following command: you just have to change the upper bound to have a partition of greater or lesser size.\nmkpart primary 0GB 25GB\nOnce you have successfully attempted the above steps of partition; now you must assign a file system for the newly made partition. However, you can proceed only if you leave the parted environment; just type “quit” in the terminal and hit enter the terminal will come out of that environment:\nquit\nThe final step to active the partition is assigning file format for the new partition; so, you have to choose the file system (.ext4) of the newly made partition by using the below-mentioned command:\nsudo mkfs.ext4 /dev/vdb\nStep 3: Mount Process : Once the partition step is performed, you can mount the drive; before this, you should create a new directory in the “/mnt/” directory where the drives are usually mounted in Ubuntu. Make new directory in “/mnt/” by using the terminal as mentioned below:\nsudo mkdir /mnt/vdb\nOnce the directory is created, you can mount the inserted drive by using the command written below:\nsudo mount /dev/vdb /mnt/vdb\nHowever, it is observed that the below command will temporarily mount the drive, whenever you will restart the system, you must mount it again. To avoid such happening you must edit the file system table “fstab” by using the nano editor:\nsudo nano /etc/fstab\nNow, add the following content at the end of the file:\n/dev/vdb    /mnt/vdb     ext4      defaults        0             0\nCtrl+O will save the modifications you’ve made to the file. Ctrl+X will close nano.\nHow to check the drive is mounted or not\nYou can check the mounted drive by using the command mentioned below: you can specify the directory name (sdb in our case) after “grep” to get the pointed information; otherwise, the mount command will list down all the mounted drives and partitions in your system:\nsudo mount | grep vdb\n\n2.9.1 Install text-based web browser\nw3m is a text-based web browser as well as a pager like more' orless’. With w3m you can browse web pages through a terminal emulator windo\nsudo apt-get install w3m w3m-img\nto open a webpage simply type in a terminal window: w3m \nFor example:\nw3m https://w3m.sourceforge.net/\n\nto open a new page: type Shift-U\nto go back one page: Shift-B\nopen a new tab: Shift-T\nto exit: q"
+  },
+  {
+    "objectID": "instance-login.html#terminal",
+    "href": "instance-login.html#terminal",
+    "title": "3  Log into instance",
+    "section": "3.1 Terminal",
+    "text": "3.1 Terminal\n\n3.1.1 Mac\nChange the IP adress and enter\nssh -i .ssh/id_rsa ubuntu@193.196.52.36\nIf you are asked: Are you sure you want to continue connecting (yes/no/[fingerprint])?\nEnter “yes”.\nEnter passphrase for key ‘.ssh/id_rsa’:\nProvide your password"
+  },
+  {
+    "objectID": "docker-setup.html#set-up-docker-repository",
+    "href": "docker-setup.html#set-up-docker-repository",
+    "title": "4  Docker",
+    "section": "4.1 Set up Docker repository",
+    "text": "4.1 Set up Docker repository\nBefore you install Docker Engine for the first time on a new host machine, you need to set up the Docker repository. Afterward, you can install and update Docker from the repository.\nUpdate the apt package index:\nsudo apt-get update\nInstall packages to allow apt to use a repository over HTTPS:\nsudo apt-get install \\\n    ca-certificates \\\n    curl \\\n    gnupg \\\n    lsb-release\nConfirm the installation with Y\nAdd Docker’s official GPG key:\nsudo mkdir -p /etc/apt/keyrings\ncurl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg\nUse the following command to set up the repository:\necho \\\n  \"deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \\\n  $(lsb_release -cs) stable\" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null"
+  },
+  {
+    "objectID": "docker-setup.html#install-docker-engine",
+    "href": "docker-setup.html#install-docker-engine",
+    "title": "4  Docker",
+    "section": "4.2 Install Docker Engine",
+    "text": "4.2 Install Docker Engine\nAgain, update the apt package index:\nsudo apt-get update\nInstall Docker Engine, containerd, and Docker Compose:\nsudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin\nPress Y to continue\nVerify that the Docker Engine installation is successful by running the hello-world image:\nsudo docker run hello-world\nThis command downloads a test image and runs it in a container. When the container runs, it prints a confirmation message and exits.\nYou have now successfully installed and started Docker Engine.\nThe docker user group exists but contains no users, which is why you’re required to use sudo to run Docker commands.\nYou may optionally continue to Linux post-install to allow non-privileged users to run Docker commands and for other optional configuration steps.\nYou can follow these optional post-installation procedures which shows you how to configure your Linux host machine to work better with Docker. In particular, it let’s you run the Docker daemon as a non-root user (Rootless mode). In this tutorial, I\nLet’s take a look at\nsudo docker info\nSearch for TFX images on Docker Hub:\nsudo docker search tfx\nOnce you’ve identified the image that you would like to use, you can download it using the pull subcommand.\nExecute the following command to download the latest official TFX image (8.81 GB):\nsudo docker pull tensorflow/tfx:latest"
+  },
+  {
+    "objectID": "instance-storage-increase-docker.html#create-new-volume-in-bwcloud",
+    "href": "instance-storage-increase-docker.html#create-new-volume-in-bwcloud",
+    "title": "5  Increase Cloud Storage",
+    "section": "5.1 Create new volume in bwCloud",
+    "text": "5.1 Create new volume in bwCloud\n\nLog into bwCloud Dashboard\nClick on Volumes below Project → Volumes\nAn overview of the volumes you have created so far is displayed. To create a new volume, click on Create Volume\nA dialogue opens. Fill in the fields according to your requirements. We call the volume block-device-01 and use 25 GiB.\nThen click on Create Volume. The volume is created"
+  },
+  {
+    "objectID": "instance-storage-increase-docker.html#attach-volume-in-bwcloud",
+    "href": "instance-storage-increase-docker.html#attach-volume-in-bwcloud",
+    "title": "5  Increase Cloud Storage",
+    "section": "5.2 Attach volume in bwCloud",
+    "text": "5.2 Attach volume in bwCloud\nIn order for a volume to be used by a virtual machine, it must be added (“attached”) to your VM inside bwCloud.\n\nIn the table row of the desired volume, select the subitem Manage Attachments in the context menu at the right end of the row and click on the entry.\nIn the dialogue, select the desired virtual machine (ml-pipeline-01) and click on Attach Volume\n\n\nThe table updates and the path under which the new volume can be reached from within the virtual machine appears in the Attached To field:\n\n/dev/vdb on ml-pipeline-01"
+  },
+  {
+    "objectID": "instance-storage-increase-docker.html#mount-volume-in-vm",
+    "href": "instance-storage-increase-docker.html#mount-volume-in-vm",
+    "title": "5  Increase Cloud Storage",
+    "section": "5.3 Mount volume in VM",
+    "text": "5.3 Mount volume in VM\nIn Linux, the process of attaching a filesystem to a particular point in the directory tree is called mounting. This allows you to access the files and directories on the filesystem as if they were part of the filesystem on which you are currently working.\n\n5.3.1 Log in your VM\n\nLog into your virtual machine (replace 111.111.11.11 with your IP)\n\nssh -i .ssh/id_rsa ubuntu@111.111.11.11\n\n\n5.3.2 Find volumne\nYou can find your volume (i.e. disk) using:\nsudo fdisk -l\nThe output should include an entry like the following:\n\nDisk /dev/vdb: 25 GiB, 26843545600 bytes, 52428800 sectors\nUnits: sectors of 1 * 512 = 512 bytes\nSector size (logical/physical): 512 bytes / 512 bytes\nI/O size (minimum/optimal): 512 bytes / 512 bytes\n\n\n5.3.3 Partitioning\nNext, we need to partition our volume. This command will open a partition environment:\nsudo parted /dev/vdb\nWe use GPT (GUID Partition Table), which is a standard for the layout of the partition table on a physical storage device:\nmklabel gpt\nWithin the partition environment, you can also set the size of the partition. We set the upper bound to 25 GB.\nmkpart primary 0GB 25GB\nEnter quit to leave the partition environment:\nquit\n\n\n5.3.4 Format partition\nFormat the partition with the ext4 filesystem. ext4 stands for “extended file system version 4”, which is a popular filesystem used in Linux systems to store and organize files on a storage device, such as a hard drive or solid-state drive.\nsudo mkfs.ext4 /dev/vdb\n\n\n5.3.5 Mounting\nIn general, it is best to avoid using the root user account for everyday tasks, and to use sudo to run specific commands as needed, rather than switching to the root user account and running all commands with superuser privileges. This helps to reduce the risk of accidental damage to the system and ensures that all actions are logged and can be traced back to a specific user.\n“su” stands for “switch user,” and it allows a user to switch to another user account. When you run sudo su, you are effectively running the su command with superuser privileges, which means that you can switch to the root user account and have full access to all the files and system resources on the machine.\nsudo su is a command that is used to switch to the root user account from another user account on a Unix-like operating system.\n“sudo” is short for “superuser do,” and it allows a user to run commands with administrative privileges.\nsudo su\n/dev/vdb is your new disk\nStop docker daemon,\nsystemctl stop docker\nMove your current docker directory\nmv /var/lib/docker /var/lib/docker-backup\nCreate a new docker directory\nmk dir var/lib/docker\nMount your new file system\nmount /dev/vdb /var/lib/docker\nReinstate your docker installation on the new file system\ncp -rf /var/lib/docker-backup/* /var/lib/docker\nStart docker\nsystemctl start docker\nTest out your newly expanded capacity by pulling a new docker image and running it — here’s a postgres image as an example:\ndocker pull postgres\nStart a postgres instance\ndocker run --name some-postgres -e POSTGRES_PASSWORD=mysecretpassword -d postgres\nThe default postgres user and database are created in the entrypoint with initdb.\nThe postgres database is a default database meant for use by users, utilities and third party applications.\nMount On Startup\nAssuming everything is now fine, you’ll want to ensure your disk gets mounted on the /var/lib/docker directory permanently on start-up:\nnano /etc/fstab\nAdd the following line at the end of the file, again assuming /dev/vdb is your device and also assuming is formatted as an ext4 filesystem.\nRollback If something goes wrong or for whatever reason, you want to return to your previous setup — you should be able to rollback in the following way:\nsystemctl stop docker\numount /dev/sda2\nmv /var/lib/docker-backup /var/lib/docker\n# Remove the additional line added to /etc/fstab (if applicable)\nsystemctl start docker\nCleanup If you’re happy with the increased capacity in your docker installation and all has gone to plan, you can now remove your backup:\nrm -rf /var/lib/docker-backup\nChange back to our ubuntu user\nsu ubuntu\n\nOLD\nBefore we mount the drive, we create a new directory in the /mnt/ directory where the drives are usually mounted in Ubuntu:\nsudo mkdir /mnt/vdb\nOnce the directory is created, you can mount the drive as follows:\nsudo mount /dev/vdb /mnt/vdb\nTo mount the drive permanently, we need to edit the file system table fstab. Therefore, we open the file in the text editor nano:\nsudo nano /etc/fstab\nNow, add the following content at the end of the file:\n/dev/vdb    /mnt/vdb     ext4      defaults        0             0\nCtrl+O will save the modifications you’ve made to the file. Ctrl+X will close nano. Confirm with Y and press Enter.\nUse sudo mount to list all mounted drives and combine it with grep vdb, which only returns our volume vdb:\nsudo mount | grep vdb\nYou can change directory into your new volume:\ncd /mnt/vdb\nUnmount\nHow to unmount a mounted drive in Ubuntu\nsudo umount -l /dev/vdb"
+  }
+]
