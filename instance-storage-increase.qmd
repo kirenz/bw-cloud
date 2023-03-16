@@ -1,20 +1,7 @@
----
-title: "Increase Cloud Storage"
+# Increase Cloud Storage
+
 subtitle: "Mount a volume" 
-format: 
-  html: 
-    embed-resources: true
-    theme: 
-      - cosmo 
-      - custom.scss 
-    toc: true 
-    number-depth: 3  
-    toc-title: Contents 
-    toc-location: left 
-    number-sections: true 
-    html-math-method: mathjax 
-    smooth-scroll: true 
----
+
 
 In this tutorial, you'll learn how to increase your cloud storage and mount the volume to a Python environment.
 
