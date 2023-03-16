@@ -1,20 +1,8 @@
----
-title: "Change volume for Docker Images"
+# Change volume for Docker Images
+
 subtitle: "Increase your machine’s docker image capacity" 
-format: 
-  html: 
-    embed-resources: true
-    theme: 
-      - cosmo 
-      - custom.scss 
-    toc: true 
-    number-depth: 3  
-    toc-title: Contents 
-    toc-location: left 
-    number-sections: true 
-    html-math-method: mathjax 
-    smooth-scroll: true 
----
+
+
 OLD???
 
 In general, it is best to avoid using the root user account for everyday tasks, and to use sudo to run specific commands as needed, rather than switching to the root user account and running all commands with superuser privileges. This helps to reduce the risk of accidental damage to the system and ensures that all actions are logged and can be traced back to a specific user.
