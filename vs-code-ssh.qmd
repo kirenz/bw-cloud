@@ -1,20 +1,7 @@
----
-title: "Remote development over SSH"
-subtitle: "VS Code & SSH" 
-format: 
-  html: 
-    embed-resources: true
-    theme: 
-      - cosmo 
-      - custom.scss 
-    toc: true 
-    number-depth: 3  
-    toc-title: Contents 
-    toc-location: left 
-    number-sections: true 
-    html-math-method: mathjax 
-    smooth-scroll: true 
----
+# Remote development over SSH
+
+"VS Code & SSH" 
+
  
 This tutorial walks you through creating and connecting to a virtual machine (VM) using the Visual Studio Code Remote - SSH extension. To review the complete tutorial, review the [official VS Code documentation](https://code.visualstudio.com/docs/remote/ssh-tutorial).
 
