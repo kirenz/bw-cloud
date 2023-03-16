@@ -1,20 +1,5 @@
----
-title: "TFX starter pipeline"
-subtitle: "" 
-format: 
-  html: 
-    embed-resources: true
-    theme: 
-      - cosmo 
-      - custom.scss 
-    toc: true 
-    number-depth: 3  
-    toc-title: Contents 
-    toc-location: left 
-    number-sections: true 
-    html-math-method: mathjax 
-    smooth-scroll: true 
----
+# TFX starter pipeline
+
  
 
  ## Prepare environment
