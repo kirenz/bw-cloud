@@ -1,22 +1,6 @@
----
-title: "Programming toolkit" 
-format: 
-  html: 
-    embed-resources: true
-    theme: 
-      - cosmo 
-      - custom.scss 
-    toc: true 
-    number-depth: 3  
-    toc-title: Contents 
-    toc-location: left 
-    number-sections: true 
-    html-math-method: mathjax 
-    smooth-scroll: true 
----
+# Programming toolkit
 
-
-### Install extensions
+## Install extensions
 
 VS Code extensions let you add tools to your installation to support your development workflow.
 
@@ -29,7 +13,7 @@ VS Code extensions let you add tools to your installation to support your develo
 
 ```
 
-### Jupyter Notebook extension
+## Jupyter Notebook extension
 
 We usually work with Jupyter Notebook files in VS Code. 
 
