@@ -1,33 +1,16 @@
----
-title: "Create a SSH key pair" 
-format: 
-  html: 
-    embed-resources: true
-    theme: 
-      - cosmo 
-      - custom.scss 
-    toc: true 
-    number-depth: 3  
-    toc-title: Contents 
-    toc-location: body 
-    number-sections: true 
-    html-math-method: mathjax 
-    smooth-scroll: true 
----
+# Create SSH-Key
 
-## Create SSH-Key
-
-You can use the SSH-key to access remote servers and to handle authentication for command line programs.
+You can use a SSH-key to access remote servers and to handle authentication for command line programs.
 
 
-### Windows
+## Windows
 
 Follow the instructions provided in bwCloud: [SSH-Key Paar erzeugen](https://www.bw-cloud.org/de/bwcloud_scope/nutzen)
 
 
-### MacOS
+## MacOS
 
-#### Create key
+### Create key
 
 Open a terminal and run the following command:
 
@@ -68,7 +51,7 @@ The key's randomart image is:
 +----[SHA256]-----+
 ```
 
-#### Set permissions
+### Set permissions
 
 Next, we use chmod to change permissions (otherwise, bwCloud will refuse the connection). 
 
@@ -90,7 +73,7 @@ chmod 600 .ssh/id_rsa
 ```
 
 
-#### Mac Finder
+### Mac Finder
 
 1. Open Finder and navigate to `your/Users/username/`
 
