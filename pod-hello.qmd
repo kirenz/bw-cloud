@@ -1,19 +1,5 @@
----
-title: "Hands on Kubernetes" 
-format: 
-  html: 
-    embed-resources: true
-    theme: 
-      - cosmo 
-      - custom.scss 
-    toc: true 
-    number-depth: 3  
-    toc-title: Contents 
-    toc-location: left 
-    number-sections: true 
-    html-math-method: mathjax 
-    smooth-scroll: true 
----
+# Hands on Kubernetes 
+
 
 
 The atomic unit of deployment in Kubernetes is the Pod. Each Pod has one or more containers and gets deployed to a single node in the cluster as an all-or-nothing atomic operation. 
