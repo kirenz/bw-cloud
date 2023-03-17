@@ -1,4 +1,4 @@
-# Docker
+# Docker set up
 
 First, we install Docker Engine on Ubuntu. We simply follow the installation steps outlined in the [official Docker documentation](https://docs.docker.com/engine/install/ubuntu/)
 
