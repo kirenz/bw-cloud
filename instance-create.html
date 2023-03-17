@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Jan Kirenz">
 
-<title>Cloud Architecure - 2&nbsp; Create a launch instance</title>
+<title>Cloud Architecure - 3&nbsp; Create a launch instance</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -133,7 +134,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Create a launch instance</span></h1>
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Create a launch instance</span></h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -147,6 +148,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Cloud Architecure</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/kirenz/bw-cloud" title="Source Code" class="sidebar-tool px-1"><i class="bi bi-github"></i></a>
+  <a href="" class="quarto-reader-toggle sidebar-tool" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
     </div>
       </div>
       <div class="mt-2 flex-shrink-0 align-items-center">
@@ -158,39 +167,42 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link">Preface</a>
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Introduction</a>
   </div>
 </li>
-        <li class="sidebar-item">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./instance.html" class="sidebar-item-text sidebar-link">Virtual Machine</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./key-pairs-create.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Create SSH-Key</span></a>
+  <a href="./instance-register.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Register for bwCloud SCOPE</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./instance-create.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Create a launch instance</span></a>
+  <a href="./key-pairs-create.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Create SSH-Key</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./instance-login.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Log into instance</span></a>
+  <a href="./instance-create.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Create a launch instance</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./docker-setup.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Docker</span></a>
+  <a href="./instance-login.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Log into instance</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./instance-storage-increase-docker.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Increase Cloud Storage</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link">References</a>
-  </div>
-</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <span class="sidebar-item-text sidebar-link text-start">docker.qmd - docker-setup.qmd - instance-storage-increase-docker.qmd</span>
+  </li>
     </ul>
     </div>
 </nav>
@@ -200,27 +212,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#details" id="toc-details" class="nav-link active" data-scroll-target="#details"><span class="toc-section-number">2.1</span>  Details</a></li>
-  <li><a href="#source" id="toc-source" class="nav-link" data-scroll-target="#source"><span class="toc-section-number">2.2</span>  Source</a></li>
-  <li><a href="#flavor" id="toc-flavor" class="nav-link" data-scroll-target="#flavor"><span class="toc-section-number">2.3</span>  Flavor</a></li>
-  <li><a href="#networks" id="toc-networks" class="nav-link" data-scroll-target="#networks"><span class="toc-section-number">2.4</span>  Networks</a></li>
-  <li><a href="#network-ports" id="toc-network-ports" class="nav-link" data-scroll-target="#network-ports"><span class="toc-section-number">2.5</span>  Network Ports</a></li>
-  <li><a href="#security-groups" id="toc-security-groups" class="nav-link" data-scroll-target="#security-groups"><span class="toc-section-number">2.6</span>  Security Groups</a></li>
-  <li><a href="#key-pair" id="toc-key-pair" class="nav-link" data-scroll-target="#key-pair"><span class="toc-section-number">2.7</span>  Key Pair</a></li>
-  <li><a href="#launch-instance" id="toc-launch-instance" class="nav-link" data-scroll-target="#launch-instance"><span class="toc-section-number">2.8</span>  Launch Instance</a></li>
-  <li><a href="#increae-storage" id="toc-increae-storage" class="nav-link" data-scroll-target="#increae-storage"><span class="toc-section-number">2.9</span>  Increae Storage</a>
+  <li><a href="#details" id="toc-details" class="nav-link active" data-scroll-target="#details"><span class="toc-section-number">3.1</span>  Details</a></li>
+  <li><a href="#source" id="toc-source" class="nav-link" data-scroll-target="#source"><span class="toc-section-number">3.2</span>  Source</a></li>
+  <li><a href="#flavor" id="toc-flavor" class="nav-link" data-scroll-target="#flavor"><span class="toc-section-number">3.3</span>  Flavor</a></li>
+  <li><a href="#networks" id="toc-networks" class="nav-link" data-scroll-target="#networks"><span class="toc-section-number">3.4</span>  Networks</a></li>
+  <li><a href="#network-ports" id="toc-network-ports" class="nav-link" data-scroll-target="#network-ports"><span class="toc-section-number">3.5</span>  Network Ports</a></li>
+  <li><a href="#security-groups" id="toc-security-groups" class="nav-link" data-scroll-target="#security-groups"><span class="toc-section-number">3.6</span>  Security Groups</a></li>
+  <li><a href="#key-pair" id="toc-key-pair" class="nav-link" data-scroll-target="#key-pair"><span class="toc-section-number">3.7</span>  Key Pair</a></li>
+  <li><a href="#launch-instance" id="toc-launch-instance" class="nav-link" data-scroll-target="#launch-instance"><span class="toc-section-number">3.8</span>  Launch Instance</a></li>
+  <li><a href="#increae-storage" id="toc-increae-storage" class="nav-link" data-scroll-target="#increae-storage"><span class="toc-section-number">3.9</span>  Increae Storage</a>
   <ul class="collapse">
-  <li><a href="#install-text-based-web-browser" id="toc-install-text-based-web-browser" class="nav-link" data-scroll-target="#install-text-based-web-browser"><span class="toc-section-number">2.9.1</span>  Install text-based web browser</a></li>
+  <li><a href="#install-text-based-web-browser" id="toc-install-text-based-web-browser" class="nav-link" data-scroll-target="#install-text-based-web-browser"><span class="toc-section-number">3.9.1</span>  Install text-based web browser</a></li>
   </ul></li>
   </ul>
-</nav>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/kirenz/bw-cloud/edit/main/instance-create.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/kirenz/bw-cloud/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Create a launch instance</span></h1>
+<h1 class="title d-none d-lg-block"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Create a launch instance</span></h1>
 </div>
 
 
@@ -241,63 +253,63 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>Select <em>Launch Instance</em></p></li>
 </ol>
 <p>Now follow the steps outlined below.</p>
-<section id="details" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="details"><span class="header-section-number">2.1</span> Details</h2>
+<section id="details" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="details"><span class="header-section-number">3.1</span> Details</h2>
 <ul>
 <li>Provide the instance name. We choose: <code>ml-pipeline-01</code></li>
 <li>Provide a description for the instance, e.g.&nbsp;<code>Example ML Pipeline</code></li>
 <li>Choose count <code>1</code></li>
 </ul>
 </section>
-<section id="source" class="level2" data-number="2.2">
-<h2 data-number="2.2" class="anchored" data-anchor-id="source"><span class="header-section-number">2.2</span> Source</h2>
+<section id="source" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="source"><span class="header-section-number">3.2</span> Source</h2>
 <ul>
 <li>Instance source is the template used to create an instance.</li>
 <li>Choose <code>Ubuntu 22.04</code></li>
 </ul>
 </section>
-<section id="flavor" class="level2" data-number="2.3">
-<h2 data-number="2.3" class="anchored" data-anchor-id="flavor"><span class="header-section-number">2.3</span> Flavor</h2>
+<section id="flavor" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="flavor"><span class="header-section-number">3.3</span> Flavor</h2>
 <p>Flavors manage the sizing for the compute, memory and storage capacity of the instance.</p>
 <ul>
 <li>Choose <code>m1.large</code> (4 VCPUS, 8 GB Ram, 12 GB storage)</li>
 </ul>
 </section>
-<section id="networks" class="level2" data-number="2.4">
-<h2 data-number="2.4" class="anchored" data-anchor-id="networks"><span class="header-section-number">2.4</span> Networks</h2>
+<section id="networks" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="networks"><span class="header-section-number">3.4</span> Networks</h2>
 <p>Networks provide the communication channels for instances in the cloud.</p>
 <ul>
 <li>We use public-belwue</li>
 </ul>
 </section>
-<section id="network-ports" class="level2" data-number="2.5">
-<h2 data-number="2.5" class="anchored" data-anchor-id="network-ports"><span class="header-section-number">2.5</span> Network Ports</h2>
+<section id="network-ports" class="level2" data-number="3.5">
+<h2 data-number="3.5" class="anchored" data-anchor-id="network-ports"><span class="header-section-number">3.5</span> Network Ports</h2>
 <p>Ports provide extra communication channels to your instances. You can select ports instead of networks or a mix of both.</p>
 <ul>
 <li>We dont use network ports</li>
 </ul>
 </section>
-<section id="security-groups" class="level2" data-number="2.6">
-<h2 data-number="2.6" class="anchored" data-anchor-id="security-groups"><span class="header-section-number">2.6</span> Security Groups</h2>
+<section id="security-groups" class="level2" data-number="3.6">
+<h2 data-number="3.6" class="anchored" data-anchor-id="security-groups"><span class="header-section-number">3.6</span> Security Groups</h2>
 <ul>
 <li><p>Choose default and your custom security groups</p></li>
 <li><p>Follow <a href="https://www.bw-cloud.org/de/bwcloud_scope/nutzen#open_port">this bwCloud-tutorial</a> to open a port.</p></li>
 </ul>
 </section>
-<section id="key-pair" class="level2" data-number="2.7">
-<h2 data-number="2.7" class="anchored" data-anchor-id="key-pair"><span class="header-section-number">2.7</span> Key Pair</h2>
+<section id="key-pair" class="level2" data-number="3.7">
+<h2 data-number="3.7" class="anchored" data-anchor-id="key-pair"><span class="header-section-number">3.7</span> Key Pair</h2>
 <ul>
 <li>Select the key pair from step create-key-pairs. Here, it’s called id-rsa-pub</li>
 </ul>
 </section>
-<section id="launch-instance" class="level2" data-number="2.8">
-<h2 data-number="2.8" class="anchored" data-anchor-id="launch-instance"><span class="header-section-number">2.8</span> Launch Instance</h2>
+<section id="launch-instance" class="level2" data-number="3.8">
+<h2 data-number="3.8" class="anchored" data-anchor-id="launch-instance"><span class="header-section-number">3.8</span> Launch Instance</h2>
 <p>We are done and you can click on Launch Instance.</p>
 <p>You should see your newly created instance in your dashboard.</p>
 <p>Click on the instance name to see more details</p>
 </section>
-<section id="increae-storage" class="level2" data-number="2.9">
-<h2 data-number="2.9" class="anchored" data-anchor-id="increae-storage"><span class="header-section-number">2.9</span> Increae Storage</h2>
+<section id="increae-storage" class="level2" data-number="3.9">
+<h2 data-number="3.9" class="anchored" data-anchor-id="increae-storage"><span class="header-section-number">3.9</span> Increae Storage</h2>
 <ol type="1">
 <li><p>Log in to <a href="https://bw-cloud.org/q/d">bwCloud Dashboard</a></p></li>
 <li><p>Click on Volumes below Project → Volumes</p></li>
@@ -347,8 +359,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>How to check the drive is mounted or not</p>
 <p>You can check the mounted drive by using the command mentioned below: you can specify the directory name (sdb in our case) after “grep” to get the pointed information; otherwise, the mount command will list down all the mounted drives and partitions in your system:</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> mount <span class="kw">|</span> <span class="fu">grep</span> vdb</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<section id="install-text-based-web-browser" class="level3" data-number="2.9.1">
-<h3 data-number="2.9.1" class="anchored" data-anchor-id="install-text-based-web-browser"><span class="header-section-number">2.9.1</span> Install text-based web browser</h3>
+<section id="install-text-based-web-browser" class="level3" data-number="3.9.1">
+<h3 data-number="3.9.1" class="anchored" data-anchor-id="install-text-based-web-browser"><span class="header-section-number">3.9.1</span> Install text-based web browser</h3>
 <p>w3m is a text-based web browser as well as a pager like <code>more' or</code>less’. With w3m you can browse web pages through a terminal emulator windo</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt-get install w3m w3m-img</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>to open a webpage simply type in a terminal window: w3m <url_of_the_webpage></url_of_the_webpage></p>
@@ -502,16 +514,22 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./key-pairs-create.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Create SSH-Key</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Create SSH-Key</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./instance-login.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Log into instance</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Log into instance</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
 </div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">Jan Kirenz</div>   
+    <div class="nav-footer-right">This book was built with <a href="https://quarto.org/">Quarto</a>.</div>
+  </div>
+</footer>
 
 
 
