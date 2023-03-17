@@ -8,7 +8,7 @@
 
 <meta name="author" content="Jan Kirenz">
 
-<title>Cloud Architecure - 2&nbsp; Create SSH-Key</title>
+<title>Cloud Architecure - 7&nbsp; Remote development over SSH</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -94,8 +94,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./instance-create.html" rel="next">
-<link href="./instance-register.html" rel="prev">
+<link href="./docker.html" rel="next">
+<link href="./python-miniforge-setup.html" rel="prev">
 <link href="./cover.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -135,7 +135,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Create SSH-Key</span></h1>
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Remote development over SSH</span></h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -186,7 +186,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./key-pairs-create.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Create SSH-Key</span></a>
+  <a href="./key-pairs-create.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Create SSH-Key</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -221,7 +221,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./vs-code-ssh.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Remote development over SSH</span></a>
+  <a href="./vs-code-ssh.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Remote development over SSH</span></a>
   </div>
 </li>
       </ul>
@@ -255,24 +255,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#what-is-ssh" id="toc-what-is-ssh" class="nav-link active" data-scroll-target="#what-is-ssh"><span class="toc-section-number">2.1</span>  What is SSH?</a></li>
-  <li><a href="#create-ssh-keys-in-windows" id="toc-create-ssh-keys-in-windows" class="nav-link" data-scroll-target="#create-ssh-keys-in-windows"><span class="toc-section-number">2.2</span>  Create SSH-Keys in Windows</a></li>
-  <li><a href="#create-ssh-keys-in-macos" id="toc-create-ssh-keys-in-macos" class="nav-link" data-scroll-target="#create-ssh-keys-in-macos"><span class="toc-section-number">2.3</span>  Create SSH-Keys in MacOS</a>
-  <ul class="collapse">
-  <li><a href="#create-key" id="toc-create-key" class="nav-link" data-scroll-target="#create-key"><span class="toc-section-number">2.3.1</span>  Create key</a></li>
-  </ul></li>
-  <li><a href="#set-permissions" id="toc-set-permissions" class="nav-link" data-scroll-target="#set-permissions"><span class="toc-section-number">2.4</span>  Set permissions</a></li>
-  <li><a href="#mac-finder" id="toc-mac-finder" class="nav-link" data-scroll-target="#mac-finder"><span class="toc-section-number">2.5</span>  Mac Finder</a></li>
-  <li><a href="#import-public-key" id="toc-import-public-key" class="nav-link" data-scroll-target="#import-public-key"><span class="toc-section-number">2.6</span>  Import public key</a></li>
+  <li><a href="#prerequisites" id="toc-prerequisites" class="nav-link active" data-scroll-target="#prerequisites"><span class="toc-section-number">7.1</span>  Prerequisites</a></li>
+  <li><a href="#install-extension" id="toc-install-extension" class="nav-link" data-scroll-target="#install-extension"><span class="toc-section-number">7.2</span>  Install extension</a></li>
+  <li><a href="#remote-ssh" id="toc-remote-ssh" class="nav-link" data-scroll-target="#remote-ssh"><span class="toc-section-number">7.3</span>  Remote SSH</a></li>
+  <li><a href="#connect-using-ssh" id="toc-connect-using-ssh" class="nav-link" data-scroll-target="#connect-using-ssh"><span class="toc-section-number">7.4</span>  Connect using SSH</a></li>
+  <li><a href="#port-forwarding" id="toc-port-forwarding" class="nav-link" data-scroll-target="#port-forwarding"><span class="toc-section-number">7.5</span>  Port forwarding</a></li>
   </ul>
-<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/kirenz/bw-cloud/edit/main/key-pairs-create.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/kirenz/bw-cloud/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/kirenz/bw-cloud/edit/main/vs-code-ssh.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/kirenz/bw-cloud/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Create SSH-Key</span></h1>
+<h1 class="title d-none d-lg-block"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Remote development over SSH</span></h1>
 </div>
 
 
@@ -287,108 +283,47 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 </header>
 
-<p>To be able to connect to bwCloud from your local machine, you first need to create a SSH-key to handle authentication.</p>
-<section id="what-is-ssh" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="what-is-ssh"><span class="header-section-number">2.1</span> What is SSH?</h2>
-<p><a href="https://www.ssh.com/academy/ssh">SSH</a> (Secure Shell) is a software package that enables secure system administration and file transfers over insecure networks. It is used in nearly every data center and in every large enterprise.</p>
-<p>Although SSH provides an encrypted connection, using passwords with SSH connections would leave our virtual machine (VM) in bwCloud vulnerable to attacks. Therefore, we connect to our VM over SSH using a public-private key pair, also known as SSH keys.</p>
+<p>“VS Code &amp; SSH”</p>
+<p>This tutorial walks you through creating and connecting to a virtual machine (VM) using the Visual Studio Code Remote - SSH extension. To review the complete tutorial, review the <a href="https://code.visualstudio.com/docs/remote/ssh-tutorial">official VS Code documentation</a>.</p>
+<section id="prerequisites" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="prerequisites"><span class="header-section-number">7.1</span> Prerequisites</h2>
+<p>To get started, you need to have done the following steps:</p>
+<ol type="1">
+<li><p>Install an <a href="https://code.visualstudio.com/docs/remote/troubleshooting#_installing-a-supported-ssh-client">OpenSSH compatible SSH client (PuTTY is not supported)</a></p></li>
+<li><p>Install <a href="https://code.visualstudio.com/">Visual Studio Code</a></p></li>
+<li><p>Open a SSH connection to your VM in a terminal using your key (replace x with your IP-address):</p></li>
+</ol>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ssh</span> <span class="at">-i</span> .ssh/id_rsa ubuntu@xxx.xxx.xx.xx</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="install-extension" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="install-extension"><span class="header-section-number">7.2</span> Install extension</h2>
+<p>The Remote - SSH extension is used to connect to SSH hosts.</p>
 <ul>
-<li><p>The <em>public key</em> is placed on your VM.</p></li>
-<li><p>The <em>private key</em> remains on your local system. Protect this private key. Do not share it.</p></li>
+<li><a href="vscode:extension/ms-vscode-remote.remote-ssh">Install the extension</a></li>
 </ul>
-<p>When you use an SSH client to connect to your VM (which has the public key), the remote VM tests the client to make sure it has the correct private key. If the client has the private key, it’s granted access to the VM.</p>
 </section>
-<section id="create-ssh-keys-in-windows" class="level2" data-number="2.2">
-<h2 data-number="2.2" class="anchored" data-anchor-id="create-ssh-keys-in-windows"><span class="header-section-number">2.2</span> Create SSH-Keys in Windows</h2>
-<p>Follow the instructions provided in bwCloud: <a href="https://www.bw-cloud.org/de/bwcloud_scope/nutzen">SSH-Key Paar erzeugen</a></p>
+<section id="remote-ssh" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="remote-ssh"><span class="header-section-number">7.3</span> Remote SSH</h2>
+<p>With the Remote - SSH extension installed, you will see a new green Status bar item at the far left (at the bottom).</p>
+<p>The Remote Status bar item can quickly show you in which context VS Code is running (local or remote) and clicking on the item will bring up the Remote - SSH command</p>
 </section>
-<section id="create-ssh-keys-in-macos" class="level2" data-number="2.3">
-<h2 data-number="2.3" class="anchored" data-anchor-id="create-ssh-keys-in-macos"><span class="header-section-number">2.3</span> Create SSH-Keys in MacOS</h2>
-<section id="create-key" class="level3" data-number="2.3.1">
-<h3 data-number="2.3.1" class="anchored" data-anchor-id="create-key"><span class="header-section-number">2.3.1</span> Create key</h3>
-<p>Open a <a href="https://support.apple.com/guide/terminal/open-or-quit-terminal-apd5265185d-f365-44cb-8b09-71a064a42125/mac">terminal</a> and run the following command:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ssh-keygen</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>This will output:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Generating</span> public/private rsa key pair.</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Enter</span> file in which to save the key <span class="er">(</span><span class="ex">/Users/username/.ssh/id_rsa</span><span class="kw">)</span><span class="bu">:</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Press enter to save your keys to the default <code>/Users/username/.ssh</code> directory.</p>
-<p>After entering and confirming your password, you’ll see something like the following:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Generating</span> public/private rsa key pair.</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Enter</span> file in which to save the key <span class="er">(</span><span class="ex">/Users/username/.ssh/id_rsa</span><span class="kw">)</span><span class="bu">:</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="ex">Enter</span> passphrase <span class="er">(</span><span class="ex">empty</span> for no passphrase<span class="kw">)</span><span class="bu">:</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="ex">Enter</span> same passphrase again:</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="ex">Your</span> identification has been saved in /Users/username/.ssh/id_rsa</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="ex">Your</span> public key has been saved in /Users/username/.ssh/id_rsa.pub</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="ex">The</span> key fingerprint is:</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="ex">SHA256:BOJAxs0Rkhusd9Hq/xdqWDnfd1cdxN5Uk+hD2gNwNLA1HvUM</span> username@somename.local</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="ex">The</span> key<span class="st">'s randomart image is:</span></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="st">+---[RSA 3072]----+</span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="st">| .o*O ..D.BB+...o|</span></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="st">|  .*. .  +o+=E...|</span></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="st">|   ..        ..oo|</span></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="st">|    . ..    oo o=|</span></span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="st">|   . . .S     o +|</span></span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="st">|           . .  .|</span></span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="st">|   ..o. . D.     |</span></span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="st">|   .+. .   XC    |</span></span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="st">|  .o.o.   L.     |</span></span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="st">+----[SHA256]-----+</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="connect-using-ssh" class="level2" data-number="7.4">
+<h2 data-number="7.4" class="anchored" data-anchor-id="connect-using-ssh"><span class="header-section-number">7.4</span> Connect using SSH</h2>
+<p>You’ll have noticed an indicator on the bottom-left corner of the Status bar. This indicator tells you in which context VS Code is running (local or remote). Click on the indicator to bring up a list of Remote extension commands.</p>
+<p>Choose the “Connect to Host…” command in the Remote-SSH section and connect to the host by entering connection information for your VM in the following format</p>
+<p>Replace x with your IP</p>
+<p>ubuntu@xxx.xxx.xx.xx</p>
+<p>If propmted, enter your passphrase in VS Code.</p>
+<p>Once you’re connected to your SSH host, you can interact with files and open folders on the remote machine.</p>
+<p>If you open the integrated terminal (⌃`), you’ll see you’re working inside a bash shell while you’re on Windows</p>
+<p>Open the Explorer to navigate and open files.</p>
 </section>
-</section>
-<section id="set-permissions" class="level2" data-number="2.4">
-<h2 data-number="2.4" class="anchored" data-anchor-id="set-permissions"><span class="header-section-number">2.4</span> Set permissions</h2>
-<p>Next, we use <code>chmod</code> to change permissions (otherwise, bwCloud will refuse the connection).</p>
-<div class="callout-note callout callout-style-simple">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-body-container">
-<p>In Unix and Unix-like operating systems, <code>chmod</code> is the command and system call used to change the access permissions of files and directories. The name chmod was chosen as an abbreviation of <strong>ch</strong>ange <strong>mod</strong>e.</p>
-</div>
-</div>
-</div>
-<p><code>Chmod 700</code> sets folder permissions so that only the owner can read, write and execute files in this folder:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chmod</span> 700 .ssh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Permissions of <code>600</code> mean that the owner has full read and write access to the file, while no other user can access the file:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chmod</span> 600 .ssh/id_rsa</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="mac-finder" class="level2" data-number="2.5">
-<h2 data-number="2.5" class="anchored" data-anchor-id="mac-finder"><span class="header-section-number">2.5</span> Mac Finder</h2>
-<ol type="1">
-<li>Open Finder and navigate to <code>your/Users/username/</code></li>
-</ol>
-<div class="callout-tip callout callout-style-simple callout-captioned">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-caption-container flex-fill">
-How to show your home folder in Finder
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-1" class="callout-1-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>If you don’t find your home: In Finder, click on the menue and choose: <code>Finder &gt; Preference &gt; Sidebar &gt; Show these items in the sidebar</code> and checkmark the box beside the home icon.</p>
-</div>
-</div>
-</div>
-<ol type="1">
-<li><p>Now press the <code>Command + Shift + .</code> (period) keys at the same time. The hidden files will show up as translucent in your folder.</p></li>
-<li><p>Open the folder <code>.ssh</code>.</p></li>
-<li><p>You should see your public SSH key (<code>id_rsa.pub</code>) and private SSH key (<code>id_rsa</code>)</p></li>
-</ol>
-</section>
-<section id="import-public-key" class="level2" data-number="2.6">
-<h2 data-number="2.6" class="anchored" data-anchor-id="import-public-key"><span class="header-section-number">2.6</span> Import public key</h2>
-<ol type="1">
-<li><p>Open your <a href="https://portal.bw-cloud.org">bwCloud Dashboard</a></p></li>
-<li><p>Navigate to <em>Key Pairs</em> in the left side menue.</p></li>
-<li><p>Click on <em>Import Public Key</em></p></li>
-<li><p>Provide a <em>Key Name</em> and choose <em>Key Type</em> SSH Key.</p></li>
-<li><p>Now open your public key <code>id_rsa.pub</code> in a code editor like VS Code and copy and paste the content into <em>Public Key</em></p></li>
-</ol>
+<section id="port-forwarding" class="level2" data-number="7.5">
+<h2 data-number="7.5" class="anchored" data-anchor-id="port-forwarding"><span class="header-section-number">7.5</span> Port forwarding</h2>
+<p>To be able to browse to the web app on your local machine, you can leverage another feature called Port forwarding.</p>
+<p>To be able to access a port on the remote machine that may not be publicly exposed, you need to establish a connection or a tunnel between a port on your local machine and the server.</p>
+<p><a href="https://code.visualstudio.com/docs/remote/ssh#_forwarding-a-port-creating-ssh-tunnel">Port Forwarding</a></p>
+<p>With the app still running, open the SSH Explorer and find the Forwarded Ports view. Click on the Forward a port link and indicate that you want to forward a specific port.</p>
 
 
 </section>
@@ -529,13 +464,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./instance-register.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Register for bwCloud SCOPE</span></span>
+      <a href="./python-miniforge-setup.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Install Python with miniforge</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./instance-create.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Create a launch instance</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./docker.html" class="pagination-link">
+        <span class="nav-page-text">Docker</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

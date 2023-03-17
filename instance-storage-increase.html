@@ -8,7 +8,7 @@
 
 <meta name="author" content="Jan Kirenz">
 
-<title>Cloud Architecure - 9&nbsp; Increase Cloud Storage</title>
+<title>Cloud Architecure - 5&nbsp; Increase Cloud Storage</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -94,7 +94,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./docker-setup.html" rel="prev">
+<link href="./python.html" rel="next">
+<link href="./instance-login.html" rel="prev">
 <link href="./cover.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -134,7 +135,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Increase Cloud Storage</span></h1>
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Increase Cloud Storage</span></h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -200,7 +201,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./instance-storage-increase.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Increase Cloud Storage</span></a>
+  <a href="./instance-storage-increase.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Increase Cloud Storage</span></a>
   </div>
 </li>
       </ul>
@@ -240,7 +241,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./instance-storage-increase-docker.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Increase Cloud Storage</span></a>
+  <a href="./instance-storage-increase-docker.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Increase Cloud Storage</span></a>
   </div>
 </li>
       </ul>
@@ -254,25 +255,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#create-new-volume-in-bwcloud" id="toc-create-new-volume-in-bwcloud" class="nav-link active" data-scroll-target="#create-new-volume-in-bwcloud"><span class="toc-section-number">9.1</span>  Create new volume in bwCloud</a></li>
-  <li><a href="#attach-volume-in-bwcloud" id="toc-attach-volume-in-bwcloud" class="nav-link" data-scroll-target="#attach-volume-in-bwcloud"><span class="toc-section-number">9.2</span>  Attach volume in bwCloud</a></li>
-  <li><a href="#mount-volume-in-vm" id="toc-mount-volume-in-vm" class="nav-link" data-scroll-target="#mount-volume-in-vm"><span class="toc-section-number">9.3</span>  Mount volume in VM</a>
+  <li><a href="#create-new-volume-in-bwcloud" id="toc-create-new-volume-in-bwcloud" class="nav-link active" data-scroll-target="#create-new-volume-in-bwcloud"><span class="toc-section-number">5.1</span>  Create new volume in bwCloud</a></li>
+  <li><a href="#attach-volume-in-bwcloud" id="toc-attach-volume-in-bwcloud" class="nav-link" data-scroll-target="#attach-volume-in-bwcloud"><span class="toc-section-number">5.2</span>  Attach volume in bwCloud</a></li>
+  <li><a href="#mount-volume-in-vm" id="toc-mount-volume-in-vm" class="nav-link" data-scroll-target="#mount-volume-in-vm"><span class="toc-section-number">5.3</span>  Mount volume in VM</a>
   <ul class="collapse">
-  <li><a href="#log-in-your-vm" id="toc-log-in-your-vm" class="nav-link" data-scroll-target="#log-in-your-vm"><span class="toc-section-number">9.3.1</span>  Log in your VM</a></li>
-  <li><a href="#find-volumne" id="toc-find-volumne" class="nav-link" data-scroll-target="#find-volumne"><span class="toc-section-number">9.3.2</span>  Find volumne</a></li>
-  <li><a href="#partitioning" id="toc-partitioning" class="nav-link" data-scroll-target="#partitioning"><span class="toc-section-number">9.3.3</span>  Partitioning</a></li>
-  <li><a href="#format-partition" id="toc-format-partition" class="nav-link" data-scroll-target="#format-partition"><span class="toc-section-number">9.3.4</span>  Format partition</a></li>
-  <li><a href="#mounting" id="toc-mounting" class="nav-link" data-scroll-target="#mounting"><span class="toc-section-number">9.3.5</span>  Mounting</a></li>
+  <li><a href="#log-in-your-vm" id="toc-log-in-your-vm" class="nav-link" data-scroll-target="#log-in-your-vm"><span class="toc-section-number">5.3.1</span>  Log in your VM</a></li>
+  <li><a href="#find-volumne" id="toc-find-volumne" class="nav-link" data-scroll-target="#find-volumne"><span class="toc-section-number">5.3.2</span>  Find volumne</a></li>
+  <li><a href="#partitioning" id="toc-partitioning" class="nav-link" data-scroll-target="#partitioning"><span class="toc-section-number">5.3.3</span>  Partitioning</a></li>
+  <li><a href="#format-partition" id="toc-format-partition" class="nav-link" data-scroll-target="#format-partition"><span class="toc-section-number">5.3.4</span>  Format partition</a></li>
+  <li><a href="#mounting" id="toc-mounting" class="nav-link" data-scroll-target="#mounting"><span class="toc-section-number">5.3.5</span>  Mounting</a></li>
   </ul></li>
+  <li><a href="#create-folders" id="toc-create-folders" class="nav-link" data-scroll-target="#create-folders"><span class="toc-section-number">5.4</span>  Create folders</a></li>
+  <li><a href="#unmount" id="toc-unmount" class="nav-link" data-scroll-target="#unmount"><span class="toc-section-number">5.5</span>  Unmount</a></li>
   </ul>
-<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/kirenz/bw-cloud/edit/main/instance-storage-increase-docker.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/kirenz/bw-cloud/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/kirenz/bw-cloud/edit/main/instance-storage-increase.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/kirenz/bw-cloud/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Increase Cloud Storage</span></h1>
+<h1 class="title d-none d-lg-block"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Increase Cloud Storage</span></h1>
 </div>
 
 
@@ -287,128 +290,118 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 </header>
 
-<p>Mount a volume to Docker</p>
-<p>In this tutorial, you’ll learn how to increase your cloud storage and mount the volume to docker in order to increase the virtual machine’s docker image capacity.</p>
-<section id="create-new-volume-in-bwcloud" class="level2" data-number="9.1">
-<h2 data-number="9.1" class="anchored" data-anchor-id="create-new-volume-in-bwcloud"><span class="header-section-number">9.1</span> Create new volume in bwCloud</h2>
+<p>subtitle: “Mount a volume”</p>
+<p>In this tutorial, you’ll learn how to increase your cloud storage and mount the volume to a Python environment.</p>
+<section id="create-new-volume-in-bwcloud" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="create-new-volume-in-bwcloud"><span class="header-section-number">5.1</span> Create new volume in bwCloud</h2>
 <ol type="1">
 <li><p>Log into <a href="https://bw-cloud.org/q/d">bwCloud Dashboard</a></p></li>
 <li><p>Click on <code>Volumes</code> below Project → Volumes</p></li>
 <li><p>An overview of the volumes you have created so far is displayed. To create a new volume, click on <a href="https://portal.bw-cloud.org/project/volumes/create/">Create Volume</a></p></li>
-<li><p>A dialogue opens. Fill in the fields according to your requirements. We call the volume <em>block-device-01</em> and use <code>25</code> GiB.</p></li>
+<li><p>A dialogue opens. Fill in the fields according to your requirements. We call the volume <em>block-device-02</em> and use <code>20</code> GiB.</p></li>
 <li><p>Then click on Create Volume. The volume is created</p></li>
 </ol>
 </section>
-<section id="attach-volume-in-bwcloud" class="level2" data-number="9.2">
-<h2 data-number="9.2" class="anchored" data-anchor-id="attach-volume-in-bwcloud"><span class="header-section-number">9.2</span> Attach volume in bwCloud</h2>
+<section id="attach-volume-in-bwcloud" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="attach-volume-in-bwcloud"><span class="header-section-number">5.2</span> Attach volume in bwCloud</h2>
 <p>In order for a volume to be used by a virtual machine, it must be added (“attached”) to your VM inside bwCloud.</p>
 <ol type="1">
-<li><p>In the table row of the desired volume, select the subitem <code>Manage Attachments</code> in the context menu at the right end of the row and click on the entry.</p></li>
+<li><p>In the table row of the desired volume, under Actions select the subitem <code>Manage Attachments</code> in the context menu at the right end of the row and click on the entry.</p></li>
 <li><p>In the dialogue, select the desired virtual machine (<em>ml-pipeline-01</em>) and click on <code>Attach Volume</code></p></li>
 </ol>
 <ul>
-<li>The table updates and the path under which the new volume can be reached from within the virtual machine appears in the Attached To field:</li>
+<li>The table updates and the path under which the new volume can be reached from within the virtual machine appears in the Attached To field (in my case, the volume is called <em>vdc</em>):</li>
 </ul>
-<pre><code>/dev/vdb on ml-pipeline-01</code></pre>
+<pre><code>/dev/vdc on ml-pipeline-01</code></pre>
 </section>
-<section id="mount-volume-in-vm" class="level2" data-number="9.3">
-<h2 data-number="9.3" class="anchored" data-anchor-id="mount-volume-in-vm"><span class="header-section-number">9.3</span> Mount volume in VM</h2>
+<section id="mount-volume-in-vm" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="mount-volume-in-vm"><span class="header-section-number">5.3</span> Mount volume in VM</h2>
 <p>In Linux, the process of attaching a filesystem to a particular point in the directory tree is called mounting. This allows you to access the files and directories on the filesystem as if they were part of the filesystem on which you are currently working.</p>
-<section id="log-in-your-vm" class="level3" data-number="9.3.1">
-<h3 data-number="9.3.1" class="anchored" data-anchor-id="log-in-your-vm"><span class="header-section-number">9.3.1</span> Log in your VM</h3>
+<section id="log-in-your-vm" class="level3" data-number="5.3.1">
+<h3 data-number="5.3.1" class="anchored" data-anchor-id="log-in-your-vm"><span class="header-section-number">5.3.1</span> Log in your VM</h3>
 <ul>
-<li>Log into your virtual machine (replace 111.111.11.11 with your IP)</li>
+<li><p>Use VS Code to log into your virtual machine</p></li>
+<li><p>Alternatively, make the connection in your terminal (replace 111.111.11.11 with your IP):</p></li>
 </ul>
 <div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ssh</span> <span class="at">-i</span> .ssh/id_rsa ubuntu@111.111.11.11</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="find-volumne" class="level3" data-number="9.3.2">
-<h3 data-number="9.3.2" class="anchored" data-anchor-id="find-volumne"><span class="header-section-number">9.3.2</span> Find volumne</h3>
+<section id="find-volumne" class="level3" data-number="5.3.2">
+<h3 data-number="5.3.2" class="anchored" data-anchor-id="find-volumne"><span class="header-section-number">5.3.2</span> Find volumne</h3>
 <p>You can find your volume (i.e.&nbsp;disk) using:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> fdisk <span class="at">-l</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>The output should include an entry like the following:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Disk</span> /dev/vdb: 25 GiB, 26843545600 bytes, 52428800 sectors</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Disk</span> /dev/vdc: 20 GiB, 21474836480 bytes, 41943040 sectors</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="ex">Units:</span> sectors of 1 <span class="pp">*</span> 512 = 512 bytes</span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="ex">Sector</span> size <span class="er">(</span><span class="ex">logical/physical</span><span class="kw">)</span><span class="bu">:</span> 512 bytes / 512 bytes</span>
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="ex">I/O</span> size <span class="er">(</span><span class="ex">minimum/optimal</span><span class="kw">)</span><span class="bu">:</span> 512 bytes / 512 bytes</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="partitioning" class="level3" data-number="9.3.3">
-<h3 data-number="9.3.3" class="anchored" data-anchor-id="partitioning"><span class="header-section-number">9.3.3</span> Partitioning</h3>
+<section id="partitioning" class="level3" data-number="5.3.3">
+<h3 data-number="5.3.3" class="anchored" data-anchor-id="partitioning"><span class="header-section-number">5.3.3</span> Partitioning</h3>
 <p>Next, we need to partition our volume. This command will open a partition environment:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> parted /dev/vdb</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> parted /dev/vdc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>We use GPT (GUID Partition Table), which is a standard for the layout of the partition table on a physical storage device:</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">mklabel</span> gpt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>If you are asked about “New disk label type?”, type: gpt</p>
+<p>If you see this warning: “Warning: The existing disk label on /dev/vdc will be destroyed and all data on this disk will be lost. Do you want to continue?”, type: Yes</p>
 <p>Within the partition environment, you can also set the size of the partition. We set the upper bound to 25 GB.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">mkpart</span> primary 0GB 25GB</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">mkpart</span> primary 0GB 20GB</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Enter <code>quit</code> to leave the partition environment:</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quit</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="format-partition" class="level3" data-number="9.3.4">
-<h3 data-number="9.3.4" class="anchored" data-anchor-id="format-partition"><span class="header-section-number">9.3.4</span> Format partition</h3>
+<section id="format-partition" class="level3" data-number="5.3.4">
+<h3 data-number="5.3.4" class="anchored" data-anchor-id="format-partition"><span class="header-section-number">5.3.4</span> Format partition</h3>
 <p>Format the partition with the <em>ext4</em> filesystem. <em>ext4</em> stands for “extended file system version 4”, which is a popular filesystem used in Linux systems to store and organize files on a storage device, such as a hard drive or solid-state drive.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> mkfs.ext4 /dev/vdb</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> mkfs.ext4 /dev/vdc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="mounting" class="level3" data-number="9.3.5">
-<h3 data-number="9.3.5" class="anchored" data-anchor-id="mounting"><span class="header-section-number">9.3.5</span> Mounting</h3>
-<p>In general, it is best to avoid using the root user account for everyday tasks, and to use sudo to run specific commands as needed, rather than switching to the root user account and running all commands with superuser privileges. This helps to reduce the risk of accidental damage to the system and ensures that all actions are logged and can be traced back to a specific user.</p>
-<p>“su” stands for “switch user,” and it allows a user to switch to another user account. When you run sudo su, you are effectively running the su command with superuser privileges, which means that you can switch to the root user account and have full access to all the files and system resources on the machine.</p>
-<p>sudo su is a command that is used to switch to the root user account from another user account on a Unix-like operating system.</p>
-<p>“sudo” is short for “superuser do,” and it allows a user to run commands with administrative privileges.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> su</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>/dev/vdb is your new disk</p>
-<p>Stop docker daemon,</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">systemctl</span> stop docker</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Move your current docker directory</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mv</span> /var/lib/docker /var/lib/docker-backup</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Create a new docker directory</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">mk</span> dir var/lib/docker</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Mount your new file system</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mount</span> /dev/vdb /var/lib/docker</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Reinstate your docker installation on the new file system</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> <span class="at">-rf</span> /var/lib/docker-backup/<span class="pp">*</span> /var/lib/docker</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Start docker</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="ex">systemctl</span> start docker</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Test out your newly expanded capacity by pulling a new docker image and running it — here’s a postgres image as an example:</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> pull postgres</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Start a postgres instance</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">--name</span> some-postgres <span class="at">-e</span> POSTGRES_PASSWORD=mysecretpassword <span class="at">-d</span> postgres</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>The default postgres user and database are created in the entrypoint with initdb.</p>
-<p>The postgres database is a default database meant for use by users, utilities and third party applications.</p>
-<p>Mount On Startup</p>
-<p>Assuming everything is now fine, you’ll want to ensure your disk gets mounted on the /var/lib/docker directory permanently on start-up:</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nano</span> /etc/fstab</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Add the following line at the end of the file, again assuming /dev/vdb is your device and also assuming is formatted as an ext4 filesystem.</p>
-<p>Rollback If something goes wrong or for whatever reason, you want to return to your previous setup — you should be able to rollback in the following way:</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="ex">systemctl</span> stop docker</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">umount</span> /dev/sda2</span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mv</span> /var/lib/docker-backup /var/lib/docker</span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove the additional line added to /etc/fstab (if applicable)</span></span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="ex">systemctl</span> start docker</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Cleanup If you’re happy with the increased capacity in your docker installation and all has gone to plan, you can now remove your backup:</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> <span class="at">-rf</span> /var/lib/docker-backup</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Change back to our ubuntu user</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">su</span> ubuntu</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<hr>
-<p>OLD</p>
+<section id="mounting" class="level3" data-number="5.3.5">
+<h3 data-number="5.3.5" class="anchored" data-anchor-id="mounting"><span class="header-section-number">5.3.5</span> Mounting</h3>
 <p>Before we mount the drive, we create a new directory in the <code>/mnt/</code> directory where the drives are usually mounted in Ubuntu:</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> mkdir /mnt/vdb</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> mkdir /mnt/vdc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Once the directory is created, you can mount the drive as follows:</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> mount /dev/vdb /mnt/vdb</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>To mount the drive permanently, we need to edit the file system table <code>fstab</code>. Therefore, we open the file in the text editor <a href="https://www.nano-editor.org/">nano</a>:</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> nano /etc/fstab</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> mount /dev/vdc /mnt/vdc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>To mount the drive permanently, we need to edit the file system table <code>fstab</code>. Therefore, we open the file with the text editor <a href="https://www.nano-editor.org/">nano</a>:</p>
+<p>Example in nano:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> nano /etc/fstab</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Now, add the following content at the end of the file:</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="ex">/dev/vdb</span>    /mnt/vdb     ext4      defaults        0             0</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">/dev/vdc</span>    /mnt/vdc     ext4      defaults        0             0</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>It means that the partition located at /dev/vdc will be mounted to /mnt/vdc using the file system ext4, with default mount options and no dumping and no error-checking enabled.</p>
 <p><code>Ctrl+O</code> will save the modifications you’ve made to the file. <code>Ctrl+X</code> will close nano. Confirm with <code>Y</code> and press Enter.</p>
 <p>Use <code>sudo mount</code> to list all mounted drives and combine it with <code>grep vdb</code>, which only returns our volume vdb:</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> mount <span class="kw">|</span> <span class="fu">grep</span> vdb</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> mount <span class="kw">|</span> <span class="fu">grep</span> vdc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>You can change directory into your new volume:</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /mnt/vdb</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Unmount</p>
-<p>How to unmount a mounted drive in Ubuntu</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> umount <span class="at">-l</span> /dev/vdb</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-
-
+<div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /mnt/vdc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
+</section>
+<section id="create-folders" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="create-folders"><span class="header-section-number">5.4</span> Create folders</h2>
+<p>In directory:</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /mnt/vdc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Create a new folder called tfx with a subfolder first-pipeline</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> mkdir tfx/first-pipeline</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>/mnt/vdc/tfx/first-pipeline</p>
+<p>sudo chmod a+rwx /mnt/vdc/tfx/first-pipeline</p>
+<p>a means “all” (users) + means “add the following rights” and rwx means read, write and execute respectively.</p>
+</section>
+<section id="unmount" class="level2" data-number="5.5">
+<h2 data-number="5.5" class="anchored" data-anchor-id="unmount"><span class="header-section-number">5.5</span> Unmount</h2>
+<p>If you ever need to unmount a mounted drive in Ubuntu use:</p>
+<div class="callout-important callout callout-style-simple callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Use this command with caution
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Note that we need the partition for our course und you should not unmount it wihtout good reasons to doing so</p>
+</div>
+</div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> umount <span class="at">-l</span> /dev/vdc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+
 </section>
 
 </main> <!-- /main -->
@@ -547,11 +540,14 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./docker-setup.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Docker set up</span></span>
+      <a href="./instance-login.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Log into instance</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="./python.html" class="pagination-link">
+        <span class="nav-page-text">Programming toolkit</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->
