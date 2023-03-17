@@ -6,24 +6,49 @@ execute:
 
 book:
   title: "Cloud Architecure"
-  author: "Jan Kirenz"
+  reader-mode: true
+
+  page-footer:
+    left: |
+      Jan Kirenz
+    right: |
+      This book was built with <a href="https://quarto.org/">Quarto</a>.
+  #cover-image: cover.png
+  #favicon: cover.png
+  site-url: https://kirenz.github.io/bw-cloud/
+  repo-url: https://github.com/kirenz/bw-cloud
+  repo-branch: main
+  repo-actions: [edit, issue]
   chapters:
     - index.qmd
-    - instance-register.qmd
-    - key-pairs-create.qmd
-    - instance-create.qmd
-    - instance-login.qmd
-    - docker-setup.qmd
-    - instance-storage-increase-docker.qmd
-    - references.qmd
+
+    - part: instance.qmd
+      chapters:
+        - instance-register.qmd
+        - key-pairs-create.qmd
+        - instance-create.qmd
+        - instance-login.qmd
+    
+    - part: docker.qmd
+        - docker-setup.qmd
+        - instance-storage-increase-docker.qmd
+     
 
 bibliography: references.bib
 
 format:
   html:
-    theme: cosmo
-  pdf:
-    documentclass: scrreprt
+    theme:  
+     - cosmo
+     - style.scss
+    code-link: true 
+    code-copy: true
+    code-overflow: wrap
+
+    author-meta: "Jan Kirenz"
+    callout-appearance: simple    
+#  pdf:
+#    documentclass: scrreprt
 
 
 
