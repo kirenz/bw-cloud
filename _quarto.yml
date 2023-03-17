@@ -13,8 +13,8 @@ book:
       Jan Kirenz
     right: |
       This book was built with <a href="https://quarto.org/">Quarto</a>.
-  #cover-image: cover.png
-  #favicon: cover.png
+  cover-image: cover.png
+  favicon: cover.png
   site-url: https://kirenz.github.io/bw-cloud/
   repo-url: https://github.com/kirenz/bw-cloud
   repo-branch: main
@@ -28,7 +28,16 @@ book:
         - key-pairs-create.qmd
         - instance-create.qmd
         - instance-login.qmd
-    
+        - instance-storage-increase.qmd
+
+    - part: python.qmd
+      chapters:
+        - python-miniforge-setup.qmd
+        - vs-code-shh.qmd
+
+
+
+
     - part: docker.qmd
       chapters:
         - docker-setup.qmd
