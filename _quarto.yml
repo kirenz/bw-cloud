@@ -33,17 +33,13 @@ book:
     - part: python.qmd
       chapters:
         - python-miniforge-setup.qmd
-        - vs-code-shh.qmd
-
-
-
+        - vs-code-ssh.qmd
 
     - part: docker.qmd
       chapters:
         - docker-setup.qmd
         - instance-storage-increase-docker.qmd
      
-
 bibliography: references.bib
 
 format:
