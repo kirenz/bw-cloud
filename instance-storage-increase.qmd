@@ -8,7 +8,7 @@ In this tutorial, you'll learn how to increase your cloud storage and mount the 
 
 ### Select Volumes
 
-![](images/storage-volumes.png.png)
+![](images/storage-volumes.png)
 
 1. Log in to [bwCloud Dashboard](https://bw-cloud.org/q/d)
 
