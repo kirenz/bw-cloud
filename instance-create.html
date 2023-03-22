@@ -263,9 +263,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#security-groups" id="toc-security-groups" class="nav-link" data-scroll-target="#security-groups"><span class="toc-section-number">3.6</span>  Security Groups</a></li>
   <li><a href="#key-pair" id="toc-key-pair" class="nav-link" data-scroll-target="#key-pair"><span class="toc-section-number">3.7</span>  Key Pair</a></li>
   <li><a href="#launch-instance" id="toc-launch-instance" class="nav-link" data-scroll-target="#launch-instance"><span class="toc-section-number">3.8</span>  Launch Instance</a></li>
-  <li><a href="#increae-storage" id="toc-increae-storage" class="nav-link" data-scroll-target="#increae-storage"><span class="toc-section-number">3.9</span>  Increae Storage</a>
+  <li><a href="#dashboard" id="toc-dashboard" class="nav-link" data-scroll-target="#dashboard"><span class="toc-section-number">3.9</span>  Dashboard</a></li>
+  <li><a href="#increae-storage" id="toc-increae-storage" class="nav-link" data-scroll-target="#increae-storage"><span class="toc-section-number">3.10</span>  Increae Storage</a>
   <ul class="collapse">
-  <li><a href="#install-text-based-web-browser" id="toc-install-text-based-web-browser" class="nav-link" data-scroll-target="#install-text-based-web-browser"><span class="toc-section-number">3.9.1</span>  Install text-based web browser</a></li>
+  <li><a href="#install-text-based-web-browser" id="toc-install-text-based-web-browser" class="nav-link" data-scroll-target="#install-text-based-web-browser"><span class="toc-section-number">3.10.1</span>  Install text-based web browser</a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/kirenz/bw-cloud/edit/main/instance-create.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/kirenz/bw-cloud/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
@@ -298,28 +299,32 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Now follow the steps outlined below.</p>
 <section id="details" class="level2" data-number="3.1">
 <h2 data-number="3.1" class="anchored" data-anchor-id="details"><span class="header-section-number">3.1</span> Details</h2>
+<p><img src="images/instance-details.png" class="img-fluid"></p>
 <ul>
-<li>Provide the instance name. We choose: <code>ml-pipeline-01</code></li>
-<li>Provide a description for the instance, e.g.&nbsp;<code>Example ML Pipeline</code></li>
+<li>Provide the instance name. We choose: <code>bwcloud</code></li>
+<li>Provide a description for the instance, e.g.&nbsp;<code>bwCloud virtual machine</code></li>
 <li>Choose count <code>1</code></li>
 </ul>
 </section>
 <section id="source" class="level2" data-number="3.2">
 <h2 data-number="3.2" class="anchored" data-anchor-id="source"><span class="header-section-number">3.2</span> Source</h2>
+<p><img src="images/instance-source.png" class="img-fluid"></p>
+<p>Instance source is the template used to create an instance.</p>
 <ul>
-<li>Instance source is the template used to create an instance.</li>
-<li>Choose <code>Ubuntu 22.04</code></li>
+<li>Choose <code>Ubuntu 22.04</code> (click on the arrow at the right)</li>
 </ul>
 </section>
 <section id="flavor" class="level2" data-number="3.3">
 <h2 data-number="3.3" class="anchored" data-anchor-id="flavor"><span class="header-section-number">3.3</span> Flavor</h2>
-<p>Flavors manage the sizing for the compute, memory and storage capacity of the instance.</p>
+<p><img src="images/instance-flavor.png" class="img-fluid"></p>
+<p>Flavors manage the sizing for the compute, memory and storage capacity of the instance. We use m1.large (4 VCPUS, 8 GB Ram, 12 GB storage)</p>
 <ul>
-<li>Choose <code>m1.large</code> (4 VCPUS, 8 GB Ram, 12 GB storage)</li>
+<li>Choose <code>m1.large</code> (click on the arrow at the right)</li>
 </ul>
 </section>
 <section id="networks" class="level2" data-number="3.4">
 <h2 data-number="3.4" class="anchored" data-anchor-id="networks"><span class="header-section-number">3.4</span> Networks</h2>
+<p><img src="images/instance-networks.png" class="img-fluid"></p>
 <p>Networks provide the communication channels for instances in the cloud.</p>
 <ul>
 <li>We use public-belwue</li>
@@ -341,18 +346,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="key-pair" class="level2" data-number="3.7">
 <h2 data-number="3.7" class="anchored" data-anchor-id="key-pair"><span class="header-section-number">3.7</span> Key Pair</h2>
+<p><img src="images/instance-key-pair.png" class="img-fluid"></p>
 <ul>
-<li>Select the key pair from step create-key-pairs. Here, it’s called id-rsa-pub</li>
+<li><p>Select the key pair from step create-key-pairs.</p></li>
+<li><p>Here, it’s called “id-rsa-pub”</p></li>
 </ul>
 </section>
 <section id="launch-instance" class="level2" data-number="3.8">
 <h2 data-number="3.8" class="anchored" data-anchor-id="launch-instance"><span class="header-section-number">3.8</span> Launch Instance</h2>
-<p>We are done and you can click on Launch Instance.</p>
-<p>You should see your newly created instance in your dashboard.</p>
-<p>Click on the instance name to see more details</p>
+<p><img src="images/instance-launch.png" class="img-fluid"></p>
+<ul>
+<li>We are done and you can click on “Launch Instance”.</li>
+</ul>
 </section>
-<section id="increae-storage" class="level2" data-number="3.9">
-<h2 data-number="3.9" class="anchored" data-anchor-id="increae-storage"><span class="header-section-number">3.9</span> Increae Storage</h2>
+<section id="dashboard" class="level2" data-number="3.9">
+<h2 data-number="3.9" class="anchored" data-anchor-id="dashboard"><span class="header-section-number">3.9</span> Dashboard</h2>
+<p><img src="images/instance-dashboard.png" class="img-fluid"></p>
+<ul>
+<li><p>Refresh your browser</p></li>
+<li><p>You should see your newly created instance in your dashboard.</p></li>
+<li><p>Click on the instance name to see more details</p></li>
+</ul>
+</section>
+<section id="increae-storage" class="level2" data-number="3.10">
+<h2 data-number="3.10" class="anchored" data-anchor-id="increae-storage"><span class="header-section-number">3.10</span> Increae Storage</h2>
 <ol type="1">
 <li><p>Log in to <a href="https://bw-cloud.org/q/d">bwCloud Dashboard</a></p></li>
 <li><p>Click on Volumes below Project → Volumes</p></li>
@@ -402,8 +419,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>How to check the drive is mounted or not</p>
 <p>You can check the mounted drive by using the command mentioned below: you can specify the directory name (sdb in our case) after “grep” to get the pointed information; otherwise, the mount command will list down all the mounted drives and partitions in your system:</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> mount <span class="kw">|</span> <span class="fu">grep</span> vdb</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<section id="install-text-based-web-browser" class="level3" data-number="3.9.1">
-<h3 data-number="3.9.1" class="anchored" data-anchor-id="install-text-based-web-browser"><span class="header-section-number">3.9.1</span> Install text-based web browser</h3>
+<section id="install-text-based-web-browser" class="level3" data-number="3.10.1">
+<h3 data-number="3.10.1" class="anchored" data-anchor-id="install-text-based-web-browser"><span class="header-section-number">3.10.1</span> Install text-based web browser</h3>
 <p>w3m is a text-based web browser as well as a pager like <code>more' or</code>less’. With w3m you can browse web pages through a terminal emulator windo</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt-get install w3m w3m-img</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>to open a webpage simply type in a terminal window: w3m <url_of_the_webpage></url_of_the_webpage></p>
