@@ -1,38 +1,47 @@
 # Create a launch instance
 
-
-
 1. Open your [bwCloud Dashboard](https://portal.bw-cloud.org)
 
 1. Navigate to *Instances* in the left side menue.
 
 1. Select *Launch Instance*
 
-
 Now follow the steps outlined below.
 
 ## Details
 
- - Provide the instance name. We choose: `ml-pipeline-01`
- - Provide a description for the instance, e.g. `Example ML Pipeline`
+
+![](images/instance-details)
+
+ - Provide the instance name. We choose: `bwcloud`
+ - Provide a description for the instance, e.g. `bwCloud virtual machine`
  - Choose count `1`
-
-
 
 
 ## Source
 
-- Instance source is the template used to create an instance.
-- Choose `Ubuntu 22.04`
+![](images/instance-source.png)
+
+
+Instance source is the template used to create an instance.
+
+- Choose `Ubuntu 22.04` (click on the arrow at the right)
 
 
 ## Flavor
 
-Flavors manage the sizing for the compute, memory and storage capacity of the instance.
+![](images/instance-flavor.png)
 
-- Choose `m1.large` (4 VCPUS, 8 GB Ram, 12 GB storage)
+
+Flavors manage the sizing for the compute, memory and storage capacity of the instance. We use m1.large (4 VCPUS, 8 GB Ram, 12 GB storage)
+
+- Choose `m1.large` (click on the arrow at the right)
+
 
 ## Networks
+
+![](images/instance-networks.png)
+
 
 Networks provide the communication channels for instances in the cloud.
 
@@ -40,11 +49,13 @@ Networks provide the communication channels for instances in the cloud.
 
 ## Network Ports
 
+
 Ports provide extra communication channels to your instances. You can select ports instead of networks or a mix of both.
 
 - We dont use network ports
 
 ## Security Groups
+
 
 - Choose default and your custom security groups
 
@@ -52,15 +63,30 @@ Ports provide extra communication channels to your instances. You can select por
 
 ## Key Pair
 
-- Select the key pair from step create-key-pairs. Here, it's called id-rsa-pub
+![](images/instance-key-pair.png)
+
+
+- Select the key pair from step create-key-pairs. 
+
+- Here, it's called "id-rsa-pub"
 
 ## Launch Instance
 
-We are done and you can click on Launch Instance. 
+![](images/instance-launch.png)
 
-You should see your newly created instance in your dashboard.
 
-Click on the instance name to see more details
+- We are done and you can click on "Launch Instance". 
+
+## Dashboard
+
+![](images/instance-dashboard.png)
+
+
+- Refresh your browser
+
+- You should see your newly created instance in your dashboard.
+
+- Click on the instance name to see more details
 
 
 ## Increae Storage
