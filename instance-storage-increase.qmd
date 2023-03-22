@@ -1,35 +1,60 @@
 # Increase Cloud Storage
 
-subtitle: "Mount a volume" 
-
 
 In this tutorial, you'll learn how to increase your cloud storage and mount the volume to a Python environment.
 
-## Create new volume in bwCloud
+## Increase Cloud Storage
 
-1. Log into [bwCloud Dashboard](https://bw-cloud.org/q/d)
 
-1. Click on `Volumes` below Project → Volumes
+### Select Volumes
+
+![](images/storage-volumes.png.png)
+
+1. Log in to [bwCloud Dashboard](https://bw-cloud.org/q/d)
+
+1. Click on "Volumes" below the "Project" tab
+
+
+---
+
+### Choose "Create Volume"
+
+![](images/storage-create-volumes.png)
+
 
 1. An overview of the volumes you have created so far is displayed. To create a new volume, click on [Create Volume](https://portal.bw-cloud.org/project/volumes/create/)
 
-1. A dialogue opens. Fill in the fields according to your requirements. We call the volume *block-device-02* and use `20` GiB.
+### Create Volume in dialogue
 
-1. Then click on Create Volume. The volume is created
+![](images/storage-fill-in.png)
 
 
-## Attach volume in bwCloud
+1. A dialogue opens. Fill in the fields: 
+  - Volume name: storage
+  - Size: 40 GiB
 
-In order for a volume to be used by a virtual machine, it must be added ("attached") to your VM inside bwCloud.
+1. Then click on Create Volume.
 
-1. In the table row of the desired volume, under Actions select the subitem `Manage Attachments` in the context menu at the right end of the row and click on the entry. 
+### Attach the volume
 
-1. In the dialogue, select the desired virtual machine (*ml-pipeline-01*) and click on `Attach Volume`
+![](images/storage-attachments.png)
 
-- The table updates and the path under which the new volume can be reached from within the virtual machine appears in the Attached To field (in my case, the volume is called *vdc*):
+
+In order for a volume to be used by a virtual machine, it must be added ("attached") to a VM.
+
+- In the table row of our new volume "storage", select the subitem "Manage Attachments" in the context menu at the right end of the row and click on the entry. 
+
+### Attach volumes
+
+![](images/storage-attach-volumes-2.png)
+
+
+- A dialogue opens: In the dialogue, select the desired virtual machine ("bwcloud") and click on "Attach Volume".
+
+- The table updates and the path under which the new volume can be reached from within the virtual machine appears in the "Attached To field":
 
 ```
-/dev/vdc on ml-pipeline-01
+/dev/vdb on bwcloud
 ```
 
 ## Mount volume in VM
