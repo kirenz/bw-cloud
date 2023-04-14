@@ -39,9 +39,9 @@ Instance source is the template used to create an instance.
 ![](images/instance-flavor.png)
 
 
-Flavors manage the sizing for the compute, memory and storage capacity of the instance. We use m1.large (4 VCPUS, 8 GB Ram, 12 GB storage)
+Flavors manage the sizing for the compute, memory and storage capacity of the instance. We use m1.nano.
 
-- Choose `m1.large` (click on the arrow at the right)
+- Choose `m1.nano` (click on the arrow at the right)
 
 ---
 
