@@ -2,8 +2,10 @@
 
 Prerequisites:
 
-- key-pairs-create.md
-- instance-create.md
+To log into your instance, you need to have created your
+
+- [Key pairs](key-pairs-create.md)
+- [Instance](instance-create.md)
 
 
 ## Terminal
