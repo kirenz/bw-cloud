@@ -81,7 +81,7 @@
     "href": "instance-create.html#flavor",
     "title": "3  Create a launch instance",
     "section": "3.3 Flavor",
-    "text": "3.3 Flavor\n\nFlavors manage the sizing for the compute, memory and storage capacity of the instance. We use m1.large (4 VCPUS, 8 GB Ram, 12 GB storage)\n\nChoose m1.large (click on the arrow at the right)"
+    "text": "3.3 Flavor\n\nFlavors manage the sizing for the compute, memory and storage capacity of the instance. We use m1.nano.\n\nChoose m1.nano (click on the arrow at the right)"
   },
   {
     "objectID": "instance-create.html#networks",
