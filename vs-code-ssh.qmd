@@ -1,6 +1,6 @@
 # Visual Studio Code & SSH
  
-This tutorial walks you through creating and connecting to a virtual machine (VM) using the Visual Studio Code Remote - SSH extension. To review the complete tutorial, review the [official VS Code documentation](https://code.visualstudio.com/docs/remote/ssh-tutorial).
+This tutorial walks you through creating and connecting to a virtual machine (VM) using the Visual Studio Code Remote - SSH extension. To review the complete tutorial, take a look at the [official VS Code documentation](https://code.visualstudio.com/docs/remote/ssh-tutorial).
 
 
 ## Prerequisites
@@ -53,7 +53,7 @@ If you open the integrated terminal (⌃`), you'll see you're working inside a b
 Open the Explorer to navigate and open files.
 
 
-## Port forwarding
+## Port forwarding (optional)
 
 To be able to browse to the web app on your local machine, you can leverage another feature called Port forwarding.
 
