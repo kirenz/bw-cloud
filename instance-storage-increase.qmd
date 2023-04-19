@@ -83,7 +83,7 @@ The output should include an entry like the following:
 
 ```bash
 
-Disk /dev/vdc: 20 GiB, 21474836480 bytes, 41943040 sectors
+Disk /dev/vdb: 40 GiB, 42949672960 bytes, 83886080 sectors
 Units: sectors of 1 * 512 = 512 bytes
 Sector size (logical/physical): 512 bytes / 512 bytes
 I/O size (minimum/optimal): 512 bytes / 512 bytes
@@ -96,7 +96,7 @@ Next, we need to partition our volume. This command will open a partition enviro
 
 
 ```bash
-sudo parted /dev/vdc
+sudo parted /dev/vdb
 
 ```
 
@@ -107,17 +107,17 @@ mklabel gpt
 
 ```
 
-If you are asked about "New disk label type?", type: gpt
+- This may output: `parted: invalid token: gpt`
 
-If you see this warning: "Warning: The existing disk label on /dev/vdc will be destroyed and all data on this
-disk will be lost. Do you want to continue?", type: Yes
+- If you are asked about "`New disk label type`?", type: `gpt`
 
+*If you see this warning: "Warning: The existing disk label on /dev/vdc will be destroyed and all data on this disk will be lost. Do you want to continue?", type: Yes*
 
-Within the partition environment, you can also set the size of the partition. We set the upper bound to 25 GB.
+Within the partition environment, you can also set the size of the partition. We set the upper bound to 40 GB.
 
 
 ```bash
-mkpart primary 0GB 20GB
+mkpart primary 0GB 40GB
 
 ```
 
@@ -133,7 +133,7 @@ Format the partition with the *ext4* filesystem. *ext4* stands for "extended fil
 
 
 ```bash
-sudo mkfs.ext4 /dev/vdc
+sudo mkfs.ext4 /dev/vdb
 ```
 
 ### Mounting
@@ -142,14 +142,19 @@ Before we mount the drive, we create a new directory in the `/mnt/` directory wh
 
 
 ```bash
-sudo mkdir /mnt/vdc
+sudo mkdir /mnt/vdb
 
 ```
+
+This will output: Found a gpt partition table in /dev/vdb
+Proceed anyway? (y,N)
+
+Type `y`
 
 Once the directory is created, you can mount the drive as follows: 
 
 ```bash
-sudo mount /dev/vdc /mnt/vdc
+sudo mount /dev/vdb /mnt/vdb
 
 ```
 
@@ -167,30 +172,41 @@ Now, add the following content at the end of the file:
 
 
 ```bash
-/dev/vdc    /mnt/vdc     ext4      defaults        0             0
+/dev/vdb    /mnt/vdb     ext4      defaults        0             0
 
 ```
 
-It means that the partition located at /dev/vdc will be mounted to /mnt/vdc using the file system ext4, with default mount options and no dumping and no error-checking enabled.
+It means that the partition located at /dev/vdb will be mounted to /mnt/vdb using the file system ext4, with default mount options and no dumping and no error-checking enabled.
 
-`Ctrl+O` will save the modifications you've made to the file. `Ctrl+X` will close nano. Confirm with `Y` and press Enter.
+Next, press
+
+1. `Ctrl+O` to save the modifications you've made to the file
+2. `Ctrl+X` to close nano. Confirm with `Y` and press Enter.
 
 
-
-Use `sudo mount` to list all mounted drives and combine it with `grep vdb`, which only returns our volume vdb: 
+To check if everything worked fine, we use `sudo mount` to list all mounted drives and combine it with `grep vdb`, which only returns our volume vdb: 
 
 
 ```bash
-sudo mount | grep vdc
+sudo mount | grep vdb
 
 ```
 
-You can change directory into your new volume:
+This should output:
+
+```bash
+/dev/vdb on /mnt/vdb type ext4 (rw,relatime)
+```
+
+
+You can change directory into your new volume and use it later to create new directories and store data in it:
 
 
 ```bash
-cd /mnt/vdc
+cd /mnt/vdb
 ```
+
+<!--
 
 ## Create folders
 
@@ -198,8 +214,10 @@ In directory:
 
 
 ```bash
-cd /mnt/vdc
+cd /mnt/vdb
 ```
+
+
 
 Create a new folder called tfx with a subfolder first-pipeline 
 
@@ -228,3 +246,5 @@ Note that we need the partition for our course und you should not unmount it wih
 ```bash
 sudo umount -l /dev/vdc
 ```
+
+-->
