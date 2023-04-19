@@ -271,8 +271,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#format-partition" id="toc-format-partition" class="nav-link" data-scroll-target="#format-partition"><span class="toc-section-number">5.2.4</span>  Format partition</a></li>
   <li><a href="#mounting" id="toc-mounting" class="nav-link" data-scroll-target="#mounting"><span class="toc-section-number">5.2.5</span>  Mounting</a></li>
   </ul></li>
-  <li><a href="#create-folders" id="toc-create-folders" class="nav-link" data-scroll-target="#create-folders"><span class="toc-section-number">5.3</span>  Create folders</a></li>
-  <li><a href="#unmount" id="toc-unmount" class="nav-link" data-scroll-target="#unmount"><span class="toc-section-number">5.4</span>  Unmount</a></li>
   </ul>
 <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/kirenz/bw-cloud/edit/main/instance-storage-increase.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/kirenz/bw-cloud/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
@@ -364,7 +362,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> fdisk <span class="at">-l</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>The output should include an entry like the following:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Disk</span> /dev/vdc: 20 GiB, 21474836480 bytes, 41943040 sectors</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Disk</span> /dev/vdb: 40 GiB, 42949672960 bytes, 83886080 sectors</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="ex">Units:</span> sectors of 1 <span class="pp">*</span> 512 = 512 bytes</span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="ex">Sector</span> size <span class="er">(</span><span class="ex">logical/physical</span><span class="kw">)</span><span class="bu">:</span> 512 bytes / 512 bytes</span>
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="ex">I/O</span> size <span class="er">(</span><span class="ex">minimum/optimal</span><span class="kw">)</span><span class="bu">:</span> 512 bytes / 512 bytes</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -372,69 +370,94 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="partitioning" class="level3" data-number="5.2.3">
 <h3 data-number="5.2.3" class="anchored" data-anchor-id="partitioning"><span class="header-section-number">5.2.3</span> Partitioning</h3>
 <p>Next, we need to partition our volume. This command will open a partition environment:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> parted /dev/vdc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> parted /dev/vdb</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>We use GPT (GUID Partition Table), which is a standard for the layout of the partition table on a physical storage device:</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">mklabel</span> gpt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>If you are asked about “New disk label type?”, type: gpt</p>
-<p>If you see this warning: “Warning: The existing disk label on /dev/vdc will be destroyed and all data on this disk will be lost. Do you want to continue?”, type: Yes</p>
-<p>Within the partition environment, you can also set the size of the partition. We set the upper bound to 25 GB.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">mkpart</span> primary 0GB 20GB</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li><p>This may output: <code>parted: invalid token: gpt</code></p></li>
+<li><p>If you are asked about “<code>New disk label type</code>?”, type: <code>gpt</code></p></li>
+</ul>
+<p><em>If you see this warning: “Warning: The existing disk label on /dev/vdc will be destroyed and all data on this disk will be lost. Do you want to continue?”, type: Yes</em></p>
+<p>Within the partition environment, you can also set the size of the partition. We set the upper bound to 40 GB.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">mkpart</span> primary 0GB 40GB</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Enter <code>quit</code> to leave the partition environment:</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quit</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="format-partition" class="level3" data-number="5.2.4">
 <h3 data-number="5.2.4" class="anchored" data-anchor-id="format-partition"><span class="header-section-number">5.2.4</span> Format partition</h3>
 <p>Format the partition with the <em>ext4</em> filesystem. <em>ext4</em> stands for “extended file system version 4”, which is a popular filesystem used in Linux systems to store and organize files on a storage device, such as a hard drive or solid-state drive.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> mkfs.ext4 /dev/vdc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> mkfs.ext4 /dev/vdb</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="mounting" class="level3" data-number="5.2.5">
 <h3 data-number="5.2.5" class="anchored" data-anchor-id="mounting"><span class="header-section-number">5.2.5</span> Mounting</h3>
 <p>Before we mount the drive, we create a new directory in the <code>/mnt/</code> directory where the drives are usually mounted in Ubuntu:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> mkdir /mnt/vdc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> mkdir /mnt/vdb</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This will output: Found a gpt partition table in /dev/vdb Proceed anyway? (y,N)</p>
+<p>Type <code>y</code></p>
 <p>Once the directory is created, you can mount the drive as follows:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> mount /dev/vdc /mnt/vdc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> mount /dev/vdb /mnt/vdb</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>To mount the drive permanently, we need to edit the file system table <code>fstab</code>. Therefore, we open the file with the text editor <a href="https://www.nano-editor.org/">nano</a>:</p>
 <p>Example in nano:</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> nano /etc/fstab</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Now, add the following content at the end of the file:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">/dev/vdc</span>    /mnt/vdc     ext4      defaults        0             0</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>It means that the partition located at /dev/vdc will be mounted to /mnt/vdc using the file system ext4, with default mount options and no dumping and no error-checking enabled.</p>
-<p><code>Ctrl+O</code> will save the modifications you’ve made to the file. <code>Ctrl+X</code> will close nano. Confirm with <code>Y</code> and press Enter.</p>
-<p>Use <code>sudo mount</code> to list all mounted drives and combine it with <code>grep vdb</code>, which only returns our volume vdb:</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> mount <span class="kw">|</span> <span class="fu">grep</span> vdc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>You can change directory into your new volume:</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /mnt/vdc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-</section>
-<section id="create-folders" class="level2" data-number="5.3">
-<h2 data-number="5.3" class="anchored" data-anchor-id="create-folders"><span class="header-section-number">5.3</span> Create folders</h2>
-<p>In directory:</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /mnt/vdc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Create a new folder called tfx with a subfolder first-pipeline</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> mkdir tfx/first-pipeline</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>/mnt/vdc/tfx/first-pipeline</p>
-<p>sudo chmod a+rwx /mnt/vdc/tfx/first-pipeline</p>
-<p>a means “all” (users) + means “add the following rights” and rwx means read, write and execute respectively.</p>
-</section>
-<section id="unmount" class="level2" data-number="5.4">
-<h2 data-number="5.4" class="anchored" data-anchor-id="unmount"><span class="header-section-number">5.4</span> Unmount</h2>
-<p>If you ever need to unmount a mounted drive in Ubuntu use:</p>
-<div class="callout-important callout callout-style-simple callout-captioned">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-caption-container flex-fill">
-Use this command with caution
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Note that we need the partition for our course und you should not unmount it wihtout good reasons to doing so</p>
-</div>
-</div>
-<div class="sourceCode" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> umount <span class="at">-l</span> /dev/vdc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">/dev/vdb</span>    /mnt/vdb     ext4      defaults        0             0</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>It means that the partition located at /dev/vdb will be mounted to /mnt/vdb using the file system ext4, with default mount options and no dumping and no error-checking enabled.</p>
+<p>Next, press</p>
+<ol type="1">
+<li><code>Ctrl+O</code> to save the modifications you’ve made to the file</li>
+<li><code>Ctrl+X</code> to close nano. Confirm with <code>Y</code> and press Enter.</li>
+</ol>
+<p>To check if everything worked fine, we use <code>sudo mount</code> to list all mounted drives and combine it with <code>grep vdb</code>, which only returns our volume vdb:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> mount <span class="kw">|</span> <span class="fu">grep</span> vdb</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This should output:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ex">/dev/vdb</span> on /mnt/vdb type ext4 <span class="er">(</span><span class="ex">rw,relatime</span><span class="kw">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>You can change directory into your new volume and use it later to create new directories and store data in it:</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /mnt/vdb</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<!--
+
+## Create folders
+
+In directory:
 
 
+```bash
+cd /mnt/vdb
+```
+
+
+
+Create a new folder called tfx with a subfolder first-pipeline 
+
+
+```bash
+sudo mkdir tfx/first-pipeline
+
+```
+
+/mnt/vdc/tfx/first-pipeline
+
+sudo chmod a+rwx /mnt/vdc/tfx/first-pipeline
+
+a means "all" (users) + means "add the following rights" and rwx means read, write and execute respectively.
+
+## Unmount
+
+If you ever need to unmount a mounted drive in Ubuntu use:
+
+::: {.callout-important}
+## Use this command with caution
+
+Note that we need the partition for our course und you should not unmount it wihtout good reasons to doing so
+:::
+
+```bash
+sudo umount -l /dev/vdc
+```
+
+-->
+
+
+</section>
 </section>
 
 </main> <!-- /main -->
