@@ -212,35 +212,35 @@
   {
     "objectID": "vs-code-ssh.html#prerequisites",
     "href": "vs-code-ssh.html#prerequisites",
-    "title": "7  Remote development over SSH",
+    "title": "7  Visual Studio Code & SSH",
     "section": "7.1 Prerequisites",
     "text": "7.1 Prerequisites\nTo get started, you need to have done the following steps:\n\nInstall an OpenSSH compatible SSH client (PuTTY is not supported)\nInstall Visual Studio Code\nOpen a SSH connection to your VM in a terminal using your key (replace x with your IP-address):\n\nssh -i .ssh/id_rsa ubuntu@xxx.xxx.xx.xx"
   },
   {
     "objectID": "vs-code-ssh.html#install-extension",
     "href": "vs-code-ssh.html#install-extension",
-    "title": "7  Remote development over SSH",
+    "title": "7  Visual Studio Code & SSH",
     "section": "7.2 Install extension",
     "text": "7.2 Install extension\nThe Remote - SSH extension is used to connect to SSH hosts.\n\nInstall the extension"
   },
   {
     "objectID": "vs-code-ssh.html#remote-ssh",
     "href": "vs-code-ssh.html#remote-ssh",
-    "title": "7  Remote development over SSH",
+    "title": "7  Visual Studio Code & SSH",
     "section": "7.3 Remote SSH",
     "text": "7.3 Remote SSH\nWith the Remote - SSH extension installed, you will see a new green Status bar item at the far left (at the bottom).\nThe Remote Status bar item can quickly show you in which context VS Code is running (local or remote) and clicking on the item will bring up the Remote - SSH command"
   },
   {
     "objectID": "vs-code-ssh.html#connect-using-ssh",
     "href": "vs-code-ssh.html#connect-using-ssh",
-    "title": "7  Remote development over SSH",
+    "title": "7  Visual Studio Code & SSH",
     "section": "7.4 Connect using SSH",
     "text": "7.4 Connect using SSH\nYou’ll have noticed an indicator on the bottom-left corner of the Status bar. This indicator tells you in which context VS Code is running (local or remote). Click on the indicator to bring up a list of Remote extension commands.\nChoose the “Connect to Host…” command in the Remote-SSH section and connect to the host by entering connection information for your VM in the following format\nReplace x with your IP\nubuntu@xxx.xxx.xx.xx\nIf propmted, enter your passphrase in VS Code.\nOnce you’re connected to your SSH host, you can interact with files and open folders on the remote machine.\nIf you open the integrated terminal (⌃`), you’ll see you’re working inside a bash shell while you’re on Windows\nOpen the Explorer to navigate and open files."
   },
   {
     "objectID": "vs-code-ssh.html#port-forwarding",
     "href": "vs-code-ssh.html#port-forwarding",
-    "title": "7  Remote development over SSH",
+    "title": "7  Visual Studio Code & SSH",
     "section": "7.5 Port forwarding",
     "text": "7.5 Port forwarding\nTo be able to browse to the web app on your local machine, you can leverage another feature called Port forwarding.\nTo be able to access a port on the remote machine that may not be publicly exposed, you need to establish a connection or a tunnel between a port on your local machine and the server.\nPort Forwarding\nWith the app still running, open the SSH Explorer and find the Forwarded Ports view. Click on the Forward a port link and indicate that you want to forward a specific port."
   },
