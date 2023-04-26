@@ -53,7 +53,7 @@
     "href": "key-pairs-create.html#mac-finder",
     "title": "2  Create SSH-Key",
     "section": "2.5 Mac Finder",
-    "text": "2.5 Mac Finder\n\nOpen Finder and navigate to your/Users/username/\n\n\n\n\n\n\n\nHow to show your home folder in Finder\n\n\n\n\n\nIf you don’t find your home: In Finder, click on the menue and choose: Finder > Preference > Sidebar > Show these items in the sidebar and checkmark the box beside the home icon.\n\n\n\n\nNow press the Command + Shift + . (period) keys at the same time. The hidden files will show up as translucent in your folder.\nOpen the folder .ssh.\nYou should see your public SSH key (id_rsa.pub) and private SSH key (id_rsa)"
+    "text": "2.5 Mac Finder\n\nOpen Finder and navigate to your/Users/username/\n\n\n\n\n\n\n\nHow to show your home folder in Finder\n\n\n\n\n\nIf you don’t find your home: In Finder, click on the menue and choose: Finder &gt; Preference &gt; Sidebar &gt; Show these items in the sidebar and checkmark the box beside the home icon.\n\n\n\n\nNow press the Command + Shift + . (period) keys at the same time. The hidden files will show up as translucent in your folder.\nOpen the folder .ssh.\nYou should see your public SSH key (id_rsa.pub) and private SSH key (id_rsa)"
   },
   {
     "objectID": "key-pairs-create.html#import-public-key",
@@ -158,7 +158,7 @@
     "href": "python-miniforge-setup.html#prepare-environment",
     "title": "6  Install Python with miniforge",
     "section": "6.1 Prepare environment",
-    "text": "6.1 Prepare environment\nChange directory into your volume (in may case vdc):\ncd /mnt/vdc\nCreate a folder called bin\nsudo mkdir bin"
+    "text": "6.1 Prepare environment\nChange directory into your volume (in may case vdc):\ncd /mnt/vdb\nCreate a folder called bin\nsudo mkdir bin"
   },
   {
     "objectID": "python-miniforge-setup.html#install-miniforge",
@@ -242,7 +242,7 @@
     "href": "docker-setup.html#set-up-docker-repository",
     "title": "8  Docker set up",
     "section": "8.1 Set up Docker repository",
-    "text": "8.1 Set up Docker repository\nBefore you install Docker Engine for the first time on a new host machine, you need to set up the Docker repository. Afterward, you can install and update Docker from the repository.\nUpdate the apt package index:\nsudo apt-get update\nInstall packages to allow apt to use a repository over HTTPS:\nsudo apt-get install \\\n    ca-certificates \\\n    curl \\\n    gnupg \\\n    lsb-release\nConfirm the installation with Y\nAdd Docker’s official GPG key:\nsudo mkdir -p /etc/apt/keyrings\ncurl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg\nUse the following command to set up the repository:\necho \\\n  \"deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \\\n  $(lsb_release -cs) stable\" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null"
+    "text": "8.1 Set up Docker repository\nBefore you install Docker Engine for the first time on a new host machine, you need to set up the Docker repository. Afterward, you can install and update Docker from the repository.\nUpdate the apt package index:\nsudo apt-get update\nInstall packages to allow apt to use a repository over HTTPS:\nsudo apt-get install \\\n    ca-certificates \\\n    curl \\\n    gnupg \\\n    lsb-release\nConfirm the installation with Y\nAdd Docker’s official GPG key:\nsudo mkdir -p /etc/apt/keyrings\ncurl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg\nUse the following command to set up the repository:\necho \\\n  \"deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \\\n  $(lsb_release -cs) stable\" | sudo tee /etc/apt/sources.list.d/docker.list &gt; /dev/null"
   },
   {
     "objectID": "docker-setup.html#install-docker-engine",
