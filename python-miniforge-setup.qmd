@@ -6,7 +6,7 @@ Change directory into your volume (in may case *vdc*):
 
 
 ```bash
-cd /mnt/vdc
+cd /mnt/vdb
 ```
 
 Create a folder called bin
