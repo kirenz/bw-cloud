@@ -1,6 +1,8 @@
 # Visual Studio Code & SSH
  
-This tutorial walks you through creating and connecting to a virtual machine (VM) using the Visual Studio Code Remote - SSH extension. To review the complete tutorial, take a look at the [official VS Code documentation](https://code.visualstudio.com/docs/remote/ssh-tutorial).
+This tutorial walks you through creating and connecting to a virtual machine (VM) using the Visual Studio Code Remote - SSH extension. 
+
+*To review the complete tutorial, take a look at the [official VS Code documentation](https://code.visualstudio.com/docs/remote/ssh-tutorial).*
 
 ## Prerequisites
 
@@ -22,7 +24,6 @@ To get started, you need to have done the following steps:
 - Choose the "Connect to Host..." command in the Remote-SSH section and connect to the host by entering connection information for your VM in the following format (replace x with your IP): ubuntu@xxx.xxx.xx.xx
 
 - If propmted, enter your passphrase (SSH-key password) in VS Code.
-
 
 Once you're connected to your SSH host, you can interact with files and open folders on the remote machine:
 
