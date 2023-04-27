@@ -247,10 +247,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#prepare-environment" id="toc-prepare-environment" class="nav-link active" data-scroll-target="#prepare-environment"><span class="header-section-number">7.1</span> Prepare environment</a></li>
   <li><a href="#install-miniforge" id="toc-install-miniforge" class="nav-link" data-scroll-target="#install-miniforge"><span class="header-section-number">7.2</span> Install miniforge</a></li>
-  <li><a href="#install-ipykernel" id="toc-install-ipykernel" class="nav-link" data-scroll-target="#install-ipykernel"><span class="header-section-number">7.3</span> Install ipykernel</a></li>
-  <li><a href="#start-jupyter-notebook-in-vs-code" id="toc-start-jupyter-notebook-in-vs-code" class="nav-link" data-scroll-target="#start-jupyter-notebook-in-vs-code"><span class="header-section-number">7.4</span> Start Jupyter Notebook in VS Code</a></li>
-  <li><a href="#install-packages" id="toc-install-packages" class="nav-link" data-scroll-target="#install-packages"><span class="header-section-number">7.5</span> Install packages</a></li>
-  <li><a href="#change-permissions" id="toc-change-permissions" class="nav-link" data-scroll-target="#change-permissions"><span class="header-section-number">7.6</span> Change permissions</a></li>
+  <li><a href="#start-jupyter-notebook-in-vs-code" id="toc-start-jupyter-notebook-in-vs-code" class="nav-link" data-scroll-target="#start-jupyter-notebook-in-vs-code"><span class="header-section-number">7.3</span> Start Jupyter Notebook in VS Code</a></li>
+  <li><a href="#install-packages" id="toc-install-packages" class="nav-link" data-scroll-target="#install-packages"><span class="header-section-number">7.4</span> Install packages</a></li>
+  <li><a href="#change-permissions" id="toc-change-permissions" class="nav-link" data-scroll-target="#change-permissions"><span class="header-section-number">7.5</span> Change permissions</a></li>
   </ul>
 <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/kirenz/bw-cloud/edit/main/python-miniforge-setup.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/kirenz/bw-cloud/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
@@ -276,45 +275,77 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="prepare-environment" class="level2" data-number="7.1">
 <h2 data-number="7.1" class="anchored" data-anchor-id="prepare-environment"><span class="header-section-number">7.1</span> Prepare environment</h2>
-<p>Change directory into your volume (in may case <em>vdc</em>):</p>
+<ul>
+<li>Change directory into your volume:</li>
+</ul>
 <div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /mnt/vdb</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Create a folder called bin</p>
+<ul>
+<li>Create a folder called bin</li>
+</ul>
 <div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> mkdir bin</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="install-miniforge" class="level2" data-number="7.2">
 <h2 data-number="7.2" class="anchored" data-anchor-id="install-miniforge"><span class="header-section-number">7.2</span> Install miniforge</h2>
-<p>Change directory into bin</p>
+<ul>
+<li>Change directory into bin</li>
+</ul>
 <div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> bin</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Download the latest <a href="https://github.com/conda-forge/miniforge">Miniforge3 installer</a>:</p>
+<ul>
+<li>Download the latest <a href="https://github.com/conda-forge/miniforge">Miniforge3 installer</a>:</li>
+</ul>
 <div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> curl <span class="at">-L</span> <span class="at">-O</span> <span class="st">"https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-</span><span class="va">$(</span><span class="fu">uname</span><span class="va">)</span><span class="st">-</span><span class="va">$(</span><span class="fu">uname</span> <span class="at">-m</span><span class="va">)</span><span class="st">.sh"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Start the installation porcess:</p>
+<ul>
+<li>Start the installation porcess:</li>
+</ul>
 <div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> bash Miniforge3-<span class="va">$(</span><span class="fu">uname</span><span class="va">)</span>-<span class="va">$(</span><span class="fu">uname</span> <span class="at">-m</span><span class="va">)</span>.sh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Press enter and scroll down</p>
-<p>Type <code>yes</code> and press enter.</p>
-<p>If asked, select your partition as location to save miniforge:</p>
-<p><code>/mnt/vdc/miniforge</code></p>
-<p>Accept and type <code>yes</code> when asked. This will install miniforge to /mnt/vdc/miniforge</p>
-<p>If asked: “Do you wish the installer to initialize Miniforge3 by running conda init? [yes|no]”</p>
-<p>Type <code>yes</code></p>
-<p>Run <code>sudo su</code>, that will open a shell as the superuser.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> su</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Now add miniforge to path as shown in the command below:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">PATH</span><span class="op">=</span>/mnt/vdc/miniforge/bin:<span class="va">$PATH</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Initialize all shells with:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> init <span class="at">--all</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Type <code>exit</code> to exit this shell.</p>
+<ul>
+<li><p>Press ENTER and scroll down, then type <code>yes</code> and press ENTER.</p></li>
+<li><p>If asked where to store miniforge, type in your partition as location:</p></li>
+</ul>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">/mnt/vdb/miniforge</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li><p>If asked: “Do you wish the installer to initialize Miniforge3 by running conda init? [yes|no]”, type <code>yes</code></p></li>
+<li><p>Run <code>sudo su</code> (that will open a shell as the superuser)</p></li>
+</ul>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> su</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>Now add miniforge to path as shown in the command below:</li>
+</ul>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">PATH</span><span class="op">=</span>/mnt/vdb/miniforge/bin:<span class="va">$PATH</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>Initialize all shells with:</li>
+</ul>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> init <span class="at">--all</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>For changes to take effect, close (use the kill terminal icon in VS Code) and re-open your current shell.</li>
+</ul>
+<!--
+
+## Install ipykernel
+
+
+- Open a shell as the superuser:
+
+
+```bash
+sudo su
+```
+
+- Install the package ipykernel
+
+```bash
+conda install ipykernel 
+```
+
+Type `exit` to exit this shell.
+
+
+Now close your connection and restart.
+
+-->
 </section>
-<section id="install-ipykernel" class="level2" data-number="7.3">
-<h2 data-number="7.3" class="anchored" data-anchor-id="install-ipykernel"><span class="header-section-number">7.3</span> Install ipykernel</h2>
-<p>Run <code>sudo su</code>, that will open a shell as the superuser.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> su</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Install the package ipykernel</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> install ipykernel </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Type <code>exit</code> to exit this shell.</p>
-<p>Now close your connection and restart.</p>
-</section>
-<section id="start-jupyter-notebook-in-vs-code" class="level2" data-number="7.4">
-<h2 data-number="7.4" class="anchored" data-anchor-id="start-jupyter-notebook-in-vs-code"><span class="header-section-number">7.4</span> Start Jupyter Notebook in VS Code</h2>
+<section id="start-jupyter-notebook-in-vs-code" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="start-jupyter-notebook-in-vs-code"><span class="header-section-number">7.3</span> Start Jupyter Notebook in VS Code</h2>
 <p>In Visual Studio Code:</p>
 <ol type="1">
 <li><p><a href="https://code.visualstudio.com/docs/datascience/jupyter-notebooks#_create-or-open-a-jupyter-notebook">Create a Jupyter Notebook</a></p></li>
@@ -333,16 +364,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <hr>
 <p>OLD</p>
 </section>
-<section id="install-packages" class="level2" data-number="7.5">
-<h2 data-number="7.5" class="anchored" data-anchor-id="install-packages"><span class="header-section-number">7.5</span> Install packages</h2>
+<section id="install-packages" class="level2" data-number="7.4">
+<h2 data-number="7.4" class="anchored" data-anchor-id="install-packages"><span class="header-section-number">7.4</span> Install packages</h2>
 <p>Now add miniforge to path as shown in the command below:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">PATH</span><span class="op">=</span>/mnt/vdc/miniforge/bin:<span class="va">$PATH</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">PATH</span><span class="op">=</span>/mnt/vdc/miniforge/bin:<span class="va">$PATH</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Initialize your shell with:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> init zsh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> init zsh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>NOT WORKING</p>
 </section>
-<section id="change-permissions" class="level2" data-number="7.6">
-<h2 data-number="7.6" class="anchored" data-anchor-id="change-permissions"><span class="header-section-number">7.6</span> Change permissions</h2>
+<section id="change-permissions" class="level2" data-number="7.5">
+<h2 data-number="7.5" class="anchored" data-anchor-id="change-permissions"><span class="header-section-number">7.5</span> Change permissions</h2>
 <p>Read+Write+Execute:</p>
 <p>sudo chmod -R a+rwx /var/www</p>
 <p>sudo chmod a+rwx /mnt/vdc/miniforge</p>

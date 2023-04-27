@@ -137,14 +137,14 @@
     "href": "vs-code-ssh.html#prerequisites",
     "title": "5  Visual Studio Code & SSH",
     "section": "5.1 Prerequisites",
-    "text": "5.1 Prerequisites\nTo get started, you need to have done the following steps:\n\nIf you use Windows, you need to install an OpenSSH compatible SSH client (PuTTY is not supported)\nInstall Visual Studio Code\nOpen VS Code and install the “Remote-SSH” extension"
+    "text": "5.1 Prerequisites\nTo get started, you need to have done the following steps:\n\nIf you use Windows, you need to install an OpenSSH compatible SSH client (PuTTY is not supported)\nInstall Visual Studio Code\nInstall all necessary VS Code extensions by importing the profile (Import Profile in Visual Studio Code) remote-ssh"
   },
   {
     "objectID": "vs-code-ssh.html#connect-using-ssh",
     "href": "vs-code-ssh.html#connect-using-ssh",
     "title": "5  Visual Studio Code & SSH",
     "section": "5.2 Connect using SSH",
-    "text": "5.2 Connect using SSH\n\nWith the Remote-SSH extension installed, you will see a new status bar item at the far left (at the bottom) in VS Code.\nThe Remote Status bar item can quickly show you in which context VS Code is running (local or remote) and clicking on the item will bring up the Remote - SSH command.\nChoose the “Connect to Host…” command in the Remote-SSH section and connect to the host by entering connection information for your VM in the following format (replace x with your IP): ubuntu@xxx.xxx.xx.xx\nIf propmted, enter your passphrase (SSH-key password) in VS Code.\n\nOnce you’re connected to your SSH host, you can interact with files and open folders on the remote machine:\n\nOpen the Explorer to navigate and open files.\nOpen VS Code’s integrated terminal, to be able to worke inside a bash shell."
+    "text": "5.2 Connect using SSH\n\nWithin VS Code, you should see a status bar item at the far left (at the bottom) in VS Code.\nThe Remote Status bar item can quickly show you in which context VS Code is running (local or remote) and clicking on the item will bring up the Remote - SSH command.\nChoose the “Connect to Host…” command in the Remote-SSH section and connect to the host by entering connection information for your VM in the following format (replace x with your IP): ubuntu@xxx.xxx.xx.xx\nIf propmted, enter your passphrase (SSH-key password) in VS Code.\nOpen VS Code’s integrated terminal (in the menue, select Terminal -&gt; new Terminal), to be able to work inside a bash shell."
   },
   {
     "objectID": "instance-storage-increase.html#increase-cloud-storage",
@@ -172,42 +172,35 @@
     "href": "python-miniforge-setup.html#prepare-environment",
     "title": "7  Install Python with miniforge",
     "section": "7.1 Prepare environment",
-    "text": "7.1 Prepare environment\nChange directory into your volume (in may case vdc):\ncd /mnt/vdb\nCreate a folder called bin\nsudo mkdir bin"
+    "text": "7.1 Prepare environment\n\nChange directory into your volume:\n\ncd /mnt/vdb\n\nCreate a folder called bin\n\nsudo mkdir bin"
   },
   {
     "objectID": "python-miniforge-setup.html#install-miniforge",
     "href": "python-miniforge-setup.html#install-miniforge",
     "title": "7  Install Python with miniforge",
     "section": "7.2 Install miniforge",
-    "text": "7.2 Install miniforge\nChange directory into bin\ncd bin\nDownload the latest Miniforge3 installer:\nsudo curl -L -O \"https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-$(uname)-$(uname -m).sh\"\nStart the installation porcess:\nsudo bash Miniforge3-$(uname)-$(uname -m).sh\nPress enter and scroll down\nType yes and press enter.\nIf asked, select your partition as location to save miniforge:\n/mnt/vdc/miniforge\nAccept and type yes when asked. This will install miniforge to /mnt/vdc/miniforge\nIf asked: “Do you wish the installer to initialize Miniforge3 by running conda init? [yes|no]”\nType yes\nRun sudo su, that will open a shell as the superuser.\nsudo su\nNow add miniforge to path as shown in the command below:\nexport PATH=/mnt/vdc/miniforge/bin:$PATH\nInitialize all shells with:\nconda init --all\nType exit to exit this shell."
-  },
-  {
-    "objectID": "python-miniforge-setup.html#install-ipykernel",
-    "href": "python-miniforge-setup.html#install-ipykernel",
-    "title": "7  Install Python with miniforge",
-    "section": "7.3 Install ipykernel",
-    "text": "7.3 Install ipykernel\nRun sudo su, that will open a shell as the superuser.\nsudo su\nInstall the package ipykernel\nconda install ipykernel \nType exit to exit this shell.\nNow close your connection and restart."
+    "text": "7.2 Install miniforge\n\nChange directory into bin\n\ncd bin\n\nDownload the latest Miniforge3 installer:\n\nsudo curl -L -O \"https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-$(uname)-$(uname -m).sh\"\n\nStart the installation porcess:\n\nsudo bash Miniforge3-$(uname)-$(uname -m).sh\n\nPress ENTER and scroll down, then type yes and press ENTER.\nIf asked where to store miniforge, type in your partition as location:\n\n/mnt/vdb/miniforge\n\nIf asked: “Do you wish the installer to initialize Miniforge3 by running conda init? [yes|no]”, type yes\nRun sudo su (that will open a shell as the superuser)\n\nsudo su\n\nNow add miniforge to path as shown in the command below:\n\nexport PATH=/mnt/vdb/miniforge/bin:$PATH\n\nInitialize all shells with:\n\nconda init --all\n\nFor changes to take effect, close (use the kill terminal icon in VS Code) and re-open your current shell."
   },
   {
     "objectID": "python-miniforge-setup.html#start-jupyter-notebook-in-vs-code",
     "href": "python-miniforge-setup.html#start-jupyter-notebook-in-vs-code",
     "title": "7  Install Python with miniforge",
-    "section": "7.4 Start Jupyter Notebook in VS Code",
-    "text": "7.4 Start Jupyter Notebook in VS Code\nIn Visual Studio Code:\n\nCreate a Jupyter Notebook\nNext, select a kernel using the kernel picker in the top right (select the miniforge environment)\n\n\nIf you can’t see your miniforge environment:\nYou can also manually specify an interpreter if Visual Studio Code doesn’t locate your kernel automatically.\n\nShow command palette: Press cmd+shift+p (Mac) or strl+shift+p (Windows)\nSearch for `Python: Select Interpreter´\nSelect + enter interpreter path\nChoose the path (in my case: /mnt/vdc/miniforge/bin/python3.10 )\n\nIf the steps described above should not work for you, take a look at other tips at StackOverflow.\n\nOLD"
+    "section": "7.3 Start Jupyter Notebook in VS Code",
+    "text": "7.3 Start Jupyter Notebook in VS Code\nIn Visual Studio Code:\n\nCreate a Jupyter Notebook\nNext, select a kernel using the kernel picker in the top right (select the miniforge environment)\n\n\nIf you can’t see your miniforge environment:\nYou can also manually specify an interpreter if Visual Studio Code doesn’t locate your kernel automatically.\n\nShow command palette: Press cmd+shift+p (Mac) or strl+shift+p (Windows)\nSearch for `Python: Select Interpreter´\nSelect + enter interpreter path\nChoose the path (in my case: /mnt/vdc/miniforge/bin/python3.10 )\n\nIf the steps described above should not work for you, take a look at other tips at StackOverflow.\n\nOLD"
   },
   {
     "objectID": "python-miniforge-setup.html#install-packages",
     "href": "python-miniforge-setup.html#install-packages",
     "title": "7  Install Python with miniforge",
-    "section": "7.5 Install packages",
-    "text": "7.5 Install packages\nNow add miniforge to path as shown in the command below:\nexport PATH=/mnt/vdc/miniforge/bin:$PATH\nInitialize your shell with:\nconda init zsh\nNOT WORKING"
+    "section": "7.4 Install packages",
+    "text": "7.4 Install packages\nNow add miniforge to path as shown in the command below:\nexport PATH=/mnt/vdc/miniforge/bin:$PATH\nInitialize your shell with:\nconda init zsh\nNOT WORKING"
   },
   {
     "objectID": "python-miniforge-setup.html#change-permissions",
     "href": "python-miniforge-setup.html#change-permissions",
     "title": "7  Install Python with miniforge",
-    "section": "7.6 Change permissions",
-    "text": "7.6 Change permissions\nRead+Write+Execute:\nsudo chmod -R a+rwx /var/www\nsudo chmod a+rwx /mnt/vdc/miniforge"
+    "section": "7.5 Change permissions",
+    "text": "7.5 Change permissions\nRead+Write+Execute:\nsudo chmod -R a+rwx /var/www\nsudo chmod a+rwx /mnt/vdc/miniforge"
   },
   {
     "objectID": "docker.html",

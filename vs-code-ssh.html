@@ -244,21 +244,17 @@ ul.task-list li input[type="checkbox"] {
 <ol type="1">
 <li><p>If you use Windows, you need to install an <a href="https://code.visualstudio.com/docs/remote/troubleshooting#_installing-a-supported-ssh-client">OpenSSH compatible SSH client (PuTTY is not supported)</a></p></li>
 <li><p>Install <a href="https://code.visualstudio.com/">Visual Studio Code</a></p></li>
-<li><p>Open VS Code and install the <a href="vscode:extension/ms-vscode-remote.remote-ssh">“Remote-SSH”</a> extension</p></li>
+<li><p>Install all necessary VS Code extensions by importing the profile (Import Profile in Visual Studio Code) <a href="https://vscode.dev/profile/github/56613fe53b2ed401df9f752170a8828c">remote-ssh</a></p></li>
 </ol>
 </section>
 <section id="connect-using-ssh" class="level2" data-number="5.2">
 <h2 data-number="5.2" class="anchored" data-anchor-id="connect-using-ssh"><span class="header-section-number">5.2</span> Connect using SSH</h2>
 <ul>
-<li><p>With the Remote-SSH extension installed, you will see a new status bar item at the far left (at the bottom) in VS Code.</p></li>
+<li><p>Within VS Code, you should see a status bar item at the far left (at the bottom) in VS Code.</p></li>
 <li><p>The Remote Status bar item can quickly show you in which context VS Code is running (local or remote) and clicking on the item will bring up the Remote - SSH command.</p></li>
 <li><p>Choose the “Connect to Host…” command in the Remote-SSH section and connect to the host by entering connection information for your VM in the following format (replace x with your IP): ubuntu@xxx.xxx.xx.xx</p></li>
 <li><p>If propmted, enter your passphrase (SSH-key password) in VS Code.</p></li>
-</ul>
-<p>Once you’re connected to your SSH host, you can interact with files and open folders on the remote machine:</p>
-<ul>
-<li><p>Open the Explorer to navigate and open files.</p></li>
-<li><p>Open VS Code’s integrated terminal, to be able to worke inside a bash shell.</p></li>
+<li><p>Open VS Code’s integrated terminal (in the menue, select <code>Terminal</code> -&gt; <code>new Terminal</code>), to be able to work inside a bash shell.</p></li>
 </ul>
 <!--
 
