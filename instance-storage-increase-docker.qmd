@@ -1,168 +1,78 @@
-# Increase Cloud Storage
+# Mount a volume to Docker
 
-Mount a volume to Docker
+The standard data directory used for docker is /var/lib/docker, and since this directory will store a lot of data it can become quite large.
 
-
-In this tutorial, you'll learn how to increase your cloud storage and mount the volume to docker in order to increase the virtual machine’s docker image capacity.
-
-## Create new volume in bwCloud
-
-1. Log into [bwCloud Dashboard](https://bw-cloud.org/q/d)
-
-1. Click on `Volumes` below Project → Volumes
-
-1. An overview of the volumes you have created so far is displayed. To create a new volume, click on [Create Volume](https://portal.bw-cloud.org/project/volumes/create/)
-
-1. A dialogue opens. Fill in the fields according to your requirements. We call the volume *block-device-01* and use `25` GiB.
-
-1. Then click on Create Volume. The volume is created
+Therefore we move the docker data directory to our volumne mnt/vdb.
 
 
-## Attach volume in bwCloud
-
-In order for a volume to be used by a virtual machine, it must be added ("attached") to your VM inside bwCloud.
-
-1. In the table row of the desired volume, select the subitem `Manage Attachments` in the context menu at the right end of the row and click on the entry. 
-
-1. In the dialogue, select the desired virtual machine (*ml-pipeline-01*) and click on `Attach Volume`
-
-- The table updates and the path under which the new volume can be reached from within the virtual machine appears in the Attached To field:
-
-```
-/dev/vdb on ml-pipeline-01
-```
-
-## Mount volume in VM
-
-In Linux, the process of attaching a filesystem to a particular point in the directory tree is called mounting. This allows you to access the files and directories on the filesystem as if they were part of the filesystem on which you are currently working.
-
-### Log in your VM
-
-- Log into your virtual machine (replace 111.111.11.11 with your IP)
+- Stop docker daemon
 
 ```bash
-ssh -i .ssh/id_rsa ubuntu@111.111.11.11
+sudo systemctl stop docker
 
 ```
 
-### Find volumne
-
-You can find your volume (i.e. disk) using:
+- Create a new docker directory in /mnt/vdb:
 
 ```bash
-sudo fdisk -l
+sudo mkdir -p /mnt/vdb/docker
+
 ```
 
-The output should include an entry like the following:
+- Make a copy of your current docker directory in the new location:
 
 ```bash
+sudo rsync -a /var/lib/docker/ /mnt/vdb/docker
 
-Disk /dev/vdb: 25 GiB, 26843545600 bytes, 52428800 sectors
-Units: sectors of 1 * 512 = 512 bytes
-Sector size (logical/physical): 512 bytes / 512 bytes
-I/O size (minimum/optimal): 512 bytes / 512 bytes
 ```
 
 
-### Partitioning
+- We create a backup
 
-Next, we need to partition our volume. This command will open a partition environment:
+```bash
+sudo mv /var/lib/docker /var/lib/docker-backup
+```
+
+- Link to new installation:
 
 
 ```bash
-sudo parted /dev/vdb
-
-```
-
-We use GPT (GUID Partition Table), which is a standard for the layout of the partition table on a physical storage device:
-
-```bash
-mklabel gpt
-
-```
-
-Within the partition environment, you can also set the size of the partition. We set the upper bound to 25 GB.
-
-
-```bash
-mkpart primary 0GB 25GB
-
-```
-
-Enter `quit` to leave the partition environment: 
-
-```bash
-quit
-```
-
-### Format partition
-
-Format the partition with the *ext4* filesystem. *ext4* stands for "extended file system version 4", which is a popular filesystem used in Linux systems to store and organize files on a storage device, such as a hard drive or solid-state drive. 
-
-
-```bash
-sudo mkfs.ext4 /dev/vdb
-```
-
-### Mounting
-
-In general, it is best to avoid using the root user account for everyday tasks, and to use sudo to run specific commands as needed, rather than switching to the root user account and running all commands with superuser privileges. This helps to reduce the risk of accidental damage to the system and ensures that all actions are logged and can be traced back to a specific user.
-
-"su" stands for "switch user," and it allows a user to switch to another user account. When you run sudo su, you are effectively running the su command with superuser privileges, which means that you can switch to the root user account and have full access to all the files and system resources on the machine.
-
-sudo su is a command that is used to switch to the root user account from another user account on a Unix-like operating system.
-
-"sudo" is short for "superuser do," and it allows a user to run commands with administrative privileges. 
-
-
-```bash
-sudo su
-```
-
-/dev/vdb is your new disk 
-
-
-Stop docker daemon,
-
-```bash
-systemctl stop docker
-
-```
-
-Move your current docker directory
-
-```bash
-mv /var/lib/docker /var/lib/docker-backup
-
-```
-
-
-
-Create a new docker directory
-
-```bash
-mk dir var/lib/docker
-
+sudo ln -s /mnt/vdb/docker /var/lib/docker
 ```
 
 Mount your new file system
 
 ```bash
-mount /dev/vdb /var/lib/docker
+sudo mount /dev/vdb /var/lib/docker
 
 ```
-Reinstate your docker installation on the new file system
+
+
+- Start docker
 
 ```bash
-cp -rf /var/lib/docker-backup/* /var/lib/docker
-
+sudo systemctl start docker
 ```
 
-Start docker
+
+- Check if the docker image "hello-world" is still accessible:
 
 ```bash
-systemctl start docker
+sudo docker ps -a
 ```
+
+You can now remove your backup:
+
+
+```bash
+sudo rm -rf /var/lib/docker-backup
+
+```
+
+
+
+<!--
+
 
 Test out your newly expanded capacity by pulling a new docker image and running it — here’s a postgres image as an example:
 
@@ -206,88 +116,4 @@ umount /dev/sda2
 mv /var/lib/docker-backup /var/lib/docker
 # Remove the additional line added to /etc/fstab (if applicable)
 systemctl start docker
-```
-
-Cleanup
-If you’re happy with the increased capacity in your docker installation and all has gone to plan, you can now remove your backup:
-
-
-```bash
-rm -rf /var/lib/docker-backup
-
-```
-
-Change back to our ubuntu user
-
-
-```bash
-su ubuntu
-```
-
-
-
-
-----
-
-OLD 
-
-Before we mount the drive, we create a new directory in the `/mnt/` directory where the drives are usually mounted in Ubuntu: 
-
-
-```bash
-sudo mkdir /mnt/vdb
-
-```
-
-Once the directory is created, you can mount the drive as follows: 
-
-```bash
-sudo mount /dev/vdb /mnt/vdb
-
-```
-
-To mount the drive permanently, we need to edit the file system table `fstab`. Therefore, we open the file in the text editor [nano](https://www.nano-editor.org/): 
-
-
-```bash
-sudo nano /etc/fstab
-
-```
-
-Now, add the following content at the end of the file:
-
-
-
-```bash
-/dev/vdb    /mnt/vdb     ext4      defaults        0             0
-
-```
-
-`Ctrl+O` will save the modifications you've made to the file. `Ctrl+X` will close nano. Confirm with `Y` and press Enter.
-
-
-
-Use `sudo mount` to list all mounted drives and combine it with `grep vdb`, which only returns our volume vdb: 
-
-
-```bash
-sudo mount | grep vdb
-
-```
-
-You can change directory into your new volume:
-
-
-```bash
-cd /mnt/vdb
-```
-
-
-Unmount
-
-How to unmount a mounted drive in Ubuntu
-
-
-```bash
-sudo umount -l /dev/vdb
 ```
