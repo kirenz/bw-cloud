@@ -38,7 +38,7 @@ book:
     - part: docker.qmd
       chapters:
         - docker-setup.qmd
-        - instance-storage-increase-docker.qmd
+        - docker-location.qmd
      
 bibliography: references.bib
 
