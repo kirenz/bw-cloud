@@ -247,9 +247,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#prepare-environment" id="toc-prepare-environment" class="nav-link active" data-scroll-target="#prepare-environment"><span class="header-section-number">7.1</span> Prepare environment</a></li>
   <li><a href="#install-miniforge" id="toc-install-miniforge" class="nav-link" data-scroll-target="#install-miniforge"><span class="header-section-number">7.2</span> Install miniforge</a></li>
-  <li><a href="#start-jupyter-notebook-in-vs-code" id="toc-start-jupyter-notebook-in-vs-code" class="nav-link" data-scroll-target="#start-jupyter-notebook-in-vs-code"><span class="header-section-number">7.3</span> Start Jupyter Notebook in VS Code</a></li>
-  <li><a href="#install-packages" id="toc-install-packages" class="nav-link" data-scroll-target="#install-packages"><span class="header-section-number">7.4</span> Install packages</a></li>
-  <li><a href="#change-permissions" id="toc-change-permissions" class="nav-link" data-scroll-target="#change-permissions"><span class="header-section-number">7.5</span> Change permissions</a></li>
+  <li><a href="#update-path" id="toc-update-path" class="nav-link" data-scroll-target="#update-path"><span class="header-section-number">7.3</span> Update path</a></li>
+  <li><a href="#start-jupyter-notebook-in-vs-code" id="toc-start-jupyter-notebook-in-vs-code" class="nav-link" data-scroll-target="#start-jupyter-notebook-in-vs-code"><span class="header-section-number">7.4</span> Start Jupyter Notebook in VS Code</a></li>
   </ul>
 <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/kirenz/bw-cloud/edit/main/python-miniforge-setup.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/kirenz/bw-cloud/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
@@ -316,8 +315,36 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Initialize all shells with:</li>
 </ul>
 <div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> init <span class="at">--all</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="update-path" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="update-path"><span class="header-section-number">7.3</span> Update path</h2>
 <ul>
-<li>For changes to take effect, close (use the kill terminal icon in VS Code) and re-open your current shell.</li>
+<li><p>To be able to use miniforge, you’ll need to update the PATH environment variable and make sure that the VS Code environment is aware of your Miniforge installation.</p></li>
+<li><p>Open the bash.bashrc file with nano:</p></li>
+</ul>
+<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> nano /etc/bash.bashrc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Update your PATH environment variable. Copy and paste the following lines at the end of the file:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">MINIFORGE_HOME</span><span class="op">=</span><span class="st">"/mnt/vdb/miniforge3"</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">PATH</span><span class="op">=</span><span class="st">"</span><span class="va">$MINIFORGE_HOME</span><span class="st">/bin:</span><span class="va">$PATH</span><span class="st">"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>Next, press</li>
+</ul>
+<ol type="1">
+<li><code>Ctrl+O</code> and confirm with enter to save the modifications you’ve made to the file</li>
+<li><code>Ctrl+X</code> to close nano.</li>
+</ol>
+<!--
+
+- Apply the changes to your current shell session.
+
+```bash
+source /etc/bash.bashrc
+```
+
+-->
+<ul>
+<li>For changes to take effect, close (use the kill terminal icon 🗑 in VS Code).</li>
 </ul>
 <!--
 
@@ -344,12 +371,14 @@ Now close your connection and restart.
 
 -->
 </section>
-<section id="start-jupyter-notebook-in-vs-code" class="level2" data-number="7.3">
-<h2 data-number="7.3" class="anchored" data-anchor-id="start-jupyter-notebook-in-vs-code"><span class="header-section-number">7.3</span> Start Jupyter Notebook in VS Code</h2>
+<section id="start-jupyter-notebook-in-vs-code" class="level2" data-number="7.4">
+<h2 data-number="7.4" class="anchored" data-anchor-id="start-jupyter-notebook-in-vs-code"><span class="header-section-number">7.4</span> Start Jupyter Notebook in VS Code</h2>
 <p>In Visual Studio Code:</p>
 <ol type="1">
-<li><p><a href="https://code.visualstudio.com/docs/datascience/jupyter-notebooks#_create-or-open-a-jupyter-notebook">Create a Jupyter Notebook</a></p></li>
-<li><p>Next, select a kernel using the kernel picker in the top right (select the miniforge environment)</p></li>
+<li><p><a href="https://code.visualstudio.com/docs/datascience/jupyter-notebooks#_create-or-open-a-jupyter-notebook">Create a Jupyter Notebook file</a></p></li>
+<li><p>Next, select a kernel using the “Select Kernel” picker in the top right</p></li>
+<li><p>Select Python Environments</p></li>
+<li></li>
 </ol>
 <p><img src="https://code.visualstudio.com/assets/docs/datascience/jupyter/native-kernel-picker.png" class="img-fluid"></p>
 <p>If you can’t see your miniforge environment:</p>
@@ -361,22 +390,41 @@ Now close your connection and restart.
 <li><p>Choose the path (in my case: /mnt/vdc/miniforge/bin/python3.10 )</p></li>
 </ol>
 <p>If the steps described above should not work for you, take a look at other tips at <a href="https://stackoverflow.com/questions/43351596/activating-anaconda-environment-in-vscode">StackOverflow</a>.</p>
-<hr>
-<p>OLD</p>
-</section>
-<section id="install-packages" class="level2" data-number="7.4">
-<h2 data-number="7.4" class="anchored" data-anchor-id="install-packages"><span class="header-section-number">7.4</span> Install packages</h2>
-<p>Now add miniforge to path as shown in the command below:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">PATH</span><span class="op">=</span>/mnt/vdc/miniforge/bin:<span class="va">$PATH</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Initialize your shell with:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> init zsh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>NOT WORKING</p>
-</section>
-<section id="change-permissions" class="level2" data-number="7.5">
-<h2 data-number="7.5" class="anchored" data-anchor-id="change-permissions"><span class="header-section-number">7.5</span> Change permissions</h2>
-<p>Read+Write+Execute:</p>
-<p>sudo chmod -R a+rwx /var/www</p>
-<p>sudo chmod a+rwx /mnt/vdc/miniforge</p>
+<!--
+
+-----
+
+OLD
+
+## Install packages
+
+Now add miniforge to path as shown in the command below:
+
+```bash
+export PATH=/mnt/vdc/miniforge/bin:$PATH
+```
+
+Initialize your shell with:
+
+```bash
+conda init zsh
+```
+
+
+
+
+NOT WORKING
+
+## Change permissions
+
+Read+Write+Execute:
+
+sudo chmod -R a+rwx /var/www
+
+
+sudo chmod a+rwx /mnt/vdc/miniforge
+
+-->
 
 
 </section>

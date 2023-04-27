@@ -186,28 +186,21 @@
     "href": "python-miniforge-setup.html#install-miniforge",
     "title": "7  Install Python with miniforge",
     "section": "7.2 Install miniforge",
-    "text": "7.2 Install miniforge\n\nChange directory into bin\n\ncd bin\n\nDownload the latest Miniforge3 installer:\n\nsudo curl -L -O \"https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-$(uname)-$(uname -m).sh\"\n\nStart the installation porcess:\n\nsudo bash Miniforge3-$(uname)-$(uname -m).sh\n\nPress ENTER and scroll down, then type yes and press ENTER.\nIf asked where to store miniforge, type in your partition as location:\n\n/mnt/vdb/miniforge\n\nIf asked: “Do you wish the installer to initialize Miniforge3 by running conda init? [yes|no]”, type yes\nRun sudo su (that will open a shell as the superuser)\n\nsudo su\n\nNow add miniforge to path as shown in the command below:\n\nexport PATH=/mnt/vdb/miniforge/bin:$PATH\n\nInitialize all shells with:\n\nconda init --all\n\nFor changes to take effect, close (use the kill terminal icon in VS Code) and re-open your current shell."
+    "text": "7.2 Install miniforge\n\nChange directory into bin\n\ncd bin\n\nDownload the latest Miniforge3 installer:\n\nsudo curl -L -O \"https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-$(uname)-$(uname -m).sh\"\n\nStart the installation porcess:\n\nsudo bash Miniforge3-$(uname)-$(uname -m).sh\n\nPress ENTER and scroll down, then type yes and press ENTER.\nIf asked where to store miniforge, type in your partition as location:\n\n/mnt/vdb/miniforge\n\nIf asked: “Do you wish the installer to initialize Miniforge3 by running conda init? [yes|no]”, type yes\nRun sudo su (that will open a shell as the superuser)\n\nsudo su\n\nNow add miniforge to path as shown in the command below:\n\nexport PATH=/mnt/vdb/miniforge/bin:$PATH\n\nInitialize all shells with:\n\nconda init --all"
+  },
+  {
+    "objectID": "python-miniforge-setup.html#update-path",
+    "href": "python-miniforge-setup.html#update-path",
+    "title": "7  Install Python with miniforge",
+    "section": "7.3 Update path",
+    "text": "7.3 Update path\n\nTo be able to use miniforge, you’ll need to update the PATH environment variable and make sure that the VS Code environment is aware of your Miniforge installation.\nOpen the bash.bashrc file with nano:\n\nsudo nano /etc/bash.bashrc\nUpdate your PATH environment variable. Copy and paste the following lines at the end of the file:\nexport MINIFORGE_HOME=\"/mnt/vdb/miniforge3\"\n\nexport PATH=\"$MINIFORGE_HOME/bin:$PATH\"\n\nNext, press\n\n\nCtrl+O and confirm with enter to save the modifications you’ve made to the file\nCtrl+X to close nano.\n\n\n\nFor changes to take effect, close (use the kill terminal icon 🗑 in VS Code)."
   },
   {
     "objectID": "python-miniforge-setup.html#start-jupyter-notebook-in-vs-code",
     "href": "python-miniforge-setup.html#start-jupyter-notebook-in-vs-code",
     "title": "7  Install Python with miniforge",
-    "section": "7.3 Start Jupyter Notebook in VS Code",
-    "text": "7.3 Start Jupyter Notebook in VS Code\nIn Visual Studio Code:\n\nCreate a Jupyter Notebook\nNext, select a kernel using the kernel picker in the top right (select the miniforge environment)\n\n\nIf you can’t see your miniforge environment:\nYou can also manually specify an interpreter if Visual Studio Code doesn’t locate your kernel automatically.\n\nShow command palette: Press cmd+shift+p (Mac) or strl+shift+p (Windows)\nSearch for `Python: Select Interpreter´\nSelect + enter interpreter path\nChoose the path (in my case: /mnt/vdc/miniforge/bin/python3.10 )\n\nIf the steps described above should not work for you, take a look at other tips at StackOverflow.\n\nOLD"
-  },
-  {
-    "objectID": "python-miniforge-setup.html#install-packages",
-    "href": "python-miniforge-setup.html#install-packages",
-    "title": "7  Install Python with miniforge",
-    "section": "7.4 Install packages",
-    "text": "7.4 Install packages\nNow add miniforge to path as shown in the command below:\nexport PATH=/mnt/vdc/miniforge/bin:$PATH\nInitialize your shell with:\nconda init zsh\nNOT WORKING"
-  },
-  {
-    "objectID": "python-miniforge-setup.html#change-permissions",
-    "href": "python-miniforge-setup.html#change-permissions",
-    "title": "7  Install Python with miniforge",
-    "section": "7.5 Change permissions",
-    "text": "7.5 Change permissions\nRead+Write+Execute:\nsudo chmod -R a+rwx /var/www\nsudo chmod a+rwx /mnt/vdc/miniforge"
+    "section": "7.4 Start Jupyter Notebook in VS Code",
+    "text": "7.4 Start Jupyter Notebook in VS Code\nIn Visual Studio Code:\n\nCreate a Jupyter Notebook file\nNext, select a kernel using the “Select Kernel” picker in the top right\nSelect Python Environments\n\n\n\nIf you can’t see your miniforge environment:\nYou can also manually specify an interpreter if Visual Studio Code doesn’t locate your kernel automatically.\n\nShow command palette: Press cmd+shift+p (Mac) or strl+shift+p (Windows)\nSearch for `Python: Select Interpreter´\nSelect + enter interpreter path\nChoose the path (in my case: /mnt/vdc/miniforge/bin/python3.10 )\n\nIf the steps described above should not work for you, take a look at other tips at StackOverflow."
   },
   {
     "objectID": "docker.html",
