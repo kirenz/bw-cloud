@@ -294,23 +294,53 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> docker ps <span class="at">-a</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>You can now remove your backup:</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> rm <span class="at">-rf</span> /var/lib/docker-backup</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>&lt;!–</p>
-<p>Test out your newly expanded capacity by pulling a new docker image and running it — here’s a postgres image as an example:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> pull postgres</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Start a postgres instance</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">--name</span> some-postgres <span class="at">-e</span> POSTGRES_PASSWORD=mysecretpassword <span class="at">-d</span> postgres</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>The default postgres user and database are created in the entrypoint with initdb.</p>
-<p>The postgres database is a default database meant for use by users, utilities and third party applications.</p>
-<p>Mount On Startup</p>
-<p>Assuming everything is now fine, you’ll want to ensure your disk gets mounted on the /var/lib/docker directory permanently on start-up:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nano</span> /etc/fstab</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Add the following line at the end of the file, again assuming /dev/vdb is your device and also assuming is formatted as an ext4 filesystem.</p>
-<p>Rollback If something goes wrong or for whatever reason, you want to return to your previous setup — you should be able to rollback in the following way:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">systemctl</span> stop docker</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">umount</span> /dev/sda2</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mv</span> /var/lib/docker-backup /var/lib/docker</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove the additional line added to /etc/fstab (if applicable)</span></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="ex">systemctl</span> start docker</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<!--
+
+
+Test out your newly expanded capacity by pulling a new docker image and running it — here’s a postgres image as an example:
+
+
+```bash
+docker pull postgres
+```
+
+Start a postgres instance
+
+
+```bash
+docker run --name some-postgres -e POSTGRES_PASSWORD=mysecretpassword -d postgres
+```
+
+The default postgres user and database are created in the entrypoint with initdb.
+
+The postgres database is a default database meant for use by users, utilities and third party applications.
+
+
+Mount On Startup
+
+Assuming everything is now fine, you’ll want to ensure your disk gets mounted on the /var/lib/docker directory permanently on start-up:
+
+
+```bash
+nano /etc/fstab
+```
+
+Add the following line at the end of the file, again assuming /dev/vdb is your device and also assuming is formatted as an ext4 filesystem.
+
+
+
+Rollback
+If something goes wrong or for whatever reason, you want to return to your previous setup — you should be able to rollback in the following way:
+
+
+```bash
+systemctl stop docker
+umount /dev/sda2
+mv /var/lib/docker-backup /var/lib/docker
+# Remove the additional line added to /etc/fstab (if applicable)
+systemctl start docker
+```
+-->
 
 
 
