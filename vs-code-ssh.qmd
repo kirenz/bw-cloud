@@ -2,56 +2,36 @@
  
 This tutorial walks you through creating and connecting to a virtual machine (VM) using the Visual Studio Code Remote - SSH extension. To review the complete tutorial, take a look at the [official VS Code documentation](https://code.visualstudio.com/docs/remote/ssh-tutorial).
 
-
 ## Prerequisites
 
 To get started, you need to have done the following steps:
 
-1. Install an [OpenSSH compatible SSH client (PuTTY is not supported)](https://code.visualstudio.com/docs/remote/troubleshooting#_installing-a-supported-ssh-client)
+1. If you use Windows, you need to install an [OpenSSH compatible SSH client (PuTTY is not supported)](https://code.visualstudio.com/docs/remote/troubleshooting#_installing-a-supported-ssh-client)
 
 2. Install [Visual Studio Code](https://code.visualstudio.com/)
 
-3. Open a SSH connection to your VM in a terminal using your key (replace x with your IP-address):
-
-
-```bash
-ssh -i .ssh/id_rsa ubuntu@xxx.xxx.xx.xx
-
-```
-
-## Install extension
-
-The Remote - SSH extension is used to connect to SSH hosts.
-
-- [Install the extension](vscode:extension/ms-vscode-remote.remote-ssh)
-
-
-## Remote SSH
-
-With the Remote - SSH extension installed, you will see a new green Status bar item at the far left (at the bottom).
-
-The Remote Status bar item can quickly show you in which context VS Code is running (local or remote) and clicking on the item will bring up the Remote - SSH command
+3. Open VS Code and install the ["Remote-SSH"](vscode:extension/ms-vscode-remote.remote-ssh) extension
 
 
 ## Connect using SSH
 
-You'll have noticed an indicator on the bottom-left corner of the Status bar. This indicator tells you in which context VS Code is running (local or remote). Click on the indicator to bring up a list of Remote extension commands.
+- With the Remote-SSH extension installed, you will see a new status bar item at the far left (at the bottom) in VS Code. 
 
-Choose the "Connect to Host..." command in the Remote-SSH section and connect to the host by entering connection information for your VM in the following format
+- The Remote Status bar item can quickly show you in which context VS Code is running (local or remote) and clicking on the item will bring up the Remote - SSH command.
 
-Replace x with your IP
+- Choose the "Connect to Host..." command in the Remote-SSH section and connect to the host by entering connection information for your VM in the following format (replace x with your IP): ubuntu@xxx.xxx.xx.xx
 
-ubuntu@xxx.xxx.xx.xx
-
-If propmted, enter your passphrase in VS Code.
+- If propmted, enter your passphrase (SSH-key password) in VS Code.
 
 
-Once you're connected to your SSH host, you can interact with files and open folders on the remote machine. 
+Once you're connected to your SSH host, you can interact with files and open folders on the remote machine:
 
-If you open the integrated terminal (⌃`), you'll see you're working inside a bash shell while you're on Windows
+- Open the Explorer to navigate and open files.
 
-Open the Explorer to navigate and open files.
+- Open VS Code's integrated terminal, to be able to worke inside a bash shell.
 
+
+<!--
 
 ## Port forwarding (optional)
 
@@ -62,3 +42,5 @@ To be able to access a port on the remote machine that may not be publicly expos
 [Port Forwarding](https://code.visualstudio.com/docs/remote/ssh#_forwarding-a-port-creating-ssh-tunnel)
 
 With the app still running, open the SSH Explorer and find the Forwarded Ports view. Click on the Forward a port link and indicate that you want to forward  a specific port.
+
+-->
