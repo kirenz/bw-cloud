@@ -8,7 +8,7 @@
 
 <meta name="author" content="Jan Kirenz">
 
-<title>Cloud Architecure - 5&nbsp; Increase Cloud Storage</title>
+<title>Cloud Architecure - 6&nbsp; Increase Cloud Storage</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -66,7 +66,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
 <link href="./python.html" rel="next">
-<link href="./instance-login.html" rel="prev">
+<link href="./vs-code-ssh.html" rel="prev">
 <link href="./cover.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -109,7 +109,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./instance.html">Virtual Machine</a></li><li class="breadcrumb-item"><a href="./instance-storage-increase.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Increase Cloud Storage</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./instance.html">Virtual Machine</a></li><li class="breadcrumb-item"><a href="./instance-storage-increase.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Increase Cloud Storage</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -183,8 +183,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./vs-code-ssh.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Visual Studio Code &amp; SSH</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./instance-storage-increase.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Increase Cloud Storage</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Increase Cloud Storage</span></span></a>
   </div>
 </li>
       </ul>
@@ -201,13 +207,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./python-miniforge-setup.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Install Python with miniforge</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./vs-code-ssh.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Visual Studio Code &amp; SSH</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Install Python with miniforge</span></span></a>
   </div>
 </li>
       </ul>
@@ -229,8 +229,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./instance-storage-increase-docker.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Increase Cloud Storage</span></span></a>
+  <a href="./docker-location.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Change docker location</span></span></a>
   </div>
 </li>
       </ul>
@@ -245,21 +245,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#increase-cloud-storage" id="toc-increase-cloud-storage" class="nav-link active" data-scroll-target="#increase-cloud-storage"><span class="header-section-number">5.1</span> Increase Cloud Storage</a>
+  <li><a href="#increase-cloud-storage" id="toc-increase-cloud-storage" class="nav-link active" data-scroll-target="#increase-cloud-storage"><span class="header-section-number">6.1</span> Increase Cloud Storage</a>
   <ul class="collapse">
-  <li><a href="#select-volumes" id="toc-select-volumes" class="nav-link" data-scroll-target="#select-volumes"><span class="header-section-number">5.1.1</span> Select Volumes</a></li>
-  <li><a href="#choose-create-volume" id="toc-choose-create-volume" class="nav-link" data-scroll-target="#choose-create-volume"><span class="header-section-number">5.1.2</span> Choose “Create Volume”</a></li>
-  <li><a href="#create-volume-in-dialogue" id="toc-create-volume-in-dialogue" class="nav-link" data-scroll-target="#create-volume-in-dialogue"><span class="header-section-number">5.1.3</span> Create Volume in dialogue</a></li>
-  <li><a href="#attach-the-volume" id="toc-attach-the-volume" class="nav-link" data-scroll-target="#attach-the-volume"><span class="header-section-number">5.1.4</span> Attach the volume</a></li>
-  <li><a href="#attach-volumes" id="toc-attach-volumes" class="nav-link" data-scroll-target="#attach-volumes"><span class="header-section-number">5.1.5</span> Attach volumes</a></li>
+  <li><a href="#select-volumes" id="toc-select-volumes" class="nav-link" data-scroll-target="#select-volumes"><span class="header-section-number">6.1.1</span> Select Volumes</a></li>
+  <li><a href="#choose-create-volume" id="toc-choose-create-volume" class="nav-link" data-scroll-target="#choose-create-volume"><span class="header-section-number">6.1.2</span> Choose “Create Volume”</a></li>
+  <li><a href="#create-volume-in-dialogue" id="toc-create-volume-in-dialogue" class="nav-link" data-scroll-target="#create-volume-in-dialogue"><span class="header-section-number">6.1.3</span> Create Volume in dialogue</a></li>
+  <li><a href="#attach-the-volume" id="toc-attach-the-volume" class="nav-link" data-scroll-target="#attach-the-volume"><span class="header-section-number">6.1.4</span> Attach the volume</a></li>
+  <li><a href="#attach-volumes" id="toc-attach-volumes" class="nav-link" data-scroll-target="#attach-volumes"><span class="header-section-number">6.1.5</span> Attach volumes</a></li>
   </ul></li>
-  <li><a href="#mount-volume-in-vm" id="toc-mount-volume-in-vm" class="nav-link" data-scroll-target="#mount-volume-in-vm"><span class="header-section-number">5.2</span> Mount volume in VM</a>
+  <li><a href="#mount-volume-in-vm" id="toc-mount-volume-in-vm" class="nav-link" data-scroll-target="#mount-volume-in-vm"><span class="header-section-number">6.2</span> Mount volume in VM</a>
   <ul class="collapse">
-  <li><a href="#log-in-your-vm" id="toc-log-in-your-vm" class="nav-link" data-scroll-target="#log-in-your-vm"><span class="header-section-number">5.2.1</span> Log in your VM</a></li>
-  <li><a href="#find-volumne" id="toc-find-volumne" class="nav-link" data-scroll-target="#find-volumne"><span class="header-section-number">5.2.2</span> Find volumne</a></li>
-  <li><a href="#partitioning" id="toc-partitioning" class="nav-link" data-scroll-target="#partitioning"><span class="header-section-number">5.2.3</span> Partitioning</a></li>
-  <li><a href="#format-partition" id="toc-format-partition" class="nav-link" data-scroll-target="#format-partition"><span class="header-section-number">5.2.4</span> Format partition</a></li>
-  <li><a href="#mounting" id="toc-mounting" class="nav-link" data-scroll-target="#mounting"><span class="header-section-number">5.2.5</span> Mounting</a></li>
+  <li><a href="#log-in-your-vm" id="toc-log-in-your-vm" class="nav-link" data-scroll-target="#log-in-your-vm"><span class="header-section-number">6.2.1</span> Log in your VM</a></li>
+  <li><a href="#find-volumne" id="toc-find-volumne" class="nav-link" data-scroll-target="#find-volumne"><span class="header-section-number">6.2.2</span> Find volumne</a></li>
+  <li><a href="#partitioning" id="toc-partitioning" class="nav-link" data-scroll-target="#partitioning"><span class="header-section-number">6.2.3</span> Partitioning</a></li>
+  <li><a href="#format-partition" id="toc-format-partition" class="nav-link" data-scroll-target="#format-partition"><span class="header-section-number">6.2.4</span> Format partition</a></li>
+  <li><a href="#mounting" id="toc-mounting" class="nav-link" data-scroll-target="#mounting"><span class="header-section-number">6.2.5</span> Mounting</a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/kirenz/bw-cloud/edit/main/instance-storage-increase.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/kirenz/bw-cloud/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
@@ -269,7 +269,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Increase Cloud Storage</span></h1>
+<h1 class="title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Increase Cloud Storage</span></h1>
 </div>
 
 
@@ -285,10 +285,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 <p>In this tutorial, you’ll learn how to increase your cloud storage and mount the volume to a Python environment.</p>
-<section id="increase-cloud-storage" class="level2" data-number="5.1">
-<h2 data-number="5.1" class="anchored" data-anchor-id="increase-cloud-storage"><span class="header-section-number">5.1</span> Increase Cloud Storage</h2>
-<section id="select-volumes" class="level3" data-number="5.1.1">
-<h3 data-number="5.1.1" class="anchored" data-anchor-id="select-volumes"><span class="header-section-number">5.1.1</span> Select Volumes</h3>
+<section id="increase-cloud-storage" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="increase-cloud-storage"><span class="header-section-number">6.1</span> Increase Cloud Storage</h2>
+<section id="select-volumes" class="level3" data-number="6.1.1">
+<h3 data-number="6.1.1" class="anchored" data-anchor-id="select-volumes"><span class="header-section-number">6.1.1</span> Select Volumes</h3>
 <p><img src="images/storage-volumes.png" class="img-fluid"></p>
 <ol type="1">
 <li><p>Log in to <a href="https://bw-cloud.org/q/d">bwCloud Dashboard</a></p></li>
@@ -296,15 +296,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ol>
 <hr>
 </section>
-<section id="choose-create-volume" class="level3" data-number="5.1.2">
-<h3 data-number="5.1.2" class="anchored" data-anchor-id="choose-create-volume"><span class="header-section-number">5.1.2</span> Choose “Create Volume”</h3>
+<section id="choose-create-volume" class="level3" data-number="6.1.2">
+<h3 data-number="6.1.2" class="anchored" data-anchor-id="choose-create-volume"><span class="header-section-number">6.1.2</span> Choose “Create Volume”</h3>
 <p><img src="images/storage-create-volumes.png" class="img-fluid"></p>
 <ol type="1">
 <li>An overview of the volumes you have created so far is displayed. To create a new volume, click on <a href="https://portal.bw-cloud.org/project/volumes/create/">Create Volume</a></li>
 </ol>
 </section>
-<section id="create-volume-in-dialogue" class="level3" data-number="5.1.3">
-<h3 data-number="5.1.3" class="anchored" data-anchor-id="create-volume-in-dialogue"><span class="header-section-number">5.1.3</span> Create Volume in dialogue</h3>
+<section id="create-volume-in-dialogue" class="level3" data-number="6.1.3">
+<h3 data-number="6.1.3" class="anchored" data-anchor-id="create-volume-in-dialogue"><span class="header-section-number">6.1.3</span> Create Volume in dialogue</h3>
 <p><img src="images/storage-fill-in.png" class="img-fluid"></p>
 <ol type="1">
 <li>A dialogue opens. Fill in the fields:</li>
@@ -317,92 +317,94 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Then click on Create Volume.</li>
 </ol>
 </section>
-<section id="attach-the-volume" class="level3" data-number="5.1.4">
-<h3 data-number="5.1.4" class="anchored" data-anchor-id="attach-the-volume"><span class="header-section-number">5.1.4</span> Attach the volume</h3>
+<section id="attach-the-volume" class="level3" data-number="6.1.4">
+<h3 data-number="6.1.4" class="anchored" data-anchor-id="attach-the-volume"><span class="header-section-number">6.1.4</span> Attach the volume</h3>
 <p><img src="images/storage-attachments.png" class="img-fluid"></p>
 <p>In order for a volume to be used by a virtual machine, it must be added (“attached”) to a VM.</p>
 <ul>
 <li>In the table row of our new volume “storage”, select the subitem “Manage Attachments” in the context menu at the right end of the row and click on the entry.</li>
 </ul>
 </section>
-<section id="attach-volumes" class="level3" data-number="5.1.5">
-<h3 data-number="5.1.5" class="anchored" data-anchor-id="attach-volumes"><span class="header-section-number">5.1.5</span> Attach volumes</h3>
+<section id="attach-volumes" class="level3" data-number="6.1.5">
+<h3 data-number="6.1.5" class="anchored" data-anchor-id="attach-volumes"><span class="header-section-number">6.1.5</span> Attach volumes</h3>
 <p><img src="images/storage-attach-volumes-2.png" class="img-fluid"></p>
 <ul>
-<li><p>A dialogue opens: In the dialogue, select the desired virtual machine (“bwcloud”) and click on “Attach Volume”.</p></li>
+<li><p>A dialogue opens: In the dialogue, select the desired virtual machine (“bwCloud”) and click on “Attach Volume”.</p></li>
 <li><p>The table updates and the path under which the new volume can be reached from within the virtual machine appears in the “Attached To field”:</p></li>
 </ul>
-<pre><code>/dev/vdb on bwcloud</code></pre>
+<pre><code>/dev/vdb on bwCloud</code></pre>
 </section>
 </section>
-<section id="mount-volume-in-vm" class="level2" data-number="5.2">
-<h2 data-number="5.2" class="anchored" data-anchor-id="mount-volume-in-vm"><span class="header-section-number">5.2</span> Mount volume in VM</h2>
+<section id="mount-volume-in-vm" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="mount-volume-in-vm"><span class="header-section-number">6.2</span> Mount volume in VM</h2>
 <p>In Linux, the process of attaching a filesystem to a particular point in the directory tree is called mounting. This allows you to access the files and directories on the filesystem as if they were part of the filesystem on which you are currently working.</p>
-<section id="log-in-your-vm" class="level3" data-number="5.2.1">
-<h3 data-number="5.2.1" class="anchored" data-anchor-id="log-in-your-vm"><span class="header-section-number">5.2.1</span> Log in your VM</h3>
+<section id="log-in-your-vm" class="level3" data-number="6.2.1">
+<h3 data-number="6.2.1" class="anchored" data-anchor-id="log-in-your-vm"><span class="header-section-number">6.2.1</span> Log in your VM</h3>
 <ul>
-<li><p>Use VS Code to log into your virtual machine</p></li>
-<li><p>Alternatively, make the connection in your terminal (replace 111.111.11.11 with your IP):</p></li>
+<li>Connect to your virtual machine with <a href="./vs-code-ssh.html">VS Code remote connection</a> (or your terminal)</li>
 </ul>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ssh</span> <span class="at">-i</span> .ssh/id_rsa ubuntu@111.111.11.11</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="find-volumne" class="level3" data-number="5.2.2">
-<h3 data-number="5.2.2" class="anchored" data-anchor-id="find-volumne"><span class="header-section-number">5.2.2</span> Find volumne</h3>
-<p>You can find your volume (i.e.&nbsp;disk) using:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> fdisk <span class="at">-l</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="find-volumne" class="level3" data-number="6.2.2">
+<h3 data-number="6.2.2" class="anchored" data-anchor-id="find-volumne"><span class="header-section-number">6.2.2</span> Find volumne</h3>
+<ul>
+<li>Enter the follwing command in the integrated terminal to find your volume (i.e.&nbsp;disk) using:</li>
+</ul>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> fdisk <span class="at">-l</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>The output should include an entry like the following:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Disk</span> /dev/vdb: 40 GiB, 42949672960 bytes, 83886080 sectors</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="ex">Units:</span> sectors of 1 <span class="pp">*</span> 512 = 512 bytes</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="ex">Sector</span> size <span class="er">(</span><span class="ex">logical/physical</span><span class="kw">)</span><span class="bu">:</span> 512 bytes / 512 bytes</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="ex">I/O</span> size <span class="er">(</span><span class="ex">minimum/optimal</span><span class="kw">)</span><span class="bu">:</span> 512 bytes / 512 bytes</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Disk</span> /dev/vdb: 40 GiB, 42949672960 bytes, 83886080 sectors</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="ex">Units:</span> sectors of 1 <span class="pp">*</span> 512 = 512 bytes</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="ex">Sector</span> size <span class="er">(</span><span class="ex">logical/physical</span><span class="kw">)</span><span class="bu">:</span> 512 bytes / 512 bytes</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="ex">I/O</span> size <span class="er">(</span><span class="ex">minimum/optimal</span><span class="kw">)</span><span class="bu">:</span> 512 bytes / 512 bytes</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="partitioning" class="level3" data-number="5.2.3">
-<h3 data-number="5.2.3" class="anchored" data-anchor-id="partitioning"><span class="header-section-number">5.2.3</span> Partitioning</h3>
-<p>Next, we need to partition our volume. This command will open a partition environment:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> parted /dev/vdb</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>We use GPT (GUID Partition Table), which is a standard for the layout of the partition table on a physical storage device:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">mklabel</span> gpt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="partitioning" class="level3" data-number="6.2.3">
+<h3 data-number="6.2.3" class="anchored" data-anchor-id="partitioning"><span class="header-section-number">6.2.3</span> Partitioning</h3>
+<p>Next, we need to partition our volume.</p>
 <ul>
-<li><p>This may output: <code>parted: invalid token: gpt</code></p></li>
-<li><p>If you are asked about “<code>New disk label type</code>?”, type: <code>gpt</code></p></li>
+<li>This command will create a GPT (GUID Partition Table), which is a standard for the layout of the partition table on a physical storage device:</li>
 </ul>
-<p><em>If you see this warning: “Warning: The existing disk label on /dev/vdc will be destroyed and all data on this disk will be lost. Do you want to continue?”, type: Yes</em></p>
-<p>Within the partition environment, you can also set the size of the partition. We set the upper bound to 40 GB.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">mkpart</span> primary 0GB 40GB</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Enter <code>quit</code> to leave the partition environment:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quit</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> parted /dev/vdb mklabel gpt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This will output: “Warning: The existing disk label on /dev/vdb will be destroyed and all data on this disk will be lost. Do you want to continue?”</p>
+<ul>
+<li><p>Type: <code>Yes</code></p></li>
+<li><p>Within the partition environment, you can also set the size of the partition. In our case, we set the upper bound to 100%:</p></li>
+</ul>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> parted /dev/vdb mkpart primary ext4 0% 100%</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="format-partition" class="level3" data-number="5.2.4">
-<h3 data-number="5.2.4" class="anchored" data-anchor-id="format-partition"><span class="header-section-number">5.2.4</span> Format partition</h3>
-<p>Format the partition with the <em>ext4</em> filesystem. <em>ext4</em> stands for “extended file system version 4”, which is a popular filesystem used in Linux systems to store and organize files on a storage device, such as a hard drive or solid-state drive.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> mkfs.ext4 /dev/vdb</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="mounting" class="level3" data-number="5.2.5">
-<h3 data-number="5.2.5" class="anchored" data-anchor-id="mounting"><span class="header-section-number">5.2.5</span> Mounting</h3>
-<p>Before we mount the drive, we create a new directory in the <code>/mnt/</code> directory where the drives are usually mounted in Ubuntu:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> mkdir /mnt/vdb</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="format-partition" class="level3" data-number="6.2.4">
+<h3 data-number="6.2.4" class="anchored" data-anchor-id="format-partition"><span class="header-section-number">6.2.4</span> Format partition</h3>
+<p>We want to format the partition with the <em>ext4</em> filesystem. <em>ext4</em> stands for “extended file system version 4”, which is a popular filesystem used in Linux systems to store and organize files on a storage device, such as a hard drive or solid-state drive.</p>
+<ul>
+<li>Format the partition:</li>
+</ul>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> mkfs.ext4 /dev/vdb</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>This will output: Found a gpt partition table in /dev/vdb Proceed anyway? (y,N)</p>
-<p>Type <code>y</code></p>
+<ul>
+<li>Type: <code>Yes</code></li>
+</ul>
+</section>
+<section id="mounting" class="level3" data-number="6.2.5">
+<h3 data-number="6.2.5" class="anchored" data-anchor-id="mounting"><span class="header-section-number">6.2.5</span> Mounting</h3>
+<p>Before we mount the drive, we create a new directory in the <code>/mnt/</code> directory where the drives are usually mounted in Ubuntu:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> mkdir /mnt/vdb</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Once the directory is created, you can mount the drive as follows:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> mount /dev/vdb /mnt/vdb</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> mount /dev/vdb /mnt/vdb</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>To mount the drive permanently, we need to edit the file system table <code>fstab</code>. Therefore, we open the file with the text editor <a href="https://www.nano-editor.org/">nano</a>:</p>
-<p>Example in nano:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> nano /etc/fstab</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> nano /etc/fstab</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Now, add the following content at the end of the file:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">/dev/vdb</span>    /mnt/vdb     ext4      defaults        0             0</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">/dev/vdb</span>    /mnt/vdb     ext4      defaults        0             0</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>It means that the partition located at /dev/vdb will be mounted to /mnt/vdb using the file system ext4, with default mount options and no dumping and no error-checking enabled.</p>
 <p>Next, press</p>
 <ol type="1">
-<li><code>Ctrl+O</code> to save the modifications you’ve made to the file</li>
-<li><code>Ctrl+X</code> to close nano. Confirm with <code>Y</code> and press Enter.</li>
+<li><code>Ctrl+O</code> and confirm with enter to save the modifications you’ve made to the file</li>
+<li><code>Ctrl+X</code> to close nano.</li>
 </ol>
 <p>To check if everything worked fine, we use <code>sudo mount</code> to list all mounted drives and combine it with <code>grep vdb</code>, which only returns our volume vdb:</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> mount <span class="kw">|</span> <span class="fu">grep</span> vdb</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>This should output:</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ex">/dev/vdb</span> on /mnt/vdb type ext4 <span class="er">(</span><span class="ex">rw,relatime</span><span class="kw">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> mount <span class="kw">|</span> <span class="fu">grep</span> vdb</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This should output something like:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">/dev/vdb</span> on /mnt/vdb type ext4 <span class="er">(</span><span class="ex">rw,relatime</span><span class="kw">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>You can change directory into your new volume and use it later to create new directories and store data in it:</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /mnt/vdb</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /mnt/vdb</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <!--
 
 ## Create folders
@@ -686,8 +688,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./instance-login.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Log into instance</span></span>
+      <a href="./vs-code-ssh.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Visual Studio Code &amp; SSH</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">

@@ -133,18 +133,32 @@
     "text": "4.1 Terminal\n\n4.1.1 Mac\nChange the IP adress and enter\nssh -i .ssh/id_rsa ubuntu@193.196.52.36\nIf you are asked: Are you sure you want to continue connecting (yes/no/[fingerprint])?\nEnter “yes”.\nEnter passphrase for key ‘.ssh/id_rsa’:\nProvide your password"
   },
   {
+    "objectID": "vs-code-ssh.html#prerequisites",
+    "href": "vs-code-ssh.html#prerequisites",
+    "title": "5  Visual Studio Code & SSH",
+    "section": "5.1 Prerequisites",
+    "text": "5.1 Prerequisites\nTo get started, you need to have done the following steps:\n\nIf you use Windows, you need to install an OpenSSH compatible SSH client (PuTTY is not supported)\nInstall Visual Studio Code\nOpen VS Code and install the “Remote-SSH” extension"
+  },
+  {
+    "objectID": "vs-code-ssh.html#connect-using-ssh",
+    "href": "vs-code-ssh.html#connect-using-ssh",
+    "title": "5  Visual Studio Code & SSH",
+    "section": "5.2 Connect using SSH",
+    "text": "5.2 Connect using SSH\n\nWith the Remote-SSH extension installed, you will see a new status bar item at the far left (at the bottom) in VS Code.\nThe Remote Status bar item can quickly show you in which context VS Code is running (local or remote) and clicking on the item will bring up the Remote - SSH command.\nChoose the “Connect to Host…” command in the Remote-SSH section and connect to the host by entering connection information for your VM in the following format (replace x with your IP): ubuntu@xxx.xxx.xx.xx\nIf propmted, enter your passphrase (SSH-key password) in VS Code.\n\nOnce you’re connected to your SSH host, you can interact with files and open folders on the remote machine:\n\nOpen the Explorer to navigate and open files.\nOpen VS Code’s integrated terminal, to be able to worke inside a bash shell."
+  },
+  {
     "objectID": "instance-storage-increase.html#increase-cloud-storage",
     "href": "instance-storage-increase.html#increase-cloud-storage",
-    "title": "5  Increase Cloud Storage",
-    "section": "5.1 Increase Cloud Storage",
-    "text": "5.1 Increase Cloud Storage\n\n5.1.1 Select Volumes\n\n\nLog in to bwCloud Dashboard\nClick on “Volumes” below the “Project” tab\n\n\n\n\n5.1.2 Choose “Create Volume”\n\n\nAn overview of the volumes you have created so far is displayed. To create a new volume, click on Create Volume\n\n\n\n5.1.3 Create Volume in dialogue\n\n\nA dialogue opens. Fill in the fields:\n\n\nVolume name: storage\nSize: 40 GiB\n\n\nThen click on Create Volume.\n\n\n\n5.1.4 Attach the volume\n\nIn order for a volume to be used by a virtual machine, it must be added (“attached”) to a VM.\n\nIn the table row of our new volume “storage”, select the subitem “Manage Attachments” in the context menu at the right end of the row and click on the entry.\n\n\n\n5.1.5 Attach volumes\n\n\nA dialogue opens: In the dialogue, select the desired virtual machine (“bwcloud”) and click on “Attach Volume”.\nThe table updates and the path under which the new volume can be reached from within the virtual machine appears in the “Attached To field”:\n\n/dev/vdb on bwcloud"
+    "title": "6  Increase Cloud Storage",
+    "section": "6.1 Increase Cloud Storage",
+    "text": "6.1 Increase Cloud Storage\n\n6.1.1 Select Volumes\n\n\nLog in to bwCloud Dashboard\nClick on “Volumes” below the “Project” tab\n\n\n\n\n6.1.2 Choose “Create Volume”\n\n\nAn overview of the volumes you have created so far is displayed. To create a new volume, click on Create Volume\n\n\n\n6.1.3 Create Volume in dialogue\n\n\nA dialogue opens. Fill in the fields:\n\n\nVolume name: storage\nSize: 40 GiB\n\n\nThen click on Create Volume.\n\n\n\n6.1.4 Attach the volume\n\nIn order for a volume to be used by a virtual machine, it must be added (“attached”) to a VM.\n\nIn the table row of our new volume “storage”, select the subitem “Manage Attachments” in the context menu at the right end of the row and click on the entry.\n\n\n\n6.1.5 Attach volumes\n\n\nA dialogue opens: In the dialogue, select the desired virtual machine (“bwCloud”) and click on “Attach Volume”.\nThe table updates and the path under which the new volume can be reached from within the virtual machine appears in the “Attached To field”:\n\n/dev/vdb on bwCloud"
   },
   {
     "objectID": "instance-storage-increase.html#mount-volume-in-vm",
     "href": "instance-storage-increase.html#mount-volume-in-vm",
-    "title": "5  Increase Cloud Storage",
-    "section": "5.2 Mount volume in VM",
-    "text": "5.2 Mount volume in VM\nIn Linux, the process of attaching a filesystem to a particular point in the directory tree is called mounting. This allows you to access the files and directories on the filesystem as if they were part of the filesystem on which you are currently working.\n\n5.2.1 Log in your VM\n\nUse VS Code to log into your virtual machine\nAlternatively, make the connection in your terminal (replace 111.111.11.11 with your IP):\n\nssh -i .ssh/id_rsa ubuntu@111.111.11.11\n\n\n5.2.2 Find volumne\nYou can find your volume (i.e. disk) using:\nsudo fdisk -l\nThe output should include an entry like the following:\n\nDisk /dev/vdb: 40 GiB, 42949672960 bytes, 83886080 sectors\nUnits: sectors of 1 * 512 = 512 bytes\nSector size (logical/physical): 512 bytes / 512 bytes\nI/O size (minimum/optimal): 512 bytes / 512 bytes\n\n\n5.2.3 Partitioning\nNext, we need to partition our volume. This command will open a partition environment:\nsudo parted /dev/vdb\nWe use GPT (GUID Partition Table), which is a standard for the layout of the partition table on a physical storage device:\nmklabel gpt\n\nThis may output: parted: invalid token: gpt\nIf you are asked about “New disk label type?”, type: gpt\n\nIf you see this warning: “Warning: The existing disk label on /dev/vdc will be destroyed and all data on this disk will be lost. Do you want to continue?”, type: Yes\nWithin the partition environment, you can also set the size of the partition. We set the upper bound to 40 GB.\nmkpart primary 0GB 40GB\nEnter quit to leave the partition environment:\nquit\n\n\n5.2.4 Format partition\nFormat the partition with the ext4 filesystem. ext4 stands for “extended file system version 4”, which is a popular filesystem used in Linux systems to store and organize files on a storage device, such as a hard drive or solid-state drive.\nsudo mkfs.ext4 /dev/vdb\n\n\n5.2.5 Mounting\nBefore we mount the drive, we create a new directory in the /mnt/ directory where the drives are usually mounted in Ubuntu:\nsudo mkdir /mnt/vdb\nThis will output: Found a gpt partition table in /dev/vdb Proceed anyway? (y,N)\nType y\nOnce the directory is created, you can mount the drive as follows:\nsudo mount /dev/vdb /mnt/vdb\nTo mount the drive permanently, we need to edit the file system table fstab. Therefore, we open the file with the text editor nano:\nExample in nano:\nsudo nano /etc/fstab\nNow, add the following content at the end of the file:\n/dev/vdb    /mnt/vdb     ext4      defaults        0             0\nIt means that the partition located at /dev/vdb will be mounted to /mnt/vdb using the file system ext4, with default mount options and no dumping and no error-checking enabled.\nNext, press\n\nCtrl+O to save the modifications you’ve made to the file\nCtrl+X to close nano. Confirm with Y and press Enter.\n\nTo check if everything worked fine, we use sudo mount to list all mounted drives and combine it with grep vdb, which only returns our volume vdb:\nsudo mount | grep vdb\nThis should output:\n/dev/vdb on /mnt/vdb type ext4 (rw,relatime)\nYou can change directory into your new volume and use it later to create new directories and store data in it:\ncd /mnt/vdb"
+    "title": "6  Increase Cloud Storage",
+    "section": "6.2 Mount volume in VM",
+    "text": "6.2 Mount volume in VM\nIn Linux, the process of attaching a filesystem to a particular point in the directory tree is called mounting. This allows you to access the files and directories on the filesystem as if they were part of the filesystem on which you are currently working.\n\n6.2.1 Log in your VM\n\nConnect to your virtual machine with VS Code remote connection (or your terminal)\n\n\n\n6.2.2 Find volumne\n\nEnter the follwing command in the integrated terminal to find your volume (i.e. disk) using:\n\nsudo fdisk -l\nThe output should include an entry like the following:\n\nDisk /dev/vdb: 40 GiB, 42949672960 bytes, 83886080 sectors\nUnits: sectors of 1 * 512 = 512 bytes\nSector size (logical/physical): 512 bytes / 512 bytes\nI/O size (minimum/optimal): 512 bytes / 512 bytes\n\n\n6.2.3 Partitioning\nNext, we need to partition our volume.\n\nThis command will create a GPT (GUID Partition Table), which is a standard for the layout of the partition table on a physical storage device:\n\nsudo parted /dev/vdb mklabel gpt\nThis will output: “Warning: The existing disk label on /dev/vdb will be destroyed and all data on this disk will be lost. Do you want to continue?”\n\nType: Yes\nWithin the partition environment, you can also set the size of the partition. In our case, we set the upper bound to 100%:\n\nsudo parted /dev/vdb mkpart primary ext4 0% 100%\n\n\n6.2.4 Format partition\nWe want to format the partition with the ext4 filesystem. ext4 stands for “extended file system version 4”, which is a popular filesystem used in Linux systems to store and organize files on a storage device, such as a hard drive or solid-state drive.\n\nFormat the partition:\n\nsudo mkfs.ext4 /dev/vdb\nThis will output: Found a gpt partition table in /dev/vdb Proceed anyway? (y,N)\n\nType: Yes\n\n\n\n6.2.5 Mounting\nBefore we mount the drive, we create a new directory in the /mnt/ directory where the drives are usually mounted in Ubuntu:\nsudo mkdir /mnt/vdb\nOnce the directory is created, you can mount the drive as follows:\nsudo mount /dev/vdb /mnt/vdb\nTo mount the drive permanently, we need to edit the file system table fstab. Therefore, we open the file with the text editor nano:\nsudo nano /etc/fstab\nNow, add the following content at the end of the file:\n/dev/vdb    /mnt/vdb     ext4      defaults        0             0\nIt means that the partition located at /dev/vdb will be mounted to /mnt/vdb using the file system ext4, with default mount options and no dumping and no error-checking enabled.\nNext, press\n\nCtrl+O and confirm with enter to save the modifications you’ve made to the file\nCtrl+X to close nano.\n\nTo check if everything worked fine, we use sudo mount to list all mounted drives and combine it with grep vdb, which only returns our volume vdb:\nsudo mount | grep vdb\nThis should output something like:\n/dev/vdb on /mnt/vdb type ext4 (rw,relatime)\nYou can change directory into your new volume and use it later to create new directories and store data in it:\ncd /mnt/vdb"
   },
   {
     "objectID": "python.html",
@@ -156,79 +170,44 @@
   {
     "objectID": "python-miniforge-setup.html#prepare-environment",
     "href": "python-miniforge-setup.html#prepare-environment",
-    "title": "6  Install Python with miniforge",
-    "section": "6.1 Prepare environment",
-    "text": "6.1 Prepare environment\nChange directory into your volume (in may case vdc):\ncd /mnt/vdb\nCreate a folder called bin\nsudo mkdir bin"
+    "title": "7  Install Python with miniforge",
+    "section": "7.1 Prepare environment",
+    "text": "7.1 Prepare environment\nChange directory into your volume (in may case vdc):\ncd /mnt/vdb\nCreate a folder called bin\nsudo mkdir bin"
   },
   {
     "objectID": "python-miniforge-setup.html#install-miniforge",
     "href": "python-miniforge-setup.html#install-miniforge",
-    "title": "6  Install Python with miniforge",
-    "section": "6.2 Install miniforge",
-    "text": "6.2 Install miniforge\nChange directory into bin\ncd bin\nDownload the latest Miniforge3 installer:\nsudo curl -L -O \"https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-$(uname)-$(uname -m).sh\"\nStart the installation porcess:\nsudo bash Miniforge3-$(uname)-$(uname -m).sh\nPress enter and scroll down\nType yes and press enter.\nIf asked, select your partition as location to save miniforge:\n/mnt/vdc/miniforge\nAccept and type yes when asked. This will install miniforge to /mnt/vdc/miniforge\nIf asked: “Do you wish the installer to initialize Miniforge3 by running conda init? [yes|no]”\nType yes\nRun sudo su, that will open a shell as the superuser.\nsudo su\nNow add miniforge to path as shown in the command below:\nexport PATH=/mnt/vdc/miniforge/bin:$PATH\nInitialize all shells with:\nconda init --all\nType exit to exit this shell."
+    "title": "7  Install Python with miniforge",
+    "section": "7.2 Install miniforge",
+    "text": "7.2 Install miniforge\nChange directory into bin\ncd bin\nDownload the latest Miniforge3 installer:\nsudo curl -L -O \"https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-$(uname)-$(uname -m).sh\"\nStart the installation porcess:\nsudo bash Miniforge3-$(uname)-$(uname -m).sh\nPress enter and scroll down\nType yes and press enter.\nIf asked, select your partition as location to save miniforge:\n/mnt/vdc/miniforge\nAccept and type yes when asked. This will install miniforge to /mnt/vdc/miniforge\nIf asked: “Do you wish the installer to initialize Miniforge3 by running conda init? [yes|no]”\nType yes\nRun sudo su, that will open a shell as the superuser.\nsudo su\nNow add miniforge to path as shown in the command below:\nexport PATH=/mnt/vdc/miniforge/bin:$PATH\nInitialize all shells with:\nconda init --all\nType exit to exit this shell."
   },
   {
     "objectID": "python-miniforge-setup.html#install-ipykernel",
     "href": "python-miniforge-setup.html#install-ipykernel",
-    "title": "6  Install Python with miniforge",
-    "section": "6.3 Install ipykernel",
-    "text": "6.3 Install ipykernel\nRun sudo su, that will open a shell as the superuser.\nsudo su\nInstall the package ipykernel\nconda install ipykernel \nType exit to exit this shell.\nNow close your connection and restart."
+    "title": "7  Install Python with miniforge",
+    "section": "7.3 Install ipykernel",
+    "text": "7.3 Install ipykernel\nRun sudo su, that will open a shell as the superuser.\nsudo su\nInstall the package ipykernel\nconda install ipykernel \nType exit to exit this shell.\nNow close your connection and restart."
   },
   {
     "objectID": "python-miniforge-setup.html#start-jupyter-notebook-in-vs-code",
     "href": "python-miniforge-setup.html#start-jupyter-notebook-in-vs-code",
-    "title": "6  Install Python with miniforge",
-    "section": "6.4 Start Jupyter Notebook in VS Code",
-    "text": "6.4 Start Jupyter Notebook in VS Code\nIn Visual Studio Code:\n\nCreate a Jupyter Notebook\nNext, select a kernel using the kernel picker in the top right (select the miniforge environment)\n\n\nIf you can’t see your miniforge environment:\nYou can also manually specify an interpreter if Visual Studio Code doesn’t locate your kernel automatically.\n\nShow command palette: Press cmd+shift+p (Mac) or strl+shift+p (Windows)\nSearch for `Python: Select Interpreter´\nSelect + enter interpreter path\nChoose the path (in my case: /mnt/vdc/miniforge/bin/python3.10 )\n\nIf the steps described above should not work for you, take a look at other tips at StackOverflow.\n\nOLD"
+    "title": "7  Install Python with miniforge",
+    "section": "7.4 Start Jupyter Notebook in VS Code",
+    "text": "7.4 Start Jupyter Notebook in VS Code\nIn Visual Studio Code:\n\nCreate a Jupyter Notebook\nNext, select a kernel using the kernel picker in the top right (select the miniforge environment)\n\n\nIf you can’t see your miniforge environment:\nYou can also manually specify an interpreter if Visual Studio Code doesn’t locate your kernel automatically.\n\nShow command palette: Press cmd+shift+p (Mac) or strl+shift+p (Windows)\nSearch for `Python: Select Interpreter´\nSelect + enter interpreter path\nChoose the path (in my case: /mnt/vdc/miniforge/bin/python3.10 )\n\nIf the steps described above should not work for you, take a look at other tips at StackOverflow.\n\nOLD"
   },
   {
     "objectID": "python-miniforge-setup.html#install-packages",
     "href": "python-miniforge-setup.html#install-packages",
-    "title": "6  Install Python with miniforge",
-    "section": "6.5 Install packages",
-    "text": "6.5 Install packages\nNow add miniforge to path as shown in the command below:\nexport PATH=/mnt/vdc/miniforge/bin:$PATH\nInitialize your shell with:\nconda init zsh\nNOT WORKING"
+    "title": "7  Install Python with miniforge",
+    "section": "7.5 Install packages",
+    "text": "7.5 Install packages\nNow add miniforge to path as shown in the command below:\nexport PATH=/mnt/vdc/miniforge/bin:$PATH\nInitialize your shell with:\nconda init zsh\nNOT WORKING"
   },
   {
     "objectID": "python-miniforge-setup.html#change-permissions",
     "href": "python-miniforge-setup.html#change-permissions",
-    "title": "6  Install Python with miniforge",
-    "section": "6.6 Change permissions",
-    "text": "6.6 Change permissions\nRead+Write+Execute:\nsudo chmod -R a+rwx /var/www\nsudo chmod a+rwx /mnt/vdc/miniforge"
-  },
-  {
-    "objectID": "vs-code-ssh.html#prerequisites",
-    "href": "vs-code-ssh.html#prerequisites",
-    "title": "7  Visual Studio Code & SSH",
-    "section": "7.1 Prerequisites",
-    "text": "7.1 Prerequisites\nTo get started, you need to have done the following steps:\n\nInstall an OpenSSH compatible SSH client (PuTTY is not supported)\nInstall Visual Studio Code\nOpen a SSH connection to your VM in a terminal using your key (replace x with your IP-address):\n\nssh -i .ssh/id_rsa ubuntu@xxx.xxx.xx.xx"
-  },
-  {
-    "objectID": "vs-code-ssh.html#install-extension",
-    "href": "vs-code-ssh.html#install-extension",
-    "title": "7  Visual Studio Code & SSH",
-    "section": "7.2 Install extension",
-    "text": "7.2 Install extension\nThe Remote - SSH extension is used to connect to SSH hosts.\n\nInstall the extension"
-  },
-  {
-    "objectID": "vs-code-ssh.html#remote-ssh",
-    "href": "vs-code-ssh.html#remote-ssh",
-    "title": "7  Visual Studio Code & SSH",
-    "section": "7.3 Remote SSH",
-    "text": "7.3 Remote SSH\nWith the Remote - SSH extension installed, you will see a new green Status bar item at the far left (at the bottom).\nThe Remote Status bar item can quickly show you in which context VS Code is running (local or remote) and clicking on the item will bring up the Remote - SSH command"
-  },
-  {
-    "objectID": "vs-code-ssh.html#connect-using-ssh",
-    "href": "vs-code-ssh.html#connect-using-ssh",
-    "title": "7  Visual Studio Code & SSH",
-    "section": "7.4 Connect using SSH",
-    "text": "7.4 Connect using SSH\nYou’ll have noticed an indicator on the bottom-left corner of the Status bar. This indicator tells you in which context VS Code is running (local or remote). Click on the indicator to bring up a list of Remote extension commands.\nChoose the “Connect to Host…” command in the Remote-SSH section and connect to the host by entering connection information for your VM in the following format\nReplace x with your IP\nubuntu@xxx.xxx.xx.xx\nIf propmted, enter your passphrase in VS Code.\nOnce you’re connected to your SSH host, you can interact with files and open folders on the remote machine.\nIf you open the integrated terminal (⌃`), you’ll see you’re working inside a bash shell while you’re on Windows\nOpen the Explorer to navigate and open files."
-  },
-  {
-    "objectID": "vs-code-ssh.html#port-forwarding-optional",
-    "href": "vs-code-ssh.html#port-forwarding-optional",
-    "title": "7  Visual Studio Code & SSH",
-    "section": "7.5 Port forwarding (optional)",
-    "text": "7.5 Port forwarding (optional)\nTo be able to browse to the web app on your local machine, you can leverage another feature called Port forwarding.\nTo be able to access a port on the remote machine that may not be publicly exposed, you need to establish a connection or a tunnel between a port on your local machine and the server.\nPort Forwarding\nWith the app still running, open the SSH Explorer and find the Forwarded Ports view. Click on the Forward a port link and indicate that you want to forward a specific port."
+    "title": "7  Install Python with miniforge",
+    "section": "7.6 Change permissions",
+    "text": "7.6 Change permissions\nRead+Write+Execute:\nsudo chmod -R a+rwx /var/www\nsudo chmod a+rwx /mnt/vdc/miniforge"
   },
   {
     "objectID": "docker.html",
@@ -242,34 +221,20 @@
     "href": "docker-setup.html#set-up-docker-repository",
     "title": "8  Docker set up",
     "section": "8.1 Set up Docker repository",
-    "text": "8.1 Set up Docker repository\nBefore you install Docker Engine for the first time on a new host machine, you need to set up the Docker repository. Afterward, you can install and update Docker from the repository.\nUpdate the apt package index:\nsudo apt-get update\nInstall packages to allow apt to use a repository over HTTPS:\nsudo apt-get install \\\n    ca-certificates \\\n    curl \\\n    gnupg \\\n    lsb-release\nConfirm the installation with Y\nAdd Docker’s official GPG key:\nsudo mkdir -p /etc/apt/keyrings\ncurl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg\nUse the following command to set up the repository:\necho \\\n  \"deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \\\n  $(lsb_release -cs) stable\" | sudo tee /etc/apt/sources.list.d/docker.list &gt; /dev/null"
+    "text": "8.1 Set up Docker repository\nBefore you install Docker Engine for the first time on a new host machine, you need to set up the Docker repository. Afterward, you can install and update Docker from the repository.\n\nUpdate the apt package index:\n\nsudo apt-get update\n\nInstall packages to allow apt to use a repository over HTTPS:\n\nsudo apt-get install \\\n    ca-certificates \\\n    curl \\\n    gnupg \\\n    lsb-release\n\nConfirm the installation with Y\nAdd Docker’s official GPG key:\n\nsudo mkdir -p /etc/apt/keyrings\ncurl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg\n\nUse the following command to set up the repository:\n\necho \\\n  \"deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \\\n  $(lsb_release -cs) stable\" | sudo tee /etc/apt/sources.list.d/docker.list &gt; /dev/null"
   },
   {
     "objectID": "docker-setup.html#install-docker-engine",
     "href": "docker-setup.html#install-docker-engine",
     "title": "8  Docker set up",
     "section": "8.2 Install Docker Engine",
-    "text": "8.2 Install Docker Engine\nAgain, update the apt package index:\nsudo apt-get update\nInstall Docker Engine, containerd, and Docker Compose:\nsudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin\nPress Y to continue\nVerify that the Docker Engine installation is successful by running the hello-world image:\nsudo docker run hello-world\nThis command downloads a test image and runs it in a container. When the container runs, it prints a confirmation message and exits.\nYou have now successfully installed and started Docker Engine.\nThe docker user group exists but contains no users, which is why you’re required to use sudo to run Docker commands.\nYou may optionally continue to Linux post-install to allow non-privileged users to run Docker commands and for other optional configuration steps.\nYou can follow these optional post-installation procedures which shows you how to configure your Linux host machine to work better with Docker. In particular, it let’s you run the Docker daemon as a non-root user (Rootless mode). In this tutorial, I\nLet’s take a look at\nsudo docker info\nSearch for TFX images on Docker Hub:\nsudo docker search tfx\nOnce you’ve identified the image that you would like to use, you can download it using the pull subcommand.\nExecute the following command to download the latest official TFX image (8.81 GB):\nsudo docker pull tensorflow/tfx:latest"
+    "text": "8.2 Install Docker Engine\n\nAgain, update the apt package index:\n\nsudo apt-get update\n\nInstall Docker Engine, containerd, and Docker Compose:\n\nsudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin\n\nPress Y to continue\nVerify that the Docker Engine installation is successful by running the hello-world image:\n\nsudo docker run hello-world\nThis command downloads a test image and runs it in a container. When the container runs, it prints a confirmation message and exits.\nGreat! You have now successfully installed and started Docker Engine."
   },
   {
-    "objectID": "instance-storage-increase-docker.html#create-new-volume-in-bwcloud",
-    "href": "instance-storage-increase-docker.html#create-new-volume-in-bwcloud",
-    "title": "9  Increase Cloud Storage",
-    "section": "9.1 Create new volume in bwCloud",
-    "text": "9.1 Create new volume in bwCloud\n\nLog into bwCloud Dashboard\nClick on Volumes below Project → Volumes\nAn overview of the volumes you have created so far is displayed. To create a new volume, click on Create Volume\nA dialogue opens. Fill in the fields according to your requirements. We call the volume block-device-01 and use 25 GiB.\nThen click on Create Volume. The volume is created"
-  },
-  {
-    "objectID": "instance-storage-increase-docker.html#attach-volume-in-bwcloud",
-    "href": "instance-storage-increase-docker.html#attach-volume-in-bwcloud",
-    "title": "9  Increase Cloud Storage",
-    "section": "9.2 Attach volume in bwCloud",
-    "text": "9.2 Attach volume in bwCloud\nIn order for a volume to be used by a virtual machine, it must be added (“attached”) to your VM inside bwCloud.\n\nIn the table row of the desired volume, select the subitem Manage Attachments in the context menu at the right end of the row and click on the entry.\nIn the dialogue, select the desired virtual machine (ml-pipeline-01) and click on Attach Volume\n\n\nThe table updates and the path under which the new volume can be reached from within the virtual machine appears in the Attached To field:\n\n/dev/vdb on ml-pipeline-01"
-  },
-  {
-    "objectID": "instance-storage-increase-docker.html#mount-volume-in-vm",
-    "href": "instance-storage-increase-docker.html#mount-volume-in-vm",
-    "title": "9  Increase Cloud Storage",
-    "section": "9.3 Mount volume in VM",
-    "text": "9.3 Mount volume in VM\nIn Linux, the process of attaching a filesystem to a particular point in the directory tree is called mounting. This allows you to access the files and directories on the filesystem as if they were part of the filesystem on which you are currently working.\n\n9.3.1 Log in your VM\n\nLog into your virtual machine (replace 111.111.11.11 with your IP)\n\nssh -i .ssh/id_rsa ubuntu@111.111.11.11\n\n\n9.3.2 Find volumne\nYou can find your volume (i.e. disk) using:\nsudo fdisk -l\nThe output should include an entry like the following:\n\nDisk /dev/vdb: 25 GiB, 26843545600 bytes, 52428800 sectors\nUnits: sectors of 1 * 512 = 512 bytes\nSector size (logical/physical): 512 bytes / 512 bytes\nI/O size (minimum/optimal): 512 bytes / 512 bytes\n\n\n9.3.3 Partitioning\nNext, we need to partition our volume. This command will open a partition environment:\nsudo parted /dev/vdb\nWe use GPT (GUID Partition Table), which is a standard for the layout of the partition table on a physical storage device:\nmklabel gpt\nWithin the partition environment, you can also set the size of the partition. We set the upper bound to 25 GB.\nmkpart primary 0GB 25GB\nEnter quit to leave the partition environment:\nquit\n\n\n9.3.4 Format partition\nFormat the partition with the ext4 filesystem. ext4 stands for “extended file system version 4”, which is a popular filesystem used in Linux systems to store and organize files on a storage device, such as a hard drive or solid-state drive.\nsudo mkfs.ext4 /dev/vdb\n\n\n9.3.5 Mounting\nIn general, it is best to avoid using the root user account for everyday tasks, and to use sudo to run specific commands as needed, rather than switching to the root user account and running all commands with superuser privileges. This helps to reduce the risk of accidental damage to the system and ensures that all actions are logged and can be traced back to a specific user.\n“su” stands for “switch user,” and it allows a user to switch to another user account. When you run sudo su, you are effectively running the su command with superuser privileges, which means that you can switch to the root user account and have full access to all the files and system resources on the machine.\nsudo su is a command that is used to switch to the root user account from another user account on a Unix-like operating system.\n“sudo” is short for “superuser do,” and it allows a user to run commands with administrative privileges.\nsudo su\n/dev/vdb is your new disk\nStop docker daemon,\nsystemctl stop docker\nMove your current docker directory\nmv /var/lib/docker /var/lib/docker-backup\nCreate a new docker directory\nmk dir var/lib/docker\nMount your new file system\nmount /dev/vdb /var/lib/docker\nReinstate your docker installation on the new file system\ncp -rf /var/lib/docker-backup/* /var/lib/docker\nStart docker\nsystemctl start docker\nTest out your newly expanded capacity by pulling a new docker image and running it — here’s a postgres image as an example:\ndocker pull postgres\nStart a postgres instance\ndocker run --name some-postgres -e POSTGRES_PASSWORD=mysecretpassword -d postgres\nThe default postgres user and database are created in the entrypoint with initdb.\nThe postgres database is a default database meant for use by users, utilities and third party applications.\nMount On Startup\nAssuming everything is now fine, you’ll want to ensure your disk gets mounted on the /var/lib/docker directory permanently on start-up:\nnano /etc/fstab\nAdd the following line at the end of the file, again assuming /dev/vdb is your device and also assuming is formatted as an ext4 filesystem.\nRollback If something goes wrong or for whatever reason, you want to return to your previous setup — you should be able to rollback in the following way:\nsystemctl stop docker\numount /dev/sda2\nmv /var/lib/docker-backup /var/lib/docker\n# Remove the additional line added to /etc/fstab (if applicable)\nsystemctl start docker\nCleanup If you’re happy with the increased capacity in your docker installation and all has gone to plan, you can now remove your backup:\nrm -rf /var/lib/docker-backup\nChange back to our ubuntu user\nsu ubuntu\n\nOLD\nBefore we mount the drive, we create a new directory in the /mnt/ directory where the drives are usually mounted in Ubuntu:\nsudo mkdir /mnt/vdb\nOnce the directory is created, you can mount the drive as follows:\nsudo mount /dev/vdb /mnt/vdb\nTo mount the drive permanently, we need to edit the file system table fstab. Therefore, we open the file in the text editor nano:\nsudo nano /etc/fstab\nNow, add the following content at the end of the file:\n/dev/vdb    /mnt/vdb     ext4      defaults        0             0\nCtrl+O will save the modifications you’ve made to the file. Ctrl+X will close nano. Confirm with Y and press Enter.\nUse sudo mount to list all mounted drives and combine it with grep vdb, which only returns our volume vdb:\nsudo mount | grep vdb\nYou can change directory into your new volume:\ncd /mnt/vdb\nUnmount\nHow to unmount a mounted drive in Ubuntu\nsudo umount -l /dev/vdb"
+    "objectID": "docker-location.html",
+    "href": "docker-location.html",
+    "title": "9  Change docker location",
+    "section": "",
+    "text": "The standard data directory used for docker is /var/lib/docker on our virtual machine. Since this directory will store a lot of data it can become quite large. Therefore, we move the docker data directory to our volumne mnt/vdb.\nHere are the steps to move the directory:\n\nStop docker daemon\n\nsudo systemctl stop docker\n\nCreate a new docker directory in /mnt/vdb:\n\nsudo mkdir -p /mnt/vdb/docker\n\nMake a copy of your current docker directory in the new location:\n\nsudo rsync -a /var/lib/docker/ /mnt/vdb/docker\n\nCreate a backup\n\nsudo mv /var/lib/docker /var/lib/docker-backup\n\nCreate a symbolic link (symlink):\n\nsudo ln -s /mnt/vdb/docker /var/lib/docker\n\nStart docker:\n\nsudo systemctl start docker\n\nCheck if the docker image “hello-world” is still accessible:\n\nsudo docker ps -a\nYou can now remove your backup:\nsudo rm -rf /var/lib/docker-backup\n&lt;!–\nTest out your newly expanded capacity by pulling a new docker image and running it — here’s a postgres image as an example:\ndocker pull postgres\nStart a postgres instance\ndocker run --name some-postgres -e POSTGRES_PASSWORD=mysecretpassword -d postgres\nThe default postgres user and database are created in the entrypoint with initdb.\nThe postgres database is a default database meant for use by users, utilities and third party applications.\nMount On Startup\nAssuming everything is now fine, you’ll want to ensure your disk gets mounted on the /var/lib/docker directory permanently on start-up:\nnano /etc/fstab\nAdd the following line at the end of the file, again assuming /dev/vdb is your device and also assuming is formatted as an ext4 filesystem.\nRollback If something goes wrong or for whatever reason, you want to return to your previous setup — you should be able to rollback in the following way:\nsystemctl stop docker\numount /dev/sda2\nmv /var/lib/docker-backup /var/lib/docker\n# Remove the additional line added to /etc/fstab (if applicable)\nsystemctl start docker"
   }
 ]

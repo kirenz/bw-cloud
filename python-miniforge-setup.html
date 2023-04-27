@@ -8,7 +8,7 @@
 
 <meta name="author" content="Jan Kirenz">
 
-<title>Cloud Architecure - 6&nbsp; Install Python with miniforge</title>
+<title>Cloud Architecure - 7&nbsp; Install Python with miniforge</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -65,7 +65,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./vs-code-ssh.html" rel="next">
+<link href="./docker.html" rel="next">
 <link href="./python.html" rel="prev">
 <link href="./cover.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js"></script>
@@ -109,7 +109,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./python.html">Programming toolkit</a></li><li class="breadcrumb-item"><a href="./python-miniforge-setup.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Install Python with miniforge</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./python.html">Programming toolkit</a></li><li class="breadcrumb-item"><a href="./python-miniforge-setup.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Install Python with miniforge</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -183,8 +183,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./vs-code-ssh.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Visual Studio Code &amp; SSH</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./instance-storage-increase.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Increase Cloud Storage</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Increase Cloud Storage</span></span></a>
   </div>
 </li>
       </ul>
@@ -201,13 +207,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./python-miniforge-setup.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Install Python with miniforge</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./vs-code-ssh.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Visual Studio Code &amp; SSH</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Install Python with miniforge</span></span></a>
   </div>
 </li>
       </ul>
@@ -229,8 +229,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./instance-storage-increase-docker.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Increase Cloud Storage</span></span></a>
+  <a href="./docker-location.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Change docker location</span></span></a>
   </div>
 </li>
       </ul>
@@ -245,12 +245,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#prepare-environment" id="toc-prepare-environment" class="nav-link active" data-scroll-target="#prepare-environment"><span class="header-section-number">6.1</span> Prepare environment</a></li>
-  <li><a href="#install-miniforge" id="toc-install-miniforge" class="nav-link" data-scroll-target="#install-miniforge"><span class="header-section-number">6.2</span> Install miniforge</a></li>
-  <li><a href="#install-ipykernel" id="toc-install-ipykernel" class="nav-link" data-scroll-target="#install-ipykernel"><span class="header-section-number">6.3</span> Install ipykernel</a></li>
-  <li><a href="#start-jupyter-notebook-in-vs-code" id="toc-start-jupyter-notebook-in-vs-code" class="nav-link" data-scroll-target="#start-jupyter-notebook-in-vs-code"><span class="header-section-number">6.4</span> Start Jupyter Notebook in VS Code</a></li>
-  <li><a href="#install-packages" id="toc-install-packages" class="nav-link" data-scroll-target="#install-packages"><span class="header-section-number">6.5</span> Install packages</a></li>
-  <li><a href="#change-permissions" id="toc-change-permissions" class="nav-link" data-scroll-target="#change-permissions"><span class="header-section-number">6.6</span> Change permissions</a></li>
+  <li><a href="#prepare-environment" id="toc-prepare-environment" class="nav-link active" data-scroll-target="#prepare-environment"><span class="header-section-number">7.1</span> Prepare environment</a></li>
+  <li><a href="#install-miniforge" id="toc-install-miniforge" class="nav-link" data-scroll-target="#install-miniforge"><span class="header-section-number">7.2</span> Install miniforge</a></li>
+  <li><a href="#install-ipykernel" id="toc-install-ipykernel" class="nav-link" data-scroll-target="#install-ipykernel"><span class="header-section-number">7.3</span> Install ipykernel</a></li>
+  <li><a href="#start-jupyter-notebook-in-vs-code" id="toc-start-jupyter-notebook-in-vs-code" class="nav-link" data-scroll-target="#start-jupyter-notebook-in-vs-code"><span class="header-section-number">7.4</span> Start Jupyter Notebook in VS Code</a></li>
+  <li><a href="#install-packages" id="toc-install-packages" class="nav-link" data-scroll-target="#install-packages"><span class="header-section-number">7.5</span> Install packages</a></li>
+  <li><a href="#change-permissions" id="toc-change-permissions" class="nav-link" data-scroll-target="#change-permissions"><span class="header-section-number">7.6</span> Change permissions</a></li>
   </ul>
 <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/kirenz/bw-cloud/edit/main/python-miniforge-setup.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/kirenz/bw-cloud/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
@@ -259,7 +259,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Install Python with miniforge</span></h1>
+<h1 class="title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Install Python with miniforge</span></h1>
 </div>
 
 
@@ -274,15 +274,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<section id="prepare-environment" class="level2" data-number="6.1">
-<h2 data-number="6.1" class="anchored" data-anchor-id="prepare-environment"><span class="header-section-number">6.1</span> Prepare environment</h2>
+<section id="prepare-environment" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="prepare-environment"><span class="header-section-number">7.1</span> Prepare environment</h2>
 <p>Change directory into your volume (in may case <em>vdc</em>):</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /mnt/vdb</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Create a folder called bin</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> mkdir bin</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="install-miniforge" class="level2" data-number="6.2">
-<h2 data-number="6.2" class="anchored" data-anchor-id="install-miniforge"><span class="header-section-number">6.2</span> Install miniforge</h2>
+<section id="install-miniforge" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="install-miniforge"><span class="header-section-number">7.2</span> Install miniforge</h2>
 <p>Change directory into bin</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> bin</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Download the latest <a href="https://github.com/conda-forge/miniforge">Miniforge3 installer</a>:</p>
@@ -304,8 +304,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> init <span class="at">--all</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Type <code>exit</code> to exit this shell.</p>
 </section>
-<section id="install-ipykernel" class="level2" data-number="6.3">
-<h2 data-number="6.3" class="anchored" data-anchor-id="install-ipykernel"><span class="header-section-number">6.3</span> Install ipykernel</h2>
+<section id="install-ipykernel" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="install-ipykernel"><span class="header-section-number">7.3</span> Install ipykernel</h2>
 <p>Run <code>sudo su</code>, that will open a shell as the superuser.</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> su</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Install the package ipykernel</p>
@@ -313,8 +313,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Type <code>exit</code> to exit this shell.</p>
 <p>Now close your connection and restart.</p>
 </section>
-<section id="start-jupyter-notebook-in-vs-code" class="level2" data-number="6.4">
-<h2 data-number="6.4" class="anchored" data-anchor-id="start-jupyter-notebook-in-vs-code"><span class="header-section-number">6.4</span> Start Jupyter Notebook in VS Code</h2>
+<section id="start-jupyter-notebook-in-vs-code" class="level2" data-number="7.4">
+<h2 data-number="7.4" class="anchored" data-anchor-id="start-jupyter-notebook-in-vs-code"><span class="header-section-number">7.4</span> Start Jupyter Notebook in VS Code</h2>
 <p>In Visual Studio Code:</p>
 <ol type="1">
 <li><p><a href="https://code.visualstudio.com/docs/datascience/jupyter-notebooks#_create-or-open-a-jupyter-notebook">Create a Jupyter Notebook</a></p></li>
@@ -333,16 +333,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <hr>
 <p>OLD</p>
 </section>
-<section id="install-packages" class="level2" data-number="6.5">
-<h2 data-number="6.5" class="anchored" data-anchor-id="install-packages"><span class="header-section-number">6.5</span> Install packages</h2>
+<section id="install-packages" class="level2" data-number="7.5">
+<h2 data-number="7.5" class="anchored" data-anchor-id="install-packages"><span class="header-section-number">7.5</span> Install packages</h2>
 <p>Now add miniforge to path as shown in the command below:</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">PATH</span><span class="op">=</span>/mnt/vdc/miniforge/bin:<span class="va">$PATH</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Initialize your shell with:</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> init zsh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>NOT WORKING</p>
 </section>
-<section id="change-permissions" class="level2" data-number="6.6">
-<h2 data-number="6.6" class="anchored" data-anchor-id="change-permissions"><span class="header-section-number">6.6</span> Change permissions</h2>
+<section id="change-permissions" class="level2" data-number="7.6">
+<h2 data-number="7.6" class="anchored" data-anchor-id="change-permissions"><span class="header-section-number">7.6</span> Change permissions</h2>
 <p>Read+Write+Execute:</p>
 <p>sudo chmod -R a+rwx /var/www</p>
 <p>sudo chmod a+rwx /mnt/vdc/miniforge</p>
@@ -591,8 +591,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./vs-code-ssh.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Visual Studio Code &amp; SSH</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./docker.html" class="pagination-link">
+        <span class="nav-page-text">Docker</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
