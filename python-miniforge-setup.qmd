@@ -67,7 +67,44 @@ export PATH=/mnt/vdb/miniforge/bin:$PATH
 conda init --all
 ```
 
-- For changes to take effect, close (use the kill terminal icon in VS Code) and re-open your current shell.
+## Update path
+
+- To be able to use miniforge, you'll need to update the PATH environment variable and make sure that the VS Code environment is aware of your Miniforge installation.
+
+- Open the bash.bashrc file with nano:
+
+```bash
+sudo nano /etc/bash.bashrc
+```
+
+Update your PATH environment variable. Copy and paste the following lines at the end of the file:
+
+```bash
+export MINIFORGE_HOME="/mnt/vdb/miniforge3"
+
+export PATH="$MINIFORGE_HOME/bin:$PATH"
+```
+
+- Next, press
+
+1. `Ctrl+O` and confirm with enter to save the modifications you've made to the file
+2. `Ctrl+X` to close nano. 
+
+
+
+<!--
+
+- Apply the changes to your current shell session.
+
+```bash
+source /etc/bash.bashrc
+```
+
+-->
+
+
+- For changes to take effect, close (use the kill terminal icon 🗑 in VS Code).
+
 
 
 <!--
@@ -99,9 +136,13 @@ Now close your connection and restart.
 
 In Visual Studio Code:
 
-1. [Create a Jupyter Notebook](https://code.visualstudio.com/docs/datascience/jupyter-notebooks#_create-or-open-a-jupyter-notebook)
+1. [Create a Jupyter Notebook file](https://code.visualstudio.com/docs/datascience/jupyter-notebooks#_create-or-open-a-jupyter-notebook)
 
-1. Next, select a kernel using the kernel picker in the top right (select the miniforge environment)
+1. Next, select a kernel using the "Select Kernel" picker in the top right 
+
+1. Select Python Environments
+
+1. 
 
 ![](https://code.visualstudio.com/assets/docs/datascience/jupyter/native-kernel-picker.png)
 
@@ -123,6 +164,7 @@ If the steps described above should not work for you, take a look at other tips 
 
 
 
+<!--
 
 -----
 
@@ -155,3 +197,5 @@ sudo chmod -R a+rwx /var/www
 
 
 sudo chmod a+rwx /mnt/vdc/miniforge
+
+-->
