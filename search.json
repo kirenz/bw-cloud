@@ -137,7 +137,7 @@
     "href": "vs-code-ssh.html#prerequisites",
     "title": "5  Visual Studio Code & SSH",
     "section": "5.1 Prerequisites",
-    "text": "5.1 Prerequisites\nTo get started, you need to have done the following steps:\n\nIf you use Windows, you need to install an OpenSSH compatible SSH client (PuTTY is not supported)\nInstall Visual Studio Code\nInstall all necessary VS Code extensions by importing the profile (Import Profile in Visual Studio Code) remote-ssh"
+    "text": "5.1 Prerequisites\nTo get started, you need to have done the following steps:\n\nIf you use Windows, you need to install an OpenSSH compatible SSH client (PuTTY is not supported)\nInstall Visual Studio Code\nInstall all necessary local VS Code extensions by importing this profile remote-ssh(choose “Import Profile in Visual Studio Code”)"
   },
   {
     "objectID": "vs-code-ssh.html#connect-using-ssh",
@@ -145,6 +145,13 @@
     "title": "5  Visual Studio Code & SSH",
     "section": "5.2 Connect using SSH",
     "text": "5.2 Connect using SSH\n\nWithin VS Code, you should see a status bar item at the far left (at the bottom) in VS Code.\nThe Remote Status bar item can quickly show you in which context VS Code is running (local or remote) and clicking on the item will bring up the Remote - SSH command.\nChoose the “Connect to Host…” command in the Remote-SSH section and connect to the host by entering connection information for your VM in the following format (replace x with your IP): ubuntu@xxx.xxx.xx.xx\nIf propmted, enter your passphrase (SSH-key password) in VS Code.\nOpen VS Code’s integrated terminal (in the menue, select Terminal -&gt; new Terminal), to be able to work inside a bash shell."
+  },
+  {
+    "objectID": "vs-code-ssh.html#install-extensions-on-ssh-host",
+    "href": "vs-code-ssh.html#install-extensions-on-ssh-host",
+    "title": "5  Visual Studio Code & SSH",
+    "section": "5.3 Install extensions on SSH host",
+    "text": "5.3 Install extensions on SSH host\nInstall all locally installed extensions on the SSH host:\n\nGo to the Extensions view\nUse the cloud button at the right of the “SSH: {Hostname}”” title bar.\nThis will display a dropdown where you can select which locally installed extensions to install on your SSH host (select all)."
   },
   {
     "objectID": "instance-storage-increase.html#increase-cloud-storage",

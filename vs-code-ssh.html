@@ -213,6 +213,7 @@ ul.task-list li input[type="checkbox"] {
   <ul>
   <li><a href="#prerequisites" id="toc-prerequisites" class="nav-link active" data-scroll-target="#prerequisites"><span class="header-section-number">5.1</span> Prerequisites</a></li>
   <li><a href="#connect-using-ssh" id="toc-connect-using-ssh" class="nav-link" data-scroll-target="#connect-using-ssh"><span class="header-section-number">5.2</span> Connect using SSH</a></li>
+  <li><a href="#install-extensions-on-ssh-host" id="toc-install-extensions-on-ssh-host" class="nav-link" data-scroll-target="#install-extensions-on-ssh-host"><span class="header-section-number">5.3</span> Install extensions on SSH host</a></li>
   </ul>
 <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/kirenz/bw-cloud/edit/main/vs-code-ssh.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/kirenz/bw-cloud/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
@@ -244,7 +245,7 @@ ul.task-list li input[type="checkbox"] {
 <ol type="1">
 <li><p>If you use Windows, you need to install an <a href="https://code.visualstudio.com/docs/remote/troubleshooting#_installing-a-supported-ssh-client">OpenSSH compatible SSH client (PuTTY is not supported)</a></p></li>
 <li><p>Install <a href="https://code.visualstudio.com/">Visual Studio Code</a></p></li>
-<li><p>Install all necessary VS Code extensions by importing the profile (Import Profile in Visual Studio Code) <a href="https://vscode.dev/profile/github/56613fe53b2ed401df9f752170a8828c">remote-ssh</a></p></li>
+<li><p>Install all necessary local VS Code extensions by importing this profile <a href="https://vscode.dev/profile/github/56613fe53b2ed401df9f752170a8828c">remote-ssh</a>(choose “Import Profile in Visual Studio Code”)</p></li>
 </ol>
 </section>
 <section id="connect-using-ssh" class="level2" data-number="5.2">
@@ -255,6 +256,15 @@ ul.task-list li input[type="checkbox"] {
 <li><p>Choose the “Connect to Host…” command in the Remote-SSH section and connect to the host by entering connection information for your VM in the following format (replace x with your IP): ubuntu@xxx.xxx.xx.xx</p></li>
 <li><p>If propmted, enter your passphrase (SSH-key password) in VS Code.</p></li>
 <li><p>Open VS Code’s integrated terminal (in the menue, select <code>Terminal</code> -&gt; <code>new Terminal</code>), to be able to work inside a bash shell.</p></li>
+</ul>
+</section>
+<section id="install-extensions-on-ssh-host" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="install-extensions-on-ssh-host"><span class="header-section-number">5.3</span> Install extensions on SSH host</h2>
+<p>Install all locally installed extensions on the SSH host:</p>
+<ul>
+<li><p>Go to the Extensions view</p></li>
+<li><p>Use the cloud button at the right of the “SSH: {Hostname}”” title bar.</p></li>
+<li><p>This will display a dropdown where you can select which locally installed extensions to install on your SSH host (select all).</p></li>
 </ul>
 <!--
 
