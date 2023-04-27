@@ -63,7 +63,11 @@ In Linux, the process of attaching a filesystem to a particular point in the dir
 
 ### Log in your VM
 
+<!--
+
 - Use VS Code to log into your virtual machine 
+
+-->
 
 - Alternatively, make the connection in your terminal (replace 111.111.11.11 with your IP):
 
