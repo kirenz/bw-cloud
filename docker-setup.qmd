@@ -1,18 +1,18 @@
 # Docker set up
 
-First, we install Docker Engine on Ubuntu. We simply follow the installation steps outlined in the [official Docker documentation](https://docs.docker.com/engine/install/ubuntu/)
+In this tutorial, we cover how to install Docker Engine on Ubuntu. We simply follow the installation steps outlined in the [official Docker documentation](https://docs.docker.com/engine/install/ubuntu/)
 
 ## Set up Docker repository
 
 Before you install Docker Engine for the first time on a new host machine, you need to set up the Docker repository. Afterward, you can install and update Docker from the repository.
 
-Update the apt package index:
+- Update the apt package index:
 
 ```bash
 sudo apt-get update
 ```
 
-Install packages to allow apt to use a repository over HTTPS:
+- Install packages to allow apt to use a repository over HTTPS:
 
 ```bash
 sudo apt-get install \
@@ -22,9 +22,9 @@ sudo apt-get install \
     lsb-release
 ```
 
-Confirm the installation with `Y`
+- Confirm the installation with `Y`
 
-Add Docker’s official GPG key:
+- Add Docker’s official GPG key:
 
 ```bash
 sudo mkdir -p /etc/apt/keyrings
@@ -34,7 +34,7 @@ sudo mkdir -p /etc/apt/keyrings
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
 ```
 
-Use the following command to set up the repository:
+- Use the following command to set up the repository:
 
 ```bash
 echo \
@@ -45,21 +45,21 @@ echo \
 
 ## Install Docker Engine
 
-Again, update the apt package index:
+- Again, update the apt package index:
 
 ```bash
 sudo apt-get update
 ```
 
-Install Docker Engine, containerd, and Docker Compose:
+- Install Docker Engine, containerd, and Docker Compose:
 
 ```bash
 sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin
 ```
 
-Press `Y` to continue
+- Press `Y` to continue
 
-Verify that the Docker Engine installation is successful by running the hello-world image:
+- Verify that the Docker Engine installation is successful by running the hello-world image:
 
 ```bash
 sudo docker run hello-world
@@ -67,7 +67,9 @@ sudo docker run hello-world
 
 This command downloads a test image and runs it in a container. When the container runs, it prints a confirmation message and exits.
 
-You have now successfully installed and started Docker Engine. 
+Great! You have now successfully installed and started Docker Engine. 
+
+<!--
 
 The docker user group exists but contains no users, which is why you’re required to use sudo to run Docker commands. 
 
@@ -97,3 +99,5 @@ Execute the following command to download the latest official TFX image (8.81 GB
 ```bash
 sudo docker pull tensorflow/tfx:latest
 ```
+
+-->
