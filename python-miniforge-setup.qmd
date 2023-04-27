@@ -2,14 +2,13 @@
 
 ## Prepare environment
 
-Change directory into your volume (in may case *vdc*):
-
+- Change directory into your volume:
 
 ```bash
 cd /mnt/vdb
 ```
 
-Create a folder called bin
+- Create a folder called bin
 
 ```bash
 sudo mkdir bin
@@ -18,77 +17,72 @@ sudo mkdir bin
 
 ## Install miniforge
 
-Change directory into bin
+- Change directory into bin
 
 
 ```bash
 cd bin
 ```
 
-Download the latest [Miniforge3 installer](https://github.com/conda-forge/miniforge):
+- Download the latest [Miniforge3 installer](https://github.com/conda-forge/miniforge):
 
 
 ```bash
 sudo curl -L -O "https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-$(uname)-$(uname -m).sh"
 ```
 
-Start the installation porcess:
+- Start the installation porcess:
 
 ```bash
 sudo bash Miniforge3-$(uname)-$(uname -m).sh
 ```
 
-Press enter and scroll down
+- Press ENTER and scroll down, then type `yes` and press ENTER.
 
-Type `yes` and press enter.
+- If asked where to store miniforge, type in your partition as location:
 
-If asked, select your partition as location to save miniforge:
+```bash
+/mnt/vdb/miniforge
+```
 
-
-`/mnt/vdc/miniforge`
-
-Accept and type `yes` when asked. This will install miniforge to /mnt/vdc/miniforge
-
-
-
-If asked: "Do you wish the installer to initialize Miniforge3
-by running conda init? [yes|no]"
-
-Type `yes`
+- If asked: "Do you wish the installer to initialize Miniforge3
+by running conda init? [yes|no]", type `yes`
 
 
-Run `sudo su`, that will open a shell as the superuser.
+- Run `sudo su` (that will open a shell as the superuser)
 
 ```bash
 sudo su
 ```
 
-Now add miniforge to path as shown in the command below:
+- Now add miniforge to path as shown in the command below:
 
 ```bash
-export PATH=/mnt/vdc/miniforge/bin:$PATH
+export PATH=/mnt/vdb/miniforge/bin:$PATH
 ```
 
-Initialize all shells with:
+- Initialize all shells with:
 
 ```bash
 conda init --all
 ```
 
-Type `exit` to exit this shell.
+- For changes to take effect, close (use the kill terminal icon in VS Code) and re-open your current shell.
 
+
+<!--
 
 ## Install ipykernel
 
 
-Run `sudo su`, that will open a shell as the superuser.
+- Open a shell as the superuser:
 
 
 ```bash
 sudo su
 ```
 
-Install the package ipykernel
+- Install the package ipykernel
 
 ```bash
 conda install ipykernel 
@@ -99,6 +93,7 @@ Type `exit` to exit this shell.
 
 Now close your connection and restart.
 
+-->
 
 ## Start Jupyter Notebook in VS Code
 
