@@ -28,12 +28,12 @@ book:
         - key-pairs-create.qmd
         - instance-create.qmd
         - instance-login.qmd
+        - vs-code-ssh.qmd
         - instance-storage-increase.qmd
 
     - part: python.qmd
       chapters:
         - python-miniforge-setup.qmd
-        - vs-code-ssh.qmd
 
     - part: docker.qmd
       chapters:
