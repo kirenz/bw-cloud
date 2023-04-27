@@ -12,12 +12,12 @@ To get started, you need to have done the following steps:
 
 2. Install [Visual Studio Code](https://code.visualstudio.com/)
 
-3. Open VS Code and install the ["Remote-SSH"](vscode:extension/ms-vscode-remote.remote-ssh) extension
+3. Install all necessary VS Code extensions by importing the profile (Import Profile in Visual Studio Code) [remote-ssh](https://vscode.dev/profile/github/56613fe53b2ed401df9f752170a8828c)
 
 
 ## Connect using SSH
 
-- With the Remote-SSH extension installed, you will see a new status bar item at the far left (at the bottom) in VS Code. 
+- Within VS Code, you should see a  status bar item at the far left (at the bottom) in VS Code. 
 
 - The Remote Status bar item can quickly show you in which context VS Code is running (local or remote) and clicking on the item will bring up the Remote - SSH command.
 
@@ -25,11 +25,7 @@ To get started, you need to have done the following steps:
 
 - If propmted, enter your passphrase (SSH-key password) in VS Code.
 
-Once you're connected to your SSH host, you can interact with files and open folders on the remote machine:
-
-- Open the Explorer to navigate and open files.
-
-- Open VS Code's integrated terminal, to be able to worke inside a bash shell.
+- Open VS Code's integrated terminal (in the menue, select `Terminal` -> `new Terminal`), to be able to work inside a bash shell.
 
 
 <!--
