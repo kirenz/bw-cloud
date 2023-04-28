@@ -33,7 +33,7 @@ book:
 
     - part: python.qmd
       chapters:
-        - python-miniforge-setup.qmd
+        - python-miniconda-setup.qmd
 
     - part: docker.qmd
       chapters:
