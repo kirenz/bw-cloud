@@ -175,11 +175,18 @@
     "text": "tbd"
   },
   {
-    "objectID": "python-miniconda-setup.html",
-    "href": "python-miniconda-setup.html",
-    "title": "7  Install Miniconda",
-    "section": "",
-    "text": "Miniconda is a free minimal installer for conda. It is a small, bootstrap version of Anaconda that includes only conda, Python, the packages they depend on, and a small number of other useful packages, including pip, zlib and a few others.\n\nThe following snippet will create a directory to install miniconda into:\n\nsudo mkdir /bin/miniconda3/\n\nDownload the latest Miniconda installer for Linux:\n\nsudo wget -P /bin/miniconda3/ https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh\n\nChange the directory to /bin/miniconda3/:\n\ncd /bin/miniconda3/\n\nMake the installer script executable:\n\nsudo chmod +x Miniconda3-latest-Linux-x86_64.sh\n\nRun the installer script with root permissions:\n\nsudo ./Miniconda3-latest-Linux-x86_64.sh\n\nThe installer will prompt you to accept the license agreement and select the installation directory. Press ‘ENTER’ to read the license and type ‘yes’ to accept it.\nWhen asked for the installation directory, provide this custom path:\n\n/home/ubuntu/miniconda3\n\nThe installer will install Miniconda and its dependencies. Once the installation is complete, it will ask if you want to initialize Miniconda3 by running conda init. Type ‘yes’ and press ‘ENTER’\nNow we can remove the installer script\n\nsudo rm -rf /bin/miniconda3/miniconda.sh\n\nClose and reopen your terminal to activate the changes."
+    "objectID": "python-miniconda-setup.html#installation-steps",
+    "href": "python-miniconda-setup.html#installation-steps",
+    "title": "7  Miniconda",
+    "section": "7.1 Installation steps",
+    "text": "7.1 Installation steps\nMiniconda is a free minimal installer for conda. It is a small, bootstrap version of Anaconda that includes only conda, Python, the packages they depend on, and a small number of other useful packages, including pip, zlib and a few others.\n\nThe following snippet will create a directory to install miniconda into:\n\nsudo mkdir /bin/miniconda3/\n\nDownload the latest Miniconda installer for Linux:\n\nsudo wget -P /bin/miniconda3/ https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh\n\nChange the directory to /bin/miniconda3/:\n\ncd /bin/miniconda3/\n\nMake the installer script executable:\n\nsudo chmod +x Miniconda3-latest-Linux-x86_64.sh\n\nRun the installer script with root permissions:\n\nsudo ./Miniconda3-latest-Linux-x86_64.sh\n\nThe installer will prompt you to accept the license agreement and select the installation directory. Press ‘ENTER’ to read the license and type ‘yes’ to accept it.\nWhen asked for the installation directory, provide this custom path:\n\n/home/ubuntu/miniconda3\n\nThe installer will install Miniconda and its dependencies. Once the installation is complete, it will ask if you want to initialize Miniconda3 by running conda init. Type ‘yes’ and press ‘ENTER’\nNow we can remove the installer script\n\nsudo rm -rf /bin/miniconda3/miniconda.sh\n\nClose and reopen your terminal to activate the changes."
+  },
+  {
+    "objectID": "python-miniconda-setup.html#start-jupyter-notebook-in-vs-code",
+    "href": "python-miniconda-setup.html#start-jupyter-notebook-in-vs-code",
+    "title": "7  Miniconda",
+    "section": "7.2 Start Jupyter Notebook in VS Code",
+    "text": "7.2 Start Jupyter Notebook in VS Code\nIn Visual Studio Code:\n\nCreate a Jupyter Notebook file\nNext, select a kernel using the “Select Kernel” picker in the top right\n\n\n\nSelect Python Environments\nChoose the “base” environment\n\nIf you can’t see your base environment:\n\nShow command palette: Press cmd+shift+p (Mac) or strl+shift+p (Windows)\nSearch for `Python: Select Interpreter´\nSelect + enter interpreter path\nChoose the interpreter ‘base’:conda"
   },
   {
     "objectID": "docker.html",

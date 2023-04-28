@@ -8,7 +8,7 @@
 
 <meta name="author" content="Jan Kirenz">
 
-<title>Cloud Architecure - 7&nbsp; Install Miniconda</title>
+<title>Cloud Architecure - 7&nbsp; Miniconda</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -109,7 +109,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./python.html">Programming toolkit</a></li><li class="breadcrumb-item"><a href="./python-miniconda-setup.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Install Miniconda</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./python.html">Programming toolkit</a></li><li class="breadcrumb-item"><a href="./python-miniconda-setup.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Miniconda</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -207,7 +207,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./python-miniconda-setup.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Install Miniconda</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Miniconda</span></span></a>
   </div>
 </li>
       </ul>
@@ -241,14 +241,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#installation-steps" id="toc-installation-steps" class="nav-link active" data-scroll-target="#installation-steps"><span class="header-section-number">7.1</span> Installation steps</a></li>
+  <li><a href="#start-jupyter-notebook-in-vs-code" id="toc-start-jupyter-notebook-in-vs-code" class="nav-link" data-scroll-target="#start-jupyter-notebook-in-vs-code"><span class="header-section-number">7.2</span> Start Jupyter Notebook in VS Code</a></li>
+  </ul>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/kirenz/bw-cloud/edit/main/python-miniconda-setup.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/kirenz/bw-cloud/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Install Miniconda</span></h1>
+<h1 class="title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Miniconda</span></h1>
 </div>
 
 
@@ -263,6 +270,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
+<section id="installation-steps" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="installation-steps"><span class="header-section-number">7.1</span> Installation steps</h2>
 <p>Miniconda is a free minimal installer for conda. It is a small, bootstrap version of Anaconda that includes only conda, Python, the packages they depend on, and a small number of other useful packages, including pip, zlib and a few others.</p>
 <ul>
 <li>The following snippet will create a directory to install miniconda into:</li>
@@ -297,8 +306,29 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li>Close and reopen your terminal to activate the changes.</li>
 </ul>
+</section>
+<section id="start-jupyter-notebook-in-vs-code" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="start-jupyter-notebook-in-vs-code"><span class="header-section-number">7.2</span> Start Jupyter Notebook in VS Code</h2>
+<p>In Visual Studio Code:</p>
+<ul>
+<li><p><a href="https://code.visualstudio.com/docs/datascience/jupyter-notebooks#_create-or-open-a-jupyter-notebook">Create a Jupyter Notebook file</a></p></li>
+<li><p>Next, select a kernel using the “Select Kernel” picker in the top right</p></li>
+</ul>
+<p><img src="https://code.visualstudio.com/assets/docs/datascience/jupyter/native-kernel-picker.png" class="img-fluid"></p>
+<ul>
+<li><p>Select Python Environments</p></li>
+<li><p>Choose the “base” environment</p></li>
+</ul>
+<p>If you can’t see your base environment:</p>
+<ol type="1">
+<li><p>Show command palette: Press <code>cmd+shift+p</code> (Mac) or <code>strl+shift+p</code> (Windows)</p></li>
+<li><p>Search for `Python: Select Interpreter´</p></li>
+<li><p>Select + enter interpreter path</p></li>
+<li><p>Choose the interpreter ‘base’:conda</p></li>
+</ol>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -552,7 +582,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     <div class="nav-footer-left">Jan Kirenz</div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/kirenz/bw-cloud/edit/main/python-miniconda-setup.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/kirenz/bw-cloud/issues/new" class="toc-action">Report an issue</a></p></div></div></div>
+    </div>
     <div class="nav-footer-right">This book was built with <a href="https://quarto.org/">Quarto</a>.</div>
   </div>
 </footer>
