@@ -8,7 +8,7 @@
 
 <meta name="author" content="Jan Kirenz">
 
-<title>Cloud Architecure - 7&nbsp; Install Python with miniforge</title>
+<title>Cloud Architecure - 7&nbsp; Install Miniconda</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -109,7 +109,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./python.html">Programming toolkit</a></li><li class="breadcrumb-item"><a href="./python-miniforge-setup.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Install Python with miniforge</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./python.html">Programming toolkit</a></li><li class="breadcrumb-item"><a href="./python-miniconda-setup.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Install Miniconda</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -206,8 +206,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./python-miniforge-setup.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Install Python with miniforge</span></span></a>
+  <a href="./python-miniconda-setup.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Install Miniconda</span></span></a>
   </div>
 </li>
       </ul>
@@ -241,23 +241,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Table of contents</h2>
-   
-  <ul>
-  <li><a href="#prepare-environment" id="toc-prepare-environment" class="nav-link active" data-scroll-target="#prepare-environment"><span class="header-section-number">7.1</span> Prepare environment</a></li>
-  <li><a href="#install-miniforge" id="toc-install-miniforge" class="nav-link" data-scroll-target="#install-miniforge"><span class="header-section-number">7.2</span> Install miniforge</a></li>
-  <li><a href="#update-path" id="toc-update-path" class="nav-link" data-scroll-target="#update-path"><span class="header-section-number">7.3</span> Update path</a></li>
-  <li><a href="#start-jupyter-notebook-in-vs-code" id="toc-start-jupyter-notebook-in-vs-code" class="nav-link" data-scroll-target="#start-jupyter-notebook-in-vs-code"><span class="header-section-number">7.4</span> Start Jupyter Notebook in VS Code</a></li>
-  </ul>
-<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/kirenz/bw-cloud/edit/main/python-miniforge-setup.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/kirenz/bw-cloud/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Install Python with miniforge</span></h1>
+<h1 class="title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Install Miniconda</span></h1>
 </div>
 
 
@@ -272,162 +263,42 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<section id="prepare-environment" class="level2" data-number="7.1">
-<h2 data-number="7.1" class="anchored" data-anchor-id="prepare-environment"><span class="header-section-number">7.1</span> Prepare environment</h2>
+<p>Miniconda is a free minimal installer for conda. It is a small, bootstrap version of Anaconda that includes only conda, Python, the packages they depend on, and a small number of other useful packages, including pip, zlib and a few others.</p>
 <ul>
-<li>Change directory into your volume:</li>
+<li>The following snippet will create a directory to install miniconda into:</li>
 </ul>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /mnt/vdb</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> mkdir /bin/miniconda3/</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
-<li>Create a folder called bin</li>
+<li>Download the latest Miniconda installer for Linux:</li>
 </ul>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> mkdir bin</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="install-miniforge" class="level2" data-number="7.2">
-<h2 data-number="7.2" class="anchored" data-anchor-id="install-miniforge"><span class="header-section-number">7.2</span> Install miniforge</h2>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> wget <span class="at">-P</span> /bin/miniconda3/ https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
-<li>Change directory into bin</li>
+<li>Change the directory to /bin/miniconda3/:</li>
 </ul>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> bin</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /bin/miniconda3/</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
-<li>Download the latest <a href="https://github.com/conda-forge/miniforge">Miniforge3 installer</a>:</li>
+<li>Make the installer script executable:</li>
 </ul>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> curl <span class="at">-L</span> <span class="at">-O</span> <span class="st">"https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-</span><span class="va">$(</span><span class="fu">uname</span><span class="va">)</span><span class="st">-</span><span class="va">$(</span><span class="fu">uname</span> <span class="at">-m</span><span class="va">)</span><span class="st">.sh"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> chmod +x Miniconda3-latest-Linux-x86_64.sh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
-<li>Start the installation porcess:</li>
+<li>Run the installer script with root permissions:</li>
 </ul>
-<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> bash Miniforge3-<span class="va">$(</span><span class="fu">uname</span><span class="va">)</span>-<span class="va">$(</span><span class="fu">uname</span> <span class="at">-m</span><span class="va">)</span>.sh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> ./Miniconda3-latest-Linux-x86_64.sh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
-<li><p>Press ENTER and scroll down, then type <code>yes</code> and press ENTER.</p></li>
-<li><p>If asked where to store miniforge, type in your partition as location:</p></li>
+<li><p>The installer will prompt you to accept the license agreement and select the installation directory. Press ‘ENTER’ to read the license and type ‘yes’ to accept it.</p></li>
+<li><p>When asked for the installation directory, provide this custom path:</p></li>
 </ul>
-<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">/mnt/vdb/miniforge</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">/home/ubuntu/miniconda3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
-<li><p>If asked: “Do you wish the installer to initialize Miniforge3 by running conda init? [yes|no]”, type <code>yes</code></p></li>
-<li><p>Run <code>sudo su</code> (that will open a shell as the superuser)</p></li>
+<li><p>The installer will install Miniconda and its dependencies. Once the installation is complete, it will ask if you want to initialize Miniconda3 by running conda init. Type ‘yes’ and press ‘ENTER’</p></li>
+<li><p>Now we can remove the installer script</p></li>
 </ul>
-<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> su</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> rm <span class="at">-rf</span> /bin/miniconda3/miniconda.sh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
-<li>Now add miniforge to path as shown in the command below:</li>
+<li>Close and reopen your terminal to activate the changes.</li>
 </ul>
-<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">PATH</span><span class="op">=</span>/mnt/vdb/miniforge/bin:<span class="va">$PATH</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ul>
-<li>Initialize all shells with:</li>
-</ul>
-<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> init <span class="at">--all</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="update-path" class="level2" data-number="7.3">
-<h2 data-number="7.3" class="anchored" data-anchor-id="update-path"><span class="header-section-number">7.3</span> Update path</h2>
-<ul>
-<li><p>To be able to use miniforge, you’ll need to update the PATH environment variable and make sure that the VS Code environment is aware of your Miniforge installation.</p></li>
-<li><p>Open the bash.bashrc file with nano:</p></li>
-</ul>
-<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> nano /etc/bash.bashrc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Update your PATH environment variable. Copy and paste the following lines at the end of the file:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">MINIFORGE_HOME</span><span class="op">=</span><span class="st">"/mnt/vdb/miniforge3"</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">PATH</span><span class="op">=</span><span class="st">"</span><span class="va">$MINIFORGE_HOME</span><span class="st">/bin:</span><span class="va">$PATH</span><span class="st">"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ul>
-<li>Next, press</li>
-</ul>
-<ol type="1">
-<li><code>Ctrl+O</code> and confirm with enter to save the modifications you’ve made to the file</li>
-<li><code>Ctrl+X</code> to close nano.</li>
-</ol>
-<!--
-
-- Apply the changes to your current shell session.
-
-```bash
-source /etc/bash.bashrc
-```
-
--->
-<ul>
-<li>For changes to take effect, close (use the kill terminal icon 🗑 in VS Code).</li>
-</ul>
-<!--
-
-## Install ipykernel
 
 
-- Open a shell as the superuser:
-
-
-```bash
-sudo su
-```
-
-- Install the package ipykernel
-
-```bash
-conda install ipykernel 
-```
-
-Type `exit` to exit this shell.
-
-
-Now close your connection and restart.
-
--->
-</section>
-<section id="start-jupyter-notebook-in-vs-code" class="level2" data-number="7.4">
-<h2 data-number="7.4" class="anchored" data-anchor-id="start-jupyter-notebook-in-vs-code"><span class="header-section-number">7.4</span> Start Jupyter Notebook in VS Code</h2>
-<p>In Visual Studio Code:</p>
-<ol type="1">
-<li><p><a href="https://code.visualstudio.com/docs/datascience/jupyter-notebooks#_create-or-open-a-jupyter-notebook">Create a Jupyter Notebook file</a></p></li>
-<li><p>Next, select a kernel using the “Select Kernel” picker in the top right</p></li>
-<li><p>Select Python Environments</p></li>
-<li></li>
-</ol>
-<p><img src="https://code.visualstudio.com/assets/docs/datascience/jupyter/native-kernel-picker.png" class="img-fluid"></p>
-<p>If you can’t see your miniforge environment:</p>
-<p>You can also manually specify an interpreter if Visual Studio Code doesn’t locate your kernel automatically.</p>
-<ol type="1">
-<li><p>Show command palette: Press <code>cmd+shift+p</code> (Mac) or <code>strl+shift+p</code> (Windows)</p></li>
-<li><p>Search for `Python: Select Interpreter´</p></li>
-<li><p>Select + enter interpreter path</p></li>
-<li><p>Choose the path (in my case: /mnt/vdc/miniforge/bin/python3.10 )</p></li>
-</ol>
-<p>If the steps described above should not work for you, take a look at other tips at <a href="https://stackoverflow.com/questions/43351596/activating-anaconda-environment-in-vscode">StackOverflow</a>.</p>
-<!--
-
------
-
-OLD
-
-## Install packages
-
-Now add miniforge to path as shown in the command below:
-
-```bash
-export PATH=/mnt/vdc/miniforge/bin:$PATH
-```
-
-Initialize your shell with:
-
-```bash
-conda init zsh
-```
-
-
-
-
-NOT WORKING
-
-## Change permissions
-
-Read+Write+Execute:
-
-sudo chmod -R a+rwx /var/www
-
-
-sudo chmod a+rwx /mnt/vdc/miniforge
-
--->
-
-
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -681,7 +552,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     <div class="nav-footer-left">Jan Kirenz</div>   
     <div class="nav-footer-center">
       &nbsp;
-    </div>
+    <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/kirenz/bw-cloud/edit/main/python-miniconda-setup.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/kirenz/bw-cloud/issues/new" class="toc-action">Report an issue</a></p></div></div></div>
     <div class="nav-footer-right">This book was built with <a href="https://quarto.org/">Quarto</a>.</div>
   </div>
 </footer>

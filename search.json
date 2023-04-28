@@ -175,32 +175,11 @@
     "text": "tbd"
   },
   {
-    "objectID": "python-miniforge-setup.html#prepare-environment",
-    "href": "python-miniforge-setup.html#prepare-environment",
-    "title": "7  Install Python with miniforge",
-    "section": "7.1 Prepare environment",
-    "text": "7.1 Prepare environment\n\nChange directory into your volume:\n\ncd /mnt/vdb\n\nCreate a folder called bin\n\nsudo mkdir bin"
-  },
-  {
-    "objectID": "python-miniforge-setup.html#install-miniforge",
-    "href": "python-miniforge-setup.html#install-miniforge",
-    "title": "7  Install Python with miniforge",
-    "section": "7.2 Install miniforge",
-    "text": "7.2 Install miniforge\n\nChange directory into bin\n\ncd bin\n\nDownload the latest Miniforge3 installer:\n\nsudo curl -L -O \"https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-$(uname)-$(uname -m).sh\"\n\nStart the installation porcess:\n\nsudo bash Miniforge3-$(uname)-$(uname -m).sh\n\nPress ENTER and scroll down, then type yes and press ENTER.\nIf asked where to store miniforge, type in your partition as location:\n\n/mnt/vdb/miniforge\n\nIf asked: “Do you wish the installer to initialize Miniforge3 by running conda init? [yes|no]”, type yes\nRun sudo su (that will open a shell as the superuser)\n\nsudo su\n\nNow add miniforge to path as shown in the command below:\n\nexport PATH=/mnt/vdb/miniforge/bin:$PATH\n\nInitialize all shells with:\n\nconda init --all"
-  },
-  {
-    "objectID": "python-miniforge-setup.html#update-path",
-    "href": "python-miniforge-setup.html#update-path",
-    "title": "7  Install Python with miniforge",
-    "section": "7.3 Update path",
-    "text": "7.3 Update path\n\nTo be able to use miniforge, you’ll need to update the PATH environment variable and make sure that the VS Code environment is aware of your Miniforge installation.\nOpen the bash.bashrc file with nano:\n\nsudo nano /etc/bash.bashrc\nUpdate your PATH environment variable. Copy and paste the following lines at the end of the file:\nexport MINIFORGE_HOME=\"/mnt/vdb/miniforge3\"\n\nexport PATH=\"$MINIFORGE_HOME/bin:$PATH\"\n\nNext, press\n\n\nCtrl+O and confirm with enter to save the modifications you’ve made to the file\nCtrl+X to close nano.\n\n\n\nFor changes to take effect, close (use the kill terminal icon 🗑 in VS Code)."
-  },
-  {
-    "objectID": "python-miniforge-setup.html#start-jupyter-notebook-in-vs-code",
-    "href": "python-miniforge-setup.html#start-jupyter-notebook-in-vs-code",
-    "title": "7  Install Python with miniforge",
-    "section": "7.4 Start Jupyter Notebook in VS Code",
-    "text": "7.4 Start Jupyter Notebook in VS Code\nIn Visual Studio Code:\n\nCreate a Jupyter Notebook file\nNext, select a kernel using the “Select Kernel” picker in the top right\nSelect Python Environments\n\n\n\nIf you can’t see your miniforge environment:\nYou can also manually specify an interpreter if Visual Studio Code doesn’t locate your kernel automatically.\n\nShow command palette: Press cmd+shift+p (Mac) or strl+shift+p (Windows)\nSearch for `Python: Select Interpreter´\nSelect + enter interpreter path\nChoose the path (in my case: /mnt/vdc/miniforge/bin/python3.10 )\n\nIf the steps described above should not work for you, take a look at other tips at StackOverflow."
+    "objectID": "python-miniconda-setup.html",
+    "href": "python-miniconda-setup.html",
+    "title": "7  Install Miniconda",
+    "section": "",
+    "text": "Miniconda is a free minimal installer for conda. It is a small, bootstrap version of Anaconda that includes only conda, Python, the packages they depend on, and a small number of other useful packages, including pip, zlib and a few others.\n\nThe following snippet will create a directory to install miniconda into:\n\nsudo mkdir /bin/miniconda3/\n\nDownload the latest Miniconda installer for Linux:\n\nsudo wget -P /bin/miniconda3/ https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh\n\nChange the directory to /bin/miniconda3/:\n\ncd /bin/miniconda3/\n\nMake the installer script executable:\n\nsudo chmod +x Miniconda3-latest-Linux-x86_64.sh\n\nRun the installer script with root permissions:\n\nsudo ./Miniconda3-latest-Linux-x86_64.sh\n\nThe installer will prompt you to accept the license agreement and select the installation directory. Press ‘ENTER’ to read the license and type ‘yes’ to accept it.\nWhen asked for the installation directory, provide this custom path:\n\n/home/ubuntu/miniconda3\n\nThe installer will install Miniconda and its dependencies. Once the installation is complete, it will ask if you want to initialize Miniconda3 by running conda init. Type ‘yes’ and press ‘ENTER’\nNow we can remove the installer script\n\nsudo rm -rf /bin/miniconda3/miniconda.sh\n\nClose and reopen your terminal to activate the changes."
   },
   {
     "objectID": "docker.html",
