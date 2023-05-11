@@ -1,3 +1,75 @@
 # Docker
 
-tbd
+
+
+---
+
+## What is Docker?
+
+- Open-source platform
+- Automate deployment, scaling, and management of applications
+- Containerization technology
+- Lightweight and portable
+
+---
+
+## Why use Docker?
+
+- Consistent environment
+- Fast deployment
+- Scalability
+- Isolation
+- Version control
+- Resource efficiency
+
+---
+
+## Docker Architecture
+
+- Client-server model
+- Docker Client
+- Docker Daemon
+- Docker Registry
+- Docker Objects
+
+---
+
+## Key Components
+
+- Dockerfile
+    - Text file with instructions to build Docker images
+- Docker Image
+    - Read-only template with application and its dependencies
+- Docker Container
+    - Running instance of a Docker image
+- Docker Hub
+    - Cloud-based registry service to share and manage Docker images
+
+---
+
+## Basic Docker Commands
+
+- `docker build`
+    - Build Docker images from Dockerfiles
+- `docker run`
+    - Run a Docker container from an image
+- `docker ps`
+    - List running containers
+- `docker images`
+    - List available images on the system
+- `docker pull`
+    - Download an image from Docker Hub
+- `docker push`
+    - Upload an image to Docker Hub
+- `docker stop`
+    - Stop a running container
+
+---
+
+## Conclusion
+
+- Docker simplifies deployment and management of applications
+- Containerization provides consistency and isolation
+- Docker components make it easy to build, share, and run containers
+- Basic Docker commands allow you to manage images and containers
+
