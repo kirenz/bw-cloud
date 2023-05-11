@@ -1,0 +1,54 @@
+# Docker get started
+
+This guide is based on the [official Docker documentation](https://docs.docker.com/get-started/) and contains step-by-step instructions on how to get started with Docker. 
+
+Some of the things you’ll learn and do in this guide are:
+
+- Build and run an image as a container.
+- Share images using Docker Hub.
+- Deploy Docker applications using multiple containers with a database.
+- Run applications using Docker Compose.
+
+## Prerequisites
+
+To complete this guide, you’ll need the following:
+
+- Docker on your virtual machine in volumne `mnt/vdb`. 
+
+- [Visual Studio Code](vs-code-ssh.qmd).
+
+- A conceptual understanding of [containers and images](https://docs.docker.com/get-started/overview/#docker-objects).
+
+## Get the app
+
+Before you can run the application, you need to get the application source code onto your machine.
+
+- Change directory into mnt/vdb
+
+```{bash}
+ cd /mnt/vdb
+```
+
+
+- Clone the getting-started repository using the following command:
+
+```{bash}
+sudo git clone https://github.com/docker/getting-started.git
+```
+
+Next, we view the contents of the cloned repository in VS Code.
+
+- Navigate to the VS code menue at the top and choose 'File' > 'Open Folder' and insert: /mnt/vdb/getting-started/app (this will open a new window and you have to insert your SSH-key) 
+
+Inside the getting-started/app directory you should see package.json and two subdirectories (src and spec).
+
+## Build the app’s container image
+
+To build the container image, you’ll need to use a Dockerfile. 
+
+A Dockerfile is simply a text-based file with no file extension that contains a script of instructions. Docker uses this script to build a container image.
+
+- In VS Code, open the integrated terminal ("Terminal" > "New Terminal")
+
+- Use the following commands below to create a Dockerfile:
+
