@@ -1,0 +1,43 @@
+# Get started with Docker
+
+*This guide is based on the excellent [Docker step-by-step instructions](https://docs.docker.com/get-started/) on how to get started with Docker.* 
+
+Some of the things you’ll learn and do in this guide are:
+
+- Build and run an image as a container.
+- Share images using Docker Hub.
+- Deploy Docker applications using multiple containers with a database.
+- Run applications using Docker Compose.
+
+## Prerequisites
+
+To complete this guide, you’ll need the following:
+
+- Docker on your virtual machine in volume `mnt/vdb`. 
+
+- [Visual Studio Code](vs-code-ssh.qmd).
+
+- A conceptual understanding of [containers and images](https://docs.docker.com/get-started/overview/#docker-objects).
+
+## Get the app
+
+Before you can run the application, you need to get the application source code onto your machine.
+
+- Change directory into mnt/vdb
+
+```{bash}
+ cd /mnt/vdb
+```
+
+
+- Clone the getting-started repository using the following command:
+
+```{bash}
+sudo git clone https://github.com/docker/getting-started.git
+```
+
+Next, we view the contents of the cloned repository in VS Code.
+
+- Navigate to the VS code menue at the top and choose 'File' > 'Open Folder' and insert: /mnt/vdb/getting-started/app (this will open a new window and you have to insert your SSH-key) 
+
+Inside the getting-started/app directory you should see package.json and two subdirectories (src and spec).
