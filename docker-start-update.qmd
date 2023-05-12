@@ -1,0 +1,89 @@
+# Update application
+
+## Update the source code
+
+In the steps below, you will change the “empty text” when you don’t have any todo list items to “You have no todo items yet! Add one above!”
+
+- In the src/static/js/app.js file, update line 56 to use the new empty text (replace the text marked as `-` with the new text marked with `+`). Dont forget to save the changes.
+
+```{js}
+
+...
+ -                <p className="text-center">No items yet! Add one above!</p>
+ +                <p className="text-center">You have no todo items yet! Add one above!</p>
+ ...
+
+
+```
+
+
+## Build image
+
+- Build your updated version of the image, using the same docker build command you used in part 2.
+
+
+```{bash}
+sudo docker build -t getting-started .
+```
+
+- Start a new container using the updated code.
+
+```{bash}
+sudo docker run -dp 3000:3000 getting-started
+```
+
+You probably saw an error like this (the IDs will be different):
+
+```{bash}
+docker: Error response from daemon: driver failed programming external connectivity on endpoint competent_shirley (b83e81e06e1ad74187ac3d7248be33a557820d35d597877985804eecf3bfba69): Bind for 0.0.0.0:3000 failed: port is already allocated.
+```
+
+The error occurred because you aren’t able to start the new container while your old container is still running. 
+
+The reason is that the old container is already using the host’s port 3000 and only one process on the machine (containers included) can listen to a specific port. To fix this, you need to remove the old container.
+
+## Remove old container
+
+To remove a container, you first need to stop it. Once it has stopped, you can remove it. 
+
+- Get the ID of the container by using the docker ps command.
+
+```{bash}
+sudo docker ps
+```
+
+- Use the docker stop command to stop the container. Replace <the-container-id> with the ID from docker ps.
+
+```{bash}
+sudo docker stop <the-container-id>
+
+```
+
+- Once the container has stopped, you can remove it by using the docker rm command.
+
+```{bash}
+sudo docker rm <the-container-id>
+```
+
+
+Note: You can also stop and remove a container in a single command by adding the force flag to the docker rm command. For example: `docker rm -f <the-container-id>`
+
+## Start the updated app container
+
+Now, start your updated app using the docker run command.
+
+```{bash}
+sudo docker run -dp 3000:3000 getting-started
+```
+
+Refresh your browser on <http://localhost:3000> and you should see your updated help text.
+
+
+## Next steps
+
+While you were able to build an update, there were two things you might have noticed:
+
+All of the existing items in your todo list are gone! That’s not a very good app! You’ll fix that shortly.
+
+There were a lot of steps involved for such a small change. In an upcoming section, you’ll learn how to see code updates without needing to rebuild and start a new container every time you make a change.
+Before talking about persistence, you’ll see how to share these images with others.
