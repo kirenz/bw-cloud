@@ -26,14 +26,14 @@ To push an image, you first need to create a repository on Docker Hub.
 
 - In the command line, try running the push command you see on Docker Hub. Note that your command will be using your namespace, not kirenz.
 
-```{bash}
+```bash
 sudo docker push kirenz/getting-started
 
 ```
 
 This sould output an error message like the following:
 
-```{bash}
+```bash
 The push refers to repository [docker.io/kirenz/getting-started]
 An image does not exist locally with the tag: kirenz/getting-started
 ```
@@ -43,14 +43,14 @@ To fix this, you need to “tag” your existing image you’ve built to give it
 
 - Login to the Docker Hub using the command 
 
-```{bash}
+```bash
 sudo docker login -u YOUR-USER-NAME
 ```
 
 - Use the docker tag command to give the getting-started image a new name. Be sure to swap out YOUR-USER-NAME with your Docker ID.
 
 
-```{bash}
+```bash
 sudo docker tag getting-started YOUR-USER-NAME/getting-started
 ```
 
@@ -59,7 +59,7 @@ To learn more about the docker tag command, see [docker tag](https://docs.docker
 - Now try your push command again. If you’re copying the value from Docker Hub, you can drop the tagname portion, as you didn’t add a tag to the image name. If you don’t specify a tag, Docker will use a tag called latest.
 
 
-```{bash}
+```bash
 sudo docker push YOUR-USER-NAME/getting-started
 ```
 
@@ -80,7 +80,7 @@ Now that your image has been built and pushed into a registry, try running your 
 
 - In the terminal, start your freshly pushed app:
 
-```{bash}
+```bash
 docker run -dp 3000:3000 YOUR-USER-NAME/getting-started
 ```
 
