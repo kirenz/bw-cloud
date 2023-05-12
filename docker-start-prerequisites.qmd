@@ -25,14 +25,14 @@ Before you can run the application, you need to get the application source code 
 
 - Change directory into mnt/vdb
 
-```{bash}
+```bash
  cd /mnt/vdb
 ```
 
 
 - Clone the getting-started repository using the following command:
 
-```{bash}
+```bash
 sudo git clone https://github.com/docker/getting-started.git
 ```
 
