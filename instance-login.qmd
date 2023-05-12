@@ -4,8 +4,8 @@ Prerequisites:
 
 To log into your instance, you need to have created your
 
-- [Key pairs](key-pairs-create.md)
-- [Instance](instance-create.md)
+- [Key pairs](key-pairs-create.qmd)
+- [Instance](instance-create.qmd)
 
 
 ## Terminal
