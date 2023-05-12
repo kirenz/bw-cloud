@@ -37,15 +37,12 @@ Install all locally installed extensions on the SSH host:
 
 - This will display a dropdown where you can select which locally installed extensions to install on your SSH host (select all).
 
-
-
 <!--
+## Port forwarding 
 
-## Port forwarding (optional)
+Sometimes when developing, you may need to access a port on a remote machine that is not publicly exposed. There are two ways to do this using an SSH tunnel that "forwards" the desired remote port to your local machine.
 
-To be able to browse to the web app on your local machine, you can leverage another feature called Port forwarding.
 
-To be able to access a port on the remote machine that may not be publicly exposed, you need to establish a connection or a tunnel between a port on your local machine and the server.
 
 [Port Forwarding](https://code.visualstudio.com/docs/remote/ssh#_forwarding-a-port-creating-ssh-tunnel)
 
