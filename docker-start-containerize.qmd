@@ -12,7 +12,7 @@ A Dockerfile is simply a text-based file with no file extension that contains a 
 
 - Use the following command to create an empty file named Dockerfile.
 
-```{bash}
+```bash
 sudo touch Dockerfile
 
 ```
@@ -22,7 +22,7 @@ sudo touch Dockerfile
 
 - In VS Code, open `Dockerfile`, add the following contents and save the file:
 
-```{bash}
+```bash
 # syntax=docker/dockerfile:1
    
 FROM node:18-alpine
@@ -68,7 +68,7 @@ Build the container image using the following commands:
 - Build the container image using the following commands:
 
 
-```{bash}
+```bash
 sudo docker build -t getting-started .
 ```
 
@@ -87,7 +87,7 @@ Now that you have an image, you can run the application in a [container](https:/
 
 - Start your container using the docker run command and specify the name of the image you just created:
 
-```{bash}
+```bash
 sudo docker run -dp 3000:3000 getting-started
 ```
 
@@ -122,7 +122,7 @@ If you take a quick look at your containers, you should see at least one contain
 
 - Run the following docker ps command in your terminal to list your containers.
 
-```{bash}
+```bash
 sudo docker ps
 ```
 
