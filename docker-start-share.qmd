@@ -1,0 +1,97 @@
+# Share the application
+
+Now that you’ve built an image, you can share it. To share Docker images, you have to use a Docker registry. The default registry is Docker Hub and is where all of the images you’ve used have come from.
+
+## Create a Docker ID
+
+Docker ID: A Docker ID allows you to access Docker Hub which is the world’s largest library and community for container images. 
+
+- [Create a Docker ID](https://hub.docker.com/signup) for free if you don’t have one.
+
+## Create a repo
+
+To push an image, you first need to create a repository on Docker Hub.
+
+- Sign up or Sign in to [Docker Hub](https://hub.docker.com/signup).
+
+- Select the Create Repository button.
+
+- For the repo name, use getting-started. Make sure the Visibility is Public.
+
+![](images/docker-getting-started-5.png)
+
+- Select the Create button.
+
+## Push the image
+
+- In the command line, try running the push command you see on Docker Hub. Note that your command will be using your namespace, not kirenz.
+
+```{bash}
+sudo docker push kirenz/getting-started
+
+```
+
+This sould output an error message like the following:
+
+```{bash}
+The push refers to repository [docker.io/kirenz/getting-started]
+An image does not exist locally with the tag: kirenz/getting-started
+```
+
+To fix this, you need to “tag” your existing image you’ve built to give it another name.
+
+
+- Login to the Docker Hub using the command 
+
+```{bash}
+sudo docker login -u YOUR-USER-NAME
+```
+
+- Use the docker tag command to give the getting-started image a new name. Be sure to swap out YOUR-USER-NAME with your Docker ID.
+
+
+```{bash}
+sudo docker tag getting-started YOUR-USER-NAME/getting-started
+```
+
+To learn more about the docker tag command, see [docker tag](https://docs.docker.com/engine/reference/commandline/tag/).
+
+- Now try your push command again. If you’re copying the value from Docker Hub, you can drop the tagname portion, as you didn’t add a tag to the image name. If you don’t specify a tag, Docker will use a tag called latest.
+
+
+```{bash}
+sudo docker push YOUR-USER-NAME/getting-started
+```
+
+### Run image
+
+Now that your image has been built and pushed into a registry, try running your app on a brand new instance that has never seen this container image. To do this, you will use Play with Docker
+
+- Open your browser to [Play with Docker]().
+
+- Select Login and then select docker from the drop-down list.
+
+<!--
+- Connect with your Docker Hub account.
+-->
+
+
+- Once you’re logged in, select the ADD NEW INSTANCE option on the left side bar. If you don’t see it, make your browser a little wider. After a few seconds, a terminal window opens in your browser.
+
+- In the terminal, start your freshly pushed app:
+
+```{bash}
+docker run -dp 3000:3000 YOUR-USER-NAME/getting-started
+```
+
+You should see the image get pulled down and eventually start up.
+
+- Select on the 3000 badge when it comes up and you should see the app with your modifications. If the 3000 badge doesn’t show up, you can select the Open Port button and type in 3000.
+
+[](images/docker-getting-started-6.png)!
+
+## Next steps
+
+In this section, you learned how to share your images by pushing them to a registry. You then went to a brand new instance and were able to run the freshly pushed image. This is quite common in CI pipelines, where the pipeline will create the image and push it to a registry and then the production environment can use the latest version of the image.
+
+Now you can circle back around to what you noticed at the end of the last section. As a reminder, you noticed that when you restarted the app, you lost all of your todo list items. That’s obviously not a great user experience, so next you’ll learn how you can persist the data across restarts.
