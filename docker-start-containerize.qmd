@@ -109,7 +109,7 @@ You also use the `-p` flag to create a mapping between the host’s port 3000 to
 
 ## Test your app
 
-![](images/docker-getting-started-3.png)
+![](images/docker-getting-started-4.png)
 
 
 Go ahead and add an item or two and see that it works as you expect. You can mark items as complete and remove them. Your frontend is successfully storing items in the backend.
