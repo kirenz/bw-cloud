@@ -233,6 +233,30 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Change docker location</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./docker-start-prerequisites.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Get started with Docker</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./docker-start-containerize.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Containerize the application</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./docker-start-update.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Update application</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./docker-start-share.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Share the application</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -261,6 +285,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#format-partition" id="toc-format-partition" class="nav-link" data-scroll-target="#format-partition"><span class="header-section-number">6.2.4</span> Format partition</a></li>
   <li><a href="#mounting" id="toc-mounting" class="nav-link" data-scroll-target="#mounting"><span class="header-section-number">6.2.5</span> Mounting</a></li>
   </ul></li>
+  <li><a href="#change-permissions" id="toc-change-permissions" class="nav-link" data-scroll-target="#change-permissions"><span class="header-section-number">6.3</span> Change permissions</a></li>
   </ul>
 <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/kirenz/bw-cloud/edit/main/instance-storage-increase.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/kirenz/bw-cloud/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
@@ -405,6 +430,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">/dev/vdb</span> on /mnt/vdb type ext4 <span class="er">(</span><span class="ex">rw,relatime</span><span class="kw">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>You can change directory into your new volume and use it later to create new directories and store data in it:</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /mnt/vdb</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="change-permissions" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="change-permissions"><span class="header-section-number">6.3</span> Change permissions</h2>
+<p>Let’s change the file permissions for all the contents in the /mnt/vdb directory so we can read, write and execute files within this directory. In particular, this will allow us to modify files using VS Code without encountering a “permission denied” error.</p>
+<ul>
+<li>To change the permissions of all files and directories within /mnt/vdb we we use the chmod command with the recursive (-R) option:</li>
+</ul>
+<pre><code>sudo chmod -R 777 /mnt/vdb</code></pre>
+<p>This command will set the permissions to read (r), write (w), and execute (x) for the owner, group, and others on all files and directories within /mnt/vdb.</p>
+<p>However, please exercise caution when setting permissions to 777, as it grants full access to everyone, which may have security implications. Therefore, make sure to adjust the permissions as necessary based on your specific requirements and security considerations in your use cases.</p>
 <!--
 
 ## Create folders
@@ -449,7 +485,6 @@ sudo umount -l /dev/vdc
 -->
 
 
-</section>
 </section>
 
 </main> <!-- /main -->

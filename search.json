@@ -168,6 +168,13 @@
     "text": "6.2 Mount volume in VM\nIn Linux, the process of attaching a filesystem to a particular point in the directory tree is called mounting. This allows you to access the files and directories on the filesystem as if they were part of the filesystem on which you are currently working.\n\n6.2.1 Log in your VM\n\nConnect to your virtual machine with VS Code remote connection (or your terminal)\n\n\n\n6.2.2 Find volumne\n\nEnter the follwing command in the integrated terminal to find your volume (i.e. disk) using:\n\nsudo fdisk -l\nThe output should include an entry like the following:\n\nDisk /dev/vdb: 40 GiB, 42949672960 bytes, 83886080 sectors\nUnits: sectors of 1 * 512 = 512 bytes\nSector size (logical/physical): 512 bytes / 512 bytes\nI/O size (minimum/optimal): 512 bytes / 512 bytes\n\n\n6.2.3 Partitioning\nNext, we need to partition our volume.\n\nThis command will create a GPT (GUID Partition Table), which is a standard for the layout of the partition table on a physical storage device:\n\nsudo parted /dev/vdb mklabel gpt\nThis will output: “Warning: The existing disk label on /dev/vdb will be destroyed and all data on this disk will be lost. Do you want to continue?”\n\nType: Yes\nWithin the partition environment, you can also set the size of the partition. In our case, we set the upper bound to 100%:\n\nsudo parted /dev/vdb mkpart primary ext4 0% 100%\n\n\n6.2.4 Format partition\nWe want to format the partition with the ext4 filesystem. ext4 stands for “extended file system version 4”, which is a popular filesystem used in Linux systems to store and organize files on a storage device, such as a hard drive or solid-state drive.\n\nFormat the partition:\n\nsudo mkfs.ext4 /dev/vdb\nThis will output: Found a gpt partition table in /dev/vdb Proceed anyway? (y,N)\n\nType: Yes\n\n\n\n6.2.5 Mounting\nBefore we mount the drive, we create a new directory in the /mnt/ directory where the drives are usually mounted in Ubuntu:\nsudo mkdir /mnt/vdb\nOnce the directory is created, you can mount the drive as follows:\nsudo mount /dev/vdb /mnt/vdb\nTo mount the drive permanently, we need to edit the file system table fstab. Therefore, we open the file with the text editor nano:\nsudo nano /etc/fstab\nNow, add the following content at the end of the file:\n/dev/vdb    /mnt/vdb     ext4      defaults        0             0\nIt means that the partition located at /dev/vdb will be mounted to /mnt/vdb using the file system ext4, with default mount options and no dumping and no error-checking enabled.\nNext, press\n\nCtrl+O and confirm with enter to save the modifications you’ve made to the file\nCtrl+X to close nano.\n\nTo check if everything worked fine, we use sudo mount to list all mounted drives and combine it with grep vdb, which only returns our volume vdb:\nsudo mount | grep vdb\nThis should output something like:\n/dev/vdb on /mnt/vdb type ext4 (rw,relatime)\nYou can change directory into your new volume and use it later to create new directories and store data in it:\ncd /mnt/vdb"
   },
   {
+    "objectID": "instance-storage-increase.html#change-permissions",
+    "href": "instance-storage-increase.html#change-permissions",
+    "title": "6  Increase Cloud Storage",
+    "section": "6.3 Change permissions",
+    "text": "6.3 Change permissions\nLet’s change the file permissions for all the contents in the /mnt/vdb directory so we can read, write and execute files within this directory. In particular, this will allow us to modify files using VS Code without encountering a “permission denied” error.\n\nTo change the permissions of all files and directories within /mnt/vdb we we use the chmod command with the recursive (-R) option:\n\nsudo chmod -R 777 /mnt/vdb\nThis command will set the permissions to read (r), write (w), and execute (x) for the owner, group, and others on all files and directories within /mnt/vdb.\nHowever, please exercise caution when setting permissions to 777, as it grants full access to everyone, which may have security implications. Therefore, make sure to adjust the permissions as necessary based on your specific requirements and security considerations in your use cases."
+  },
+  {
     "objectID": "python.html",
     "href": "python.html",
     "title": "Programming toolkit",
@@ -189,11 +196,46 @@
     "text": "7.2 Start Jupyter Notebook in VS Code\nIn Visual Studio Code:\n\nCreate a Jupyter Notebook file\nNext, select a kernel using the “Select Kernel” picker in the top right\n\n\n\nSelect Python Environments\nChoose the “base” environment\n\nIf you can’t see your base environment:\n\nShow command palette: Press cmd+shift+p (Mac) or strl+shift+p (Windows)\nSearch for `Python: Select Interpreter´\nSelect + enter interpreter path\nChoose the interpreter ‘base’:conda"
   },
   {
-    "objectID": "docker.html",
-    "href": "docker.html",
+    "objectID": "docker.html#what-is-docker",
+    "href": "docker.html#what-is-docker",
     "title": "Docker",
-    "section": "",
-    "text": "tbd"
+    "section": "What is Docker?",
+    "text": "What is Docker?\nDocker is an open-source platform that automates the deployment, scaling, and management of applications using containerization technology.\nIt enables developers to build, package, and deploy applications as lightweight, portable containers that can run consistently across various environments."
+  },
+  {
+    "objectID": "docker.html#benefits-of-docker",
+    "href": "docker.html#benefits-of-docker",
+    "title": "Docker",
+    "section": "Benefits of Docker",
+    "text": "Benefits of Docker\n\nConsistent Environment\nDocker allows developers to create a consistent environment throughout the entire development and deployment lifecycle. By using containers, applications can be developed, tested, and deployed in the same environment, reducing the risk of inconsistencies and configuration issues.\n\n\nFast Deployment\nDocker containers are lightweight and start quickly, allowing for rapid deployment of applications. This is especially beneficial in environments where frequent updates or scaling are required.\n\n\nScalability\nDocker’s containerization technology enables easy horizontal scaling of applications. By running multiple instances of a container, you can distribute the load across these instances, providing better performance and availability.\n\n\nIsolation\nContainers in Docker are isolated from each other and the host system, ensuring that they do not interfere with each other. This isolation improves security and allows for better control over resources.\n\n\nVersion Control\nDocker images can be versioned, allowing you to easily roll back to previous versions or update to new ones as needed. This capability makes it simple to manage the lifecycle of your application.\n\n\nResource Efficiency\nDocker containers share the host system’s kernel, which means they use fewer resources than traditional virtual machines. This efficiency allows you to run more containers on a single host, reducing hardware and operational costs."
+  },
+  {
+    "objectID": "docker.html#docker-architecture",
+    "href": "docker.html#docker-architecture",
+    "title": "Docker",
+    "section": "Docker Architecture",
+    "text": "Docker Architecture\nDocker follows a client-server model, which consists of the following components:\n\nDocker Client: The command-line interface or graphical user interface (GUI) used to interact with Docker.\nDocker Daemon: The background service that manages Docker objects, such as images, containers, networks, and volumes.\nDocker Registry: The centralized repository where Docker images are stored and distributed. Docker Hub is a popular public registry."
+  },
+  {
+    "objectID": "docker.html#key-docker-components",
+    "href": "docker.html#key-docker-components",
+    "title": "Docker",
+    "section": "Key Docker Components",
+    "text": "Key Docker Components\n\nDockerfile\nA Dockerfile is a text file that contains instructions for building a Docker image. It defines the base image, application code, dependencies, and configuration settings needed to create a container.\n\n\nDocker Image\nA Docker image is a read-only template that contains the application and its dependencies. It is created by building a Dockerfile and can be stored in a Docker registry, such as Docker Hub, for easy distribution.\n\n\nDocker Container\nA Docker container is a running instance of a Docker image. Containers can be started, stopped, and managed using Docker commands.\n\n\nDocker Hub\nDocker Hub is a cloud-based registry service where you can share and manage Docker images. It enables you to store and distribute your images publicly or privately, making it easy to collaborate with others."
+  },
+  {
+    "objectID": "docker.html#basic-docker-commands",
+    "href": "docker.html#basic-docker-commands",
+    "title": "Docker",
+    "section": "Basic Docker Commands",
+    "text": "Basic Docker Commands\n\ndocker build: Build Docker images from Dockerfiles\ndocker run: Run a Docker container from an image\ndocker ps: List running containers\ndocker images: List available images on the system\ndocker pull: Download an image from Docker Hub\ndocker push: Upload an image to Docker Hub\ndocker stop: Stop a running container"
+  },
+  {
+    "objectID": "docker.html#conclusion",
+    "href": "docker.html#conclusion",
+    "title": "Docker",
+    "section": "Conclusion",
+    "text": "Conclusion\nDocker simplifies the deployment and management of applications by providing a consistent and portable environment using containerization technology. Its key components and basic commands allow developers to build, share, and run containers with ease, while its architecture ensures scalability, isolation, and resource efficiency."
   },
   {
     "objectID": "docker-setup.html#set-up-docker-repository",
@@ -215,5 +257,124 @@
     "title": "9  Change docker location",
     "section": "",
     "text": "The standard data directory used for docker is /var/lib/docker on our virtual machine. Since this directory will store a lot of data it can become quite large. Therefore, we move the docker data directory to our volumne mnt/vdb.\nHere are the steps to move the directory:\n\nStop docker daemon\n\nsudo systemctl stop docker\n\nCreate a new docker directory in /mnt/vdb:\n\nsudo mkdir -p /mnt/vdb/docker\n\nMake a copy of your current docker directory in the new location:\n\nsudo rsync -a /var/lib/docker/ /mnt/vdb/docker\n\nCreate a backup\n\nsudo mv /var/lib/docker /var/lib/docker-backup\n\nCreate a symbolic link (symlink):\n\nsudo ln -s /mnt/vdb/docker /var/lib/docker\n\nStart docker:\n\nsudo systemctl start docker\n\nCheck if the docker image “hello-world” is still accessible:\n\nsudo docker ps -a\nYou can now remove your backup:\nsudo rm -rf /var/lib/docker-backup\nThat’s it!"
+  },
+  {
+    "objectID": "docker-start-prerequisites.html#prerequisites",
+    "href": "docker-start-prerequisites.html#prerequisites",
+    "title": "10  Get started with Docker",
+    "section": "10.1 Prerequisites",
+    "text": "10.1 Prerequisites\nTo complete this guide, you’ll need the following:\n\nDocker on your virtual machine in volume mnt/vdb.\nVisual Studio Code.\nA conceptual understanding of containers and images."
+  },
+  {
+    "objectID": "docker-start-prerequisites.html#get-the-app",
+    "href": "docker-start-prerequisites.html#get-the-app",
+    "title": "10  Get started with Docker",
+    "section": "10.2 Get the app",
+    "text": "10.2 Get the app\nBefore you can run the application, you need to get the application source code onto your machine.\n\nChange directory into mnt/vdb\n\n cd /mnt/vdb\n\nClone the getting-started repository using the following command:\n\nsudo git clone https://github.com/docker/getting-started.git\nNext, we view the contents of the cloned repository in VS Code.\n\nNavigate to the VS code menue at the top and choose ‘File’ &gt; ‘Open Folder’ and insert: /mnt/vdb/getting-started/app (this will open a new window and you have to insert your SSH-key)\n\nInside the getting-started/app directory you should see package.json and two subdirectories (src and spec)."
+  },
+  {
+    "objectID": "docker-start-containerize.html#create-dockerfile",
+    "href": "docker-start-containerize.html#create-dockerfile",
+    "title": "11  Containerize the application",
+    "section": "11.1 Create Dockerfile",
+    "text": "11.1 Create Dockerfile\nTo build a container image, you’ll need to use a Dockerfile.\nA Dockerfile is simply a text-based file with no file extension that contains a script of instructions. Docker uses this script to build a container image.\n\nIn VS Code, open the integrated terminal (“Terminal” &gt; “New Terminal”).\n\n\n\nUse the following command to create an empty file named Dockerfile.\n\nsudo touch Dockerfile\n\n\nIn VS Code, open Dockerfile, add the following contents and save the file:\n\n# syntax=docker/dockerfile:1\n   \nFROM node:18-alpine\nWORKDIR /app\nCOPY . .\nRUN yarn install --production\nCMD [\"node\", \"src/index.js\"]\nEXPOSE 3000\nThis Dockerfile is used to create a Docker image for our Node.js application. Let’s go through each line and explain its purpose:\nFROM node:18-alpine\nThis line specifies the base image for the Docker image. It uses the node:18-alpine image, which is based on Alpine Linux (a lightweight Linux distribution) and includes Node.js version 18.\nWORKDIR /app\nThis line sets the working directory inside the Docker image to /app. Any subsequent commands will be executed in this directory.\nCOPY . .\nThis line copies the contents of the current directory (where the Dockerfile is located) into the /app directory of the Docker image. It includes all the files and directories required for the Node.js application.\nRUN yarn install --production\nThis line executes the command yarn install –production within the Docker image. It installs the dependencies specified in the package.json file of the application. The –production flag ensures that only production dependencies are installed, excluding any development-specific packages.\nCMD [\"node\", \"src/index.js\"]\nThis line specifies the command to run when the Docker container is started based on this image. It sets the entrypoint to node src/index.js, which means that the Node.js application’s entry file is src/index.js. This command will be executed when the container starts.\nEXPOSE 3000\nThis line informs Docker that the container will listen on port 3000. It does not publish the port to the host machine but rather serves as a documentation for developers or users who may run the container and need to know which port to access the application. In summary, this Dockerfile sets up a containerized environment for a Node.js application. It installs the production dependencies, specifies the entrypoint for the application, and indicates that it will listen on port 3000."
+  },
+  {
+    "objectID": "docker-start-containerize.html#build-container-image",
+    "href": "docker-start-containerize.html#build-container-image",
+    "title": "11  Containerize the application",
+    "section": "11.2 Build container image",
+    "text": "11.2 Build container image\nBuild the container image using the following commands:\n\nBuild the container image using the following commands:\n\nsudo docker build -t getting-started .\nThe docker build command uses the Dockerfile to build a new container image. You might have noticed that Docker downloaded a lot of “layers”. This is because you instructed the builder that you wanted to start from the node:18-alpine image. But, since you didn’t have that on your machine, Docker needed to download the image.\nAfter Docker downloaded the image, the instructions from the Dockerfile copied in your application and used yarn to install your application’s dependencies. The CMD directive specifies the default command to run when starting a container from this image.\nFinally, the -t flag tags your image. Think of this simply as a human-readable name for the final image. Since you named the image getting-started, you can refer to that image when you run a container.\nThe . at the end of the docker build command tells Docker that it should look for the Dockerfile in the current directory."
+  },
+  {
+    "objectID": "docker-start-containerize.html#start-app-container",
+    "href": "docker-start-containerize.html#start-app-container",
+    "title": "11  Containerize the application",
+    "section": "11.3 Start app container",
+    "text": "11.3 Start app container\nNow that you have an image, you can run the application in a container. To do so, you will use the docker run command.\n\nStart your container using the docker run command and specify the name of the image you just created:\n\nsudo docker run -dp 3000:3000 getting-started\nYou use the -d flag to run the new container in “detached” mode (in the background).\nYou also use the -p flag to create a mapping between the host’s port 3000 to the container’s port 3000. Without the port mapping, you wouldn’t be able to access the application."
+  },
+  {
+    "objectID": "docker-start-containerize.html#forward-a-port",
+    "href": "docker-start-containerize.html#forward-a-port",
+    "title": "11  Containerize the application",
+    "section": "11.4 Forward a port",
+    "text": "11.4 Forward a port\n\nNext, we need to temporarily forward a new port for the duration of the session. Select “Forward a Port” from the Command Palette (Windows: F1; Mac: ⇧+⌘+P) and insert the port number: 3000\nThis will open the “PORTS” view. In the column “Local Address”, click on localhost:3000 and choose the globe 🌐 icon to open the web browser.\n\n\n\nThis should open your web browser to http://localhost:3000 and you should see your app."
+  },
+  {
+    "objectID": "docker-start-containerize.html#test-your-app",
+    "href": "docker-start-containerize.html#test-your-app",
+    "title": "11  Containerize the application",
+    "section": "11.5 Test your app",
+    "text": "11.5 Test your app\n\nGo ahead and add an item or two and see that it works as you expect. You can mark items as complete and remove them. Your frontend is successfully storing items in the backend.\nAt this point, you should have a running todo list manager with a few items."
+  },
+  {
+    "objectID": "docker-start-containerize.html#view-container",
+    "href": "docker-start-containerize.html#view-container",
+    "title": "11  Containerize the application",
+    "section": "11.6 View container",
+    "text": "11.6 View container\nIf you take a quick look at your containers, you should see at least one container running that is using the getting-started image and on port 3000.\n\nRun the following docker ps command in your terminal to list your containers.\n\nsudo docker ps\n\n11.6.1 Next steps\nIn the previous section, you learned the basics about creating a Dockerfile to build a container image. Once you built an image, you started a container and saw the running app.\nNext, you’re going to make a modification to your app and learn how to update your running application with a new image. Along the way, you’ll learn a few other useful commands."
+  },
+  {
+    "objectID": "docker-start-update.html#update-the-source-code",
+    "href": "docker-start-update.html#update-the-source-code",
+    "title": "12  Update application",
+    "section": "12.1 Update the source code",
+    "text": "12.1 Update the source code\nIn the steps below, you will change the “empty text” when you don’t have any todo list items to “You have no todo items yet! Add one above!”\n\nIn the src/static/js/app.js file, update line 56 to use the new empty text (replace the text marked as - with the new text marked with +). Dont forget to save the changes.\n\n\n...\n -                &lt;p className=\"text-center\"&gt;No items yet! Add one above!&lt;/p&gt;\n +                &lt;p className=\"text-center\"&gt;You have no todo items yet! Add one above!&lt;/p&gt;\n ..."
+  },
+  {
+    "objectID": "docker-start-update.html#build-image",
+    "href": "docker-start-update.html#build-image",
+    "title": "12  Update application",
+    "section": "12.2 Build image",
+    "text": "12.2 Build image\n\nBuild your updated version of the image, using the same docker build command you used in part 2.\n\nsudo docker build -t getting-started .\n\nStart a new container using the updated code.\n\nsudo docker run -dp 3000:3000 getting-started\nYou probably saw an error like this (the IDs will be different):\ndocker: Error response from daemon: driver failed programming external connectivity on endpoint competent_shirley (b83e81e06e1ad74187ac3d7248be33a557820d35d597877985804eecf3bfba69): Bind for 0.0.0.0:3000 failed: port is already allocated.\nThe error occurred because you aren’t able to start the new container while your old container is still running.\nThe reason is that the old container is already using the host’s port 3000 and only one process on the machine (containers included) can listen to a specific port. To fix this, you need to remove the old container."
+  },
+  {
+    "objectID": "docker-start-update.html#remove-old-container",
+    "href": "docker-start-update.html#remove-old-container",
+    "title": "12  Update application",
+    "section": "12.3 Remove old container",
+    "text": "12.3 Remove old container\nTo remove a container, you first need to stop it. Once it has stopped, you can remove it.\n\nGet the ID of the container by using the docker ps command.\n\nsudo docker ps\n\nUse the docker stop command to stop the container. Replace  with the ID from docker ps.\n\nsudo docker stop &lt;the-container-id&gt;\n\nOnce the container has stopped, you can remove it by using the docker rm command.\n\nsudo docker rm &lt;the-container-id&gt;\nNote: You can also stop and remove a container in a single command by adding the force flag to the docker rm command. For example: docker rm -f &lt;the-container-id&gt;"
+  },
+  {
+    "objectID": "docker-start-update.html#start-the-updated-app-container",
+    "href": "docker-start-update.html#start-the-updated-app-container",
+    "title": "12  Update application",
+    "section": "12.4 Start the updated app container",
+    "text": "12.4 Start the updated app container\nNow, start your updated app using the docker run command.\nsudo docker run -dp 3000:3000 getting-started\nRefresh your browser on http://localhost:3000 and you should see your updated help text."
+  },
+  {
+    "objectID": "docker-start-update.html#next-steps",
+    "href": "docker-start-update.html#next-steps",
+    "title": "12  Update application",
+    "section": "12.5 Next steps",
+    "text": "12.5 Next steps\nWhile you were able to build an update, there were two things you might have noticed:\nAll of the existing items in your todo list are gone! That’s not a very good app! You’ll fix that shortly.\nThere were a lot of steps involved for such a small change. In an upcoming section, you’ll learn how to see code updates without needing to rebuild and start a new container every time you make a change. Before talking about persistence, you’ll see how to share these images with others."
+  },
+  {
+    "objectID": "docker-start-share.html#create-a-docker-id",
+    "href": "docker-start-share.html#create-a-docker-id",
+    "title": "13  Share the application",
+    "section": "13.1 Create a Docker ID",
+    "text": "13.1 Create a Docker ID\nDocker ID: A Docker ID allows you to access Docker Hub which is the world’s largest library and community for container images.\n\nCreate a Docker ID for free if you don’t have one."
+  },
+  {
+    "objectID": "docker-start-share.html#create-a-repo",
+    "href": "docker-start-share.html#create-a-repo",
+    "title": "13  Share the application",
+    "section": "13.2 Create a repo",
+    "text": "13.2 Create a repo\nTo push an image, you first need to create a repository on Docker Hub.\n\nSign up or Sign in to Docker Hub.\nSelect the Create Repository button.\nFor the repo name, use getting-started. Make sure the Visibility is Public.\n\n\n\nSelect the Create button."
+  },
+  {
+    "objectID": "docker-start-share.html#push-the-image",
+    "href": "docker-start-share.html#push-the-image",
+    "title": "13  Share the application",
+    "section": "13.3 Push the image",
+    "text": "13.3 Push the image\n\nIn the command line, try running the push command you see on Docker Hub. Note that your command will be using your namespace, not kirenz.\n\nsudo docker push kirenz/getting-started\nThis sould output an error message like the following:\nThe push refers to repository [docker.io/kirenz/getting-started]\nAn image does not exist locally with the tag: kirenz/getting-started\nTo fix this, you need to “tag” your existing image you’ve built to give it another name.\n\nLogin to the Docker Hub using the command\n\nsudo docker login -u YOUR-USER-NAME\n\nUse the docker tag command to give the getting-started image a new name. Be sure to swap out YOUR-USER-NAME with your Docker ID.\n\nsudo docker tag getting-started YOUR-USER-NAME/getting-started\nTo learn more about the docker tag command, see docker tag.\n\nNow try your push command again. If you’re copying the value from Docker Hub, you can drop the tagname portion, as you didn’t add a tag to the image name. If you don’t specify a tag, Docker will use a tag called latest.\n\nsudo docker push YOUR-USER-NAME/getting-started\n\n13.3.1 Run image\nNow that your image has been built and pushed into a registry, try running your app on a brand new instance that has never seen this container image. To do this, you will use Play with Docker\n\nOpen your browser to Play with Docker.\nSelect Login and then select docker from the drop-down list.\n\n\n\nOnce you’re logged in, select the ADD NEW INSTANCE option on the left side bar. If you don’t see it, make your browser a little wider. After a few seconds, a terminal window opens in your browser.\nIn the terminal, start your freshly pushed app:\n\ndocker run -dp 3000:3000 YOUR-USER-NAME/getting-started\nYou should see the image get pulled down and eventually start up.\n\nSelect on the 3000 badge when it comes up and you should see the app with your modifications. If the 3000 badge doesn’t show up, you can select the Open Port button and type in 3000.\n\n!"
+  },
+  {
+    "objectID": "docker-start-share.html#next-steps",
+    "href": "docker-start-share.html#next-steps",
+    "title": "13  Share the application",
+    "section": "13.4 Next steps",
+    "text": "13.4 Next steps\nIn this section, you learned how to share your images by pushing them to a registry. You then went to a brand new instance and were able to run the freshly pushed image. This is quite common in CI pipelines, where the pipeline will create the image and push it to a registry and then the production environment can use the latest version of the image.\nNow you can circle back around to what you noticed at the end of the last section. As a reminder, you noticed that when you restarted the app, you lost all of your todo list items. That’s obviously not a great user experience, so next you’ll learn how you can persist the data across restarts."
   }
 ]

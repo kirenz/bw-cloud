@@ -8,7 +8,7 @@
 
 <meta name="author" content="Jan Kirenz">
 
-<title>Cloud Architecure - 3&nbsp; Create a launch instance</title>
+<title>Cloud Architecure - 12&nbsp; Update application</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -21,6 +21,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -31,8 +65,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./instance-login.html" rel="next">
-<link href="./key-pairs-create.html" rel="prev">
+<link href="./docker-start-share.html" rel="next">
+<link href="./docker-start-containerize.html" rel="prev">
 <link href="./cover.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -75,7 +109,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./instance.html">Virtual Machine</a></li><li class="breadcrumb-item"><a href="./instance-create.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Create a launch instance</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./docker.html">Docker</a></li><li class="breadcrumb-item"><a href="./docker-start-update.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Update application</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -137,7 +171,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./instance-create.html" class="sidebar-item-text sidebar-link active">
+  <a href="./instance-create.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Create a launch instance</span></span></a>
   </div>
 </li>
@@ -213,7 +247,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./docker-start-update.html" class="sidebar-item-text sidebar-link">
+  <a href="./docker-start-update.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Update application</span></span></a>
   </div>
 </li>
@@ -235,24 +269,20 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#details" id="toc-details" class="nav-link active" data-scroll-target="#details"><span class="header-section-number">3.1</span> Details</a></li>
-  <li><a href="#source" id="toc-source" class="nav-link" data-scroll-target="#source"><span class="header-section-number">3.2</span> Source</a></li>
-  <li><a href="#flavor" id="toc-flavor" class="nav-link" data-scroll-target="#flavor"><span class="header-section-number">3.3</span> Flavor</a></li>
-  <li><a href="#networks" id="toc-networks" class="nav-link" data-scroll-target="#networks"><span class="header-section-number">3.4</span> Networks</a></li>
-  <li><a href="#network-ports" id="toc-network-ports" class="nav-link" data-scroll-target="#network-ports"><span class="header-section-number">3.5</span> Network Ports</a></li>
-  <li><a href="#security-groups" id="toc-security-groups" class="nav-link" data-scroll-target="#security-groups"><span class="header-section-number">3.6</span> Security Groups</a></li>
-  <li><a href="#key-pair" id="toc-key-pair" class="nav-link" data-scroll-target="#key-pair"><span class="header-section-number">3.7</span> Key Pair</a></li>
-  <li><a href="#launch-instance" id="toc-launch-instance" class="nav-link" data-scroll-target="#launch-instance"><span class="header-section-number">3.8</span> Launch Instance</a></li>
-  <li><a href="#dashboard" id="toc-dashboard" class="nav-link" data-scroll-target="#dashboard"><span class="header-section-number">3.9</span> Dashboard</a></li>
+  <li><a href="#update-the-source-code" id="toc-update-the-source-code" class="nav-link active" data-scroll-target="#update-the-source-code"><span class="header-section-number">12.1</span> Update the source code</a></li>
+  <li><a href="#build-image" id="toc-build-image" class="nav-link" data-scroll-target="#build-image"><span class="header-section-number">12.2</span> Build image</a></li>
+  <li><a href="#remove-old-container" id="toc-remove-old-container" class="nav-link" data-scroll-target="#remove-old-container"><span class="header-section-number">12.3</span> Remove old container</a></li>
+  <li><a href="#start-the-updated-app-container" id="toc-start-the-updated-app-container" class="nav-link" data-scroll-target="#start-the-updated-app-container"><span class="header-section-number">12.4</span> Start the updated app container</a></li>
+  <li><a href="#next-steps" id="toc-next-steps" class="nav-link" data-scroll-target="#next-steps"><span class="header-section-number">12.5</span> Next steps</a></li>
   </ul>
-<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/kirenz/bw-cloud/edit/main/instance-create.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/kirenz/bw-cloud/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/kirenz/bw-cloud/edit/main/docker-start-update.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/kirenz/bw-cloud/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Create a launch instance</span></h1>
+<h1 class="title"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Update application</span></h1>
 </div>
 
 
@@ -267,91 +297,62 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<ol type="1">
-<li><p>Open your <a href="https://portal.bw-cloud.org">bwCloud Dashboard</a></p></li>
-<li><p>Navigate to <em>Instances</em> in the left side menue.</p></li>
-<li><p>Select <em>Launch Instance</em></p></li>
-</ol>
-<p>Now follow the steps outlined below.</p>
-<hr>
-<section id="details" class="level2" data-number="3.1">
-<h2 data-number="3.1" class="anchored" data-anchor-id="details"><span class="header-section-number">3.1</span> Details</h2>
-<p><img src="images/instance-details.png" class="img-fluid"></p>
+<section id="update-the-source-code" class="level2" data-number="12.1">
+<h2 data-number="12.1" class="anchored" data-anchor-id="update-the-source-code"><span class="header-section-number">12.1</span> Update the source code</h2>
+<p>In the steps below, you will change the “empty text” when you don’t have any todo list items to “You have no todo items yet! Add one above!”</p>
 <ul>
-<li>Provide the instance name. We choose: <code>bwcloud</code></li>
-<li>Provide a description for the instance, e.g.&nbsp;<code>bwCloud virtual machine</code></li>
-<li>Choose count <code>1</code></li>
+<li>In the src/static/js/app.js file, update line 56 to use the new empty text (replace the text marked as <code>-</code> with the new text marked with <code>+</code>). Dont forget to save the changes.</li>
 </ul>
-<hr>
+<div class="sourceCode" id="cb1"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="op">...</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a> <span class="op">-</span>                <span class="op">&lt;</span>p className<span class="op">=</span><span class="st">"text-center"</span><span class="op">&gt;</span>No items yet<span class="op">!</span> Add one above<span class="op">!&lt;/</span>p<span class="op">&gt;</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a> <span class="op">+</span>                <span class="op">&lt;</span>p className<span class="op">=</span><span class="st">"text-center"</span><span class="op">&gt;</span>You have no todo items yet<span class="op">!</span> Add one above<span class="op">!&lt;/</span>p<span class="op">&gt;</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a> <span class="op">...</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="source" class="level2" data-number="3.2">
-<h2 data-number="3.2" class="anchored" data-anchor-id="source"><span class="header-section-number">3.2</span> Source</h2>
-<p><img src="images/instance-source.png" class="img-fluid"></p>
-<p>Instance source is the template used to create an instance.</p>
+<section id="build-image" class="level2" data-number="12.2">
+<h2 data-number="12.2" class="anchored" data-anchor-id="build-image"><span class="header-section-number">12.2</span> Build image</h2>
 <ul>
-<li>Choose <code>Ubuntu 22.04</code> (click on the arrow at the right)</li>
+<li>Build your updated version of the image, using the same docker build command you used in part 2.</li>
 </ul>
-<hr>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> docker build <span class="at">-t</span> getting-started .</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>Start a new container using the updated code.</li>
+</ul>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> docker run <span class="at">-dp</span> 3000:3000 getting-started</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>You probably saw an error like this (the IDs will be different):</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker:</span> Error response from daemon: driver failed programming external connectivity on endpoint competent_shirley <span class="er">(</span><span class="ex">b83e81e06e1ad74187ac3d7248be33a557820d35d597877985804eecf3bfba69</span><span class="kw">)</span><span class="bu">:</span> Bind for 0.0.0.0:3000 failed: port is already allocated.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The error occurred because you aren’t able to start the new container while your old container is still running.</p>
+<p>The reason is that the old container is already using the host’s port 3000 and only one process on the machine (containers included) can listen to a specific port. To fix this, you need to remove the old container.</p>
 </section>
-<section id="flavor" class="level2" data-number="3.3">
-<h2 data-number="3.3" class="anchored" data-anchor-id="flavor"><span class="header-section-number">3.3</span> Flavor</h2>
-<p><img src="images/instance-flavor.png" class="img-fluid"></p>
-<p>Flavors manage the sizing for the compute, memory and storage capacity of the instance. We use m1.nano.</p>
+<section id="remove-old-container" class="level2" data-number="12.3">
+<h2 data-number="12.3" class="anchored" data-anchor-id="remove-old-container"><span class="header-section-number">12.3</span> Remove old container</h2>
+<p>To remove a container, you first need to stop it. Once it has stopped, you can remove it.</p>
 <ul>
-<li>Choose <code>m1.nano</code> (click on the arrow at the right)</li>
+<li>Get the ID of the container by using the docker ps command.</li>
 </ul>
-<hr>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> docker ps</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>Use the docker stop command to stop the container. Replace <the-container-id> with the ID from docker ps.</the-container-id></li>
+</ul>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> docker stop <span class="op">&lt;</span>the-container-id<span class="op">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>Once the container has stopped, you can remove it by using the docker rm command.</li>
+</ul>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> docker rm <span class="op">&lt;</span>the-container-id<span class="op">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Note: You can also stop and remove a container in a single command by adding the force flag to the docker rm command. For example: <code>docker rm -f &lt;the-container-id&gt;</code></p>
 </section>
-<section id="networks" class="level2" data-number="3.4">
-<h2 data-number="3.4" class="anchored" data-anchor-id="networks"><span class="header-section-number">3.4</span> Networks</h2>
-<p><img src="images/instance-networks.png" class="img-fluid"></p>
-<p>Networks provide the communication channels for instances in the cloud.</p>
-<ul>
-<li>We use public-belwue</li>
-</ul>
-<hr>
+<section id="start-the-updated-app-container" class="level2" data-number="12.4">
+<h2 data-number="12.4" class="anchored" data-anchor-id="start-the-updated-app-container"><span class="header-section-number">12.4</span> Start the updated app container</h2>
+<p>Now, start your updated app using the docker run command.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> docker run <span class="at">-dp</span> 3000:3000 getting-started</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Refresh your browser on <a href="http://localhost:3000" class="uri">http://localhost:3000</a> and you should see your updated help text.</p>
 </section>
-<section id="network-ports" class="level2" data-number="3.5">
-<h2 data-number="3.5" class="anchored" data-anchor-id="network-ports"><span class="header-section-number">3.5</span> Network Ports</h2>
-<p>Ports provide extra communication channels to your instances. You can select ports instead of networks or a mix of both.</p>
-<ul>
-<li>We dont use network ports</li>
-</ul>
-<hr>
-</section>
-<section id="security-groups" class="level2" data-number="3.6">
-<h2 data-number="3.6" class="anchored" data-anchor-id="security-groups"><span class="header-section-number">3.6</span> Security Groups</h2>
-<ul>
-<li><p>Choose default and your custom security groups</p></li>
-<li><p>Follow <a href="https://www.bw-cloud.org/de/bwcloud_scope/nutzen#open_port">this bwCloud-tutorial</a> to open a port.</p></li>
-</ul>
-<hr>
-</section>
-<section id="key-pair" class="level2" data-number="3.7">
-<h2 data-number="3.7" class="anchored" data-anchor-id="key-pair"><span class="header-section-number">3.7</span> Key Pair</h2>
-<p><img src="images/instance-key-pair.png" class="img-fluid"></p>
-<ul>
-<li><p>Select the key pair from step create-key-pairs.</p></li>
-<li><p>Here, it’s called “id-rsa-pub”</p></li>
-</ul>
-<hr>
-</section>
-<section id="launch-instance" class="level2" data-number="3.8">
-<h2 data-number="3.8" class="anchored" data-anchor-id="launch-instance"><span class="header-section-number">3.8</span> Launch Instance</h2>
-<p><img src="images/instance-launch.png" class="img-fluid"></p>
-<ul>
-<li>We are done and you can click on “Launch Instance”.</li>
-</ul>
-<hr>
-</section>
-<section id="dashboard" class="level2" data-number="3.9">
-<h2 data-number="3.9" class="anchored" data-anchor-id="dashboard"><span class="header-section-number">3.9</span> Dashboard</h2>
-<p><img src="images/instance-dashboard.png" class="img-fluid"></p>
-<ul>
-<li><p>Refresh your browser</p></li>
-<li><p>You should see your newly created instance in your dashboard.</p></li>
-<li><p>Click on the instance name to see more details</p></li>
-</ul>
+<section id="next-steps" class="level2" data-number="12.5">
+<h2 data-number="12.5" class="anchored" data-anchor-id="next-steps"><span class="header-section-number">12.5</span> Next steps</h2>
+<p>While you were able to build an update, there were two things you might have noticed:</p>
+<p>All of the existing items in your todo list are gone! That’s not a very good app! You’ll fix that shortly.</p>
+<p>There were a lot of steps involved for such a small change. In an upcoming section, you’ll learn how to see code updates without needing to rebuild and start a new container every time you make a change. Before talking about persistence, you’ll see how to share these images with others.</p>
 
 
 </section>
@@ -592,13 +593,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./key-pairs-create.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Create SSH-Key</span></span>
+      <a href="./docker-start-containerize.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Containerize the application</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./instance-login.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Log into instance</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./docker-start-share.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Share the application</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

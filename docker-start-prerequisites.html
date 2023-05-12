@@ -8,7 +8,7 @@
 
 <meta name="author" content="Jan Kirenz">
 
-<title>Cloud Architecure - 3&nbsp; Create a launch instance</title>
+<title>Cloud Architecure - 10&nbsp; Get started with Docker</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -21,6 +21,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -31,8 +65,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./instance-login.html" rel="next">
-<link href="./key-pairs-create.html" rel="prev">
+<link href="./docker-start-containerize.html" rel="next">
+<link href="./docker-location.html" rel="prev">
 <link href="./cover.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -75,7 +109,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./instance.html">Virtual Machine</a></li><li class="breadcrumb-item"><a href="./instance-create.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Create a launch instance</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./docker.html">Docker</a></li><li class="breadcrumb-item"><a href="./docker-start-prerequisites.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Get started with Docker</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -137,7 +171,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./instance-create.html" class="sidebar-item-text sidebar-link active">
+  <a href="./instance-create.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Create a launch instance</span></span></a>
   </div>
 </li>
@@ -201,7 +235,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./docker-start-prerequisites.html" class="sidebar-item-text sidebar-link">
+  <a href="./docker-start-prerequisites.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Get started with Docker</span></span></a>
   </div>
 </li>
@@ -235,24 +269,17 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#details" id="toc-details" class="nav-link active" data-scroll-target="#details"><span class="header-section-number">3.1</span> Details</a></li>
-  <li><a href="#source" id="toc-source" class="nav-link" data-scroll-target="#source"><span class="header-section-number">3.2</span> Source</a></li>
-  <li><a href="#flavor" id="toc-flavor" class="nav-link" data-scroll-target="#flavor"><span class="header-section-number">3.3</span> Flavor</a></li>
-  <li><a href="#networks" id="toc-networks" class="nav-link" data-scroll-target="#networks"><span class="header-section-number">3.4</span> Networks</a></li>
-  <li><a href="#network-ports" id="toc-network-ports" class="nav-link" data-scroll-target="#network-ports"><span class="header-section-number">3.5</span> Network Ports</a></li>
-  <li><a href="#security-groups" id="toc-security-groups" class="nav-link" data-scroll-target="#security-groups"><span class="header-section-number">3.6</span> Security Groups</a></li>
-  <li><a href="#key-pair" id="toc-key-pair" class="nav-link" data-scroll-target="#key-pair"><span class="header-section-number">3.7</span> Key Pair</a></li>
-  <li><a href="#launch-instance" id="toc-launch-instance" class="nav-link" data-scroll-target="#launch-instance"><span class="header-section-number">3.8</span> Launch Instance</a></li>
-  <li><a href="#dashboard" id="toc-dashboard" class="nav-link" data-scroll-target="#dashboard"><span class="header-section-number">3.9</span> Dashboard</a></li>
+  <li><a href="#prerequisites" id="toc-prerequisites" class="nav-link active" data-scroll-target="#prerequisites"><span class="header-section-number">10.1</span> Prerequisites</a></li>
+  <li><a href="#get-the-app" id="toc-get-the-app" class="nav-link" data-scroll-target="#get-the-app"><span class="header-section-number">10.2</span> Get the app</a></li>
   </ul>
-<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/kirenz/bw-cloud/edit/main/instance-create.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/kirenz/bw-cloud/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/kirenz/bw-cloud/edit/main/docker-start-prerequisites.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/kirenz/bw-cloud/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Create a launch instance</span></h1>
+<h1 class="title"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Get started with Docker</span></h1>
 </div>
 
 
@@ -267,91 +294,39 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<ol type="1">
-<li><p>Open your <a href="https://portal.bw-cloud.org">bwCloud Dashboard</a></p></li>
-<li><p>Navigate to <em>Instances</em> in the left side menue.</p></li>
-<li><p>Select <em>Launch Instance</em></p></li>
-</ol>
-<p>Now follow the steps outlined below.</p>
-<hr>
-<section id="details" class="level2" data-number="3.1">
-<h2 data-number="3.1" class="anchored" data-anchor-id="details"><span class="header-section-number">3.1</span> Details</h2>
-<p><img src="images/instance-details.png" class="img-fluid"></p>
+<p><em>This guide is based on the excellent <a href="https://docs.docker.com/get-started/">Docker step-by-step instructions</a> on how to get started with Docker.</em></p>
+<p>Some of the things you’ll learn and do in this guide are:</p>
 <ul>
-<li>Provide the instance name. We choose: <code>bwcloud</code></li>
-<li>Provide a description for the instance, e.g.&nbsp;<code>bwCloud virtual machine</code></li>
-<li>Choose count <code>1</code></li>
+<li>Build and run an image as a container.</li>
+<li>Share images using Docker Hub.</li>
+<li>Deploy Docker applications using multiple containers with a database.</li>
+<li>Run applications using Docker Compose.</li>
 </ul>
-<hr>
+<section id="prerequisites" class="level2" data-number="10.1">
+<h2 data-number="10.1" class="anchored" data-anchor-id="prerequisites"><span class="header-section-number">10.1</span> Prerequisites</h2>
+<p>To complete this guide, you’ll need the following:</p>
+<ul>
+<li><p>Docker on your virtual machine in volume <code>mnt/vdb</code>.</p></li>
+<li><p><a href="./vs-code-ssh.html">Visual Studio Code</a>.</p></li>
+<li><p>A conceptual understanding of <a href="https://docs.docker.com/get-started/overview/#docker-objects">containers and images</a>.</p></li>
+</ul>
 </section>
-<section id="source" class="level2" data-number="3.2">
-<h2 data-number="3.2" class="anchored" data-anchor-id="source"><span class="header-section-number">3.2</span> Source</h2>
-<p><img src="images/instance-source.png" class="img-fluid"></p>
-<p>Instance source is the template used to create an instance.</p>
+<section id="get-the-app" class="level2" data-number="10.2">
+<h2 data-number="10.2" class="anchored" data-anchor-id="get-the-app"><span class="header-section-number">10.2</span> Get the app</h2>
+<p>Before you can run the application, you need to get the application source code onto your machine.</p>
 <ul>
-<li>Choose <code>Ubuntu 22.04</code> (click on the arrow at the right)</li>
+<li>Change directory into mnt/vdb</li>
 </ul>
-<hr>
-</section>
-<section id="flavor" class="level2" data-number="3.3">
-<h2 data-number="3.3" class="anchored" data-anchor-id="flavor"><span class="header-section-number">3.3</span> Flavor</h2>
-<p><img src="images/instance-flavor.png" class="img-fluid"></p>
-<p>Flavors manage the sizing for the compute, memory and storage capacity of the instance. We use m1.nano.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a> <span class="bu">cd</span> /mnt/vdb</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
-<li>Choose <code>m1.nano</code> (click on the arrow at the right)</li>
+<li>Clone the getting-started repository using the following command:</li>
 </ul>
-<hr>
-</section>
-<section id="networks" class="level2" data-number="3.4">
-<h2 data-number="3.4" class="anchored" data-anchor-id="networks"><span class="header-section-number">3.4</span> Networks</h2>
-<p><img src="images/instance-networks.png" class="img-fluid"></p>
-<p>Networks provide the communication channels for instances in the cloud.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> git clone https://github.com/docker/getting-started.git</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Next, we view the contents of the cloned repository in VS Code.</p>
 <ul>
-<li>We use public-belwue</li>
+<li>Navigate to the VS code menue at the top and choose ‘File’ &gt; ‘Open Folder’ and insert: /mnt/vdb/getting-started/app (this will open a new window and you have to insert your SSH-key)</li>
 </ul>
-<hr>
-</section>
-<section id="network-ports" class="level2" data-number="3.5">
-<h2 data-number="3.5" class="anchored" data-anchor-id="network-ports"><span class="header-section-number">3.5</span> Network Ports</h2>
-<p>Ports provide extra communication channels to your instances. You can select ports instead of networks or a mix of both.</p>
-<ul>
-<li>We dont use network ports</li>
-</ul>
-<hr>
-</section>
-<section id="security-groups" class="level2" data-number="3.6">
-<h2 data-number="3.6" class="anchored" data-anchor-id="security-groups"><span class="header-section-number">3.6</span> Security Groups</h2>
-<ul>
-<li><p>Choose default and your custom security groups</p></li>
-<li><p>Follow <a href="https://www.bw-cloud.org/de/bwcloud_scope/nutzen#open_port">this bwCloud-tutorial</a> to open a port.</p></li>
-</ul>
-<hr>
-</section>
-<section id="key-pair" class="level2" data-number="3.7">
-<h2 data-number="3.7" class="anchored" data-anchor-id="key-pair"><span class="header-section-number">3.7</span> Key Pair</h2>
-<p><img src="images/instance-key-pair.png" class="img-fluid"></p>
-<ul>
-<li><p>Select the key pair from step create-key-pairs.</p></li>
-<li><p>Here, it’s called “id-rsa-pub”</p></li>
-</ul>
-<hr>
-</section>
-<section id="launch-instance" class="level2" data-number="3.8">
-<h2 data-number="3.8" class="anchored" data-anchor-id="launch-instance"><span class="header-section-number">3.8</span> Launch Instance</h2>
-<p><img src="images/instance-launch.png" class="img-fluid"></p>
-<ul>
-<li>We are done and you can click on “Launch Instance”.</li>
-</ul>
-<hr>
-</section>
-<section id="dashboard" class="level2" data-number="3.9">
-<h2 data-number="3.9" class="anchored" data-anchor-id="dashboard"><span class="header-section-number">3.9</span> Dashboard</h2>
-<p><img src="images/instance-dashboard.png" class="img-fluid"></p>
-<ul>
-<li><p>Refresh your browser</p></li>
-<li><p>You should see your newly created instance in your dashboard.</p></li>
-<li><p>Click on the instance name to see more details</p></li>
-</ul>
+<p>Inside the getting-started/app directory you should see package.json and two subdirectories (src and spec).</p>
 
 
 </section>
@@ -592,13 +567,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./key-pairs-create.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Create SSH-Key</span></span>
+      <a href="./docker-location.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Change docker location</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./instance-login.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Log into instance</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./docker-start-containerize.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Containerize the application</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

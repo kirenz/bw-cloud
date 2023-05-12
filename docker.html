@@ -199,6 +199,30 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Change docker location</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./docker-start-prerequisites.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Get started with Docker</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./docker-start-containerize.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Containerize the application</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./docker-start-update.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Update application</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./docker-start-share.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Share the application</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -207,7 +231,32 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#what-is-docker" id="toc-what-is-docker" class="nav-link active" data-scroll-target="#what-is-docker">What is Docker?</a></li>
+  <li><a href="#benefits-of-docker" id="toc-benefits-of-docker" class="nav-link" data-scroll-target="#benefits-of-docker">Benefits of Docker</a>
+  <ul class="collapse">
+  <li><a href="#consistent-environment" id="toc-consistent-environment" class="nav-link" data-scroll-target="#consistent-environment">Consistent Environment</a></li>
+  <li><a href="#fast-deployment" id="toc-fast-deployment" class="nav-link" data-scroll-target="#fast-deployment">Fast Deployment</a></li>
+  <li><a href="#scalability" id="toc-scalability" class="nav-link" data-scroll-target="#scalability">Scalability</a></li>
+  <li><a href="#isolation" id="toc-isolation" class="nav-link" data-scroll-target="#isolation">Isolation</a></li>
+  <li><a href="#version-control" id="toc-version-control" class="nav-link" data-scroll-target="#version-control">Version Control</a></li>
+  <li><a href="#resource-efficiency" id="toc-resource-efficiency" class="nav-link" data-scroll-target="#resource-efficiency">Resource Efficiency</a></li>
+  </ul></li>
+  <li><a href="#docker-architecture" id="toc-docker-architecture" class="nav-link" data-scroll-target="#docker-architecture">Docker Architecture</a></li>
+  <li><a href="#key-docker-components" id="toc-key-docker-components" class="nav-link" data-scroll-target="#key-docker-components">Key Docker Components</a>
+  <ul class="collapse">
+  <li><a href="#dockerfile" id="toc-dockerfile" class="nav-link" data-scroll-target="#dockerfile">Dockerfile</a></li>
+  <li><a href="#docker-image" id="toc-docker-image" class="nav-link" data-scroll-target="#docker-image">Docker Image</a></li>
+  <li><a href="#docker-container" id="toc-docker-container" class="nav-link" data-scroll-target="#docker-container">Docker Container</a></li>
+  <li><a href="#docker-hub" id="toc-docker-hub" class="nav-link" data-scroll-target="#docker-hub">Docker Hub</a></li>
+  </ul></li>
+  <li><a href="#basic-docker-commands" id="toc-basic-docker-commands" class="nav-link" data-scroll-target="#basic-docker-commands">Basic Docker Commands</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
+  </ul>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/kirenz/bw-cloud/edit/main/docker.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/kirenz/bw-cloud/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -229,9 +278,159 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<p>tbd</p>
+<section id="what-is-docker" class="level2">
+<h2 class="anchored" data-anchor-id="what-is-docker">What is Docker?</h2>
+<p>Docker is an open-source platform that automates the deployment, scaling, and management of applications using containerization technology.</p>
+<p>It enables developers to build, package, and deploy applications as lightweight, portable containers that can run consistently across various environments.</p>
+</section>
+<section id="benefits-of-docker" class="level2">
+<h2 class="anchored" data-anchor-id="benefits-of-docker">Benefits of Docker</h2>
+<section id="consistent-environment" class="level3">
+<h3 class="anchored" data-anchor-id="consistent-environment">Consistent Environment</h3>
+<p>Docker allows developers to create a consistent environment throughout the entire development and deployment lifecycle. By using containers, applications can be developed, tested, and deployed in the same environment, reducing the risk of inconsistencies and configuration issues.</p>
+</section>
+<section id="fast-deployment" class="level3">
+<h3 class="anchored" data-anchor-id="fast-deployment">Fast Deployment</h3>
+<p>Docker containers are lightweight and start quickly, allowing for rapid deployment of applications. This is especially beneficial in environments where frequent updates or scaling are required.</p>
+</section>
+<section id="scalability" class="level3">
+<h3 class="anchored" data-anchor-id="scalability">Scalability</h3>
+<p>Docker’s containerization technology enables easy horizontal scaling of applications. By running multiple instances of a container, you can distribute the load across these instances, providing better performance and availability.</p>
+</section>
+<section id="isolation" class="level3">
+<h3 class="anchored" data-anchor-id="isolation">Isolation</h3>
+<p>Containers in Docker are isolated from each other and the host system, ensuring that they do not interfere with each other. This isolation improves security and allows for better control over resources.</p>
+</section>
+<section id="version-control" class="level3">
+<h3 class="anchored" data-anchor-id="version-control">Version Control</h3>
+<p>Docker images can be versioned, allowing you to easily roll back to previous versions or update to new ones as needed. This capability makes it simple to manage the lifecycle of your application.</p>
+</section>
+<section id="resource-efficiency" class="level3">
+<h3 class="anchored" data-anchor-id="resource-efficiency">Resource Efficiency</h3>
+<p>Docker containers share the host system’s kernel, which means they use fewer resources than traditional virtual machines. This efficiency allows you to run more containers on a single host, reducing hardware and operational costs.</p>
+</section>
+</section>
+<section id="docker-architecture" class="level2">
+<h2 class="anchored" data-anchor-id="docker-architecture">Docker Architecture</h2>
+<p>Docker follows a client-server model, which consists of the following components:</p>
+<ul>
+<li>Docker Client: The command-line interface or graphical user interface (GUI) used to interact with Docker.</li>
+<li>Docker Daemon: The background service that manages Docker objects, such as images, containers, networks, and volumes.</li>
+<li>Docker Registry: The centralized repository where Docker images are stored and distributed. Docker Hub is a popular public registry.</li>
+</ul>
+</section>
+<section id="key-docker-components" class="level2">
+<h2 class="anchored" data-anchor-id="key-docker-components">Key Docker Components</h2>
+<section id="dockerfile" class="level3">
+<h3 class="anchored" data-anchor-id="dockerfile">Dockerfile</h3>
+<p>A Dockerfile is a text file that contains instructions for building a Docker image. It defines the base image, application code, dependencies, and configuration settings needed to create a container.</p>
+</section>
+<section id="docker-image" class="level3">
+<h3 class="anchored" data-anchor-id="docker-image">Docker Image</h3>
+<p>A Docker image is a read-only template that contains the application and its dependencies. It is created by building a Dockerfile and can be stored in a Docker registry, such as Docker Hub, for easy distribution.</p>
+</section>
+<section id="docker-container" class="level3">
+<h3 class="anchored" data-anchor-id="docker-container">Docker Container</h3>
+<p>A Docker container is a running instance of a Docker image. Containers can be started, stopped, and managed using Docker commands.</p>
+</section>
+<section id="docker-hub" class="level3">
+<h3 class="anchored" data-anchor-id="docker-hub">Docker Hub</h3>
+<p>Docker Hub is a cloud-based registry service where you can share and manage Docker images. It enables you to store and distribute your images publicly or privately, making it easy to collaborate with others.</p>
+</section>
+</section>
+<section id="basic-docker-commands" class="level2">
+<h2 class="anchored" data-anchor-id="basic-docker-commands">Basic Docker Commands</h2>
+<ul>
+<li><code>docker build</code>: Build Docker images from Dockerfiles</li>
+<li><code>docker run</code>: Run a Docker container from an image</li>
+<li><code>docker ps</code>: List running containers</li>
+<li><code>docker images</code>: List available images on the system</li>
+<li><code>docker pull</code>: Download an image from Docker Hub</li>
+<li><code>docker push</code>: Upload an image to Docker Hub</li>
+<li><code>docker stop</code>: Stop a running container</li>
+</ul>
+</section>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<p>Docker simplifies the deployment and management of applications by providing a consistent and portable environment using containerization technology. Its key components and basic commands allow developers to build, share, and run containers with ease, while its architecture ensures scalability, isolation, and resource efficiency.</p>
+
+<!--
+
+---
+
+## What is Docker?
+
+- Open-source platform
+- Automate deployment, scaling, and management of applications
+- Containerization technology
+- Lightweight and portable
+
+---
+
+## Why use Docker?
+
+- Consistent environment
+- Fast deployment
+- Scalability
+- Isolation
+- Version control
+- Resource efficiency
+
+---
+
+## Docker Architecture
+
+- Client-server model
+- Docker Client
+- Docker Daemon
+- Docker Registry
+- Docker Objects
+
+---
+
+## Key Components
+
+- Dockerfile
+    - Text file with instructions to build Docker images
+- Docker Image
+    - Read-only template with application and its dependencies
+- Docker Container
+    - Running instance of a Docker image
+- Docker Hub
+    - Cloud-based registry service to share and manage Docker images
+
+---
+
+## Basic Docker Commands
+
+- `docker build`
+    - Build Docker images from Dockerfiles
+- `docker run`
+    - Run a Docker container from an image
+- `docker ps`
+    - List running containers
+- `docker images`
+    - List available images on the system
+- `docker pull`
+    - Download an image from Docker Hub
+- `docker push`
+    - Upload an image to Docker Hub
+- `docker stop`
+    - Stop a running container
+
+---
+
+## Conclusion
+
+- Docker simplifies deployment and management of applications
+- Containerization provides consistency and isolation
+- Docker components make it easy to build, share, and run containers
+- Basic Docker commands allow you to manage images and containers
+
+-->
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -485,7 +684,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     <div class="nav-footer-left">Jan Kirenz</div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/kirenz/bw-cloud/edit/main/docker.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/kirenz/bw-cloud/issues/new" class="toc-action">Report an issue</a></p></div></div></div>
+    </div>
     <div class="nav-footer-right">This book was built with <a href="https://quarto.org/">Quarto</a>.</div>
   </div>
 </footer>
