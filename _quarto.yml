@@ -39,6 +39,10 @@ book:
       chapters:
         - docker-setup.qmd
         - docker-location.qmd
+        - docker-start-prerequisites.qmd
+        - docker-start-containerize.qmd
+        - docker-start-update.qmd
+        - docker-start-share.qmd
      
 bibliography: references.bib
 
