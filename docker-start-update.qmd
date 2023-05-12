@@ -6,7 +6,7 @@ In the steps below, you will change the “empty text” when you don’t have a
 
 - In the src/static/js/app.js file, update line 56 to use the new empty text (replace the text marked as `-` with the new text marked with `+`). Dont forget to save the changes.
 
-```{js}
+```js
 
 ...
  -                <p className="text-center">No items yet! Add one above!</p>
@@ -22,19 +22,19 @@ In the steps below, you will change the “empty text” when you don’t have a
 - Build your updated version of the image, using the same docker build command you used in part 2.
 
 
-```{bash}
+```bash
 sudo docker build -t getting-started .
 ```
 
 - Start a new container using the updated code.
 
-```{bash}
+```bash
 sudo docker run -dp 3000:3000 getting-started
 ```
 
 You probably saw an error like this (the IDs will be different):
 
-```{bash}
+```bash
 docker: Error response from daemon: driver failed programming external connectivity on endpoint competent_shirley (b83e81e06e1ad74187ac3d7248be33a557820d35d597877985804eecf3bfba69): Bind for 0.0.0.0:3000 failed: port is already allocated.
 ```
 
@@ -48,20 +48,20 @@ To remove a container, you first need to stop it. Once it has stopped, you can r
 
 - Get the ID of the container by using the docker ps command.
 
-```{bash}
+```bash
 sudo docker ps
 ```
 
 - Use the docker stop command to stop the container. Replace <the-container-id> with the ID from docker ps.
 
-```{bash}
+```bash
 sudo docker stop <the-container-id>
 
 ```
 
 - Once the container has stopped, you can remove it by using the docker rm command.
 
-```{bash}
+```bash
 sudo docker rm <the-container-id>
 ```
 
@@ -72,7 +72,7 @@ Note: You can also stop and remove a container in a single command by adding the
 
 Now, start your updated app using the docker run command.
 
-```{bash}
+```bash
 sudo docker run -dp 3000:3000 getting-started
 ```
 
