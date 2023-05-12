@@ -191,6 +191,20 @@ You can change directory into your new volume and use it later to create new dir
 cd /mnt/vdb
 ```
 
+## Change permissions
+
+Let's change the file permissions for all the contents in the /mnt/vdb directory so we can read, write and execute files within this directory. In particular, this will allow us to modify files using VS Code without encountering a "permission denied" error.
+
+- To change the permissions of all files and directories within /mnt/vdb we we use the chmod command with the recursive (-R) option:
+
+```{bash}
+sudo chmod -R 777 /mnt/vdb
+```
+
+This command will set the permissions to read (r), write (w), and execute (x) for the owner, group, and others on all files and directories within /mnt/vdb.
+
+However, please exercise caution when setting permissions to 777, as it grants full access to everyone, which may have security implications. Therefore, make sure to adjust the permissions as necessary based on your specific requirements and security considerations in your use cases.
+
 <!--
 
 ## Create folders
