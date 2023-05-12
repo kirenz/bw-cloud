@@ -197,7 +197,7 @@ Let's change the file permissions for all the contents in the /mnt/vdb directory
 
 - To change the permissions of all files and directories within /mnt/vdb we we use the chmod command with the recursive (-R) option:
 
-```{bash}
+```
 sudo chmod -R 777 /mnt/vdb
 ```
 
