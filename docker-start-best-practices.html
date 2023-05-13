@@ -400,11 +400,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a> <span class="ex">=</span><span class="op">&gt;</span> =<span class="op">&gt;</span> naming to docker.io/library/getting-started            0.0s</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>You’ll see that all layers were rebuilt. Perfectly fine since we changed the Dockerfile quite a bit.</p>
 <ul>
-<li>Now, make a change to the <code>src/static/index.html</code> file (like change the <code>&lt;title&gt;</code> to say “The Awesome Todo App” in line 11).</li>
+<li><p>Now, make a change to the <code>src/static/index.html</code> file (like change the <code>&lt;title&gt;</code> to say “The Awesome Todo App” in line 11).</p></li>
+<li><p>Build the Docker image now using <code>sudo docker build -t getting-started .</code> again. This time, your output should look a little different.</p></li>
 </ul>
-<ol start="5" type="1">
-<li>Build the Docker image now using <code>sudo docker build -t getting-started .</code> again. This time, your output should look a little different.</li>
-</ol>
 <div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a> <span class="ex">=</span><span class="op">&gt;</span> <span class="pp">[</span><span class="ss">internal</span><span class="pp">]</span> load build definition from Dockerfile          0.2s</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a> <span class="ex">=</span><span class="op">&gt;</span> =<span class="op">&gt;</span> transferring dockerfile: 182B                          0.0s</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a> <span class="ex">=</span><span class="op">&gt;</span> <span class="pp">[</span><span class="ss">internal</span><span class="pp">]</span> load .dockerignore                             0.3s</span>
@@ -488,7 +486,6 @@ build-time dependencies from runtime dependencies.
 
 -->
 <p>In the next section, you’ll learn about additional resources you can use to continue learning about containers.</p>
-<p><a href="11_what_next.md">What next</a>{: .button .primary-btn}</p>
 
 
 </section>
