@@ -5,10 +5,12 @@
 Some of the things you’ll learn and do in this guide are:
 
 1. [Build and run an image as a container](docker-start-containerize.qmd)
-2. [Update images](docker-start-update.qmd)
+2. [Update an image](docker-start-update.qmd)
 3. [Share images using Docker Hub](docker-start-share.qmd)
 4. [Deploy Docker applications with a SQLite database](docker-start-persist.qmd)
-5. Run applications using Docker Compose.
+5. [Share a directory from the host’s filesystem into the container (bind mounts)](docker-start-bind-mounts.qmd).
+5. [Store data in an external database running in a separate container](docker-start-multi-container.qmd)
+6. [Run applications using Docker Compose](docker-start-compose.qmd).
 
 Before you get to the hands on part of the guide, you should learn about containers and images.
 
