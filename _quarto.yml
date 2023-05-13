@@ -45,8 +45,13 @@ book:
         - docker-start-share.qmd
         - docker-start-persist.qmd
         - docker-start-bind-mounts.qmd
-        - docker-start-multiple-container.qmd
-        
+        - docker-start-multi-container.qmd
+        - docker-start-compose.qmd
+        - docker-start-best-practices.qmd
+        - docker-start-next.qmd
+
+
+
      
 bibliography: references.bib
 
