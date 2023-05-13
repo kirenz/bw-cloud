@@ -104,7 +104,7 @@ You'll see that all layers were rebuilt. Perfectly fine since we changed the Doc
 
 - Now, make a change to the `src/static/index.html` file (like change the `<title>` to say "The Awesome Todo App" in line 11).
 
-5. Build the Docker image now using `sudo docker build -t getting-started .` again. This time, your output should look a little different.
+- Build the Docker image now using `sudo docker build -t getting-started .` again. This time, your output should look a little different.
 
 ```bash
  => [internal] load build definition from Dockerfile          0.2s
@@ -197,4 +197,3 @@ build-time dependencies from runtime dependencies.
 
 In the next section, you'll learn about additional resources you can use to continue learning about containers.
 
-[What next](11_what_next.md){: .button  .primary-btn}
