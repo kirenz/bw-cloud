@@ -2,6 +2,54 @@
 
 In case you didn’t notice, your todo list is empty every single time you launch the container. Why is this? In this part, you’ll dive into how the container is working.
 
-Container volumes
+## Container volumes
 
-With the previous experiment, you saw that each container starts from the image definition each time it starts. While containers can create, update, and delete files, those changes are lost when you remove the container and Docker isolates all changes to that container. With volumes, you can change all of this.
+While containers can create, update, and delete files, those changes are lost when you remove the container and Docker isolates all changes to that container. With volumes, you can change all of this.
+
+Volumes provide the ability to connect specific filesystem paths of the container back to the host machine. If you mount a directory in the container, changes in that directory are also seen on the host machine. If you mount that same directory across container restarts, you’d see the same files.
+
+There are two main types of volumes. You’ll eventually use both, but you’ll start with volume mounts.
+
+## Persist the todo data
+
+By default, the todo app stores its data in a SQLite database at `/etc/todos/todo.db` in the container’s filesystem. If you’re not familiar with SQLite, no worries! It’s simply a relational database that stores all the data in a single file. While this isn’t the best for large-scale applications, it works for small demos. You’ll learn how to switch this to a different database engine later.
+
+With the database being a single file, if you can persist that file on the host and make it available to the next container, it should be able to pick up where the last one left off. By creating a volume and attaching (often called “mounting”) it to the directory where you stored the data, you can persist the data. As your container writes to the `todo.db` file, it will persist the data to the host in the volume.
+
+As mentioned, you’re going to use a volume mount. Think of a volume mount as an opaque bucket of data. Docker fully manages the volume, including the storage location on disk. You only need to remember the name of the volume.
+
+- Create a volume by using the `docker volume create` command. We call the volume `todo-db`:
+
+```bash
+sudo docker volume create todo-db
+```
+
+- Stop and remove the todo app container once again, as it is still running without using the persistent volume (obtain the container id with `sudo docker ps`):
+
+
+```bash
+sudo docker rm -f <id>
+```
+
+- Start the todo app container, but add the `--mount` option to specify a volume mount. Give the volume a name, and mount it to `/etc/todos` in the container, which captures all files created at the path:
+
+```bash
+sudo docker run -dp 3000:3000 --mount type=volume,src=todo-db,target=/etc/todos getting-started
+```
+
+- Once the container starts up, go to PORTS, open the app and add a few items to your todo list.
+
+
+- Stop and remove the container for the todo app. Use `sudo docker ps` to get the ID and then `docker rm -f <id>` to remove it.
+
+- Start a new container:
+
+```bash
+sudo docker run -dp 3000:3000 --mount type=volume,src=todo-db,target=/etc/todos getting-started
+```
+
+- Open the app. You should see your items still in your list.
+
+- Go ahead and remove the container when you’re done checking out your list.
+
+You’ve now learned how to persist data.
