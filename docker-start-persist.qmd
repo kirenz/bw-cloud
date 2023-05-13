@@ -52,4 +52,17 @@ sudo docker run -dp 3000:3000 --mount type=volume,src=todo-db,target=/etc/todos 
 
 - Go ahead and remove the container when you’re done checking out your list.
 
-You’ve now learned how to persist data.
+
+If you want to know the location of your stored data, you can use the docker volume inspect command:
+
+```bash
+sudo docker volume inspect todo-db
+```
+
+The Mountpoint is the actual location of the data on the disk.
+
+## Next steps
+
+At this point, you have a functioning application that can survive restarts.
+
+However, you saw earlier that rebuilding images for every change takes quite a bit of time. There’s got to be a better way to make changes, right? With bind mounts, there is a better way.
