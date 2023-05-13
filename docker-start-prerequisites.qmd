@@ -4,20 +4,29 @@
 
 Some of the things you’ll learn and do in this guide are:
 
-- Build and run an image as a container.
-- Share images using Docker Hub.
-- Deploy Docker applications using multiple containers with a database.
-- Run applications using Docker Compose.
+1. [Build and run an image as a container](docker-start-containerize.qmd)
+2. [Update images](docker-start-update.qmd)
+3. [Share images using Docker Hub](docker-start-share.qmd)
+4. [Deploy Docker applications with a SQLite database](docker-start-persist.qmd)
+5. Run applications using Docker Compose.
 
-## Prerequisites
+Before you get to the hands on part of the guide, you should learn about containers and images.
 
-To complete this guide, you’ll need the following:
+## What is a container?
 
-- Docker on your virtual machine in volume `mnt/vdb`. 
+Simply put, a container is a sandboxed process on your machine that is isolated from all other processes on the host machine. That isolation leverages kernel namespaces and cgroups, features that have been in Linux for a long time. Docker has worked to make these capabilities approachable and easy to use. 
 
-- [Visual Studio Code](vs-code-ssh.qmd).
+To summarize, a container:
 
-- A conceptual understanding of [containers and images](https://docs.docker.com/get-started/overview/#docker-objects).
+- Is a runnable instance of an image. You can create, start, stop, move, or delete a container using the DockerAPI or CLI.
+- Can be run on local machines, virtual machines or deployed to the cloud.
+- Is portable (can be run on any OS).
+- Is isolated from other containers and runs its own software, binaries, and configurations.
+
+## What is a container image?
+
+When running a container, it uses an isolated filesystem. This custom filesystem is provided by a container image. Since the image contains the container’s filesystem, it must contain everything needed to run an application - all dependencies, configurations, scripts, binaries, etc. The image also contains other configuration for the container, such as environment variables, a default command to run, and other metadata.
+
 
 ## Get the app
 
@@ -29,15 +38,21 @@ Before you can run the application, you need to get the application source code 
  cd /mnt/vdb
 ```
 
-
 - Clone the getting-started repository using the following command:
 
 ```bash
 sudo git clone https://github.com/docker/getting-started.git
 ```
 
-Next, we view the contents of the cloned repository in VS Code.
+Now view the contents of the cloned repository in VS Code:
 
-- Navigate to the VS code menue at the top and choose 'File' > 'Open Folder' and insert: /mnt/vdb/getting-started/app (this will open a new window and you have to insert your SSH-key) 
+- Navigate to the VS code menue at the top and choose 'File' > 'Open Folder' and insert: `/mnt/vdb/getting-started/app` (this will open a new window and you have to insert your SSH-key) 
 
 Inside the getting-started/app directory you should see package.json and two subdirectories (src and spec).
+
+
+## Next steps
+
+For the rest of this guide, you’ll be working with a simple todo list manager that runs on Node.js. If you’re not familiar with Node.js, don’t worry. This guide doesn’t require any prior experience with JavaScript.
+
+Next, you'll learn hwo to [containerize an application](docker-start-containerize.qmd).
