@@ -263,6 +263,36 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Persist the DB</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./docker-start-bind-mounts.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Use bind mounts</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./docker-start-multi-container.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Multi container apps</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./docker-start-compose.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Use Docker Compose</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./docker-start-best-practices.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Image-building best practices</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./docker-start-next.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">What next?</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -275,8 +305,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#prerequisites" id="toc-prerequisites" class="nav-link active" data-scroll-target="#prerequisites"><span class="header-section-number">10.1</span> Prerequisites</a></li>
-  <li><a href="#get-the-app" id="toc-get-the-app" class="nav-link" data-scroll-target="#get-the-app"><span class="header-section-number">10.2</span> Get the app</a></li>
+  <li><a href="#what-is-a-container" id="toc-what-is-a-container" class="nav-link active" data-scroll-target="#what-is-a-container"><span class="header-section-number">10.1</span> What is a container?</a></li>
+  <li><a href="#what-is-a-container-image" id="toc-what-is-a-container-image" class="nav-link" data-scroll-target="#what-is-a-container-image"><span class="header-section-number">10.2</span> What is a container image?</a></li>
+  <li><a href="#get-the-app" id="toc-get-the-app" class="nav-link" data-scroll-target="#get-the-app"><span class="header-section-number">10.3</span> Get the app</a></li>
+  <li><a href="#next-steps" id="toc-next-steps" class="nav-link" data-scroll-target="#next-steps"><span class="header-section-number">10.4</span> Next steps</a></li>
   </ul>
 <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/kirenz/bw-cloud/edit/main/docker-start-prerequisites.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/kirenz/bw-cloud/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
@@ -302,23 +334,33 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <p><em>This guide is based on the excellent <a href="https://docs.docker.com/get-started/">Docker step-by-step instructions</a> on how to get started with Docker.</em></p>
 <p>Some of the things you’ll learn and do in this guide are:</p>
+<ol type="1">
+<li><a href="./docker-start-containerize.html">Build and run an image as a container</a></li>
+<li><a href="./docker-start-update.html">Update an image</a></li>
+<li><a href="./docker-start-share.html">Share images using Docker Hub</a></li>
+<li><a href="./docker-start-persist.html">Deploy Docker applications with a SQLite database</a></li>
+<li><a href="./docker-start-bind-mounts.html">Share a directory from the host’s filesystem into the container (bind mounts)</a>.</li>
+<li><a href="./docker-start-multi-container.html">Store data in an external database running in a separate container</a></li>
+<li><a href="./docker-start-compose.html">Run applications using Docker Compose</a>.</li>
+</ol>
+<p>Before you get to the hands on part of the guide, you should learn about containers and images.</p>
+<section id="what-is-a-container" class="level2" data-number="10.1">
+<h2 data-number="10.1" class="anchored" data-anchor-id="what-is-a-container"><span class="header-section-number">10.1</span> What is a container?</h2>
+<p>Simply put, a container is a sandboxed process on your machine that is isolated from all other processes on the host machine. That isolation leverages kernel namespaces and cgroups, features that have been in Linux for a long time. Docker has worked to make these capabilities approachable and easy to use.</p>
+<p>To summarize, a container:</p>
 <ul>
-<li>Build and run an image as a container.</li>
-<li>Share images using Docker Hub.</li>
-<li>Deploy Docker applications using multiple containers with a database.</li>
-<li>Run applications using Docker Compose.</li>
-</ul>
-<section id="prerequisites" class="level2" data-number="10.1">
-<h2 data-number="10.1" class="anchored" data-anchor-id="prerequisites"><span class="header-section-number">10.1</span> Prerequisites</h2>
-<p>To complete this guide, you’ll need the following:</p>
-<ul>
-<li><p>Docker on your virtual machine in volume <code>mnt/vdb</code>.</p></li>
-<li><p><a href="./vs-code-ssh.html">Visual Studio Code</a>.</p></li>
-<li><p>A conceptual understanding of <a href="https://docs.docker.com/get-started/overview/#docker-objects">containers and images</a>.</p></li>
+<li>Is a runnable instance of an image. You can create, start, stop, move, or delete a container using the DockerAPI or CLI.</li>
+<li>Can be run on local machines, virtual machines or deployed to the cloud.</li>
+<li>Is portable (can be run on any OS).</li>
+<li>Is isolated from other containers and runs its own software, binaries, and configurations.</li>
 </ul>
 </section>
-<section id="get-the-app" class="level2" data-number="10.2">
-<h2 data-number="10.2" class="anchored" data-anchor-id="get-the-app"><span class="header-section-number">10.2</span> Get the app</h2>
+<section id="what-is-a-container-image" class="level2" data-number="10.2">
+<h2 data-number="10.2" class="anchored" data-anchor-id="what-is-a-container-image"><span class="header-section-number">10.2</span> What is a container image?</h2>
+<p>When running a container, it uses an isolated filesystem. This custom filesystem is provided by a container image. Since the image contains the container’s filesystem, it must contain everything needed to run an application - all dependencies, configurations, scripts, binaries, etc. The image also contains other configuration for the container, such as environment variables, a default command to run, and other metadata.</p>
+</section>
+<section id="get-the-app" class="level2" data-number="10.3">
+<h2 data-number="10.3" class="anchored" data-anchor-id="get-the-app"><span class="header-section-number">10.3</span> Get the app</h2>
 <p>Before you can run the application, you need to get the application source code onto your machine.</p>
 <ul>
 <li>Change directory into mnt/vdb</li>
@@ -328,11 +370,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Clone the getting-started repository using the following command:</li>
 </ul>
 <div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> git clone https://github.com/docker/getting-started.git</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Next, we view the contents of the cloned repository in VS Code.</p>
+<p>Now view the contents of the cloned repository in VS Code:</p>
 <ul>
-<li>Navigate to the VS code menue at the top and choose ‘File’ &gt; ‘Open Folder’ and insert: /mnt/vdb/getting-started/app (this will open a new window and you have to insert your SSH-key)</li>
+<li>Navigate to the VS code menue at the top and choose ‘File’ &gt; ‘Open Folder’ and insert: <code>/mnt/vdb/getting-started/app</code> (this will open a new window and you have to insert your SSH-key)</li>
 </ul>
 <p>Inside the getting-started/app directory you should see package.json and two subdirectories (src and spec).</p>
+</section>
+<section id="next-steps" class="level2" data-number="10.4">
+<h2 data-number="10.4" class="anchored" data-anchor-id="next-steps"><span class="header-section-number">10.4</span> Next steps</h2>
+<p>For the rest of this guide, you’ll be working with a simple todo list manager that runs on Node.js. If you’re not familiar with Node.js, don’t worry. This guide doesn’t require any prior experience with JavaScript.</p>
+<p>Next, you’ll learn hwo to <a href="./docker-start-containerize.html">containerize an application</a>.</p>
 
 
 </section>

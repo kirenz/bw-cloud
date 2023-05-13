@@ -65,6 +65,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<link href="./docker-start-bind-mounts.html" rel="next">
 <link href="./docker-start-share.html" rel="prev">
 <link href="./cover.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js"></script>
@@ -262,6 +263,36 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Persist the DB</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./docker-start-bind-mounts.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Use bind mounts</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./docker-start-multi-container.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Multi container apps</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./docker-start-compose.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Use Docker Compose</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./docker-start-best-practices.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Image-building best practices</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./docker-start-next.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">What next?</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -276,6 +307,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#container-volumes" id="toc-container-volumes" class="nav-link active" data-scroll-target="#container-volumes"><span class="header-section-number">14.1</span> Container volumes</a></li>
   <li><a href="#persist-the-todo-data" id="toc-persist-the-todo-data" class="nav-link" data-scroll-target="#persist-the-todo-data"><span class="header-section-number">14.2</span> Persist the todo data</a></li>
+  <li><a href="#next-steps" id="toc-next-steps" class="nav-link" data-scroll-target="#next-steps"><span class="header-section-number">14.3</span> Next steps</a></li>
   </ul>
 <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/kirenz/bw-cloud/edit/main/docker-start-persist.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/kirenz/bw-cloud/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
@@ -333,7 +365,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Open the app. You should see your items still in your list.</p></li>
 <li><p>Go ahead and remove the container when you’re done checking out your list.</p></li>
 </ul>
-<p>You’ve now learned how to persist data.</p>
+<p>If you want to know the location of your stored data, you can use the docker volume inspect command:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> docker volume inspect todo-db</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The Mountpoint is the actual location of the data on the disk.</p>
+</section>
+<section id="next-steps" class="level2" data-number="14.3">
+<h2 data-number="14.3" class="anchored" data-anchor-id="next-steps"><span class="header-section-number">14.3</span> Next steps</h2>
+<p>At this point, you have a functioning application that can survive restarts.</p>
+<p>However, you saw earlier that rebuilding images for every change takes quite a bit of time. There’s got to be a better way to make changes, right? With bind mounts, there is a better way.</p>
 
 
 </section>
@@ -579,6 +618,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="./docker-start-bind-mounts.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Use bind mounts</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->

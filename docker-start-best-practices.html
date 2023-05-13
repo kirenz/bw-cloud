@@ -8,7 +8,7 @@
 
 <meta name="author" content="Jan Kirenz">
 
-<title>Cloud Architecure - 11&nbsp; Containerize the application</title>
+<title>Cloud Architecure - 18&nbsp; Image-building best practices</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -65,8 +65,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./docker-start-update.html" rel="next">
-<link href="./docker-start-prerequisites.html" rel="prev">
+<link href="./docker-start-next.html" rel="next">
+<link href="./docker-start-compose.html" rel="prev">
 <link href="./cover.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -109,7 +109,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./docker.html">Docker</a></li><li class="breadcrumb-item"><a href="./docker-start-containerize.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Containerize the application</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./docker.html">Docker</a></li><li class="breadcrumb-item"><a href="./docker-start-best-practices.html"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Image-building best practices</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -241,7 +241,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./docker-start-containerize.html" class="sidebar-item-text sidebar-link active">
+  <a href="./docker-start-containerize.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Containerize the application</span></span></a>
   </div>
 </li>
@@ -283,7 +283,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./docker-start-best-practices.html" class="sidebar-item-text sidebar-link">
+  <a href="./docker-start-best-practices.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Image-building best practices</span></span></a>
   </div>
 </li>
@@ -305,24 +305,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#create-dockerfile" id="toc-create-dockerfile" class="nav-link active" data-scroll-target="#create-dockerfile"><span class="header-section-number">11.1</span> Create Dockerfile</a></li>
-  <li><a href="#build-container-image" id="toc-build-container-image" class="nav-link" data-scroll-target="#build-container-image"><span class="header-section-number">11.2</span> Build container image</a></li>
-  <li><a href="#start-app-container" id="toc-start-app-container" class="nav-link" data-scroll-target="#start-app-container"><span class="header-section-number">11.3</span> Start app container</a></li>
-  <li><a href="#forward-a-port" id="toc-forward-a-port" class="nav-link" data-scroll-target="#forward-a-port"><span class="header-section-number">11.4</span> Forward a port</a></li>
-  <li><a href="#test-your-app" id="toc-test-your-app" class="nav-link" data-scroll-target="#test-your-app"><span class="header-section-number">11.5</span> Test your app</a></li>
-  <li><a href="#view-container" id="toc-view-container" class="nav-link" data-scroll-target="#view-container"><span class="header-section-number">11.6</span> View container</a>
-  <ul class="collapse">
-  <li><a href="#next-steps" id="toc-next-steps" class="nav-link" data-scroll-target="#next-steps"><span class="header-section-number">11.6.1</span> Next steps</a></li>
-  </ul></li>
+  <li><a href="#image-layering" id="toc-image-layering" class="nav-link active" data-scroll-target="#image-layering"><span class="header-section-number">18.1</span> Image layering</a></li>
+  <li><a href="#layer-caching" id="toc-layer-caching" class="nav-link" data-scroll-target="#layer-caching"><span class="header-section-number">18.2</span> Layer caching</a></li>
+  <li><a href="#next-steps" id="toc-next-steps" class="nav-link" data-scroll-target="#next-steps"><span class="header-section-number">18.3</span> Next steps</a></li>
   </ul>
-<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/kirenz/bw-cloud/edit/main/docker-start-containerize.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/kirenz/bw-cloud/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/kirenz/bw-cloud/edit/main/docker-start-best-practices.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/kirenz/bw-cloud/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Containerize the application</span></h1>
+<h1 class="title"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Image-building best practices</span></h1>
 </div>
 
 
@@ -337,97 +331,166 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<section id="create-dockerfile" class="level2" data-number="11.1">
-<h2 data-number="11.1" class="anchored" data-anchor-id="create-dockerfile"><span class="header-section-number">11.1</span> Create Dockerfile</h2>
-<p>To build a container image, you’ll need to use a Dockerfile.</p>
-<p>A Dockerfile is simply a text-based file with no file extension that contains a script of instructions. Docker uses this script to build a container image.</p>
+<section id="image-layering" class="level2" data-number="18.1">
+<h2 data-number="18.1" class="anchored" data-anchor-id="image-layering"><span class="header-section-number">18.1</span> Image layering</h2>
+<p>Did you know that you can look at what makes up an image? Using the <code>docker image history</code> command, you can see the command that was used to create each layer within an image.</p>
 <ul>
-<li>In VS Code, open the integrated terminal (“Terminal” &gt; “New Terminal”).</li>
+<li>Use the <code>docker image history</code> command to see the layers in the <code>getting-started</code> image you created earlier in the tutorial.</li>
 </ul>
-<p><img src="images/docker-getting-started-1.png" class="img-fluid"></p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> docker image history getting-started</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Each of the lines in the output represents a layer in the image. Using this, you can also quickly see the size of each layer, helping diagnose large images.</p>
 <ul>
-<li>Use the following command to create an empty file named Dockerfile.</li>
+<li>You’ll notice that several of the lines are truncated. If you add the <code>--no-trunc</code> flag, you’ll get the full output:</li>
 </ul>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> touch Dockerfile</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><img src="images/docker-getting-started-2.png" class="img-fluid"></p>
-<ul>
-<li>In VS Code, open <code>Dockerfile</code>, add the following contents and save the file:</li>
-</ul>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># syntax=docker/dockerfile:1</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>   </span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="ex">FROM</span> node:18-alpine</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="ex">WORKDIR</span> /app</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="ex">COPY</span> . .</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="ex">RUN</span> yarn install <span class="at">--production</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="ex">CMD</span> [<span class="st">"node"</span>, <span class="st">"src/index.js"</span>]</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="ex">EXPOSE</span> 3000</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>This Dockerfile is used to create a Docker image for our Node.js application. Let’s go through each line and explain its purpose:</p>
-<p><code>FROM node:18-alpine</code></p>
-<p>This line specifies the base image for the Docker image. It uses the node:18-alpine image, which is based on Alpine Linux (a lightweight Linux distribution) and includes Node.js version 18.</p>
-<p><code>WORKDIR /app</code></p>
-<p>This line sets the working directory inside the Docker image to /app. Any subsequent commands will be executed in this directory.</p>
-<p><code>COPY . .</code></p>
-<p>This line copies the contents of the current directory (where the Dockerfile is located) into the /app directory of the Docker image. It includes all the files and directories required for the Node.js application.</p>
-<p><code>RUN yarn install --production</code></p>
-<p>This line executes the command yarn install –production within the Docker image. It installs the dependencies specified in the package.json file of the application. The –production flag ensures that only production dependencies are installed, excluding any development-specific packages.</p>
-<p><code>CMD ["node", "src/index.js"]</code></p>
-<p>This line specifies the command to run when the Docker container is started based on this image. It sets the entrypoint to node src/index.js, which means that the Node.js application’s entry file is src/index.js. This command will be executed when the container starts.</p>
-<p><code>EXPOSE 3000</code></p>
-<p>This line informs Docker that the container will listen on port 3000. It does not publish the port to the host machine but rather serves as a documentation for developers or users who may run the container and need to know which port to access the application. In summary, this Dockerfile sets up a containerized environment for a Node.js application. It installs the production dependencies, specifies the entrypoint for the application, and indicates that it will listen on port 3000.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> docker image history <span class="at">--no-trunc</span> getting-started</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="build-container-image" class="level2" data-number="11.2">
-<h2 data-number="11.2" class="anchored" data-anchor-id="build-container-image"><span class="header-section-number">11.2</span> Build container image</h2>
-<p>Build the container image using the following commands:</p>
+<section id="layer-caching" class="level2" data-number="18.2">
+<h2 data-number="18.2" class="anchored" data-anchor-id="layer-caching"><span class="header-section-number">18.2</span> Layer caching</h2>
+<p>Now that you’ve seen the layering in action, there’s an important lesson to learn to help decrease build times for your container images.</p>
+<blockquote class="blockquote">
+<p>Once a layer changes, all downstream layers have to be recreated as well</p>
+</blockquote>
+<p>Let’s look at the Dockerfile we were using one more time…</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode dockerfile code-with-copy"><code class="sourceCode dockerfile"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="cv">syntax=docker/dockerfile:1</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> node:18-alpine</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="kw">WORKDIR</span> /app</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="kw">COPY</span> . .</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="kw">RUN</span> <span class="ex">yarn</span> install <span class="at">--production</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="kw">CMD</span> [<span class="st">"node"</span>, <span class="st">"src/index.js"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Going back to the image history output, we see that each command in the Dockerfile becomes a new layer in the image. You might remember that when we made a change to the image, the yarn dependencies had to be reinstalled. Is there a way to fix this? It doesn’t make much sense to ship around the same dependencies every time we build, right?</p>
+<p>To fix this, we need to restructure our Dockerfile to help support the caching of the dependencies. For Node-based applications, those dependencies are defined in the <code>package.json</code> file. So, what if we copied only that file in first, install the dependencies, and <em>then</em> copy in everything else? Then, we only recreate the yarn dependencies if there was a change to the <code>package.json</code>. Make sense?</p>
 <ul>
-<li>Build the container image using the following commands:</li>
+<li>Update the Dockerfile to copy in the <code>package.json</code> first, install dependencies, and then copy everything else in.</li>
 </ul>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> docker build <span class="at">-t</span> getting-started .</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>The <code>docker build</code> command uses the Dockerfile to build a new container image. You might have noticed that Docker downloaded a lot of “layers”. This is because you instructed the builder that you wanted to start from the node:18-alpine image. But, since you didn’t have that on your machine, Docker needed to download the image.</p>
-<p>After Docker downloaded the image, the instructions from the Dockerfile copied in your application and used yarn to install your application’s dependencies. The CMD directive specifies the default command to run when starting a container from this image.</p>
-<p>Finally, the <code>-t</code> flag tags your image. Think of this simply as a human-readable name for the final image. Since you named the image getting-started, you can refer to that image when you run a container.</p>
-<p>The <code>.</code> at the end of the docker build command tells Docker that it should look for the Dockerfile in the current directory.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode dockerfile code-with-copy"><code class="sourceCode dockerfile"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="cv">syntax=docker/dockerfile:1</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> node:18-alpine</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="kw">WORKDIR</span> /app</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="kw">COPY</span> package.json yarn.lock ./</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="kw">RUN</span> <span class="ex">yarn</span> install <span class="at">--production</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="kw">COPY</span> . .</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="kw">CMD</span> [<span class="st">"node"</span>, <span class="st">"src/index.js"</span>]</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="kw">EXPOSE</span> 3000</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>Next, we create a file named <code>.dockerignore</code> (in the same folder as the Dockerfile) and include the text <code>node_modules</code>. We use the terminal to accomplish this:</li>
+</ul>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"node_modules"</span> <span class="op">&gt;</span> .dockerignore</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><code>.dockerignore</code> files are an easy way to selectively copy only image relevant files. You can read more about this <a href="https://docs.docker.com/engine/reference/builder.md#dockerignore-file">here</a>.</p>
+<p>In this case, the <code>node_modules</code> folder should be omitted in the second <code>COPY</code> step because otherwise, it would possibly overwrite files which were created by the command in the <code>RUN</code> step. For further details on why this is recommended for Node.js applications and other best practices, have a look at their guide on <a href="https://nodejs.org/en/docs/guidenodejs-docker-webapp/">Dockerizing a Node.js web app</a></p>
+<ul>
+<li>Build a new image using <code>docker build</code>.</li>
+</ul>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> docker build <span class="at">-t</span> getting-started .</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>You should see output like this…</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">[+]</span> Building 15.4s <span class="er">(</span><span class="ex">10/10</span><span class="kw">)</span> <span class="ex">FINISHED</span>                                </span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a> <span class="ex">=</span><span class="op">&gt;</span> <span class="pp">[</span><span class="ss">internal</span><span class="pp">]</span> load build definition from Dockerfile          0.2s</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a> <span class="ex">=</span><span class="op">&gt;</span> =<span class="op">&gt;</span> transferring dockerfile: 182B                          0.0s</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a> <span class="ex">=</span><span class="op">&gt;</span> <span class="pp">[</span><span class="ss">internal</span><span class="pp">]</span> load .dockerignore                             0.3s</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a> <span class="ex">=</span><span class="op">&gt;</span> =<span class="op">&gt;</span> transferring context: 53B                              0.0s</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a> <span class="ex">=</span><span class="op">&gt;</span> <span class="pp">[</span><span class="ss">internal</span><span class="pp">]</span> load metadata for docker.io/library/node:18-a  0.0s</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a> <span class="ex">=</span><span class="op">&gt;</span> <span class="pp">[</span><span class="ss">internal</span><span class="pp">]</span> load build context                             0.2s</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a> <span class="ex">=</span><span class="op">&gt;</span> =<span class="op">&gt;</span> transferring context: 3.22kB                           0.2s</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a> <span class="ex">=</span><span class="op">&gt;</span> <span class="pp">[</span><span class="ss">1/5</span><span class="pp">]</span> FROM docker.io/library/node:18-alpine               0.0s</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a> <span class="ex">=</span><span class="op">&gt;</span> CACHED <span class="pp">[</span><span class="ss">2/5</span><span class="pp">]</span> WORKDIR /app                                 0.0s</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a> <span class="ex">=</span><span class="op">&gt;</span> <span class="pp">[</span><span class="ss">3/5</span><span class="pp">]</span> COPY package.json yarn.lock ./                      0.7s</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a> <span class="ex">=</span><span class="op">&gt;</span> <span class="pp">[</span><span class="ss">4/5</span><span class="pp">]</span> RUN yarn install <span class="at">--production</span>                      12.2s</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a> <span class="ex">=</span><span class="op">&gt;</span> <span class="pp">[</span><span class="ss">5/5</span><span class="pp">]</span> COPY . .                                            0.5s</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a> <span class="ex">=</span><span class="op">&gt;</span> exporting to image                                        1.5s</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a> <span class="ex">=</span><span class="op">&gt;</span> =<span class="op">&gt;</span> exporting layers                                       1.5s</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a> <span class="ex">=</span><span class="op">&gt;</span> =<span class="op">&gt;</span> writing image sha256:19dfa47bc86d7dceaa01a048c43a7dbc  0.0s</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a> <span class="ex">=</span><span class="op">&gt;</span> =<span class="op">&gt;</span> naming to docker.io/library/getting-started            0.0s</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>You’ll see that all layers were rebuilt. Perfectly fine since we changed the Dockerfile quite a bit.</p>
+<ul>
+<li>Now, make a change to the <code>src/static/index.html</code> file (like change the <code>&lt;title&gt;</code> to say “The Awesome Todo App” in line 11).</li>
+</ul>
+<ol start="5" type="1">
+<li>Build the Docker image now using <code>sudo docker build -t getting-started .</code> again. This time, your output should look a little different.</li>
+</ol>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a> <span class="ex">=</span><span class="op">&gt;</span> <span class="pp">[</span><span class="ss">internal</span><span class="pp">]</span> load build definition from Dockerfile          0.2s</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a> <span class="ex">=</span><span class="op">&gt;</span> =<span class="op">&gt;</span> transferring dockerfile: 182B                          0.0s</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a> <span class="ex">=</span><span class="op">&gt;</span> <span class="pp">[</span><span class="ss">internal</span><span class="pp">]</span> load .dockerignore                             0.3s</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a> <span class="ex">=</span><span class="op">&gt;</span> =<span class="op">&gt;</span> transferring context: 53B                              0.0s</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a> <span class="ex">=</span><span class="op">&gt;</span> <span class="pp">[</span><span class="ss">internal</span><span class="pp">]</span> load metadata for docker.io/library/node:18-a  0.0s</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a> <span class="ex">=</span><span class="op">&gt;</span> <span class="pp">[</span><span class="ss">1/5</span><span class="pp">]</span> FROM docker.io/library/node:18-alpine               0.0s</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a> <span class="ex">=</span><span class="op">&gt;</span> <span class="pp">[</span><span class="ss">internal</span><span class="pp">]</span> load build context                             0.0s</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a> <span class="ex">=</span><span class="op">&gt;</span> =<span class="op">&gt;</span> transferring context: 3.45kB                           0.0s</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a> <span class="ex">=</span><span class="op">&gt;</span> CACHED <span class="pp">[</span><span class="ss">2/5</span><span class="pp">]</span> WORKDIR /app                                 0.0s</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a> <span class="ex">=</span><span class="op">&gt;</span> CACHED <span class="pp">[</span><span class="ss">3/5</span><span class="pp">]</span> COPY package.json yarn.lock ./               0.0s</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a> <span class="ex">=</span><span class="op">&gt;</span> CACHED <span class="pp">[</span><span class="ss">4/5</span><span class="pp">]</span> RUN yarn install <span class="at">--production</span>                0.0s</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a> <span class="ex">=</span><span class="op">&gt;</span> <span class="pp">[</span><span class="ss">5/5</span><span class="pp">]</span> COPY . .                                            0.3s</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a> <span class="ex">=</span><span class="op">&gt;</span> exporting to image                                        0.1s</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a> <span class="ex">=</span><span class="op">&gt;</span> =<span class="op">&gt;</span> exporting layers                                       0.1s</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a> <span class="ex">=</span><span class="op">&gt;</span> =<span class="op">&gt;</span> writing image sha256:a85579d9ee5192bc7593ad0b2f263d25  0.0s</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a> <span class="ex">=</span><span class="op">&gt;</span> =<span class="op">&gt;</span> naming to docker.io/library/getting-started            0.0s</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>First off, you should notice that the build was MUCH faster! And, you’ll see that several steps are using previously cached layers. So, yes! We’re using the build cache. Pushing and pulling this image and updates to it will be much faster as well.</p>
+<!--
+
+## Multi-stage builds
+
+While we're not going to dive into it too much in this tutorial, multi-stage builds are an incredibly powerful
+tool to help use multiple stages to create an image. There are several advantages for them:
+
+- Separate build-time dependencies from runtime dependencies
+- Reduce overall image size by shipping _only_ what your app needs to run
+
+### Maven/Tomcat example
+
+When building Java-based applications, a JDK is needed to compile the source code to Java bytecode. However,
+that JDK isn't needed in production. Also, you might be using tools like Maven or Gradle to help build the app.
+Those also aren't needed in our final image. Multi-stage builds help.
+
+```dockerfile
+# syntax=docker/dockerfile:1
+FROM maven AS build
+WORKDIR /app
+COPY . .
+RUN mvn package
+
+FROM tomcat
+COPY --from=build /app/target/file.war /usr/local/tomcat/webapps 
+```
+
+In this example, we use one stage (called `build`) to perform the actual Java build using Maven. In the second
+stage (starting at `FROM tomcat`), we copy in files from the `build` stage. The final image is only the last stage
+being created (which can be overridden using the `--target` flag).
+
+### React example
+
+When building React applications, we need a Node environment to compile the JS code (typically JSX), SASS stylesheets,
+and more into static HTML, JS, and CSS. If we aren't doing server-side rendering, we don't even need a Node environment
+for our production build. Why not ship the static resources in a static nginx container?
+
+```dockerfile
+# syntax=docker/dockerfile:1
+FROM node:18 AS build
+WORKDIR /app
+COPY package* yarn.lock ./
+RUN yarn install
+COPY public ./public
+COPY src ./src
+RUN yarn run build
+
+FROM nginx:alpine
+COPY --from=build /app/build /usr/share/nginx/html
+```
+
+Here, we are using a `node:18` image to perform the build (maximizing layer caching) and then copying the output
+into an nginx container. Cool, huh?
+
+-->
 </section>
-<section id="start-app-container" class="level2" data-number="11.3">
-<h2 data-number="11.3" class="anchored" data-anchor-id="start-app-container"><span class="header-section-number">11.3</span> Start app container</h2>
-<p>Now that you have an image, you can run the application in a <a href="https://docs.docker.com/get-started/overview/#docker-objects">container</a>. To do so, you will use the docker run command.</p>
-<ul>
-<li>Start your container using the docker run command and specify the name of the image you just created:</li>
-</ul>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> docker run <span class="at">-dp</span> 3000:3000 getting-started</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>You use the <code>-d</code> flag to run the new container in “detached” mode (in the background).</p>
-<p>You also use the <code>-p</code> flag to create a mapping between the host’s port 3000 to the container’s port 3000. Without the port mapping, you wouldn’t be able to access the application.</p>
-</section>
-<section id="forward-a-port" class="level2" data-number="11.4">
-<h2 data-number="11.4" class="anchored" data-anchor-id="forward-a-port"><span class="header-section-number">11.4</span> Forward a port</h2>
-<ul>
-<li><p>Next, we need to temporarily forward a new port for the duration of the session. Select “Forward a Port” from the Command Palette (Windows: F1; Mac: ⇧+⌘+P) and insert the port number: <code>3000</code></p></li>
-<li><p>This will open the “PORTS” view. In the column “Local Address”, click on <code>localhost:3000</code> and choose the globe 🌐 icon to open the web browser.</p></li>
-</ul>
-<p><img src="images/docker-getting-started-3.png" class="img-fluid"></p>
-<ul>
-<li>This should open your web browser to <a href="http://localhost:3000" class="uri">http://localhost:3000</a> and you should see your app.</li>
-</ul>
-</section>
-<section id="test-your-app" class="level2" data-number="11.5">
-<h2 data-number="11.5" class="anchored" data-anchor-id="test-your-app"><span class="header-section-number">11.5</span> Test your app</h2>
-<p><img src="images/docker-getting-started-4.png" class="img-fluid"></p>
-<p>Go ahead and add an item or two and see that it works as you expect. You can mark items as complete and remove them. Your frontend is successfully storing items in the backend.</p>
-<p>At this point, you should have a running todo list manager with a few items.</p>
-</section>
-<section id="view-container" class="level2" data-number="11.6">
-<h2 data-number="11.6" class="anchored" data-anchor-id="view-container"><span class="header-section-number">11.6</span> View container</h2>
-<p>If you take a quick look at your containers, you should see at least one container running that is using the getting-started image and on port 3000.</p>
-<ul>
-<li>Run the following <code>docker ps</code> command in your terminal to list your containers.</li>
-</ul>
-<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> docker ps</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<section id="next-steps" class="level3" data-number="11.6.1">
-<h3 data-number="11.6.1" class="anchored" data-anchor-id="next-steps"><span class="header-section-number">11.6.1</span> Next steps</h3>
-<p>In the previous section, you learned the basics about creating a Dockerfile to build a container image. Once you built an image, you started a container and saw the running app.</p>
-<p>Next, you’re going to make a modification to your app and learn how to update your running application with a new image. Along the way, you’ll learn a few other useful commands.</p>
+<section id="next-steps" class="level2" data-number="18.3">
+<h2 data-number="18.3" class="anchored" data-anchor-id="next-steps"><span class="header-section-number">18.3</span> Next steps</h2>
+<p>By understanding a little bit about the structure of images, you can build images faster and ship fewer changes. Scanning images gives you confidence that the containers you are running and distributing are secure.</p>
+<!--
+
+Multi-stage builds also help you reduce overall image size and increase final container security by separating
+build-time dependencies from runtime dependencies.
+
+-->
+<p>In the next section, you’ll learn about additional resources you can use to continue learning about containers.</p>
+<p><a href="11_what_next.md">What next</a>{: .button .primary-btn}</p>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -666,13 +729,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./docker-start-prerequisites.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Get started with Docker</span></span>
+      <a href="./docker-start-compose.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Use Docker Compose</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./docker-start-update.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Update application</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./docker-start-next.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">What next?</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
