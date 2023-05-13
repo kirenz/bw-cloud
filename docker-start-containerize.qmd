@@ -120,7 +120,7 @@ At this point, you should have a running todo list manager with a few items.
 
 If you take a quick look at your containers, you should see at least one container running that is using the getting-started image and on port 3000. 
 
-- Run the following docker ps command in your terminal to list your containers.
+- Run the following `docker ps` command in your terminal to list your containers.
 
 ```bash
 sudo docker ps
