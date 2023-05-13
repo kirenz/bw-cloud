@@ -213,6 +213,8 @@ SELECT * FROM todo_items;
 
 This should output a table with your stored items. 
 
+- To leave the MySQL-shell, simply type `exit`
+
 
 ## Next steps
 
