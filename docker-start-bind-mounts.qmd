@@ -145,3 +145,24 @@ When you’re done watching the logs, exit out by hitting `Ctrl+C`.
 
 
 - Refresh the page in your web browser, and you should see the change reflected almost immediately. It might take a few seconds for the Node server to restart. If you get an error, try refreshing after a few seconds.
+
+Feel free to make any other changes you’d like to make. Each time you make a change and save a file, the nodemon process restarts the app inside the container automatically. 
+
+- When you’re done, stop the container and build your new image using:
+
+
+```bash
+sudo docker build -t getting-started .
+```
+
+Using bind mounts is common for local development setups. The advantage is that the development machine doesn’t need to have all of the build tools and environments installed. With a single docker run command, dependencies and tools are pulled and ready to go. 
+
+We’ll talk about Docker Compose in a future step, as this will help simplify our commands (we’re already getting a lot of flags).
+
+In addition to volume mounts and bind mounts, Docker also supports other mount types and storage drivers for handling more complex and specialized use cases. To learn more about the advanced storage concepts, see [Manage data in Docker](https://docs.docker.com/storage/).
+
+## Next steps
+
+At this point, you can persist your database and respond rapidly to the needs and demands of your investors and founders. Hooray! But, guess what? You received great news! Your project has been selected for future development!
+
+In order to prepare for production, you need to migrate your database from working in SQLite to something that can scale a little better. For simplicity, you’ll keep with a relational database and switch your application to use MySQL. But, how should you run MySQL? How do you allow the containers to talk to each other? You’ll learn about that next!
