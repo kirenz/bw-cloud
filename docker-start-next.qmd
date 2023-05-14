@@ -1,29 +1,6 @@
 # What next?
 
-Although we're done with our get started guide, there's still a LOT more to learn about containers!
-We're not going to go deep-dive here, but here are a few other areas to look at next!
-
-## Container orchestration
-
-Running containers in production is tough. You don't want to log into a machine and simply run a
-`docker run` or `docker-compose up`. Why not? Well, what happens if the containers die? How do you
-scale across several machines? Container orchestration solves this problem. Tools like Kubernetes help solve this problem.
-
-The general idea is that you have "managers" who receive **expected state**. This state might be
-"I want to run two instances of my web app and expose port 80." The managers then look at all of the
-machines in the cluster and delegate work to "worker" nodes. The managers watch for changes (such as
-a container quitting) and then work to make **actual state** reflect the expected state.
-
-## Cloud Native Computing Foundation projects
-
-The CNCF is a vendor-neutral home for various open-source projects, including Kubernetes. You can view the [graduated and incubated projects here](https://www.cncf.io/projects/)
-and the entire [CNCF Landscape here](https://landscape.cncf.io/). There are a LOT of projects to help
-solve problems around monitoring, logging, security, image registries, messaging, and more!
-
-
-## Getting started video workshop
-
-We recommend the video workshop from DockerCon 2022. Watch the video below or use the links to open the video at a particular section.
+Although we're done with our Docker get started guide, there's still a lot more to learn about containers. If you want to learn more, take a look at the video workshop from DockerCon 2022. Watch the video below or use the links to open the video at a particular section.
 
 * [Docker overview and installation](https://youtu.be/gAGEar5HQoU)
 * [Pull, run, and explore containers](https://youtu.be/gAGEar5HQoU?t=1400)
@@ -33,6 +10,24 @@ We recommend the video workshop from DockerCon 2022. Watch the video below or us
 * [Deploy a container to the cloud](https://youtu.be/gAGEar5HQoU?t=8280)
 
 <iframe src="https://www.youtube-nocookie.com/embed/gAGEar5HQoU" style="max-width: 100%; aspect-ratio: 16 / 9;" width="560" height="auto" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+## Container orchestration with Kubernetes
+
+Running containers in production is tough. You don't want to log into a machine and simply run a `docker run` or `docker-compose up`. Why not? Well, what happens if the containers die? How do you scale across several machines? Container orchestration solves this problem. Tools like Kubernetes help solve this problem.
+
+The general idea is that you have "managers" who receive **expected state**. This state might be "I want to run two instances of my web app and expose port 80." The managers then look at all of the machines in the cluster and delegate work to "worker" nodes. The managers watch for changes (such as
+a container quitting) and then work to make **actual state** reflect the expected state.
+
+We will cover Kubernetes in the next chapter.
+
+<!--
+
+## Cloud Native Computing Foundation projects
+
+The CNCF is a vendor-neutral home for various open-source projects, including Kubernetes. You can view the [graduated and incubated projects here](https://www.cncf.io/projects/)
+and the entire [CNCF Landscape here](https://landscape.cncf.io/). There are a LOT of projects to help
+solve problems around monitoring, logging, security, image registries, messaging, and more!
+
 
 ## Creating a container from scratch
 
@@ -44,3 +39,4 @@ If you'd like to see how containers are built from scratch, Liz Rice from Aqua S
 
 If you are looking for information on how to containerize an application using your favorite language, see [Language-specific getting started guides](https://docs.docker.com/language/).
 
+-->
