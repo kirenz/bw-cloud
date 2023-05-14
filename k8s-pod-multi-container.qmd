@@ -1,0 +1,315 @@
+# Multi-container Pod
+
+Pods are designed to support multiple cooperating processes (as containers) that form a cohesive unit of service. The containers in a Pod are automatically co-located and co-scheduled on the same physical or virtual machine in the cluster. The containers can share resources and dependencies, communicate with one another, and coordinate when and how they are terminated (see the [Kubernetes documentation](https://kubernetes.io/docs/concepts/workloads/pods/)):
+
+
+![](https://d33wubrfki0l68.cloudfront.net/aecab1f649bc640ebef1f05581bfcc91a48038c4/728d6/images/docs/pod.svg)
+
+
+For example, you might have a container that acts as a web server for files in a shared volume, and a separate "sidecar" container that updates those files from a remote source. The sidecar container is long-lived and runs alongside the main application container for the entire lifecycle of the Pod.
+
+In the next example, we will create a multi-container pod. The first container (called "ctr-web") will be the main app container. It serves as a static web page. The second container is called "ctr-sync" and will be the sidecar. It watches a GitHub repo and syncs changes into the same shared volume. If the content of the repo change, the "ctr-sync" sidecar will notice and update the web page.
+
+
+## Prepare environment
+
+First, we need to make some preparations in GitHub:
+
+- Log in to your [GitHub account](https://github.com/).
+
+- [Fork](https://docs.github.com/en/get-started/quickstart/fork-a-repo) the following GitHub repo (this is so you can make a change to the repo and see those changes reflected by the app) to your GitHub-Account (keep the name as suggested by GitHub):
+
+<https://github.com/nigelpoulton/ps-sidecar/fork>
+
+Now, in your virtual machine:
+
+
+
+- Open this folder in VS Code: `/mnt/vdb/github/TheK8sBook/pods/`
+
+- Open the file `sidecarpod-cloud.yml` 
+
+- Update the `GIT_SYNC_REPO` value to reflect your forked repo and save your changes (replace `https://github.com/nigelpoulton/ps-sidecar.git` with your URl. In my case `https://github.com/kirenz/ps-sidecar.git` ) 
+
+
+
+## Create multi-container Pod
+
+- Change directory into the pods folder:
+
+```bash
+cd /mnt/vdb/github/TheK8sBook/pods
+```
+
+- This command will deploy the multi-container Pod as well as a Service object you can use to connect to the app.
+
+
+```bash
+sudo kubectl apply -f sidecar-cloud.yml
+
+```
+
+This should output
+
+```bash
+pod/git-sync created
+service/svc-sidecar created
+```
+
+---
+
+Explanation of sidecar-cloud.yml:
+
+In summary, the YAML file `sidecar-cloud.yml` creates a Pod named git-sync with two containers. The first container serves content using `nginx` and the second container syncs a git repository into a shared volume. A Service named `svc-sidecar` is also created to expose the nginx server to the internet via a load balancer on port 80.
+
+The file is defining a Pod and a Service:
+
+**Pod Configuration**
+
+`apiVersion: v1`: This indicates the version of the Kubernetes API you're using to create this object.
+
+`kind: Pod`: This line indicates that the type of the Kubernetes object you're creating is a Pod.
+
+`metadata`: This section provides data that helps uniquely identify the Pod.
+
+    `name: git-sync`: This is the name of the Pod.
+    `labels`: These are key-value pairs that are used to organize and categorize Pods. Here, `app: sidecar` is used as a label.
+
+`spec`: This section defines the desired state for this Pod, meaning what containers should be running.
+
+    `containers`: This is a list of two containers that should be launched inside this Pod.
+
+    The first container `ctr-web` is based on the nginx image and mounts a volume named html at `/usr/share/nginx/`.
+
+    The second container `ctr-sync` is based on the `k8s.gcr.io/git-sync:v3.1.6` image. This container mounts the same html volume, but at `/tmp/git`. This container also has several environment variables defined to clone a git repository into the mounted volume.
+
+    `volumes`: This is a list of storage volumes that are available to the containers running in the Pod. Here, an emptyDir volume named html is created. This type of volume is initially empty and containers in the pod can read from and write to the same volume.
+
+**Service Configuration**
+
+`apiVersion: v1`: This indicates the version of the Kubernetes API you're using to create this object.
+
+`kind: Service`: This line indicates that the type of the Kubernetes object you're creating is a Service.
+
+`metadata`: This section provides data that helps uniquely identify the Service.
+
+    `name: svc-sidecar`: This is the name of the Service.
+
+`spec`: This section defines the desired state for this Service.
+
+
+    `selector`: This is used to find the Pods that the Service should manage traffic for. Here, it selects the Pod with the label `app: sidecar`.
+
+    `ports`: This lists the network port the Service should expose. port: 80 means that the Service is exposed on port 80.
+
+    `type: LoadBalancer`: This means that the Service will be exposed through a cloud provider's load balancer.
+
+---
+
+
+- Monitor the status of your pods with:
+
+```bash
+sudo kubectl get pods
+
+```
+
+- Use this command to get the connection details:
+
+```bash
+sudo kubectl get svc
+
+```
+
+- To get more information, run:
+
+```
+sudo kubectl describe services svc-sidecar
+```
+
+This sould output something like:
+
+```bash
+NAME          TYPE           CLUSTER-IP     EXTERNAL-IP   PORT(S)        AGE
+kubernetes    ClusterIP      10.96.0.1      <none>        443/TCP        172m
+svc-sidecar   LoadBalancer   10.96.62.142   <pending>     80:30408/TCP   15m
+```
+
+In this example, the external IP address (which we need to take a look at our website) is pending since Kubernetes does not offer an implementation of network load balancers (Services of type `LoadBalancer`) for clusters like ours. This means if you’re not running on a supported IaaS platform (GCP, AWS, Azure…), LoadBalancers will remain in the “pending” state indefinitely when created. Therefore, we need to use a solution provided by [MetalLB](https://metallb.universe.tf/), which is described in the next section.
+
+
+## Create Network load-balancer with MetalLB
+
+[MetalLB](https://metallb.universe.tf/) hooks into your Kubernetes cluster, and provides a network load-balancer implementation. In short, it allows you to create Kubernetes services of type LoadBalancer in clusters that don’t run on a cloud provider, and thus cannot simply hook into paid products to provide load balancers. 
+
+The following steps cover how to get service of type LoadBalancer working in a kind cluster using Metallb (review [this tutorial from kind](https://kind.sigs.k8s.io/docs/user/loadbalancer/) for more information).
+
+
+
+- Installing MetalLB using default manifests:
+
+```bash
+sudo kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.13.7/config/manifests/metallb-native.yaml
+```
+
+- Run the following command (this ensures that Kubernetes waits until the MetalLB pods (controller and speakers) are ready):
+
+
+```bash
+sudo kubectl wait --namespace metallb-system \
+                --for=condition=ready pod \
+                --selector=app=metallb \
+                --timeout=90s
+
+
+```
+
+- We need to provide MetalLB a range of IP addresses it controls. We want this range to be on the docker kind network:
+
+```bash
+sudo docker network inspect -f '{{.IPAM.Config}}' kind
+```
+
+- This will output some IP addresses like the following:
+
+```bash
+[{172.20.0.0/16  172.20.0.1 map[]} {fc00:f853:ccd:e793::/64   map[]}]
+```
+
+The output will contain a [CIDR](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing) such as 172.20.0.0/16. We want our loadbalancer IP range to come from this subclass. We can configure MetalLB, in my case, to use 172.20.255.200 to 172.20.255.250 (see YAML file below).
+
+- Next, create a new YAML-file called `metal-config.yaml` 
+
+```bash
+touch metal-config.yaml
+```
+
+
+- In VS Code, open `metal-config.yaml` and insert the content below (change the IP addresses accordingly):  
+
+
+```bash
+apiVersion: metallb.io/v1beta1
+kind: IPAddressPool
+metadata:
+  name: example
+  namespace: metallb-system
+spec:
+  addresses:
+  - 172.20.255.200-172.20.255.250
+---
+apiVersion: metallb.io/v1beta1
+kind: L2Advertisement
+metadata:
+  name: empty
+  namespace: metallb-system
+```
+
+Save the file.
+
+- Apply the contents
+
+```bash
+sudo kubectl apply -f metal-config.yaml 
+```
+
+This should output:
+
+```bash
+ipaddresspool.metallb.io/example created
+l2advertisement.metallb.io/empty created
+```
+
+That's it. Now we can obtain the external IP.
+
+
+## Obtain External-IP 
+
+- Show external-IP
+
+```bash
+sudo kubectl get svc 
+
+```
+
+The output should be similar to (your IP-address will be different):
+
+```bash
+NAME          TYPE           CLUSTER-IP     EXTERNAL-IP      PORT(S)        AGE
+kubernetes    ClusterIP      10.96.0.1      <none>           443/TCP        4h23m
+svc-sidecar   LoadBalancer   10.96.62.142   172.20.255.200   80:30408/TCP   106m
+```
+
+<!--
+To verify the IP address, enter this command:
+
+```bash
+sudo kubectl get pods --output=wide
+```
+
+-->
+
+- To make a quick test, open the site in yout terminal (change the IP accordingly)
+
+```bash
+sudo curl http://172.20.255.200:80 
+```
+
+The result should display some HTML code including the content of your forked repo:
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+<title>NGINX</title>
+<style>
+    body {
+        width: 35em;
+        margin: 0 auto;
+        font-family: Tahoma, Verdana, Arial, sans-serif;
+    }
+</style>
+</head>
+<body>
+<h1>This is version 1.0</h1>
+</body>
+</html>
+```
+
+
+## Port forwarding
+
+To be able to access a port on the remote machine that may not be publicly exposed, you need to establish a connection or a tunnel between a port on your local machine and the server.
+
+To browse to the web app on your local machine, you can leverage the VS Code feature called [Port Forwarding](https://code.visualstudio.com/docs/remote/ssh#_forwarding-a-port-creating-ssh-tunnel)
+
+- Open the PORTS view in VS Code (next to the integrated TERMINAL). 
+
+- Click on "Add Port" and enter your new port (the IP address you obtained). It should look something like: `172.20.255.200:80` 
+
+- Open the browser symbol to view the page in your browser. 
+
+The web page should display the content of your forked repo – "This is version 1.0"
+
+## Make changes in GitHub
+
+Go to GitHub: 
+
+- Open and edit the file `index.html` in your forked GitHub-repo `ps-sidecar` and make a change to the <h1> line (e.g. call it "This is version 2.0"). 
+
+- Commit the changes and open the browser tab from before (with the "This is version 1.0" web page).
+
+- Refresh your browser. The update should be reflected almost immediately in the app: "This is version 2.0"
+
+Congratulations! The sidecar container has successfully watched a GitHub repo and sync’d changes to your app.
+
+
+Feel free to run the `sudo kubectl get pods` and `sudo kubectl describe pod` commands to see how multi-container Pods appear in the outputs.
+
+## Delete Pod
+
+- If you are done, delete the Pod:
+
+```bash
+sudo kubectl delete pod git-sync
+```
