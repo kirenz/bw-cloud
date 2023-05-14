@@ -31,6 +31,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<link href="./k8s.html" rel="next">
 <link href="./docker-start-best-practices.html" rel="prev">
 <link href="./cover.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js"></script>
@@ -260,6 +261,35 @@ ul.task-list li input[type="checkbox"] {
 </li>
       </ul>
   </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./k8s.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Kubernetes</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./k8s-setup.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Kubernetes setup</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./k8s-pod-hello.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Deploying Pods from a manifest file</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./k8s-pod-multi-container.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Multi-container Pod</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -270,11 +300,7 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#container-orchestration" id="toc-container-orchestration" class="nav-link active" data-scroll-target="#container-orchestration"><span class="header-section-number">19.1</span> Container orchestration</a></li>
-  <li><a href="#cloud-native-computing-foundation-projects" id="toc-cloud-native-computing-foundation-projects" class="nav-link" data-scroll-target="#cloud-native-computing-foundation-projects"><span class="header-section-number">19.2</span> Cloud Native Computing Foundation projects</a></li>
-  <li><a href="#getting-started-video-workshop" id="toc-getting-started-video-workshop" class="nav-link" data-scroll-target="#getting-started-video-workshop"><span class="header-section-number">19.3</span> Getting started video workshop</a></li>
-  <li><a href="#creating-a-container-from-scratch" id="toc-creating-a-container-from-scratch" class="nav-link" data-scroll-target="#creating-a-container-from-scratch"><span class="header-section-number">19.4</span> Creating a container from scratch</a></li>
-  <li><a href="#language-specific-guides" id="toc-language-specific-guides" class="nav-link" data-scroll-target="#language-specific-guides"><span class="header-section-number">19.5</span> Language-specific guides</a></li>
+  <li><a href="#container-orchestration-with-kubernetes" id="toc-container-orchestration-with-kubernetes" class="nav-link active" data-scroll-target="#container-orchestration-with-kubernetes"><span class="header-section-number">19.1</span> Container orchestration with Kubernetes</a></li>
   </ul>
 <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/kirenz/bw-cloud/edit/main/docker-start-next.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/kirenz/bw-cloud/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
@@ -298,19 +324,7 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<p>Although we’re done with our get started guide, there’s still a LOT more to learn about containers! We’re not going to go deep-dive here, but here are a few other areas to look at next!</p>
-<section id="container-orchestration" class="level2" data-number="19.1">
-<h2 data-number="19.1" class="anchored" data-anchor-id="container-orchestration"><span class="header-section-number">19.1</span> Container orchestration</h2>
-<p>Running containers in production is tough. You don’t want to log into a machine and simply run a <code>docker run</code> or <code>docker-compose up</code>. Why not? Well, what happens if the containers die? How do you scale across several machines? Container orchestration solves this problem. Tools like Kubernetes help solve this problem.</p>
-<p>The general idea is that you have “managers” who receive <strong>expected state</strong>. This state might be “I want to run two instances of my web app and expose port 80.” The managers then look at all of the machines in the cluster and delegate work to “worker” nodes. The managers watch for changes (such as a container quitting) and then work to make <strong>actual state</strong> reflect the expected state.</p>
-</section>
-<section id="cloud-native-computing-foundation-projects" class="level2" data-number="19.2">
-<h2 data-number="19.2" class="anchored" data-anchor-id="cloud-native-computing-foundation-projects"><span class="header-section-number">19.2</span> Cloud Native Computing Foundation projects</h2>
-<p>The CNCF is a vendor-neutral home for various open-source projects, including Kubernetes. You can view the <a href="https://www.cncf.io/projects/">graduated and incubated projects here</a> and the entire <a href="https://landscape.cncf.io/">CNCF Landscape here</a>. There are a LOT of projects to help solve problems around monitoring, logging, security, image registries, messaging, and more!</p>
-</section>
-<section id="getting-started-video-workshop" class="level2" data-number="19.3">
-<h2 data-number="19.3" class="anchored" data-anchor-id="getting-started-video-workshop"><span class="header-section-number">19.3</span> Getting started video workshop</h2>
-<p>We recommend the video workshop from DockerCon 2022. Watch the video below or use the links to open the video at a particular section.</p>
+<p>Although we’re done with our Docker get started guide, there’s still a lot more to learn about containers. If you want to learn more, take a look at the video workshop from DockerCon 2022. Watch the video below or use the links to open the video at a particular section.</p>
 <ul>
 <li><a href="https://youtu.be/gAGEar5HQoU">Docker overview and installation</a></li>
 <li><a href="https://youtu.be/gAGEar5HQoU?t=1400">Pull, run, and explore containers</a></li>
@@ -321,16 +335,31 @@ ul.task-list li input[type="checkbox"] {
 </ul>
 <iframe src="https://www.youtube-nocookie.com/embed/gAGEar5HQoU" style="max-width: 100%; aspect-ratio: 16 / 9;" width="560" height="auto" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="">
 </iframe>
-</section>
-<section id="creating-a-container-from-scratch" class="level2" data-number="19.4">
-<h2 data-number="19.4" class="anchored" data-anchor-id="creating-a-container-from-scratch"><span class="header-section-number">19.4</span> Creating a container from scratch</h2>
-<p>If you’d like to see how containers are built from scratch, Liz Rice from Aqua Security has a fantastic talk in which she creates a container from scratch in Go. While the talk does not go into networking, using images for the filesystem, and other advanced topics, it gives a deep dive into how things are working.</p>
-<iframe src="https://www.youtube-nocookie.com/embed/8fi7uSYlOdc" style="max-width: 100%; aspect-ratio: 16 / 9;" width="560" height="auto" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="">
-</iframe>
-</section>
-<section id="language-specific-guides" class="level2" data-number="19.5">
-<h2 data-number="19.5" class="anchored" data-anchor-id="language-specific-guides"><span class="header-section-number">19.5</span> Language-specific guides</h2>
-<p>If you are looking for information on how to containerize an application using your favorite language, see <a href="https://docs.docker.com/language/">Language-specific getting started guides</a>.</p>
+<section id="container-orchestration-with-kubernetes" class="level2" data-number="19.1">
+<h2 data-number="19.1" class="anchored" data-anchor-id="container-orchestration-with-kubernetes"><span class="header-section-number">19.1</span> Container orchestration with Kubernetes</h2>
+<p>Running containers in production is tough. You don’t want to log into a machine and simply run a <code>docker run</code> or <code>docker-compose up</code>. Why not? Well, what happens if the containers die? How do you scale across several machines? Container orchestration solves this problem. Tools like Kubernetes help solve this problem.</p>
+<p>The general idea is that you have “managers” who receive <strong>expected state</strong>. This state might be “I want to run two instances of my web app and expose port 80.” The managers then look at all of the machines in the cluster and delegate work to “worker” nodes. The managers watch for changes (such as a container quitting) and then work to make <strong>actual state</strong> reflect the expected state.</p>
+<p>We will cover Kubernetes in the next chapter.</p>
+<!--
+
+## Cloud Native Computing Foundation projects
+
+The CNCF is a vendor-neutral home for various open-source projects, including Kubernetes. You can view the [graduated and incubated projects here](https://www.cncf.io/projects/)
+and the entire [CNCF Landscape here](https://landscape.cncf.io/). There are a LOT of projects to help
+solve problems around monitoring, logging, security, image registries, messaging, and more!
+
+
+## Creating a container from scratch
+
+If you'd like to see how containers are built from scratch, Liz Rice from Aqua Security has a fantastic talk in which she creates a container from scratch in Go. While the talk does not go into networking, using images for the filesystem, and other advanced topics, it gives a deep dive into how things are working.
+
+<iframe src="https://www.youtube-nocookie.com/embed/8fi7uSYlOdc" style="max-width: 100%; aspect-ratio: 16 / 9;" width="560" height="auto" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+## Language-specific guides
+
+If you are looking for information on how to containerize an application using your favorite language, see [Language-specific getting started guides](https://docs.docker.com/language/).
+
+-->
 
 
 </section>
@@ -576,6 +605,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="./k8s.html" class="pagination-link">
+        <span class="nav-page-text">Kubernetes</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->

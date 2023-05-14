@@ -553,38 +553,150 @@
     "text": "18.3 Next steps\nBy understanding a little bit about the structure of images, you can build images faster and ship fewer changes. Scanning images gives you confidence that the containers you are running and distributing are secure.\n\nIn the next section, you’ll learn about additional resources you can use to continue learning about containers."
   },
   {
-    "objectID": "docker-start-next.html#container-orchestration",
-    "href": "docker-start-next.html#container-orchestration",
+    "objectID": "docker-start-next.html#container-orchestration-with-kubernetes",
+    "href": "docker-start-next.html#container-orchestration-with-kubernetes",
     "title": "19  What next?",
-    "section": "19.1 Container orchestration",
-    "text": "19.1 Container orchestration\nRunning containers in production is tough. You don’t want to log into a machine and simply run a docker run or docker-compose up. Why not? Well, what happens if the containers die? How do you scale across several machines? Container orchestration solves this problem. Tools like Kubernetes help solve this problem.\nThe general idea is that you have “managers” who receive expected state. This state might be “I want to run two instances of my web app and expose port 80.” The managers then look at all of the machines in the cluster and delegate work to “worker” nodes. The managers watch for changes (such as a container quitting) and then work to make actual state reflect the expected state."
+    "section": "19.1 Container orchestration with Kubernetes",
+    "text": "19.1 Container orchestration with Kubernetes\nRunning containers in production is tough. You don’t want to log into a machine and simply run a docker run or docker-compose up. Why not? Well, what happens if the containers die? How do you scale across several machines? Container orchestration solves this problem. Tools like Kubernetes help solve this problem.\nThe general idea is that you have “managers” who receive expected state. This state might be “I want to run two instances of my web app and expose port 80.” The managers then look at all of the machines in the cluster and delegate work to “worker” nodes. The managers watch for changes (such as a container quitting) and then work to make actual state reflect the expected state.\nWe will cover Kubernetes in the next chapter."
   },
   {
-    "objectID": "docker-start-next.html#cloud-native-computing-foundation-projects",
-    "href": "docker-start-next.html#cloud-native-computing-foundation-projects",
-    "title": "19  What next?",
-    "section": "19.2 Cloud Native Computing Foundation projects",
-    "text": "19.2 Cloud Native Computing Foundation projects\nThe CNCF is a vendor-neutral home for various open-source projects, including Kubernetes. You can view the graduated and incubated projects here and the entire CNCF Landscape here. There are a LOT of projects to help solve problems around monitoring, logging, security, image registries, messaging, and more!"
+    "objectID": "k8s.html#what-is-kubernetes",
+    "href": "k8s.html#what-is-kubernetes",
+    "title": "Kubernetes",
+    "section": "What is Kubernetes?",
+    "text": "What is Kubernetes?\nKubernetes, also known as K8s, is an open-source system for automating deployment, scaling, and management of containerized applications. It provides you with the framework to run distributed systems resiliently, scale them as needed, roll out new software seamlessly, and more."
   },
   {
-    "objectID": "docker-start-next.html#getting-started-video-workshop",
-    "href": "docker-start-next.html#getting-started-video-workshop",
-    "title": "19  What next?",
-    "section": "19.3 Getting started video workshop",
-    "text": "19.3 Getting started video workshop\nWe recommend the video workshop from DockerCon 2022. Watch the video below or use the links to open the video at a particular section.\n\nDocker overview and installation\nPull, run, and explore containers\nBuild a container image\nContainerize an app\nConnect a DB and set up a bind mount\nDeploy a container to the cloud"
+    "objectID": "k8s.html#why-kubernetes",
+    "href": "k8s.html#why-kubernetes",
+    "title": "Kubernetes",
+    "section": "Why Kubernetes?",
+    "text": "Why Kubernetes?\n\nPortability: Kubernetes runs on various platforms, from your laptop to public cloud providers.\nScalability: It can scale your applications based on the demand, thereby optimizing resource usage.\nHigh availability: Kubernetes ensures that your applications are always available to the end-users."
   },
   {
-    "objectID": "docker-start-next.html#creating-a-container-from-scratch",
-    "href": "docker-start-next.html#creating-a-container-from-scratch",
-    "title": "19  What next?",
-    "section": "19.4 Creating a container from scratch",
-    "text": "19.4 Creating a container from scratch\nIf you’d like to see how containers are built from scratch, Liz Rice from Aqua Security has a fantastic talk in which she creates a container from scratch in Go. While the talk does not go into networking, using images for the filesystem, and other advanced topics, it gives a deep dive into how things are working."
+    "objectID": "k8s.html#core-concepts-of-kubernetes",
+    "href": "k8s.html#core-concepts-of-kubernetes",
+    "title": "Kubernetes",
+    "section": "Core Concepts of Kubernetes",
+    "text": "Core Concepts of Kubernetes\n\nPods: The smallest and simplest unit in the Kubernetes object model that you create or deploy.\nServices: An abstract way to expose an application running on a set of Pods as a network service.\nVolumes: Provides persistent storage for your application data.\nNamespaces: Kubernetes supports multiple virtual clusters backed by the same physical cluster."
   },
   {
-    "objectID": "docker-start-next.html#language-specific-guides",
-    "href": "docker-start-next.html#language-specific-guides",
-    "title": "19  What next?",
-    "section": "19.5 Language-specific guides",
-    "text": "19.5 Language-specific guides\nIf you are looking for information on how to containerize an application using your favorite language, see Language-specific getting started guides."
+    "objectID": "k8s.html#kubernetes-architecture",
+    "href": "k8s.html#kubernetes-architecture",
+    "title": "Kubernetes",
+    "section": "Kubernetes Architecture",
+    "text": "Kubernetes Architecture\nKubernetes follows a client-server architecture. It’s divided into two main components: - Master Node: This controls the Kubernetes nodes. It’s the entry point for all administrative tasks. - Worker Nodes: These are the machines where the applications are running."
+  },
+  {
+    "objectID": "k8s-setup.html#prerequisites",
+    "href": "k8s-setup.html#prerequisites",
+    "title": "20  Kubernetes setup",
+    "section": "20.1 Prerequisites",
+    "text": "20.1 Prerequisites\nTo create clusters with kind, you will first need to install Docker. If you haven’t already, install Docker, following these instructions."
+  },
+  {
+    "objectID": "k8s-setup.html#kind-installation",
+    "href": "k8s-setup.html#kind-installation",
+    "title": "20  Kubernetes setup",
+    "section": "20.2 Kind installation",
+    "text": "20.2 Kind installation\nkind (Kubernetes IN Docker) is a tool for running local Kubernetes clusters using Docker container “nodes”.\n\nWe follow the official installation guide and download the latest binary (v0.18.0 at the time of this writing).\n\nsudo curl -Lo ./kind https://kind.sigs.k8s.io/dl/v0.18.0/kind-linux-amd64\n\nChange permissions and rename it to kind:\n\nsudo chmod +x ./kind\n\nMove the folder to /usr/local/bin/kind\n\nsudo mv ./kind /usr/local/bin/kind\n\n20.2.1 Creating a Cluster\n\nCreating a Kubernetes cluster is as simple as kind create cluster (visit this site to learn more).\n\nsudo kind create cluster\nThis will bootstrap a Kubernetes cluster using a pre-built node image. Prebuilt images are hosted at kindest/node."
+  },
+  {
+    "objectID": "k8s-setup.html#kubectl-installation",
+    "href": "k8s-setup.html#kubectl-installation",
+    "title": "20  Kubernetes setup",
+    "section": "20.3 kubectl installation",
+    "text": "20.3 kubectl installation\nAfter creating a cluster, you can use kubectl to interact with it by using the configuration file generated by kind. We follow the official installation tutorial to install kubectl.\n\nChange directory\n\ncd /home/ubuntu\n\nDownload the latest release with the command:\n\nsudo curl -LO \"https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl\"\n\nInstall kubectl\n\nsudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl\n\nTest to ensure the version you installed is up-to-date:\n\nkubectl version --client --output=yaml"
+  },
+  {
+    "objectID": "k8s-setup.html#interacting-with-your-cluster",
+    "href": "k8s-setup.html#interacting-with-your-cluster",
+    "title": "20  Kubernetes setup",
+    "section": "20.4 Interacting With Your Cluster",
+    "text": "20.4 Interacting With Your Cluster\n\n\nCheck that kubectl is properly configured by getting the cluster state:\n\nsudo kubectl cluster-info\n\nList any existing Pods\n\nsudo kubectl get pods\nThis should output: “No resources found in default namespace.”"
+  },
+  {
+    "objectID": "k8s-setup.html#prepare-environment",
+    "href": "k8s-setup.html#prepare-environment",
+    "title": "20  Kubernetes setup",
+    "section": "20.5 Prepare environment",
+    "text": "20.5 Prepare environment\nIn the following steps, we will use some of Nigel Poulton’s examples from “The Kubernetes Book (2022)”. Therefore, we will clone his GitHub-repo on our virtual machine.\n\nChange directory to mnt/vdb\n\ncd /mnt/vdb\n\nMake a new directory:\n\nmkdir github\n\nChange into the directory:\n\ncd github\n\nClone this GitHub-repo into the directory:\n\ngit clone https://github.com/nigelpoulton/TheK8sBook.git"
+  },
+  {
+    "objectID": "k8s-pod-hello.html#what-is-a-pod",
+    "href": "k8s-pod-hello.html#what-is-a-pod",
+    "title": "21  Deploying Pods from a manifest file",
+    "section": "21.1 What is a Pod?",
+    "text": "21.1 What is a Pod?\nIn Kubernetes, the basic building block is a Pod. A Pod can contain one or more ‘containers’ (usually Docker containers), which are like mini-programs, and all of these get sent to a single computer in the group (or ‘cluster’) at the same time.\nWe use special instruction files (YAML manifest files) to tell Kubernetes how and what to deploy, and it’s common to use tools called ‘Deployments’ and ‘DaemonSets’ to manage these Pods.\nIf a Pod is set up without using a controller, like a Deployment or DaemonSet, it’s known as a ‘static’ Pod. To set up these Pods, we use a command kubectl apply to send the instruction files to the Kubernetes control center (the ‘API server’), and then Kubernetes decides which computer in the cluster will run the Pod.\nA special program on the chosen computer, called the ‘kubelet daemon’, takes care of starting the Pod and keeping an eye on it, and tries to fix problems locally. But if the computer running a static Pod has a problem and stops working, the Pod won’t be automatically replaced."
+  },
+  {
+    "objectID": "k8s-pod-hello.html#deploying-pods-from-a-manifest-file",
+    "href": "k8s-pod-hello.html#deploying-pods-from-a-manifest-file",
+    "title": "21  Deploying Pods from a manifest file",
+    "section": "21.2 Deploying Pods from a manifest file",
+    "text": "21.2 Deploying Pods from a manifest file\n\nChange directory into the pods folder:\n\ncd /mnt/vdb/github/TheK8sBook/pods\n\nCreate your Pod with the manifest file pod.yml:\n\nsudo kubectl apply -f pod.yml\nHere is the content of pod.yml:\napiVersion: v1\nkind: Pod\nmetadata:\n  name: hello-pod\n  labels:\n    zone: prod\n    version: v1\nspec:\n  containers:\n  - name: hello-ctr\n    image: nigelpoulton/k8sbook:1.0\n    ports:\n    - containerPort: 8080\nIn essence, this YAML file creates a Pod named hello-pod with a single container called hello-ctr. The container is created from the nigelpoulton/k8sbook:1.0 Docker image and exposes port 8080 for network communication. The Pod is labelled with zone: prod and version: v1 to help manage and organize it better.\nHere’s a breakdown of what each part of the YAML file means:\napiVersion: v1: This indicates the version of the Kubernetes API you’re using to create this object.\nkind: Pod: This line indicates that the type of the Kubernetes object you’re creating is a Pod.\nmetadata: This section provides data that helps uniquely identify the Pod.\n`name:` hello-pod: This is the name of the Pod.\n`labels:` These are key-value pairs that are used to organize and categorize Pods. Here, `zone`: prod and `version`: v1 are used as labels.\nspec: This section defines the desired state for this Pod, meaning what containers should be running.\n`containers:` This is a list of containers that should be launched inside this Pod.\n`name: hello-ctr`: This is the name of the container.\n`image: nigelpoulton/k8sbook:1.0`: This indicates the Docker image to be used for this container. The image is taken from a public Docker image repository.\n`ports:` This lists the network ports the container should expose. containerPort: 8080 means that the container is listening on port 8080."
+  },
+  {
+    "objectID": "k8s-pod-hello.html#check-the-status-of-pods",
+    "href": "k8s-pod-hello.html#check-the-status-of-pods",
+    "title": "21  Deploying Pods from a manifest file",
+    "section": "21.3 Check the status of Pods",
+    "text": "21.3 Check the status of Pods\n\nShow status of your Pod with:\n\nsudo kubectl get Pods\nThis sould output something like:\nNAME        READY   STATUS    RESTARTS   AGE\nhello-pod   1/1     Running   0          2m48s\nThe Pod is running on a node and is being monitored by the local kubelet process.\n\nTo get a more detailed overview use:\n\nsudo kubectl get pods -o yaml\n\nAnother option is:\n\nsudo kubectl describe pods hello-pod"
+  },
+  {
+    "objectID": "k8s-pod-hello.html#running-commands-in-pods",
+    "href": "k8s-pod-hello.html#running-commands-in-pods",
+    "title": "21  Deploying Pods from a manifest file",
+    "section": "21.4 Running commands in Pods",
+    "text": "21.4 Running commands in Pods\nNext, we will execute a command from inside the Pod.\n\nUse kubectl exec -it to open an interactive session:\n\nsudo kubectl exec -it hello-pod -- sh\n\nFor example, let’s show the Pod hostname inside the interactive session:\n\nenv | grep HOSTNAME\nThe hostname of the container is set to the Pod’s name. Note that you should always set Pod names as valid DNS names (a-z and 0-9, the minus sign and the period sign).\n\nType exit to get back to the terminal\n\nexit\n\nLet’s delete this Pod:\n\nsudo kubectl delete pod hello-pod"
+  },
+  {
+    "objectID": "k8s-pod-multi-container.html#prepare-environment",
+    "href": "k8s-pod-multi-container.html#prepare-environment",
+    "title": "22  Multi-container Pod",
+    "section": "22.1 Prepare environment",
+    "text": "22.1 Prepare environment\nFirst, we need to make some preparations in GitHub:\n\nLog in to your GitHub account.\nFork the following GitHub repo (this is so you can make a change to the repo and see those changes reflected by the app) to your GitHub-Account (keep the name as suggested by GitHub):\n\nhttps://github.com/nigelpoulton/ps-sidecar/fork\nNow, in your virtual machine:\n\nOpen this folder in VS Code: /mnt/vdb/github/TheK8sBook/pods/\nOpen the file sidecarpod-cloud.yml\nUpdate the GIT_SYNC_REPO value to reflect your forked repo and save your changes (replace https://github.com/nigelpoulton/ps-sidecar.git with your URl. In my case https://github.com/kirenz/ps-sidecar.git )"
+  },
+  {
+    "objectID": "k8s-pod-multi-container.html#create-multi-container-pod",
+    "href": "k8s-pod-multi-container.html#create-multi-container-pod",
+    "title": "22  Multi-container Pod",
+    "section": "22.2 Create multi-container Pod",
+    "text": "22.2 Create multi-container Pod\n\nChange directory into the pods folder:\n\ncd /mnt/vdb/github/TheK8sBook/pods\n\nThis command will deploy the multi-container Pod as well as a Service object you can use to connect to the app.\n\nsudo kubectl apply -f sidecar-cloud.yml\nThis should output\npod/git-sync created\nservice/svc-sidecar created\n\nExplanation of sidecar-cloud.yml:\nIn summary, the YAML file sidecar-cloud.yml creates a Pod named git-sync with two containers. The first container serves content using nginx and the second container syncs a git repository into a shared volume. A Service named svc-sidecar is also created to expose the nginx server to the internet via a load balancer on port 80.\nThe file is defining a Pod and a Service:\nPod Configuration\napiVersion: v1: This indicates the version of the Kubernetes API you’re using to create this object.\nkind: Pod: This line indicates that the type of the Kubernetes object you’re creating is a Pod.\nmetadata: This section provides data that helps uniquely identify the Pod.\n`name: git-sync`: This is the name of the Pod.\n`labels`: These are key-value pairs that are used to organize and categorize Pods. Here, `app: sidecar` is used as a label.\nspec: This section defines the desired state for this Pod, meaning what containers should be running.\n`containers`: This is a list of two containers that should be launched inside this Pod.\n\nThe first container `ctr-web` is based on the nginx image and mounts a volume named html at `/usr/share/nginx/`.\n\nThe second container `ctr-sync` is based on the `k8s.gcr.io/git-sync:v3.1.6` image. This container mounts the same html volume, but at `/tmp/git`. This container also has several environment variables defined to clone a git repository into the mounted volume.\n\n`volumes`: This is a list of storage volumes that are available to the containers running in the Pod. Here, an emptyDir volume named html is created. This type of volume is initially empty and containers in the pod can read from and write to the same volume.\nService Configuration\napiVersion: v1: This indicates the version of the Kubernetes API you’re using to create this object.\nkind: Service: This line indicates that the type of the Kubernetes object you’re creating is a Service.\nmetadata: This section provides data that helps uniquely identify the Service.\n`name: svc-sidecar`: This is the name of the Service.\nspec: This section defines the desired state for this Service.\n`selector`: This is used to find the Pods that the Service should manage traffic for. Here, it selects the Pod with the label `app: sidecar`.\n\n`ports`: This lists the network port the Service should expose. port: 80 means that the Service is exposed on port 80.\n\n`type: LoadBalancer`: This means that the Service will be exposed through a cloud provider's load balancer.\n\n\nMonitor the status of your pods with:\n\nsudo kubectl get pods\n\nUse this command to get the connection details:\n\nsudo kubectl get svc\n\nTo get more information, run:\n\nsudo kubectl describe services svc-sidecar\nThis sould output something like:\nNAME          TYPE           CLUSTER-IP     EXTERNAL-IP   PORT(S)        AGE\nkubernetes    ClusterIP      10.96.0.1      &lt;none&gt;        443/TCP        172m\nsvc-sidecar   LoadBalancer   10.96.62.142   &lt;pending&gt;     80:30408/TCP   15m\nIn this example, the external IP address (which we need to take a look at our website) is pending since Kubernetes does not offer an implementation of network load balancers (Services of type LoadBalancer) for clusters like ours. This means if you’re not running on a supported IaaS platform (GCP, AWS, Azure…), LoadBalancers will remain in the “pending” state indefinitely when created. Therefore, we need to use a solution provided by MetalLB, which is described in the next section."
+  },
+  {
+    "objectID": "k8s-pod-multi-container.html#create-network-load-balancer-with-metallb",
+    "href": "k8s-pod-multi-container.html#create-network-load-balancer-with-metallb",
+    "title": "22  Multi-container Pod",
+    "section": "22.3 Create Network load-balancer with MetalLB",
+    "text": "22.3 Create Network load-balancer with MetalLB\nMetalLB hooks into your Kubernetes cluster, and provides a network load-balancer implementation. In short, it allows you to create Kubernetes services of type LoadBalancer in clusters that don’t run on a cloud provider, and thus cannot simply hook into paid products to provide load balancers.\nThe following steps cover how to get service of type LoadBalancer working in a kind cluster using Metallb (review this tutorial from kind for more information).\n\nInstalling MetalLB using default manifests:\n\nsudo kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.13.7/config/manifests/metallb-native.yaml\n\nRun the following command (this ensures that Kubernetes waits until the MetalLB pods (controller and speakers) are ready):\n\nsudo kubectl wait --namespace metallb-system \\\n                --for=condition=ready pod \\\n                --selector=app=metallb \\\n                --timeout=90s\n\n\nWe need to provide MetalLB a range of IP addresses it controls. We want this range to be on the docker kind network:\n\nsudo docker network inspect -f '{{.IPAM.Config}}' kind\n\nThis will output some IP addresses like the following:\n\n[{172.20.0.0/16  172.20.0.1 map[]} {fc00:f853:ccd:e793::/64   map[]}]\nThe output will contain a CIDR such as 172.20.0.0/16. We want our loadbalancer IP range to come from this subclass. We can configure MetalLB, in my case, to use 172.20.255.200 to 172.20.255.250 (see YAML file below).\n\nNext, create a new YAML-file called metal-config.yaml\n\ntouch metal-config.yaml\n\nIn VS Code, open metal-config.yaml and insert the content below (change the IP addresses accordingly):\n\napiVersion: metallb.io/v1beta1\nkind: IPAddressPool\nmetadata:\n  name: example\n  namespace: metallb-system\nspec:\n  addresses:\n  - 172.20.255.200-172.20.255.250\n---\napiVersion: metallb.io/v1beta1\nkind: L2Advertisement\nmetadata:\n  name: empty\n  namespace: metallb-system\nSave the file.\n\nApply the contents\n\nsudo kubectl apply -f metal-config.yaml \nThis should output:\nipaddresspool.metallb.io/example created\nl2advertisement.metallb.io/empty created\nThat’s it. Now we can obtain the external IP."
+  },
+  {
+    "objectID": "k8s-pod-multi-container.html#obtain-external-ip",
+    "href": "k8s-pod-multi-container.html#obtain-external-ip",
+    "title": "22  Multi-container Pod",
+    "section": "22.4 Obtain External-IP",
+    "text": "22.4 Obtain External-IP\n\nShow external-IP\n\nsudo kubectl get svc \nThe output should be similar to (your IP-address will be different):\nNAME          TYPE           CLUSTER-IP     EXTERNAL-IP      PORT(S)        AGE\nkubernetes    ClusterIP      10.96.0.1      &lt;none&gt;           443/TCP        4h23m\nsvc-sidecar   LoadBalancer   10.96.62.142   172.20.255.200   80:30408/TCP   106m\n\n\nTo make a quick test, open the site in yout terminal (change the IP accordingly)\n\nsudo curl http://172.20.255.200:80 \nThe result should display some HTML code including the content of your forked repo:\n&lt;!DOCTYPE html&gt;\n&lt;html&gt;\n&lt;head&gt;\n&lt;title&gt;NGINX&lt;/title&gt;\n&lt;style&gt;\n    body {\n        width: 35em;\n        margin: 0 auto;\n        font-family: Tahoma, Verdana, Arial, sans-serif;\n    }\n&lt;/style&gt;\n&lt;/head&gt;\n&lt;body&gt;\n&lt;h1&gt;This is version 1.0&lt;/h1&gt;\n&lt;/body&gt;\n&lt;/html&gt;"
+  },
+  {
+    "objectID": "k8s-pod-multi-container.html#port-forwarding",
+    "href": "k8s-pod-multi-container.html#port-forwarding",
+    "title": "22  Multi-container Pod",
+    "section": "22.5 Port forwarding",
+    "text": "22.5 Port forwarding\nTo be able to access a port on the remote machine that may not be publicly exposed, you need to establish a connection or a tunnel between a port on your local machine and the server.\nTo browse to the web app on your local machine, you can leverage the VS Code feature called Port Forwarding\n\nOpen the PORTS view in VS Code (next to the integrated TERMINAL).\nClick on “Add Port” and enter your new port (the IP address you obtained). It should look something like: 172.20.255.200:80\nOpen the browser symbol to view the page in your browser.\n\nThe web page should display the content of your forked repo – “This is version 1.0”"
+  },
+  {
+    "objectID": "k8s-pod-multi-container.html#make-changes-in-github",
+    "href": "k8s-pod-multi-container.html#make-changes-in-github",
+    "title": "22  Multi-container Pod",
+    "section": "22.6 Make changes in GitHub",
+    "text": "22.6 Make changes in GitHub\nGo to GitHub:\n\nOpen and edit the file index.html in your forked GitHub-repo ps-sidecar and make a change to the\n\nline (e.g. call it “This is version 2.0”).\nCommit the changes and open the browser tab from before (with the “This is version 1.0” web page).\nRefresh your browser. The update should be reflected almost immediately in the app: “This is version 2.0”\n\nCongratulations! The sidecar container has successfully watched a GitHub repo and sync’d changes to your app.\nFeel free to run the sudo kubectl get pods and sudo kubectl describe pod commands to see how multi-container Pods appear in the outputs."
+  },
+  {
+    "objectID": "k8s-pod-multi-container.html#delete-pod",
+    "href": "k8s-pod-multi-container.html#delete-pod",
+    "title": "22  Multi-container Pod",
+    "section": "22.7 Delete Pod",
+    "text": "22.7 Delete Pod\n\nIf you are done, delete the Pod:\n\nsudo kubectl delete pod git-sync"
   }
 ]

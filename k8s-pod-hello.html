@@ -8,7 +8,7 @@
 
 <meta name="author" content="Jan Kirenz">
 
-<title>Cloud Architecure - 1&nbsp; Register for bwCloud SCOPE</title>
+<title>Cloud Architecure - 21&nbsp; Deploying Pods from a manifest file</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -21,6 +21,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -31,8 +65,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./key-pairs-create.html" rel="next">
-<link href="./instance.html" rel="prev">
+<link href="./k8s-pod-multi-container.html" rel="next">
+<link href="./k8s-setup.html" rel="prev">
 <link href="./cover.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -75,7 +109,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./instance.html">Virtual Machine</a></li><li class="breadcrumb-item"><a href="./instance-register.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Register for bwCloud SCOPE</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./k8s.html">Kubernetes</a></li><li class="breadcrumb-item"><a href="./k8s-pod-hello.html"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Deploying Pods from a manifest file</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -125,7 +159,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./instance-register.html" class="sidebar-item-text sidebar-link active">
+  <a href="./instance-register.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Register for bwCloud SCOPE</span></span></a>
   </div>
 </li>
@@ -278,7 +312,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./k8s-pod-hello.html" class="sidebar-item-text sidebar-link">
+  <a href="./k8s-pod-hello.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Deploying Pods from a manifest file</span></span></a>
   </div>
 </li>
@@ -296,14 +330,23 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#what-is-a-pod" id="toc-what-is-a-pod" class="nav-link active" data-scroll-target="#what-is-a-pod"><span class="header-section-number">21.1</span> What is a Pod?</a></li>
+  <li><a href="#deploying-pods-from-a-manifest-file" id="toc-deploying-pods-from-a-manifest-file" class="nav-link" data-scroll-target="#deploying-pods-from-a-manifest-file"><span class="header-section-number">21.2</span> Deploying Pods from a manifest file</a></li>
+  <li><a href="#check-the-status-of-pods" id="toc-check-the-status-of-pods" class="nav-link" data-scroll-target="#check-the-status-of-pods"><span class="header-section-number">21.3</span> Check the status of Pods</a></li>
+  <li><a href="#running-commands-in-pods" id="toc-running-commands-in-pods" class="nav-link" data-scroll-target="#running-commands-in-pods"><span class="header-section-number">21.4</span> Running commands in Pods</a></li>
+  </ul>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/kirenz/bw-cloud/edit/main/k8s-pod-hello.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/kirenz/bw-cloud/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Register for bwCloud SCOPE</span></h1>
+<h1 class="title"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Deploying Pods from a manifest file</span></h1>
 </div>
 
 
@@ -318,13 +361,101 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<p>Registration is required to use the bwCloud infrastructure.</p>
+<section id="what-is-a-pod" class="level2" data-number="21.1">
+<h2 data-number="21.1" class="anchored" data-anchor-id="what-is-a-pod"><span class="header-section-number">21.1</span> What is a Pod?</h2>
+<p>In Kubernetes, the basic building block is a Pod. A Pod can contain one or more ‘containers’ (usually Docker containers), which are like mini-programs, and all of these get sent to a single computer in the group (or ‘cluster’) at the same time.</p>
+<p>We use special instruction files (YAML manifest files) to tell Kubernetes how and what to deploy, and it’s common to use tools called ‘Deployments’ and ‘DaemonSets’ to manage these Pods.</p>
+<p>If a Pod is set up without using a controller, like a Deployment or DaemonSet, it’s known as a ‘static’ Pod. To set up these Pods, we use a command <code>kubectl apply</code> to send the instruction files to the Kubernetes control center (the ‘API server’), and then Kubernetes decides which computer in the cluster will run the Pod.</p>
+<p>A special program on the chosen computer, called the ‘kubelet daemon’, takes care of starting the Pod and keeping an eye on it, and tries to fix problems locally. But if the computer running a static Pod has a problem and stops working, the Pod won’t be automatically replaced.</p>
+<!--
+The atomic unit of deployment in Kubernetes is the Pod. Each Pod has one or more containers and gets deployed to a single node in the cluster as an all-or-nothing atomic operation. 
+
+Pods are defined and deployed declaratively using YAML manifest files and it’s normal to deploy them via higher-level controllers such as Deployments and DaemonSets. 
+
+If a Pod is not deployed via a controller, it’s called a static Pod. You use kubectl apply to post the YAML manifests to the API server and Kubernetes picks a worker node to run the Pod on. 
+
+The kubelet daemon on the assigned worker node is responsible for pulling the strings to get the Pod started and then monitoring it and attempting local fixes. If the node a static Pod is running on fails, the missing Pod doesn’t get replaced.
+-->
+</section>
+<section id="deploying-pods-from-a-manifest-file" class="level2" data-number="21.2">
+<h2 data-number="21.2" class="anchored" data-anchor-id="deploying-pods-from-a-manifest-file"><span class="header-section-number">21.2</span> Deploying Pods from a manifest file</h2>
 <ul>
-<li><p>Visit this <a href="https://login.bwidm.de/">site</a> and choose your home organization and click on “Proceed” or press enter.</p></li>
-<li><p>Register for “bwCloud SCOPE”</p></li>
+<li>Change directory into the pods folder:</li>
 </ul>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /mnt/vdb/github/TheK8sBook/pods</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>Create your Pod with the manifest file <code>pod.yml</code>:</li>
+</ul>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> kubectl apply <span class="at">-f</span> pod.yml</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Here is the content of <code>pod.yml</code>:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">apiVersion</span><span class="kw">:</span><span class="at"> v1</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">kind</span><span class="kw">:</span><span class="at"> Pod</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">metadata</span><span class="kw">:</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">name</span><span class="kw">:</span><span class="at"> hello-pod</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">labels</span><span class="kw">:</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">zone</span><span class="kw">:</span><span class="at"> prod</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">version</span><span class="kw">:</span><span class="at"> v1</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="fu">spec</span><span class="kw">:</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">containers</span><span class="kw">:</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> hello-ctr</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">image</span><span class="kw">:</span><span class="at"> nigelpoulton/k8sbook:1.0</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">ports</span><span class="kw">:</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">containerPort</span><span class="kw">:</span><span class="at"> </span><span class="dv">8080</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>In essence, this YAML file creates a Pod named <code>hello-pod</code> with a single container called <code>hello-ctr</code>. The container is created from the nigelpoulton/k8sbook:1.0 Docker image and exposes port 8080 for network communication. The Pod is labelled with zone: prod and version: v1 to help manage and organize it better.</p>
+<p>Here’s a breakdown of what each part of the YAML file means:</p>
+<p><code>apiVersion: v1</code>: This indicates the version of the Kubernetes API you’re using to create this object.</p>
+<p><code>kind: Pod</code>: This line indicates that the type of the Kubernetes object you’re creating is a Pod.</p>
+<p><code>metadata:</code> This section provides data that helps uniquely identify the Pod.</p>
+<pre><code>`name:` hello-pod: This is the name of the Pod.
+`labels:` These are key-value pairs that are used to organize and categorize Pods. Here, `zone`: prod and `version`: v1 are used as labels.</code></pre>
+<p><code>spec:</code> This section defines the desired state for this Pod, meaning what containers should be running.</p>
+<pre><code>`containers:` This is a list of containers that should be launched inside this Pod.
+`name: hello-ctr`: This is the name of the container.
+`image: nigelpoulton/k8sbook:1.0`: This indicates the Docker image to be used for this container. The image is taken from a public Docker image repository.
+`ports:` This lists the network ports the container should expose. containerPort: 8080 means that the container is listening on port 8080.</code></pre>
+</section>
+<section id="check-the-status-of-pods" class="level2" data-number="21.3">
+<h2 data-number="21.3" class="anchored" data-anchor-id="check-the-status-of-pods"><span class="header-section-number">21.3</span> Check the status of Pods</h2>
+<ul>
+<li>Show status of your Pod with:</li>
+</ul>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> kubectl get Pods</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This sould output something like:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">NAME</span>        READY   STATUS    RESTARTS   AGE</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="ex">hello-pod</span>   1/1     Running   0          2m48s</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The Pod is running on a node and is being monitored by the local kubelet process.</p>
+<ul>
+<li>To get a more detailed overview use:</li>
+</ul>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> kubectl get pods <span class="at">-o</span> yaml</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>Another option is:</li>
+</ul>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> kubectl describe pods hello-pod</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="running-commands-in-pods" class="level2" data-number="21.4">
+<h2 data-number="21.4" class="anchored" data-anchor-id="running-commands-in-pods"><span class="header-section-number">21.4</span> Running commands in Pods</h2>
+<p>Next, we will execute a command from inside the Pod.</p>
+<ul>
+<li>Use <code>kubectl exec -it</code> to open an interactive session:</li>
+</ul>
+<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> kubectl exec <span class="at">-it</span> hello-pod <span class="at">--</span> sh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>For example, let’s show the Pod hostname inside the interactive session:</li>
+</ul>
+<div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">env</span> <span class="kw">|</span> <span class="fu">grep</span> HOSTNAME</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The hostname of the container is set to the Pod’s name. Note that you should always set Pod names as valid DNS names (a-z and 0-9, the minus sign and the period sign).</p>
+<ul>
+<li>Type exit to get back to the terminal</li>
+</ul>
+<div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="bu">exit</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>Let’s delete this Pod:</li>
+</ul>
+<div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> kubectl delete pod hello-pod</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -562,13 +693,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./instance.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Virtual Machine</span>
+      <a href="./k8s-setup.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Kubernetes setup</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./key-pairs-create.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Create SSH-Key</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./k8s-pod-multi-container.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Multi-container Pod</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -578,7 +709,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     <div class="nav-footer-left">Jan Kirenz</div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/kirenz/bw-cloud/edit/main/instance-register.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/kirenz/bw-cloud/issues/new" class="toc-action">Report an issue</a></p></div></div></div>
+    </div>
     <div class="nav-footer-right">This book was built with <a href="https://quarto.org/">Quarto</a>.</div>
   </div>
 </footer>

@@ -8,7 +8,7 @@
 
 <meta name="author" content="Jan Kirenz">
 
-<title>Cloud Architecure - 1&nbsp; Register for bwCloud SCOPE</title>
+<title>Cloud Architecure - Kubernetes</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -31,8 +31,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./key-pairs-create.html" rel="next">
-<link href="./instance.html" rel="prev">
+<link href="./k8s-setup.html" rel="next">
+<link href="./docker-start-next.html" rel="prev">
 <link href="./cover.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -75,7 +75,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./instance.html">Virtual Machine</a></li><li class="breadcrumb-item"><a href="./instance-register.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Register for bwCloud SCOPE</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./k8s.html">Kubernetes</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -125,7 +125,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./instance-register.html" class="sidebar-item-text sidebar-link active">
+  <a href="./instance-register.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Register for bwCloud SCOPE</span></span></a>
   </div>
 </li>
@@ -263,7 +263,7 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./k8s.html" class="sidebar-item-text sidebar-link">
+            <a href="./k8s.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Kubernetes</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -296,14 +296,23 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#what-is-kubernetes" id="toc-what-is-kubernetes" class="nav-link active" data-scroll-target="#what-is-kubernetes">What is Kubernetes?</a></li>
+  <li><a href="#why-kubernetes" id="toc-why-kubernetes" class="nav-link" data-scroll-target="#why-kubernetes">Why Kubernetes?</a></li>
+  <li><a href="#core-concepts-of-kubernetes" id="toc-core-concepts-of-kubernetes" class="nav-link" data-scroll-target="#core-concepts-of-kubernetes">Core Concepts of Kubernetes</a></li>
+  <li><a href="#kubernetes-architecture" id="toc-kubernetes-architecture" class="nav-link" data-scroll-target="#kubernetes-architecture">Kubernetes Architecture</a></li>
+  </ul>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/kirenz/bw-cloud/edit/main/k8s.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/kirenz/bw-cloud/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Register for bwCloud SCOPE</span></h1>
+<h1 class="title">Kubernetes</h1>
 </div>
 
 
@@ -318,13 +327,33 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<p>Registration is required to use the bwCloud infrastructure.</p>
+<section id="what-is-kubernetes" class="level2">
+<h2 class="anchored" data-anchor-id="what-is-kubernetes">What is Kubernetes?</h2>
+<p>Kubernetes, also known as K8s, is an open-source system for automating deployment, scaling, and management of containerized applications. It provides you with the framework to run distributed systems resiliently, scale them as needed, roll out new software seamlessly, and more.</p>
+</section>
+<section id="why-kubernetes" class="level2">
+<h2 class="anchored" data-anchor-id="why-kubernetes">Why Kubernetes?</h2>
 <ul>
-<li><p>Visit this <a href="https://login.bwidm.de/">site</a> and choose your home organization and click on “Proceed” or press enter.</p></li>
-<li><p>Register for “bwCloud SCOPE”</p></li>
+<li><strong>Portability</strong>: Kubernetes runs on various platforms, from your laptop to public cloud providers.</li>
+<li><strong>Scalability</strong>: It can scale your applications based on the demand, thereby optimizing resource usage.</li>
+<li><strong>High availability</strong>: Kubernetes ensures that your applications are always available to the end-users.</li>
 </ul>
+</section>
+<section id="core-concepts-of-kubernetes" class="level2">
+<h2 class="anchored" data-anchor-id="core-concepts-of-kubernetes">Core Concepts of Kubernetes</h2>
+<ul>
+<li><strong>Pods</strong>: The smallest and simplest unit in the Kubernetes object model that you create or deploy.</li>
+<li><strong>Services</strong>: An abstract way to expose an application running on a set of Pods as a network service.</li>
+<li><strong>Volumes</strong>: Provides persistent storage for your application data.</li>
+<li><strong>Namespaces</strong>: Kubernetes supports multiple virtual clusters backed by the same physical cluster.</li>
+</ul>
+</section>
+<section id="kubernetes-architecture" class="level2">
+<h2 class="anchored" data-anchor-id="kubernetes-architecture">Kubernetes Architecture</h2>
+<p>Kubernetes follows a client-server architecture. It’s divided into two main components: - <strong>Master Node</strong>: This controls the Kubernetes nodes. It’s the entry point for all administrative tasks. - <strong>Worker Nodes</strong>: These are the machines where the applications are running.</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -562,13 +591,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./instance.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Virtual Machine</span>
+      <a href="./docker-start-next.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">What next?</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./key-pairs-create.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Create SSH-Key</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./k8s-setup.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Kubernetes setup</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -578,7 +607,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     <div class="nav-footer-left">Jan Kirenz</div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/kirenz/bw-cloud/edit/main/instance-register.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/kirenz/bw-cloud/issues/new" class="toc-action">Report an issue</a></p></div></div></div>
+    </div>
     <div class="nav-footer-right">This book was built with <a href="https://quarto.org/">Quarto</a>.</div>
   </div>
 </footer>
