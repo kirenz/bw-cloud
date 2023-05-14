@@ -55,8 +55,6 @@ book:
         - k8s-setup.qmd
         - k8s-pod-hello.qmd
         - k8s-pod-multi-container.qmd
-
-
      
 bibliography: references.bib
 
