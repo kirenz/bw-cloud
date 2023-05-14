@@ -690,7 +690,7 @@
     "href": "k8s-pod-multi-container.html#make-changes-in-github",
     "title": "22  Multi-container Pod",
     "section": "22.6 Make changes in GitHub",
-    "text": "22.6 Make changes in GitHub\nGo to GitHub:\n\nOpen and edit the file index.html in your forked GitHub-repo ps-sidecar and make a change to the\n\nline (e.g. call it “This is version 2.0”).\nCommit the changes and open the browser tab from before (with the “This is version 1.0” web page).\nRefresh your browser. The update should be reflected almost immediately in the app: “This is version 2.0”\n\nCongratulations! The sidecar container has successfully watched a GitHub repo and sync’d changes to your app.\nFeel free to run the sudo kubectl get pods and sudo kubectl describe pod commands to see how multi-container Pods appear in the outputs."
+    "text": "22.6 Make changes in GitHub\nGo to GitHub:\n\nOpen and edit the file index.html in your forked GitHub-repo ps-sidecar and make a change to the h1 line (e.g. call it “This is version 2.0”).\nCommit the changes and open the browser tab from before (with the “This is version 1.0” web page).\nRefresh your browser. The update should be reflected almost immediately in the app: “This is version 2.0”\n\nCongratulations! The sidecar container has successfully watched a GitHub repo and sync’d changes to your app.\nFeel free to run the sudo kubectl get pods and sudo kubectl describe pod commands to see how multi-container Pods appear in the outputs."
   },
   {
     "objectID": "k8s-pod-multi-container.html#delete-pod",

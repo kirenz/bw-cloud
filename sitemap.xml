@@ -2,110 +2,110 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://kirenz.github.io/bw-cloud/index.html</loc>
-    <lastmod>2023-05-14T16:35:46.734Z</lastmod>
+    <lastmod>2023-05-14T16:50:38.953Z</lastmod>
   </url>
   <url>
     <loc>https://kirenz.github.io/bw-cloud/instance.html</loc>
-    <lastmod>2023-05-14T16:35:46.742Z</lastmod>
+    <lastmod>2023-05-14T16:50:38.961Z</lastmod>
   </url>
   <url>
     <loc>https://kirenz.github.io/bw-cloud/instance-register.html</loc>
-    <lastmod>2023-05-14T16:35:46.750Z</lastmod>
+    <lastmod>2023-05-14T16:50:38.965Z</lastmod>
   </url>
   <url>
     <loc>https://kirenz.github.io/bw-cloud/key-pairs-create.html</loc>
-    <lastmod>2023-05-14T16:35:46.766Z</lastmod>
+    <lastmod>2023-05-14T16:50:38.977Z</lastmod>
   </url>
   <url>
     <loc>https://kirenz.github.io/bw-cloud/instance-create.html</loc>
-    <lastmod>2023-05-14T16:35:46.782Z</lastmod>
+    <lastmod>2023-05-14T16:50:38.989Z</lastmod>
   </url>
   <url>
     <loc>https://kirenz.github.io/bw-cloud/instance-login.html</loc>
-    <lastmod>2023-05-14T16:35:46.794Z</lastmod>
+    <lastmod>2023-05-14T16:50:38.997Z</lastmod>
   </url>
   <url>
     <loc>https://kirenz.github.io/bw-cloud/vs-code-ssh.html</loc>
-    <lastmod>2023-05-14T16:35:46.802Z</lastmod>
+    <lastmod>2023-05-14T16:50:39.005Z</lastmod>
   </url>
   <url>
     <loc>https://kirenz.github.io/bw-cloud/instance-storage-increase.html</loc>
-    <lastmod>2023-05-14T16:35:46.818Z</lastmod>
+    <lastmod>2023-05-14T16:50:39.017Z</lastmod>
   </url>
   <url>
     <loc>https://kirenz.github.io/bw-cloud/python.html</loc>
-    <lastmod>2023-05-14T16:35:46.838Z</lastmod>
+    <lastmod>2023-05-14T16:50:39.021Z</lastmod>
   </url>
   <url>
     <loc>https://kirenz.github.io/bw-cloud/python-miniconda-setup.html</loc>
-    <lastmod>2023-05-14T16:35:46.850Z</lastmod>
+    <lastmod>2023-05-14T16:50:39.037Z</lastmod>
   </url>
   <url>
     <loc>https://kirenz.github.io/bw-cloud/docker.html</loc>
-    <lastmod>2023-05-14T16:35:46.858Z</lastmod>
+    <lastmod>2023-05-14T16:50:39.045Z</lastmod>
   </url>
   <url>
     <loc>https://kirenz.github.io/bw-cloud/docker-setup.html</loc>
-    <lastmod>2023-05-14T16:35:46.870Z</lastmod>
+    <lastmod>2023-05-14T16:50:39.053Z</lastmod>
   </url>
   <url>
     <loc>https://kirenz.github.io/bw-cloud/docker-location.html</loc>
-    <lastmod>2023-05-14T16:35:46.882Z</lastmod>
+    <lastmod>2023-05-14T16:50:39.061Z</lastmod>
   </url>
   <url>
     <loc>https://kirenz.github.io/bw-cloud/docker-start-prerequisites.html</loc>
-    <lastmod>2023-05-14T16:35:46.902Z</lastmod>
+    <lastmod>2023-05-14T16:50:39.069Z</lastmod>
   </url>
   <url>
     <loc>https://kirenz.github.io/bw-cloud/docker-start-containerize.html</loc>
-    <lastmod>2023-05-14T16:35:46.914Z</lastmod>
+    <lastmod>2023-05-14T16:50:39.085Z</lastmod>
   </url>
   <url>
     <loc>https://kirenz.github.io/bw-cloud/docker-start-update.html</loc>
-    <lastmod>2023-05-14T16:35:46.926Z</lastmod>
+    <lastmod>2023-05-14T16:50:39.093Z</lastmod>
   </url>
   <url>
     <loc>https://kirenz.github.io/bw-cloud/docker-start-share.html</loc>
-    <lastmod>2023-05-14T16:35:46.938Z</lastmod>
+    <lastmod>2023-05-14T16:50:39.105Z</lastmod>
   </url>
   <url>
     <loc>https://kirenz.github.io/bw-cloud/docker-start-persist.html</loc>
-    <lastmod>2023-05-14T16:35:46.950Z</lastmod>
+    <lastmod>2023-05-14T16:50:39.113Z</lastmod>
   </url>
   <url>
     <loc>https://kirenz.github.io/bw-cloud/docker-start-bind-mounts.html</loc>
-    <lastmod>2023-05-14T16:35:46.978Z</lastmod>
+    <lastmod>2023-05-14T16:50:39.129Z</lastmod>
   </url>
   <url>
     <loc>https://kirenz.github.io/bw-cloud/docker-start-multi-container.html</loc>
-    <lastmod>2023-05-14T16:35:46.994Z</lastmod>
+    <lastmod>2023-05-14T16:50:39.145Z</lastmod>
   </url>
   <url>
     <loc>https://kirenz.github.io/bw-cloud/docker-start-compose.html</loc>
-    <lastmod>2023-05-14T16:35:47.034Z</lastmod>
+    <lastmod>2023-05-14T16:50:39.165Z</lastmod>
   </url>
   <url>
     <loc>https://kirenz.github.io/bw-cloud/docker-start-best-practices.html</loc>
-    <lastmod>2023-05-14T16:35:47.054Z</lastmod>
+    <lastmod>2023-05-14T16:50:39.185Z</lastmod>
   </url>
   <url>
     <loc>https://kirenz.github.io/bw-cloud/docker-start-next.html</loc>
-    <lastmod>2023-05-14T16:35:47.062Z</lastmod>
+    <lastmod>2023-05-14T16:50:39.193Z</lastmod>
   </url>
   <url>
     <loc>https://kirenz.github.io/bw-cloud/k8s.html</loc>
-    <lastmod>2023-05-14T16:35:47.074Z</lastmod>
+    <lastmod>2023-05-14T16:50:39.197Z</lastmod>
   </url>
   <url>
     <loc>https://kirenz.github.io/bw-cloud/k8s-setup.html</loc>
-    <lastmod>2023-05-14T16:35:47.098Z</lastmod>
+    <lastmod>2023-05-14T16:50:39.209Z</lastmod>
   </url>
   <url>
     <loc>https://kirenz.github.io/bw-cloud/k8s-pod-hello.html</loc>
-    <lastmod>2023-05-14T16:35:47.114Z</lastmod>
+    <lastmod>2023-05-14T16:50:39.225Z</lastmod>
   </url>
   <url>
     <loc>https://kirenz.github.io/bw-cloud/k8s-pod-multi-container.html</loc>
-    <lastmod>2023-05-14T16:35:47.134Z</lastmod>
+    <lastmod>2023-05-14T16:50:39.241Z</lastmod>
   </url>
 </urlset>
