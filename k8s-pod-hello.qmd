@@ -21,10 +21,6 @@ The kubelet daemon on the assigned worker node is responsible for pulling the st
 -->
 
 
-
-
-
-
 ## Deploying Pods from a manifest file
 
 - Change directory into the pods folder:
@@ -138,4 +134,3 @@ exit
 ```bash
 sudo kubectl delete pod hello-pod
 ```
-
