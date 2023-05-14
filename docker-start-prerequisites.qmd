@@ -11,6 +11,8 @@ Some of the things you’ll learn and do in this guide are:
 5. [Share a directory from the host’s filesystem into the container (bind mounts)](docker-start-bind-mounts.qmd).
 5. [Store data in an external database running in a separate container](docker-start-multi-container.qmd)
 6. [Run applications using Docker Compose](docker-start-compose.qmd).
+7. [Image builing best practices](docker-start-best-practices.qmd).
+8. [Container orchestration and next steps](docker-start-next.qmd).
 
 Before you get to the hands on part of the guide, you should learn about containers and images.
 
