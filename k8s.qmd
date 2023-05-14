@@ -1,0 +1,29 @@
+# Kubernetes
+
+## What is Kubernetes?
+
+Kubernetes, also known as K8s, is an open-source system for automating deployment, scaling, and management of containerized applications. It provides you with the framework to run distributed systems resiliently, scale them as needed, roll out new software seamlessly, and more.
+
+
+## Why Kubernetes?
+
+- **Portability**: Kubernetes runs on various platforms, from your laptop to public cloud providers.
+- **Scalability**: It can scale your applications based on the demand, thereby optimizing resource usage.
+- **High availability**: Kubernetes ensures that your applications are always available to the end-users.
+
+## Core Concepts of Kubernetes
+
+- **Pods**: The smallest and simplest unit in the Kubernetes object model that you create or deploy.
+- **Services**: An abstract way to expose an application running on a set of Pods as a network service.
+- **Volumes**: Provides persistent storage for your application data.
+- **Namespaces**: Kubernetes supports multiple virtual clusters backed by the same physical cluster.
+
+## Kubernetes Architecture
+
+Kubernetes follows a client-server architecture. It's divided into two main components:
+- **Master Node**: This controls the Kubernetes nodes. It's the entry point for all administrative tasks.
+- **Worker Nodes**: These are the machines where the applications are running.
+
+
+
+
