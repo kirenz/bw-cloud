@@ -50,6 +50,11 @@ book:
         - docker-start-best-practices.qmd
         - docker-start-next.qmd
 
+    - part: k8s.qmd
+      chapters:
+        - k8s-setup.qmd
+        - k8s-pod-hello.qmd
+        - k8s-pod-multi-container.qmd
 
 
      
