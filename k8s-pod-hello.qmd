@@ -1,0 +1,141 @@
+# Deploying Pods from a manifest file
+
+## What is a Pod?
+
+In Kubernetes, the basic building block is a Pod. A Pod can contain one or more 'containers' (usually Docker containers), which are like mini-programs, and all of these get sent to a single computer in the group (or 'cluster') at the same time.
+
+We use special instruction files (YAML manifest files) to tell Kubernetes how and what to deploy, and it's common to use tools called 'Deployments' and 'DaemonSets' to manage these Pods.
+
+If a Pod is set up without using a controller, like a Deployment or DaemonSet, it's known as a 'static' Pod. To set up these Pods, we use a command `kubectl apply` to send the instruction files to the Kubernetes control center (the 'API server'), and then Kubernetes decides which computer in the cluster will run the Pod.
+
+A special program on the chosen computer, called the 'kubelet daemon', takes care of starting the Pod and keeping an eye on it, and tries to fix problems locally. But if the computer running a static Pod has a problem and stops working, the Pod won't be automatically replaced.
+
+<!--
+The atomic unit of deployment in Kubernetes is the Pod. Each Pod has one or more containers and gets deployed to a single node in the cluster as an all-or-nothing atomic operation. 
+
+Pods are defined and deployed declaratively using YAML manifest files and it’s normal to deploy them via higher-level controllers such as Deployments and DaemonSets. 
+
+If a Pod is not deployed via a controller, it’s called a static Pod. You use kubectl apply to post the YAML manifests to the API server and Kubernetes picks a worker node to run the Pod on. 
+
+The kubelet daemon on the assigned worker node is responsible for pulling the strings to get the Pod started and then monitoring it and attempting local fixes. If the node a static Pod is running on fails, the missing Pod doesn’t get replaced.
+-->
+
+
+
+
+
+
+## Deploying Pods from a manifest file
+
+- Change directory into the pods folder:
+
+```bash
+cd /mnt/vdb/github/TheK8sBook/pods
+```
+
+- Create your Pod with the manifest file `pod.yml`:
+
+```bash
+sudo kubectl apply -f pod.yml
+```
+
+Here is the content of `pod.yml`:
+
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: hello-pod
+  labels:
+    zone: prod
+    version: v1
+spec:
+  containers:
+  - name: hello-ctr
+    image: nigelpoulton/k8sbook:1.0
+    ports:
+    - containerPort: 8080
+```
+
+In essence, this YAML file creates a Pod named `hello-pod` with a single container called `hello-ctr`. The container is created from the nigelpoulton/k8sbook:1.0 Docker image and exposes port 8080 for network communication. The Pod is labelled with zone: prod and version: v1 to help manage and organize it better.
+
+Here's a breakdown of what each part of the YAML file means:
+
+`apiVersion: v1`: This indicates the version of the Kubernetes API you're using to create this object.
+
+`kind: Pod`: This line indicates that the type of the Kubernetes object you're creating is a Pod.
+
+`metadata:` This section provides data that helps uniquely identify the Pod.
+
+    `name:` hello-pod: This is the name of the Pod.
+    `labels:` These are key-value pairs that are used to organize and categorize Pods. Here, `zone`: prod and `version`: v1 are used as labels.
+
+`spec:` This section defines the desired state for this Pod, meaning what containers should be running.
+
+    `containers:` This is a list of containers that should be launched inside this Pod.
+    `name: hello-ctr`: This is the name of the container.
+    `image: nigelpoulton/k8sbook:1.0`: This indicates the Docker image to be used for this container. The image is taken from a public Docker image repository.
+    `ports:` This lists the network ports the container should expose. containerPort: 8080 means that the container is listening on port 8080.
+
+## Check the status of Pods
+
+- Show status of your Pod with:
+
+```bash
+sudo kubectl get Pods
+```
+
+This sould output something like:
+
+```bash
+NAME        READY   STATUS    RESTARTS   AGE
+hello-pod   1/1     Running   0          2m48s
+```
+
+The Pod is running on a node and is being monitored by the local kubelet process.
+
+- To get a more detailed overview use:
+
+
+```bash
+sudo kubectl get pods -o yaml
+```
+
+- Another option is:
+
+
+```bash
+sudo kubectl describe pods hello-pod
+```
+
+## Running commands in Pods 
+
+Next, we will execute a command from inside the Pod.
+
+- Use `kubectl exec -it` to open an interactive session:
+
+```bash
+sudo kubectl exec -it hello-pod -- sh
+```
+
+- For example, let's show the Pod hostname inside the interactive session:
+
+```bash
+env | grep HOSTNAME
+```
+
+The hostname of the container is set to the Pod's name. Note that you should always set Pod names as valid DNS names (a-z and 0-9, the minus sign and the period sign).
+
+- Type exit to get back to the terminal
+
+```bash
+exit
+```
+
+- Let's delete this Pod:
+
+```bash
+sudo kubectl delete pod hello-pod
+```
+
