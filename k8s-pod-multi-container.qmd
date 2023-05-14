@@ -295,7 +295,7 @@ The web page should display the content of your forked repo – "This is version
 
 Go to GitHub: 
 
-- Open and edit the file `index.html` in your forked GitHub-repo `ps-sidecar` and make a change to the <h1> line (e.g. call it "This is version 2.0"). 
+- Open and edit the file `index.html` in your forked GitHub-repo `ps-sidecar` and make a change to the h1 line (e.g. call it "This is version 2.0"). 
 
 - Commit the changes and open the browser tab from before (with the "This is version 1.0" web page).
 
