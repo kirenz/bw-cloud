@@ -1,0 +1,48 @@
+# Helm installation
+
+Helm is a package manager for Kubernetes that you can use to install applications and services. Install Helm by running the following commands:
+
+
+- Download the the Helm GPG signing key:
+
+
+```bash
+curl https://baltocdn.com/helm/signing.asc | gpg --dearmor | sudo tee /usr/share/keyrings/helm.gpg > /dev/null
+```
+
+The command downloads the Helm GPG signing key, which is used to verify the integrity and authenticity of the Helm package. The downloaded key is then processed by `gpg --dearmor` to convert it into a binary format. The processed key is written to `/usr/share/keyrings/helm.gpg` using `sudo tee`. The `> /dev/null` part discards the standard output of the tee command, so that it doesn't clutter up your terminal:
+
+- Install a necessary package: 
+
+```bash
+sudo apt-get install apt-transport-https --yes
+```
+
+This command installs the `apt-transport-https` package, which allows the apt package manager to retrieve packages over HTTPS. This is necessary because the Helm package repository is accessed over HTTPS.
+
+
+- Add the Helm package repository to your list of apt sources:
+
+```bash
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/helm.gpg] https://baltocdn.com/helm/stable/debian/ all main" | sudo tee /etc/apt/sources.list.d/helm-stable-debian.list
+```
+
+The echo command generates a line of text that includes the repository URL (https://baltocdn.com/helm/stable/debian/), the architecture of your system ($(dpkg --print-architecture)), and the location of the signing key (signed-by=/usr/share/keyrings/helm.gpg). This line of text is written to /etc/apt/sources.list.d/helm-stable-debian.list using sudo tee, which effectively adds the Helm repository to your apt sources.
+
+
+- Update the list of available packages:
+
+```bash
+sudo apt-get update
+```
+
+
+- Install the helm package using apt:
+
+
+```bash
+sudo apt-get install helm
+```
+
+
+
