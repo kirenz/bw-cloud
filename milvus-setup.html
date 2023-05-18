@@ -8,7 +8,7 @@
 
 <meta name="author" content="Jan Kirenz">
 
-<title>Cloud Architecure - 20&nbsp; Kubernetes setup</title>
+<title>Cloud Architecure - 24&nbsp; Milvus installation</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -65,8 +65,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./k8s-pod-hello.html" rel="next">
-<link href="./k8s.html" rel="prev">
+<link href="./milvus.html" rel="prev">
 <link href="./cover.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -109,7 +108,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./k8s.html">Kubernetes</a></li><li class="breadcrumb-item"><a href="./k8s-setup.html"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Kubernetes setup</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./milvus.html">Vector database</a></li><li class="breadcrumb-item"><a href="./milvus-setup.html"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Milvus installation</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -206,8 +205,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./python-miniconda-setup.html" class="sidebar-item-text sidebar-link">
+  <a href="./python-miniconda-setup-vdb.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Miniconda</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./python-environment.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Prepare programming environment</span></span></a>
   </div>
 </li>
       </ul>
@@ -224,73 +229,73 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./docker-setup.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Docker set up</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Docker set up</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./docker-location.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Change docker location</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Change docker location</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./docker-start-prerequisites.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Get started with Docker</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Get started with Docker</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./docker-start-containerize.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Containerize the application</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Containerize the application</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./docker-start-update.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Update application</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Update application</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./docker-start-share.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Share the application</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Share the application</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./docker-start-persist.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Persist the DB</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Persist the DB</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./docker-start-bind-mounts.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Use bind mounts</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Use bind mounts</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./docker-start-multi-container.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Multi container apps</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Multi container apps</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./docker-start-compose.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Use Docker Compose</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Use Docker Compose</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./docker-start-best-practices.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Image-building best practices</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Image-building best practices</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./docker-start-next.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">What next?</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">What next?</span></span></a>
   </div>
 </li>
       </ul>
@@ -306,20 +311,37 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./k8s-setup.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Kubernetes setup</span></span></a>
+  <a href="./k8s-setup-vdb.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Kubernetes setup</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./k8s-pod-hello.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Deploying Pods from a manifest file</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Deploying Pods from a manifest file</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./k8s-pod-multi-container.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Multi-container Pod</span></span></a>
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Multi-container Pod</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./milvus.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Vector database</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./milvus-setup.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Milvus installation</span></span></a>
   </div>
 </li>
       </ul>
@@ -334,23 +356,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#prerequisites" id="toc-prerequisites" class="nav-link active" data-scroll-target="#prerequisites"><span class="header-section-number">20.1</span> Prerequisites</a></li>
-  <li><a href="#kind-installation" id="toc-kind-installation" class="nav-link" data-scroll-target="#kind-installation"><span class="header-section-number">20.2</span> Kind installation</a>
-  <ul class="collapse">
-  <li><a href="#creating-a-cluster" id="toc-creating-a-cluster" class="nav-link" data-scroll-target="#creating-a-cluster"><span class="header-section-number">20.2.1</span> Creating a Cluster</a></li>
-  </ul></li>
-  <li><a href="#kubectl-installation" id="toc-kubectl-installation" class="nav-link" data-scroll-target="#kubectl-installation"><span class="header-section-number">20.3</span> kubectl installation</a></li>
-  <li><a href="#interacting-with-your-cluster" id="toc-interacting-with-your-cluster" class="nav-link" data-scroll-target="#interacting-with-your-cluster"><span class="header-section-number">20.4</span> Interacting With Your Cluster</a></li>
-  <li><a href="#prepare-environment" id="toc-prepare-environment" class="nav-link" data-scroll-target="#prepare-environment"><span class="header-section-number">20.5</span> Prepare environment</a></li>
+  <li><a href="#prepare-kubernetes" id="toc-prepare-kubernetes" class="nav-link active" data-scroll-target="#prepare-kubernetes"><span class="header-section-number">24.1</span> Prepare Kubernetes</a></li>
+  <li><a href="#install-helm-chart-for-milvus" id="toc-install-helm-chart-for-milvus" class="nav-link" data-scroll-target="#install-helm-chart-for-milvus"><span class="header-section-number">24.2</span> Install Helm Chart for Milvus</a></li>
+  <li><a href="#start-milvus" id="toc-start-milvus" class="nav-link" data-scroll-target="#start-milvus"><span class="header-section-number">24.3</span> Start Milvus</a></li>
+  <li><a href="#connect-to-milvus" id="toc-connect-to-milvus" class="nav-link" data-scroll-target="#connect-to-milvus"><span class="header-section-number">24.4</span> Connect to Milvus</a></li>
+  <li><a href="#python-example-project" id="toc-python-example-project" class="nav-link" data-scroll-target="#python-example-project"><span class="header-section-number">24.5</span> Python example project</a></li>
   </ul>
-<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/kirenz/bw-cloud/edit/main/k8s-setup.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/kirenz/bw-cloud/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/kirenz/bw-cloud/edit/main/milvus-setup.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/kirenz/bw-cloud/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Kubernetes setup</span></h1>
+<h1 class="title"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Milvus installation</span></h1>
 </div>
 
 
@@ -365,106 +384,115 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<p>You can download Kubernetes to deploy a Kubernetes cluster on a local machine, into the cloud, or for your own datacenter.</p>
-<p>We will install Kubernetes in our virtual machine using <a href="https://kind.sigs.k8s.io/">kind</a> (Kubernetes IN Docker).</p>
-<p>Furthermore, we use the Kubernetes command-line tool <code>kubectl</code> which allows you to run commands against Kubernetes clusters. You can use kubectl to deploy applications, inspect and manage cluster resources, and view logs.</p>
-<section id="prerequisites" class="level2" data-number="20.1">
-<h2 data-number="20.1" class="anchored" data-anchor-id="prerequisites"><span class="header-section-number">20.1</span> Prerequisites</h2>
-<p>To create clusters with kind, you will first need to install Docker. If you haven’t already, install Docker, following <a href="./docker-start-prerequisites.html">these instructions</a>.</p>
+<section id="prepare-kubernetes" class="level2" data-number="24.1">
+<h2 data-number="24.1" class="anchored" data-anchor-id="prepare-kubernetes"><span class="header-section-number">24.1</span> Prepare Kubernetes</h2>
+<!--
+
+- Set the config file to the correct path:
+
+```bash
+export KUBECONFIG=/root/.kube/config
+```
+-->
+<ul>
+<li>Ensure that the correct context is being used by running:</li>
+</ul>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> kubectl config use-context kind-kind</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<!--
+
+- Start a K8s cluster using kind
+
+```bash
+sudo kind create cluster
+```
+-->
 </section>
-<section id="kind-installation" class="level2" data-number="20.2">
-<h2 data-number="20.2" class="anchored" data-anchor-id="kind-installation"><span class="header-section-number">20.2</span> Kind installation</h2>
-<p><a href="https://kind.sigs.k8s.io/">kind</a> (Kubernetes IN Docker) is a tool for running local Kubernetes clusters using Docker container “nodes”.</p>
+<section id="install-helm-chart-for-milvus" class="level2" data-number="24.2">
+<h2 data-number="24.2" class="anchored" data-anchor-id="install-helm-chart-for-milvus"><span class="header-section-number">24.2</span> Install Helm Chart for Milvus</h2>
 <ul>
-<li>We follow the official <a href="https://kind.sigs.k8s.io/docs/user/quick-start/#installing-from-release-binaries">installation guide</a> and download the latest binary (v0.18.0 at the time of this writing).</li>
+<li>Add the Milvus chart repository to Helm:</li>
 </ul>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> curl <span class="at">-Lo</span> ./kind https://kind.sigs.k8s.io/dl/v0.18.0/kind-linux-amd64</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> helm repo add milvus https://milvus-io.github.io/milvus-helm/</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
-<li>Change permissions and rename it to kind:</li>
+<li>Update your local chart repository.</li>
 </ul>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> chmod +x ./kind</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ul>
-<li>Move the folder to <code>/usr/local/bin/kind</code></li>
-</ul>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> mv ./kind /usr/local/bin/kind</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<section id="creating-a-cluster" class="level3" data-number="20.2.1">
-<h3 data-number="20.2.1" class="anchored" data-anchor-id="creating-a-cluster"><span class="header-section-number">20.2.1</span> Creating a Cluster</h3>
-<ul>
-<li>Creating a Kubernetes cluster is as simple as <code>kind create cluster</code> (visit <a href="https://kind.sigs.k8s.io/docs/user/quick-start/#creating-a-cluster">this site</a> to learn more).</li>
-</ul>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> kind create cluster</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>This will bootstrap a Kubernetes cluster using a pre-built node image. Prebuilt images are hosted at <a href="https://hub.docker.com/r/kindest/node/">kindest/node</a>.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> helm repo update</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
+<section id="start-milvus" class="level2" data-number="24.3">
+<h2 data-number="24.3" class="anchored" data-anchor-id="start-milvus"><span class="header-section-number">24.3</span> Start Milvus</h2>
+<p>Start Milvus with Helm by specifying the release name, the chart, and parameters you expect to change. This topic uses <code>my-release</code> as the release name. To use a different release name, replace <code>my-release</code> in the command.</p>
+<pre><code>sudo helm install my-release milvus/milvus \
+  --set cluster.enabled=false \
+  --set etcd.replicaCount=1 \
+  --set minio.mode=standalone \
+  --set pulsar.enabled=false</code></pre>
+<p>This should output something like:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">NAME:</span> my-release</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">LAST</span> DEPLOYED: Tue May 16 18:38:40 2023</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="ex">NAMESPACE:</span> default</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="ex">STATUS:</span> deployed</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="ex">REVISION:</span> 1</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="ex">TEST</span> SUITE: None</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Check the status of the running pods.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> kubectl get pods</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This outputs:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">my-release-etcd-0</span>                               1/1     Running            0          3m15s</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="ex">my-release-milvus-standalone-66cdddd564-8vg7l</span>   0/1     ImagePullBackOff   0          3m15s</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="ex">my-release-minio-55cf49d57d-bmx5m</span>               1/1     Running            0          3m15s</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="kubectl-installation" class="level2" data-number="20.3">
-<h2 data-number="20.3" class="anchored" data-anchor-id="kubectl-installation"><span class="header-section-number">20.3</span> kubectl installation</h2>
-<p>After creating a cluster, you can use <a href="https://kubernetes.io/docs/reference/kubectl/overview/">kubectl</a> to interact with it by using the configuration file generated by kind. We follow the <a href="https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/">official installation tutorial</a> to install kubectl.</p>
+<section id="connect-to-milvus" class="level2" data-number="24.4">
+<h2 data-number="24.4" class="anchored" data-anchor-id="connect-to-milvus"><span class="header-section-number">24.4</span> Connect to Milvus</h2>
+<p>Verify which local port the Milvus server is listening on. Replace the pod name with your own.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> kubectl get pod my-release-milvus-standalone-66cdddd564-8vg7l <span class="at">--template</span><span class="op">=</span><span class="st">'{{(index (index .spec.containers 0).ports 0).containerPort}}{{"\n"}}'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<!--
+sudo kubectl get pod my-release-milvus-standalone-66cdddd564-8vg7l --template='{{(index (index .spec.containers 0).ports 0).containerPort}}{{"\n"}}'
+
+-->
+<p>Output:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">19530</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li><p>Open a new terminal window in VS Code (use the <code>+</code> icon above your terminal window)</p></li>
+<li><p>Now run the following command to forward a local port to the port that Milvus uses (use your milvus pod name).</p></li>
+</ul>
+<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> kubectl port-forward my-release-milvus-standalone-66cdddd564-8vg7l 19530:19530</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>Don’t close this window (if you want to use the terminal, you can open a new window. You may later switch back to the other ternimal window -you can see the available terminal windows as cube icons to the right of your terminal)</li>
+</ul>
+</section>
+<section id="python-example-project" class="level2" data-number="24.5">
+<h2 data-number="24.5" class="anchored" data-anchor-id="python-example-project"><span class="header-section-number">24.5</span> Python example project</h2>
 <ul>
 <li>Change directory</li>
 </ul>
-<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /home/ubuntu</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /mnt/vdb/github</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
-<li>Download the latest release with the command:</li>
+<li>Create a new directory</li>
 </ul>
-<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> curl <span class="at">-LO</span> <span class="st">"https://dl.k8s.io/release/</span><span class="va">$(</span><span class="ex">curl</span> <span class="at">-L</span> <span class="at">-s</span> https://dl.k8s.io/release/stable.txt<span class="va">)</span><span class="st">/bin/linux/amd64/kubectl"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> milvus</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
-<li>Install kubectl</li>
+<li>Change directory</li>
 </ul>
-<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> install <span class="at">-o</span> root <span class="at">-g</span> root <span class="at">-m</span> 0755 kubectl /usr/local/bin/kubectl</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> milvus</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
-<li>Test to ensure the version you installed is up-to-date:</li>
+<li>Get the Milvus Python starter code</li>
 </ul>
-<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">kubectl</span> version <span class="at">--client</span> <span class="at">--output</span><span class="op">=</span>yaml</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="interacting-with-your-cluster" class="level2" data-number="20.4">
-<h2 data-number="20.4" class="anchored" data-anchor-id="interacting-with-your-cluster"><span class="header-section-number">20.4</span> Interacting With Your Cluster</h2>
-<!--
-After creating a cluster with kind, you can use kubectl to interact with it by using the configuration file generated by kind. By default, the cluster access configuration is stored in ${HOME}/.kube/config if $KUBECONFIG environment variable is not set.
-
-In order for kubectl to find and access a Kubernetes cluster, it needs a kubeconfig file, which is created automatically when you create a cluster using kube-up.sh or successfully deploy a Minikube cluster. 
-
-By default, kubectl configuration is located at ~/.kube/config.
--->
+<div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-L</span> <span class="at">-O</span> https://raw.githubusercontent.com/milvus-io/pymilvus/master/examples/hello_milvus.py</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
-<li>Check that kubectl is properly configured by getting the cluster state:</li>
+<li>We also download the .ipynb-Version:</li>
 </ul>
-<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> kubectl cluster-info</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-L</span> <span class="at">-O</span> https://raw.githubusercontent.com/milvus-io/pymilvus/master/examples/hello_milvus.ipynb</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
-<li>List any existing Pods</li>
+<li>Change to the root user:</li>
 </ul>
-<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> kubectl get pods</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>This should output: “No resources found in default namespace.”</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> su</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>Activate the milvus environment</li>
+</ul>
+<div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="ex">activate</span> milvus </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <!--
 
-## Loading an Image Into Your Cluster 
-
-Docker images can be loaded into your cluster nodes with:
-
-`kind load docker-image my-custom-image-0 my-custom-image-1`
-
-Note: If using a named cluster you will need to specify the name of the cluster you wish to load the images into: kind load docker-image my-custom-image-0 my-custom-image-1 --name kind-2
-
+- Open the file in VS Code: `/mnt/vdb/github/milvus/hello_milvus.py`
 -->
-</section>
-<section id="prepare-environment" class="level2" data-number="20.5">
-<h2 data-number="20.5" class="anchored" data-anchor-id="prepare-environment"><span class="header-section-number">20.5</span> Prepare environment</h2>
-<p>In the following steps, we will use some of Nigel Poulton’s examples from “The Kubernetes Book (2022)”. Therefore, we will clone his GitHub-repo on our virtual machine.</p>
-<ul>
-<li>Change directory to <code>mnt/vdb</code></li>
-</ul>
-<div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /mnt/vdb</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ul>
-<li>Make a new directory:</li>
-</ul>
-<div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> github</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ul>
-<li>Change into the directory:</li>
-</ul>
-<div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> github</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ul>
-<li>Clone this GitHub-repo into the directory:</li>
-</ul>
-<div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/nigelpoulton/TheK8sBook.git</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 
 </section>
@@ -705,14 +733,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./k8s.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Kubernetes</span>
+      <a href="./milvus.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Vector database</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./k8s-pod-hello.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Deploying Pods from a manifest file</span></span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->

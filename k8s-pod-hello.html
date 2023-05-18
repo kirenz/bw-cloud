@@ -8,7 +8,7 @@
 
 <meta name="author" content="Jan Kirenz">
 
-<title>Cloud Architecure - 21&nbsp; Deploying Pods from a manifest file</title>
+<title>Cloud Architecure - 22&nbsp; Deploying Pods from a manifest file</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -66,7 +66,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
 <link href="./k8s-pod-multi-container.html" rel="next">
-<link href="./k8s-setup.html" rel="prev">
+<link href="./k8s-setup-vdb.html" rel="prev">
 <link href="./cover.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -109,7 +109,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./k8s.html">Kubernetes</a></li><li class="breadcrumb-item"><a href="./k8s-pod-hello.html"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Deploying Pods from a manifest file</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./k8s.html">Kubernetes</a></li><li class="breadcrumb-item"><a href="./k8s-pod-hello.html"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Deploying Pods from a manifest file</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -206,8 +206,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./python-miniconda-setup.html" class="sidebar-item-text sidebar-link">
+  <a href="./python-miniconda-setup-vdb.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Miniconda</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./python-environment.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Prepare programming environment</span></span></a>
   </div>
 </li>
       </ul>
@@ -224,73 +230,73 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./docker-setup.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Docker set up</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Docker set up</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./docker-location.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Change docker location</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Change docker location</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./docker-start-prerequisites.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Get started with Docker</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Get started with Docker</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./docker-start-containerize.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Containerize the application</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Containerize the application</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./docker-start-update.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Update application</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Update application</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./docker-start-share.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Share the application</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Share the application</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./docker-start-persist.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Persist the DB</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Persist the DB</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./docker-start-bind-mounts.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Use bind mounts</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Use bind mounts</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./docker-start-multi-container.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Multi container apps</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Multi container apps</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./docker-start-compose.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Use Docker Compose</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Use Docker Compose</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./docker-start-best-practices.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Image-building best practices</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Image-building best practices</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./docker-start-next.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">What next?</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">What next?</span></span></a>
   </div>
 </li>
       </ul>
@@ -306,20 +312,37 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./k8s-setup.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Kubernetes setup</span></span></a>
+  <a href="./k8s-setup-vdb.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Kubernetes setup</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./k8s-pod-hello.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Deploying Pods from a manifest file</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Deploying Pods from a manifest file</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./k8s-pod-multi-container.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Multi-container Pod</span></span></a>
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Multi-container Pod</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./milvus.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Vector database</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./milvus-setup.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Milvus installation</span></span></a>
   </div>
 </li>
       </ul>
@@ -334,10 +357,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#what-is-a-pod" id="toc-what-is-a-pod" class="nav-link active" data-scroll-target="#what-is-a-pod"><span class="header-section-number">21.1</span> What is a Pod?</a></li>
-  <li><a href="#deploying-pods-from-a-manifest-file" id="toc-deploying-pods-from-a-manifest-file" class="nav-link" data-scroll-target="#deploying-pods-from-a-manifest-file"><span class="header-section-number">21.2</span> Deploying Pods from a manifest file</a></li>
-  <li><a href="#check-the-status-of-pods" id="toc-check-the-status-of-pods" class="nav-link" data-scroll-target="#check-the-status-of-pods"><span class="header-section-number">21.3</span> Check the status of Pods</a></li>
-  <li><a href="#running-commands-in-pods" id="toc-running-commands-in-pods" class="nav-link" data-scroll-target="#running-commands-in-pods"><span class="header-section-number">21.4</span> Running commands in Pods</a></li>
+  <li><a href="#what-is-a-pod" id="toc-what-is-a-pod" class="nav-link active" data-scroll-target="#what-is-a-pod"><span class="header-section-number">22.1</span> What is a Pod?</a></li>
+  <li><a href="#deploying-pods-from-a-manifest-file" id="toc-deploying-pods-from-a-manifest-file" class="nav-link" data-scroll-target="#deploying-pods-from-a-manifest-file"><span class="header-section-number">22.2</span> Deploying Pods from a manifest file</a></li>
+  <li><a href="#check-the-status-of-pods" id="toc-check-the-status-of-pods" class="nav-link" data-scroll-target="#check-the-status-of-pods"><span class="header-section-number">22.3</span> Check the status of Pods</a></li>
+  <li><a href="#running-commands-in-pods" id="toc-running-commands-in-pods" class="nav-link" data-scroll-target="#running-commands-in-pods"><span class="header-section-number">22.4</span> Running commands in Pods</a></li>
   </ul>
 <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/kirenz/bw-cloud/edit/main/k8s-pod-hello.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/kirenz/bw-cloud/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
@@ -346,7 +369,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Deploying Pods from a manifest file</span></h1>
+<h1 class="title"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Deploying Pods from a manifest file</span></h1>
 </div>
 
 
@@ -361,8 +384,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<section id="what-is-a-pod" class="level2" data-number="21.1">
-<h2 data-number="21.1" class="anchored" data-anchor-id="what-is-a-pod"><span class="header-section-number">21.1</span> What is a Pod?</h2>
+<section id="what-is-a-pod" class="level2" data-number="22.1">
+<h2 data-number="22.1" class="anchored" data-anchor-id="what-is-a-pod"><span class="header-section-number">22.1</span> What is a Pod?</h2>
 <p>In Kubernetes, the basic building block is a Pod. A Pod can contain one or more ‘containers’ (usually Docker containers), which are like mini-programs, and all of these get sent to a single computer in the group (or ‘cluster’) at the same time.</p>
 <p>We use special instruction files (YAML manifest files) to tell Kubernetes how and what to deploy, and it’s common to use tools called ‘Deployments’ and ‘DaemonSets’ to manage these Pods.</p>
 <p>If a Pod is set up without using a controller, like a Deployment or DaemonSet, it’s known as a ‘static’ Pod. To set up these Pods, we use a command <code>kubectl apply</code> to send the instruction files to the Kubernetes control center (the ‘API server’), and then Kubernetes decides which computer in the cluster will run the Pod.</p>
@@ -377,8 +400,8 @@ If a Pod is not deployed via a controller, it’s called a static Pod. You use k
 The kubelet daemon on the assigned worker node is responsible for pulling the strings to get the Pod started and then monitoring it and attempting local fixes. If the node a static Pod is running on fails, the missing Pod doesn’t get replaced.
 -->
 </section>
-<section id="deploying-pods-from-a-manifest-file" class="level2" data-number="21.2">
-<h2 data-number="21.2" class="anchored" data-anchor-id="deploying-pods-from-a-manifest-file"><span class="header-section-number">21.2</span> Deploying Pods from a manifest file</h2>
+<section id="deploying-pods-from-a-manifest-file" class="level2" data-number="22.2">
+<h2 data-number="22.2" class="anchored" data-anchor-id="deploying-pods-from-a-manifest-file"><span class="header-section-number">22.2</span> Deploying Pods from a manifest file</h2>
 <ul>
 <li>Change directory into the pods folder:</li>
 </ul>
@@ -414,8 +437,8 @@ The kubelet daemon on the assigned worker node is responsible for pulling the st
 `image: nigelpoulton/k8sbook:1.0`: This indicates the Docker image to be used for this container. The image is taken from a public Docker image repository.
 `ports:` This lists the network ports the container should expose. containerPort: 8080 means that the container is listening on port 8080.</code></pre>
 </section>
-<section id="check-the-status-of-pods" class="level2" data-number="21.3">
-<h2 data-number="21.3" class="anchored" data-anchor-id="check-the-status-of-pods"><span class="header-section-number">21.3</span> Check the status of Pods</h2>
+<section id="check-the-status-of-pods" class="level2" data-number="22.3">
+<h2 data-number="22.3" class="anchored" data-anchor-id="check-the-status-of-pods"><span class="header-section-number">22.3</span> Check the status of Pods</h2>
 <ul>
 <li>Show status of your Pod with:</li>
 </ul>
@@ -433,8 +456,8 @@ The kubelet daemon on the assigned worker node is responsible for pulling the st
 </ul>
 <div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> kubectl describe pods hello-pod</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="running-commands-in-pods" class="level2" data-number="21.4">
-<h2 data-number="21.4" class="anchored" data-anchor-id="running-commands-in-pods"><span class="header-section-number">21.4</span> Running commands in Pods</h2>
+<section id="running-commands-in-pods" class="level2" data-number="22.4">
+<h2 data-number="22.4" class="anchored" data-anchor-id="running-commands-in-pods"><span class="header-section-number">22.4</span> Running commands in Pods</h2>
 <p>Next, we will execute a command from inside the Pod.</p>
 <ul>
 <li>Use <code>kubectl exec -it</code> to open an interactive session:</li>
@@ -693,13 +716,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./k8s-setup.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Kubernetes setup</span></span>
+      <a href="./k8s-setup-vdb.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Kubernetes setup</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./k8s-pod-multi-container.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Multi-container Pod</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Multi-container Pod</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

@@ -8,7 +8,7 @@
 
 <meta name="author" content="Jan Kirenz">
 
-<title>Cloud Architecure - 22&nbsp; Multi-container Pod</title>
+<title>Cloud Architecure - 23&nbsp; Multi-container Pod</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -65,6 +65,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<link href="./milvus.html" rel="next">
 <link href="./k8s-pod-hello.html" rel="prev">
 <link href="./cover.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js"></script>
@@ -108,7 +109,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./k8s.html">Kubernetes</a></li><li class="breadcrumb-item"><a href="./k8s-pod-multi-container.html"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Multi-container Pod</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./k8s.html">Kubernetes</a></li><li class="breadcrumb-item"><a href="./k8s-pod-multi-container.html"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Multi-container Pod</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -205,8 +206,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./python-miniconda-setup.html" class="sidebar-item-text sidebar-link">
+  <a href="./python-miniconda-setup-vdb.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Miniconda</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./python-environment.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Prepare programming environment</span></span></a>
   </div>
 </li>
       </ul>
@@ -223,73 +230,73 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./docker-setup.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Docker set up</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Docker set up</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./docker-location.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Change docker location</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Change docker location</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./docker-start-prerequisites.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Get started with Docker</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Get started with Docker</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./docker-start-containerize.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Containerize the application</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Containerize the application</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./docker-start-update.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Update application</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Update application</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./docker-start-share.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Share the application</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Share the application</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./docker-start-persist.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Persist the DB</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Persist the DB</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./docker-start-bind-mounts.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Use bind mounts</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Use bind mounts</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./docker-start-multi-container.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Multi container apps</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Multi container apps</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./docker-start-compose.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Use Docker Compose</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Use Docker Compose</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./docker-start-best-practices.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Image-building best practices</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Image-building best practices</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./docker-start-next.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">What next?</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">What next?</span></span></a>
   </div>
 </li>
       </ul>
@@ -305,20 +312,37 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./k8s-setup.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Kubernetes setup</span></span></a>
+  <a href="./k8s-setup-vdb.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Kubernetes setup</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./k8s-pod-hello.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Deploying Pods from a manifest file</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Deploying Pods from a manifest file</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./k8s-pod-multi-container.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Multi-container Pod</span></span></a>
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Multi-container Pod</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./milvus.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Vector database</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./milvus-setup.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Milvus installation</span></span></a>
   </div>
 </li>
       </ul>
@@ -333,13 +357,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#prepare-environment" id="toc-prepare-environment" class="nav-link active" data-scroll-target="#prepare-environment"><span class="header-section-number">22.1</span> Prepare environment</a></li>
-  <li><a href="#create-multi-container-pod" id="toc-create-multi-container-pod" class="nav-link" data-scroll-target="#create-multi-container-pod"><span class="header-section-number">22.2</span> Create multi-container Pod</a></li>
-  <li><a href="#create-network-load-balancer-with-metallb" id="toc-create-network-load-balancer-with-metallb" class="nav-link" data-scroll-target="#create-network-load-balancer-with-metallb"><span class="header-section-number">22.3</span> Create Network load-balancer with MetalLB</a></li>
-  <li><a href="#obtain-external-ip" id="toc-obtain-external-ip" class="nav-link" data-scroll-target="#obtain-external-ip"><span class="header-section-number">22.4</span> Obtain External-IP</a></li>
-  <li><a href="#port-forwarding" id="toc-port-forwarding" class="nav-link" data-scroll-target="#port-forwarding"><span class="header-section-number">22.5</span> Port forwarding</a></li>
-  <li><a href="#make-changes-in-github" id="toc-make-changes-in-github" class="nav-link" data-scroll-target="#make-changes-in-github"><span class="header-section-number">22.6</span> Make changes in GitHub</a></li>
-  <li><a href="#delete-pod" id="toc-delete-pod" class="nav-link" data-scroll-target="#delete-pod"><span class="header-section-number">22.7</span> Delete Pod</a></li>
+  <li><a href="#prepare-environment" id="toc-prepare-environment" class="nav-link active" data-scroll-target="#prepare-environment"><span class="header-section-number">23.1</span> Prepare environment</a></li>
+  <li><a href="#create-multi-container-pod" id="toc-create-multi-container-pod" class="nav-link" data-scroll-target="#create-multi-container-pod"><span class="header-section-number">23.2</span> Create multi-container Pod</a></li>
+  <li><a href="#create-network-load-balancer-with-metallb" id="toc-create-network-load-balancer-with-metallb" class="nav-link" data-scroll-target="#create-network-load-balancer-with-metallb"><span class="header-section-number">23.3</span> Create Network load-balancer with MetalLB</a></li>
+  <li><a href="#obtain-external-ip" id="toc-obtain-external-ip" class="nav-link" data-scroll-target="#obtain-external-ip"><span class="header-section-number">23.4</span> Obtain External-IP</a></li>
+  <li><a href="#port-forwarding" id="toc-port-forwarding" class="nav-link" data-scroll-target="#port-forwarding"><span class="header-section-number">23.5</span> Port forwarding</a></li>
+  <li><a href="#make-changes-in-github" id="toc-make-changes-in-github" class="nav-link" data-scroll-target="#make-changes-in-github"><span class="header-section-number">23.6</span> Make changes in GitHub</a></li>
+  <li><a href="#delete-pod" id="toc-delete-pod" class="nav-link" data-scroll-target="#delete-pod"><span class="header-section-number">23.7</span> Delete Pod</a></li>
   </ul>
 <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/kirenz/bw-cloud/edit/main/k8s-pod-multi-container.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/kirenz/bw-cloud/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
@@ -348,7 +372,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Multi-container Pod</span></h1>
+<h1 class="title"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Multi-container Pod</span></h1>
 </div>
 
 
@@ -367,8 +391,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><img src="https://d33wubrfki0l68.cloudfront.net/aecab1f649bc640ebef1f05581bfcc91a48038c4/728d6/images/docs/pod.svg" class="img-fluid"></p>
 <p>For example, you might have a container that acts as a web server for files in a shared volume, and a separate “sidecar” container that updates those files from a remote source. The sidecar container is long-lived and runs alongside the main application container for the entire lifecycle of the Pod.</p>
 <p>In the next example, we will create a multi-container pod. The first container (called “ctr-web”) will be the main app container. It serves as a static web page. The second container is called “ctr-sync” and will be the sidecar. It watches a GitHub repo and syncs changes into the same shared volume. If the content of the repo change, the “ctr-sync” sidecar will notice and update the web page.</p>
-<section id="prepare-environment" class="level2" data-number="22.1">
-<h2 data-number="22.1" class="anchored" data-anchor-id="prepare-environment"><span class="header-section-number">22.1</span> Prepare environment</h2>
+<section id="prepare-environment" class="level2" data-number="23.1">
+<h2 data-number="23.1" class="anchored" data-anchor-id="prepare-environment"><span class="header-section-number">23.1</span> Prepare environment</h2>
 <p>First, we need to make some preparations in GitHub:</p>
 <ul>
 <li><p>Log in to your <a href="https://github.com/">GitHub account</a>.</p></li>
@@ -382,8 +406,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Update the <code>GIT_SYNC_REPO</code> value to reflect your forked repo and save your changes (replace <code>https://github.com/nigelpoulton/ps-sidecar.git</code> with your URl. In my case <code>https://github.com/kirenz/ps-sidecar.git</code> )</p></li>
 </ul>
 </section>
-<section id="create-multi-container-pod" class="level2" data-number="22.2">
-<h2 data-number="22.2" class="anchored" data-anchor-id="create-multi-container-pod"><span class="header-section-number">22.2</span> Create multi-container Pod</h2>
+<section id="create-multi-container-pod" class="level2" data-number="23.2">
+<h2 data-number="23.2" class="anchored" data-anchor-id="create-multi-container-pod"><span class="header-section-number">23.2</span> Create multi-container Pod</h2>
 <ul>
 <li>Change directory into the pods folder:</li>
 </ul>
@@ -443,8 +467,8 @@ The second container `ctr-sync` is based on the `k8s.gcr.io/git-sync:v3.1.6` ima
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="ex">svc-sidecar</span>   LoadBalancer   10.96.62.142   <span class="op">&lt;</span>pending<span class="op">&gt;</span>     80:30408/TCP   15m</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>In this example, the external IP address (which we need to take a look at our website) is pending since Kubernetes does not offer an implementation of network load balancers (Services of type <code>LoadBalancer</code>) for clusters like ours. This means if you’re not running on a supported IaaS platform (GCP, AWS, Azure…), LoadBalancers will remain in the “pending” state indefinitely when created. Therefore, we need to use a solution provided by <a href="https://metallb.universe.tf/">MetalLB</a>, which is described in the next section.</p>
 </section>
-<section id="create-network-load-balancer-with-metallb" class="level2" data-number="22.3">
-<h2 data-number="22.3" class="anchored" data-anchor-id="create-network-load-balancer-with-metallb"><span class="header-section-number">22.3</span> Create Network load-balancer with MetalLB</h2>
+<section id="create-network-load-balancer-with-metallb" class="level2" data-number="23.3">
+<h2 data-number="23.3" class="anchored" data-anchor-id="create-network-load-balancer-with-metallb"><span class="header-section-number">23.3</span> Create Network load-balancer with MetalLB</h2>
 <p><a href="https://metallb.universe.tf/">MetalLB</a> hooks into your Kubernetes cluster, and provides a network load-balancer implementation. In short, it allows you to create Kubernetes services of type LoadBalancer in clusters that don’t run on a cloud provider, and thus cannot simply hook into paid products to provide load balancers.</p>
 <p>The following steps cover how to get service of type LoadBalancer working in a kind cluster using Metallb (review <a href="https://kind.sigs.k8s.io/docs/user/loadbalancer/">this tutorial from kind</a> for more information).</p>
 <ul>
@@ -467,13 +491,17 @@ The second container `ctr-sync` is based on the `k8s.gcr.io/git-sync:v3.1.6` ima
 <li>This will output some IP addresses like the following:</li>
 </ul>
 <div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ex">[{172.20.0.0/16</span>  172.20.0.1 map[]} {fc00:f853:ccd:e793::/64   map<span class="pp">[]</span>}]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<!--
+
+[{172.18.0.0/16  172.18.0.1 map[]} {fc00:f853:ccd:e793::/64   map[]}]
+-->
 <p>The output will contain a <a href="https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing">CIDR</a> such as 172.20.0.0/16. We want our loadbalancer IP range to come from this subclass. We can configure MetalLB, in my case, to use 172.20.255.200 to 172.20.255.250 (see YAML file below).</p>
 <ul>
 <li>Next, create a new YAML-file called <code>metal-config.yaml</code></li>
 </ul>
 <div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">touch</span> metal-config.yaml</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
-<li>In VS Code, open <code>metal-config.yaml</code> and insert the content below (change the IP addresses accordingly):</li>
+<li>In VS Code, open <code>/mnt/vdb/github/TheK8sBook/pods/metal-config.yaml</code> and insert the content below (change the IP addresses accordingly):</li>
 </ul>
 <div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="ex">apiVersion:</span> metallb.io/v1beta1</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="ex">kind:</span> IPAddressPool</span>
@@ -499,8 +527,8 @@ The second container `ctr-sync` is based on the `k8s.gcr.io/git-sync:v3.1.6` ima
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="ex">l2advertisement.metallb.io/empty</span> created</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>That’s it. Now we can obtain the external IP.</p>
 </section>
-<section id="obtain-external-ip" class="level2" data-number="22.4">
-<h2 data-number="22.4" class="anchored" data-anchor-id="obtain-external-ip"><span class="header-section-number">22.4</span> Obtain External-IP</h2>
+<section id="obtain-external-ip" class="level2" data-number="23.4">
+<h2 data-number="23.4" class="anchored" data-anchor-id="obtain-external-ip"><span class="header-section-number">23.4</span> Obtain External-IP</h2>
 <ul>
 <li>Show external-IP</li>
 </ul>
@@ -539,8 +567,8 @@ sudo kubectl get pods --output=wide
 <span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/body&gt;</span></span>
 <span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/html&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="port-forwarding" class="level2" data-number="22.5">
-<h2 data-number="22.5" class="anchored" data-anchor-id="port-forwarding"><span class="header-section-number">22.5</span> Port forwarding</h2>
+<section id="port-forwarding" class="level2" data-number="23.5">
+<h2 data-number="23.5" class="anchored" data-anchor-id="port-forwarding"><span class="header-section-number">23.5</span> Port forwarding</h2>
 <p>To be able to access a port on the remote machine that may not be publicly exposed, you need to establish a connection or a tunnel between a port on your local machine and the server.</p>
 <p>To browse to the web app on your local machine, you can leverage the VS Code feature called <a href="https://code.visualstudio.com/docs/remote/ssh#_forwarding-a-port-creating-ssh-tunnel">Port Forwarding</a></p>
 <ul>
@@ -550,8 +578,8 @@ sudo kubectl get pods --output=wide
 </ul>
 <p>The web page should display the content of your forked repo – “This is version 1.0”</p>
 </section>
-<section id="make-changes-in-github" class="level2" data-number="22.6">
-<h2 data-number="22.6" class="anchored" data-anchor-id="make-changes-in-github"><span class="header-section-number">22.6</span> Make changes in GitHub</h2>
+<section id="make-changes-in-github" class="level2" data-number="23.6">
+<h2 data-number="23.6" class="anchored" data-anchor-id="make-changes-in-github"><span class="header-section-number">23.6</span> Make changes in GitHub</h2>
 <p>Go to GitHub:</p>
 <ul>
 <li><p>Open and edit the file <code>index.html</code> in your forked GitHub-repo <code>ps-sidecar</code> and make a change to the h1 line (e.g.&nbsp;call it “This is version 2.0”).</p></li>
@@ -561,8 +589,8 @@ sudo kubectl get pods --output=wide
 <p>Congratulations! The sidecar container has successfully watched a GitHub repo and sync’d changes to your app.</p>
 <p>Feel free to run the <code>sudo kubectl get pods</code> and <code>sudo kubectl describe pod</code> commands to see how multi-container Pods appear in the outputs.</p>
 </section>
-<section id="delete-pod" class="level2" data-number="22.7">
-<h2 data-number="22.7" class="anchored" data-anchor-id="delete-pod"><span class="header-section-number">22.7</span> Delete Pod</h2>
+<section id="delete-pod" class="level2" data-number="23.7">
+<h2 data-number="23.7" class="anchored" data-anchor-id="delete-pod"><span class="header-section-number">23.7</span> Delete Pod</h2>
 <ul>
 <li>If you are done, delete the Pod:</li>
 </ul>
@@ -808,10 +836,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./k8s-pod-hello.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Deploying Pods from a manifest file</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Deploying Pods from a manifest file</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="./milvus.html" class="pagination-link">
+        <span class="nav-page-text">Vector database</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->

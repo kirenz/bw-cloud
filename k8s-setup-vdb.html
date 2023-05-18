@@ -8,7 +8,7 @@
 
 <meta name="author" content="Jan Kirenz">
 
-<title>Cloud Architecure - 19&nbsp; Image-building best practices</title>
+<title>Cloud Architecure - 21&nbsp; Kubernetes setup</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -65,8 +65,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./docker-start-next.html" rel="next">
-<link href="./docker-start-compose.html" rel="prev">
+<link href="./k8s-pod-hello.html" rel="next">
+<link href="./k8s.html" rel="prev">
 <link href="./cover.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -109,7 +109,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./docker.html">Docker</a></li><li class="breadcrumb-item"><a href="./docker-start-best-practices.html"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Image-building best practices</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./k8s.html">Kubernetes</a></li><li class="breadcrumb-item"><a href="./k8s-setup-vdb.html"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Kubernetes setup</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -289,7 +289,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./docker-start-best-practices.html" class="sidebar-item-text sidebar-link active">
+  <a href="./docker-start-best-practices.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Image-building best practices</span></span></a>
   </div>
 </li>
@@ -312,7 +312,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./k8s-setup-vdb.html" class="sidebar-item-text sidebar-link">
+  <a href="./k8s-setup-vdb.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Kubernetes setup</span></span></a>
   </div>
 </li>
@@ -357,18 +357,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#image-layering" id="toc-image-layering" class="nav-link active" data-scroll-target="#image-layering"><span class="header-section-number">19.1</span> Image layering</a></li>
-  <li><a href="#layer-caching" id="toc-layer-caching" class="nav-link" data-scroll-target="#layer-caching"><span class="header-section-number">19.2</span> Layer caching</a></li>
-  <li><a href="#next-steps" id="toc-next-steps" class="nav-link" data-scroll-target="#next-steps"><span class="header-section-number">19.3</span> Next steps</a></li>
+  <li><a href="#prerequisites" id="toc-prerequisites" class="nav-link active" data-scroll-target="#prerequisites"><span class="header-section-number">21.1</span> Prerequisites</a></li>
+  <li><a href="#kind-installation" id="toc-kind-installation" class="nav-link" data-scroll-target="#kind-installation"><span class="header-section-number">21.2</span> Kind installation</a>
+  <ul class="collapse">
+  <li><a href="#creating-a-cluster" id="toc-creating-a-cluster" class="nav-link" data-scroll-target="#creating-a-cluster"><span class="header-section-number">21.2.1</span> Creating a Cluster</a></li>
+  </ul></li>
+  <li><a href="#kubectl-installation" id="toc-kubectl-installation" class="nav-link" data-scroll-target="#kubectl-installation"><span class="header-section-number">21.3</span> kubectl installation</a></li>
+  <li><a href="#config-file" id="toc-config-file" class="nav-link" data-scroll-target="#config-file"><span class="header-section-number">21.4</span> Config file</a></li>
+  <li><a href="#interacting-with-your-cluster" id="toc-interacting-with-your-cluster" class="nav-link" data-scroll-target="#interacting-with-your-cluster"><span class="header-section-number">21.5</span> Interacting With Your Cluster</a></li>
+  <li><a href="#prepare-environment" id="toc-prepare-environment" class="nav-link" data-scroll-target="#prepare-environment"><span class="header-section-number">21.6</span> Prepare environment</a></li>
   </ul>
-<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/kirenz/bw-cloud/edit/main/docker-start-best-practices.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/kirenz/bw-cloud/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/kirenz/bw-cloud/edit/main/k8s-setup-vdb.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/kirenz/bw-cloud/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Image-building best practices</span></h1>
+<h1 class="title"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Kubernetes setup</span></h1>
 </div>
 
 
@@ -383,161 +389,141 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<section id="image-layering" class="level2" data-number="19.1">
-<h2 data-number="19.1" class="anchored" data-anchor-id="image-layering"><span class="header-section-number">19.1</span> Image layering</h2>
-<p>Did you know that you can look at what makes up an image? Using the <code>docker image history</code> command, you can see the command that was used to create each layer within an image.</p>
-<ul>
-<li>Use the <code>docker image history</code> command to see the layers in the <code>getting-started</code> image you created earlier in the tutorial.</li>
-</ul>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> docker image history getting-started</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Each of the lines in the output represents a layer in the image. Using this, you can also quickly see the size of each layer, helping diagnose large images.</p>
-<ul>
-<li>You’ll notice that several of the lines are truncated. If you add the <code>--no-trunc</code> flag, you’ll get the full output:</li>
-</ul>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> docker image history <span class="at">--no-trunc</span> getting-started</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>You can download Kubernetes to deploy a Kubernetes cluster on a local machine, into the cloud, or for your own datacenter.</p>
+<p>We will install Kubernetes in our vdb volume using <a href="https://kind.sigs.k8s.io/">kind</a> (Kubernetes IN Docker).</p>
+<p>Furthermore, we use the Kubernetes command-line tool <code>kubectl</code> which allows you to run commands against Kubernetes clusters. You can use kubectl to deploy applications, inspect and manage cluster resources, and view logs.</p>
+<section id="prerequisites" class="level2" data-number="21.1">
+<h2 data-number="21.1" class="anchored" data-anchor-id="prerequisites"><span class="header-section-number">21.1</span> Prerequisites</h2>
+<p>To create clusters with kind, you will first need to install Docker. If you haven’t already, install Docker, following <a href="./docker-start-prerequisites.html">these instructions</a>.</p>
 </section>
-<section id="layer-caching" class="level2" data-number="19.2">
-<h2 data-number="19.2" class="anchored" data-anchor-id="layer-caching"><span class="header-section-number">19.2</span> Layer caching</h2>
-<p>Now that you’ve seen the layering in action, there’s an important lesson to learn to help decrease build times for your container images.</p>
-<blockquote class="blockquote">
-<p>Once a layer changes, all downstream layers have to be recreated as well</p>
-</blockquote>
-<p>Let’s look at the Dockerfile we were using one more time…</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode dockerfile code-with-copy"><code class="sourceCode dockerfile"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="cv">syntax=docker/dockerfile:1</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> node:18-alpine</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="kw">WORKDIR</span> /app</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="kw">COPY</span> . .</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="kw">RUN</span> <span class="ex">yarn</span> install <span class="at">--production</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="kw">CMD</span> [<span class="st">"node"</span>, <span class="st">"src/index.js"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Going back to the image history output, we see that each command in the Dockerfile becomes a new layer in the image. You might remember that when we made a change to the image, the yarn dependencies had to be reinstalled. Is there a way to fix this? It doesn’t make much sense to ship around the same dependencies every time we build, right?</p>
-<p>To fix this, we need to restructure our Dockerfile to help support the caching of the dependencies. For Node-based applications, those dependencies are defined in the <code>package.json</code> file. So, what if we copied only that file in first, install the dependencies, and <em>then</em> copy in everything else? Then, we only recreate the yarn dependencies if there was a change to the <code>package.json</code>. Make sense?</p>
+<section id="kind-installation" class="level2" data-number="21.2">
+<h2 data-number="21.2" class="anchored" data-anchor-id="kind-installation"><span class="header-section-number">21.2</span> Kind installation</h2>
+<p><a href="https://kind.sigs.k8s.io/">kind</a> (Kubernetes IN Docker) is a tool for running local Kubernetes clusters using Docker container “nodes”.</p>
 <ul>
-<li>Update the Dockerfile to copy in the <code>package.json</code> first, install dependencies, and then copy everything else in.</li>
+<li>We follow the official <a href="https://kind.sigs.k8s.io/docs/user/quick-start/#installing-from-release-binaries">installation guide</a> and download the latest binary (v0.18.0 at the time of this writing).</li>
 </ul>
-<div class="sourceCode" id="cb4"><pre class="sourceCode dockerfile code-with-copy"><code class="sourceCode dockerfile"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="cv">syntax=docker/dockerfile:1</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> node:18-alpine</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="kw">WORKDIR</span> /app</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="kw">COPY</span> package.json yarn.lock ./</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="kw">RUN</span> <span class="ex">yarn</span> install <span class="at">--production</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="kw">COPY</span> . .</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="kw">CMD</span> [<span class="st">"node"</span>, <span class="st">"src/index.js"</span>]</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="kw">EXPOSE</span> 3000</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Change directory</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /mnt/vdb</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> curl <span class="at">-Lo</span> ./kind https://kind.sigs.k8s.io/dl/v0.18.0/kind-linux-amd64</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
-<li>Next, we create a file named <code>.dockerignore</code> (in the same folder as the Dockerfile) and include the text <code>node_modules</code>. We use the terminal to accomplish this:</li>
+<li>Change permissions and rename it to kind:</li>
 </ul>
-<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"node_modules"</span> <span class="op">&gt;</span> .dockerignore</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><code>.dockerignore</code> files are an easy way to selectively copy only image relevant files. You can read more about this <a href="https://docs.docker.com/engine/reference/builder.md#dockerignore-file">here</a>.</p>
-<p>In this case, the <code>node_modules</code> folder should be omitted in the second <code>COPY</code> step because otherwise, it would possibly overwrite files which were created by the command in the <code>RUN</code> step. For further details on why this is recommended for Node.js applications and other best practices, have a look at their guide on <a href="https://nodejs.org/en/docs/guidenodejs-docker-webapp/">Dockerizing a Node.js web app</a></p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> chmod +x ./kind</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
-<li>Build a new image using <code>docker build</code>.</li>
+<li>Create a symbolic link (symlink):</li>
 </ul>
-<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> docker build <span class="at">-t</span> getting-started .</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>You should see output like this…</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">[+]</span> Building 15.4s <span class="er">(</span><span class="ex">10/10</span><span class="kw">)</span> <span class="ex">FINISHED</span>                                </span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a> <span class="ex">=</span><span class="op">&gt;</span> <span class="pp">[</span><span class="ss">internal</span><span class="pp">]</span> load build definition from Dockerfile          0.2s</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a> <span class="ex">=</span><span class="op">&gt;</span> =<span class="op">&gt;</span> transferring dockerfile: 182B                          0.0s</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a> <span class="ex">=</span><span class="op">&gt;</span> <span class="pp">[</span><span class="ss">internal</span><span class="pp">]</span> load .dockerignore                             0.3s</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a> <span class="ex">=</span><span class="op">&gt;</span> =<span class="op">&gt;</span> transferring context: 53B                              0.0s</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a> <span class="ex">=</span><span class="op">&gt;</span> <span class="pp">[</span><span class="ss">internal</span><span class="pp">]</span> load metadata for docker.io/library/node:18-a  0.0s</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a> <span class="ex">=</span><span class="op">&gt;</span> <span class="pp">[</span><span class="ss">internal</span><span class="pp">]</span> load build context                             0.2s</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a> <span class="ex">=</span><span class="op">&gt;</span> =<span class="op">&gt;</span> transferring context: 3.22kB                           0.2s</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a> <span class="ex">=</span><span class="op">&gt;</span> <span class="pp">[</span><span class="ss">1/5</span><span class="pp">]</span> FROM docker.io/library/node:18-alpine               0.0s</span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a> <span class="ex">=</span><span class="op">&gt;</span> CACHED <span class="pp">[</span><span class="ss">2/5</span><span class="pp">]</span> WORKDIR /app                                 0.0s</span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a> <span class="ex">=</span><span class="op">&gt;</span> <span class="pp">[</span><span class="ss">3/5</span><span class="pp">]</span> COPY package.json yarn.lock ./                      0.7s</span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a> <span class="ex">=</span><span class="op">&gt;</span> <span class="pp">[</span><span class="ss">4/5</span><span class="pp">]</span> RUN yarn install <span class="at">--production</span>                      12.2s</span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a> <span class="ex">=</span><span class="op">&gt;</span> <span class="pp">[</span><span class="ss">5/5</span><span class="pp">]</span> COPY . .                                            0.5s</span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a> <span class="ex">=</span><span class="op">&gt;</span> exporting to image                                        1.5s</span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a> <span class="ex">=</span><span class="op">&gt;</span> =<span class="op">&gt;</span> exporting layers                                       1.5s</span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a> <span class="ex">=</span><span class="op">&gt;</span> =<span class="op">&gt;</span> writing image sha256:19dfa47bc86d7dceaa01a048c43a7dbc  0.0s</span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a> <span class="ex">=</span><span class="op">&gt;</span> =<span class="op">&gt;</span> naming to docker.io/library/getting-started            0.0s</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>You’ll see that all layers were rebuilt. Perfectly fine since we changed the Dockerfile quite a bit.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> ln <span class="at">-s</span> /mnt/vdb/kind /usr/local/bin/kind</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="creating-a-cluster" class="level3" data-number="21.2.1">
+<h3 data-number="21.2.1" class="anchored" data-anchor-id="creating-a-cluster"><span class="header-section-number">21.2.1</span> Creating a Cluster</h3>
 <ul>
-<li><p>Now, make a change to the <code>src/static/index.html</code> file (like change the <code>&lt;title&gt;</code> to say “The Awesome Todo App” in line 11).</p></li>
-<li><p>Build the Docker image now using <code>sudo docker build -t getting-started .</code> again. This time, your output should look a little different.</p></li>
+<li>Creating a Kubernetes cluster is as simple as <code>kind create cluster</code> (visit <a href="https://kind.sigs.k8s.io/docs/user/quick-start/#creating-a-cluster">this site</a> to learn more).</li>
 </ul>
-<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a> <span class="ex">=</span><span class="op">&gt;</span> <span class="pp">[</span><span class="ss">internal</span><span class="pp">]</span> load build definition from Dockerfile          0.2s</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a> <span class="ex">=</span><span class="op">&gt;</span> =<span class="op">&gt;</span> transferring dockerfile: 182B                          0.0s</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a> <span class="ex">=</span><span class="op">&gt;</span> <span class="pp">[</span><span class="ss">internal</span><span class="pp">]</span> load .dockerignore                             0.3s</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a> <span class="ex">=</span><span class="op">&gt;</span> =<span class="op">&gt;</span> transferring context: 53B                              0.0s</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a> <span class="ex">=</span><span class="op">&gt;</span> <span class="pp">[</span><span class="ss">internal</span><span class="pp">]</span> load metadata for docker.io/library/node:18-a  0.0s</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a> <span class="ex">=</span><span class="op">&gt;</span> <span class="pp">[</span><span class="ss">1/5</span><span class="pp">]</span> FROM docker.io/library/node:18-alpine               0.0s</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a> <span class="ex">=</span><span class="op">&gt;</span> <span class="pp">[</span><span class="ss">internal</span><span class="pp">]</span> load build context                             0.0s</span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a> <span class="ex">=</span><span class="op">&gt;</span> =<span class="op">&gt;</span> transferring context: 3.45kB                           0.0s</span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a> <span class="ex">=</span><span class="op">&gt;</span> CACHED <span class="pp">[</span><span class="ss">2/5</span><span class="pp">]</span> WORKDIR /app                                 0.0s</span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a> <span class="ex">=</span><span class="op">&gt;</span> CACHED <span class="pp">[</span><span class="ss">3/5</span><span class="pp">]</span> COPY package.json yarn.lock ./               0.0s</span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a> <span class="ex">=</span><span class="op">&gt;</span> CACHED <span class="pp">[</span><span class="ss">4/5</span><span class="pp">]</span> RUN yarn install <span class="at">--production</span>                0.0s</span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a> <span class="ex">=</span><span class="op">&gt;</span> <span class="pp">[</span><span class="ss">5/5</span><span class="pp">]</span> COPY . .                                            0.3s</span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a> <span class="ex">=</span><span class="op">&gt;</span> exporting to image                                        0.1s</span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a> <span class="ex">=</span><span class="op">&gt;</span> =<span class="op">&gt;</span> exporting layers                                       0.1s</span>
-<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a> <span class="ex">=</span><span class="op">&gt;</span> =<span class="op">&gt;</span> writing image sha256:a85579d9ee5192bc7593ad0b2f263d25  0.0s</span>
-<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a> <span class="ex">=</span><span class="op">&gt;</span> =<span class="op">&gt;</span> naming to docker.io/library/getting-started            0.0s</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>First off, you should notice that the build was MUCH faster! And, you’ll see that several steps are using previously cached layers. So, yes! We’re using the build cache. Pushing and pulling this image and updates to it will be much faster as well.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> kind create cluster</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This will bootstrap a Kubernetes cluster using a pre-built node image. Prebuilt images are hosted at <a href="https://hub.docker.com/r/kindest/node/">kindest/node</a>.</p>
+</section>
+</section>
+<section id="kubectl-installation" class="level2" data-number="21.3">
+<h2 data-number="21.3" class="anchored" data-anchor-id="kubectl-installation"><span class="header-section-number">21.3</span> kubectl installation</h2>
+<p>After creating a cluster, you can use <a href="https://kubernetes.io/docs/reference/kubectl/overview/">kubectl</a> to interact with it by using the configuration file generated by kind. We follow the <a href="https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/">official installation tutorial</a> to install kubectl.</p>
+<ul>
+<li>Change directory</li>
+</ul>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /mnt/vdb</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>Create a new directory</li>
+</ul>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> bin</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>Download the latest release with the command:</li>
+</ul>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> curl <span class="at">-LO</span> <span class="st">"https://dl.k8s.io/release/</span><span class="va">$(</span><span class="ex">curl</span> <span class="at">-L</span> <span class="at">-s</span> https://dl.k8s.io/release/stable.txt<span class="va">)</span><span class="st">/bin/linux/amd64/kubectl"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>Install kubectl</li>
+</ul>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> install <span class="at">-o</span> root <span class="at">-g</span> root <span class="at">-m</span> 0755 kubectl /mnt/vdb/bin/kubectl</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>Create a symbolic link (symlink):</li>
+</ul>
+<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> ln <span class="at">-s</span> /mnt/vdb/bin/kubectl /usr/local/bin/kubectl</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<!--
+OLD
+```bash
+sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
+```
+-->
+<ul>
+<li>Test to ensure the version you installed is up-to-date:</li>
+</ul>
+<div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">kubectl</span> version <span class="at">--client</span> <span class="at">--output</span><span class="op">=</span>yaml</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="config-file" class="level2" data-number="21.4">
+<h2 data-number="21.4" class="anchored" data-anchor-id="config-file"><span class="header-section-number">21.4</span> Config file</h2>
 <!--
 
-## Multi-stage builds
+- Take a look at the location of your config file
 
-While we're not going to dive into it too much in this tutorial, multi-stage builds are an incredibly powerful
-tool to help use multiple stages to create an image. There are several advantages for them:
-
-- Separate build-time dependencies from runtime dependencies
-- Reduce overall image size by shipping _only_ what your app needs to run
-
-### Maven/Tomcat example
-
-When building Java-based applications, a JDK is needed to compile the source code to Java bytecode. However,
-that JDK isn't needed in production. Also, you might be using tools like Maven or Gradle to help build the app.
-Those also aren't needed in our final image. Multi-stage builds help.
-
-```dockerfile
-# syntax=docker/dockerfile:1
-FROM maven AS build
-WORKDIR /app
-COPY . .
-RUN mvn package
-
-FROM tomcat
-COPY --from=build /app/target/file.war /usr/local/tomcat/webapps 
+```bash
+sudo kubectl get pod -v6 
 ```
+-->
+<ul>
+<li>Set the config file to the correct path:</li>
+</ul>
+<div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">KUBECONFIG</span><span class="op">=</span>/root/.kube/config</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>Ensure that the correct context is being used by running:</li>
+</ul>
+<div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> kubectl config use-context kind-kind</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="interacting-with-your-cluster" class="level2" data-number="21.5">
+<h2 data-number="21.5" class="anchored" data-anchor-id="interacting-with-your-cluster"><span class="header-section-number">21.5</span> Interacting With Your Cluster</h2>
+<!--
+After creating a cluster with kind, you can use kubectl to interact with it by using the configuration file generated by kind. By default, the cluster access configuration is stored in ${HOME}/.kube/config if $KUBECONFIG environment variable is not set.
 
-In this example, we use one stage (called `build`) to perform the actual Java build using Maven. In the second
-stage (starting at `FROM tomcat`), we copy in files from the `build` stage. The final image is only the last stage
-being created (which can be overridden using the `--target` flag).
+In order for kubectl to find and access a Kubernetes cluster, it needs a kubeconfig file, which is created automatically when you create a cluster using kube-up.sh or successfully deploy a Minikube cluster. 
 
-### React example
+By default, kubectl configuration is located at ~/.kube/config.
+-->
+<ul>
+<li>Check that kubectl is properly configured by getting the cluster state:</li>
+</ul>
+<div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> kubectl cluster-info</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>List any existing Pods</li>
+</ul>
+<div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> kubectl get pods</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This should output: “No resources found in default namespace.”</p>
+<!--
 
-When building React applications, we need a Node environment to compile the JS code (typically JSX), SASS stylesheets,
-and more into static HTML, JS, and CSS. If we aren't doing server-side rendering, we don't even need a Node environment
-for our production build. Why not ship the static resources in a static nginx container?
+## Loading an Image Into Your Cluster 
 
-```dockerfile
-# syntax=docker/dockerfile:1
-FROM node:18 AS build
-WORKDIR /app
-COPY package* yarn.lock ./
-RUN yarn install
-COPY public ./public
-COPY src ./src
-RUN yarn run build
+Docker images can be loaded into your cluster nodes with:
 
-FROM nginx:alpine
-COPY --from=build /app/build /usr/share/nginx/html
-```
+`kind load docker-image my-custom-image-0 my-custom-image-1`
 
-Here, we are using a `node:18` image to perform the build (maximizing layer caching) and then copying the output
-into an nginx container. Cool, huh?
+Note: If using a named cluster you will need to specify the name of the cluster you wish to load the images into: kind load docker-image my-custom-image-0 my-custom-image-1 --name kind-2
 
 -->
 </section>
-<section id="next-steps" class="level2" data-number="19.3">
-<h2 data-number="19.3" class="anchored" data-anchor-id="next-steps"><span class="header-section-number">19.3</span> Next steps</h2>
-<p>By understanding a little bit about the structure of images, you can build images faster and ship fewer changes. Scanning images gives you confidence that the containers you are running and distributing are secure.</p>
-<!--
-
-Multi-stage builds also help you reduce overall image size and increase final container security by separating
-build-time dependencies from runtime dependencies.
-
--->
-<p>In the next section, you’ll learn about additional resources you can use to continue learning about containers.</p>
+<section id="prepare-environment" class="level2" data-number="21.6">
+<h2 data-number="21.6" class="anchored" data-anchor-id="prepare-environment"><span class="header-section-number">21.6</span> Prepare environment</h2>
+<p>In the following steps, we will use some of Nigel Poulton’s examples from “The Kubernetes Book (2022)”. Therefore, we will clone his GitHub-repo on our virtual machine.</p>
+<ul>
+<li>Change directory to <code>mnt/vdb</code></li>
+</ul>
+<div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /mnt/vdb</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>Make a new directory:</li>
+</ul>
+<div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> github</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>Change into the directory:</li>
+</ul>
+<div class="sourceCode" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> github</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>Clone this GitHub-repo into the directory:</li>
+</ul>
+<div class="sourceCode" id="cb19"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/nigelpoulton/TheK8sBook.git</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 
 </section>
@@ -778,13 +764,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./docker-start-compose.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Use Docker Compose</span></span>
+      <a href="./k8s.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Kubernetes</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./docker-start-next.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">What next?</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./k8s-pod-hello.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Deploying Pods from a manifest file</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
