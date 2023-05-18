@@ -56,6 +56,10 @@ book:
         - k8s-setup-vdb.qmd
         - k8s-pod-hello.qmd
         - k8s-pod-multi-container.qmd
+
+    - part: milvus.qmd
+      chapters:
+        - milvus-setup.qmd
      
 bibliography: references.bib
 
