@@ -526,7 +526,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li>To change the permissions of all files and directories within /mnt/vdb we we use the chmod command with the recursive (-R) option:</li>
 </ul>
-<pre><code>sudo chmod -R 777 /mnt/vdb</code></pre>
+<div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> chmod <span class="at">-R</span> 777 /mnt/vdb</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>This command will set the permissions to read (r), write (w), and execute (x) for the owner, group, and others on all files and directories within /mnt/vdb.</p>
 <p>However, please exercise caution when setting permissions to 777, as it grants full access to everyone, which may have security implications. Therefore, make sure to adjust the permissions as necessary based on your specific requirements and security considerations in your use cases.</p>
 <!--

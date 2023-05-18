@@ -739,20 +739,6 @@
     "href": "milvus-setup.html#start-milvus",
     "title": "24  Milvus installation",
     "section": "24.3 Start Milvus",
-    "text": "24.3 Start Milvus\nStart Milvus with Helm by specifying the release name, the chart, and parameters you expect to change. This topic uses my-release as the release name. To use a different release name, replace my-release in the command.\nsudo helm install my-release milvus/milvus \\\n  --set cluster.enabled=false \\\n  --set etcd.replicaCount=1 \\\n  --set minio.mode=standalone \\\n  --set pulsar.enabled=false\nThis should output something like:\nNAME: my-release\nLAST DEPLOYED: Tue May 16 18:38:40 2023\nNAMESPACE: default\nSTATUS: deployed\nREVISION: 1\nTEST SUITE: None\nCheck the status of the running pods.\nsudo kubectl get pods\nThis outputs:\nmy-release-etcd-0                               1/1     Running            0          3m15s\nmy-release-milvus-standalone-66cdddd564-8vg7l   0/1     ImagePullBackOff   0          3m15s\nmy-release-minio-55cf49d57d-bmx5m               1/1     Running            0          3m15s"
-  },
-  {
-    "objectID": "milvus-setup.html#connect-to-milvus",
-    "href": "milvus-setup.html#connect-to-milvus",
-    "title": "24  Milvus installation",
-    "section": "24.4 Connect to Milvus",
-    "text": "24.4 Connect to Milvus\nVerify which local port the Milvus server is listening on. Replace the pod name with your own.\nsudo kubectl get pod my-release-milvus-standalone-66cdddd564-8vg7l --template='{{(index (index .spec.containers 0).ports 0).containerPort}}{{\"\\n\"}}'\n\nOutput:\n19530\n\nOpen a new terminal window in VS Code (use the + icon above your terminal window)\nNow run the following command to forward a local port to the port that Milvus uses (use your milvus pod name).\n\nsudo kubectl port-forward my-release-milvus-standalone-66cdddd564-8vg7l 19530:19530\n\nDon’t close this window (if you want to use the terminal, you can open a new window. You may later switch back to the other ternimal window -you can see the available terminal windows as cube icons to the right of your terminal)"
-  },
-  {
-    "objectID": "milvus-setup.html#python-example-project",
-    "href": "milvus-setup.html#python-example-project",
-    "title": "24  Milvus installation",
-    "section": "24.5 Python example project",
-    "text": "24.5 Python example project\n\nChange directory\n\ncd /mnt/vdb/github\n\nCreate a new directory\n\nmkdir milvus\n\nChange directory\n\ncd milvus\n\nGet the Milvus Python starter code\n\ncurl -L -O https://raw.githubusercontent.com/milvus-io/pymilvus/master/examples/hello_milvus.py\n\nWe also download the .ipynb-Version:\n\ncurl -L -O https://raw.githubusercontent.com/milvus-io/pymilvus/master/examples/hello_milvus.ipynb\n\nChange to the root user:\n\nsudo su\n\nActivate the milvus environment\n\nactivate milvus"
+    "text": "24.3 Start Milvus\nStart Milvus with Helm by specifying the release name, the chart, and parameters you expect to change. This topic uses my-release as the release name. To use a different release name, replace my-release in the command.\nsudo helm install my-release milvus/milvus \\\n  --set cluster.enabled=false \\\n  --set etcd.replicaCount=1 \\\n  --set minio.mode=standalone \\\n  --set pulsar.enabled=false\nThis should output something like:\nNAME: my-release\nLAST DEPLOYED: Tue May 16 18:38:40 2023\nNAMESPACE: default\nSTATUS: deployed\nREVISION: 1\nTEST SUITE: None\nCheck the status of the running pods.\nsudo kubectl get pods\nThis outputs:\nNAME                                            READY   STATUS    RESTARTS   AGE\nmy-release-etcd-0                               1/1     Running   0          5h29m\nmy-release-milvus-standalone-66cdddd564-8vg7l   1/1     Running   0          5h29m\nmy-release-minio-55cf49d57d-dqmzz               1/1     Running   0          5h29m\nMilvus is running (it may take a while until you see 1/1 below READY for all pods)!"
   }
 ]

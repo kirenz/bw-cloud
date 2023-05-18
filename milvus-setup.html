@@ -359,8 +359,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#prepare-kubernetes" id="toc-prepare-kubernetes" class="nav-link active" data-scroll-target="#prepare-kubernetes"><span class="header-section-number">24.1</span> Prepare Kubernetes</a></li>
   <li><a href="#install-helm-chart-for-milvus" id="toc-install-helm-chart-for-milvus" class="nav-link" data-scroll-target="#install-helm-chart-for-milvus"><span class="header-section-number">24.2</span> Install Helm Chart for Milvus</a></li>
   <li><a href="#start-milvus" id="toc-start-milvus" class="nav-link" data-scroll-target="#start-milvus"><span class="header-section-number">24.3</span> Start Milvus</a></li>
-  <li><a href="#connect-to-milvus" id="toc-connect-to-milvus" class="nav-link" data-scroll-target="#connect-to-milvus"><span class="header-section-number">24.4</span> Connect to Milvus</a></li>
-  <li><a href="#python-example-project" id="toc-python-example-project" class="nav-link" data-scroll-target="#python-example-project"><span class="header-section-number">24.5</span> Python example project</a></li>
   </ul>
 <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/kirenz/bw-cloud/edit/main/milvus-setup.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/kirenz/bw-cloud/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
@@ -436,63 +434,11 @@ sudo kind create cluster
 <p>Check the status of the running pods.</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> kubectl get pods</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>This outputs:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">my-release-etcd-0</span>                               1/1     Running            0          3m15s</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="ex">my-release-milvus-standalone-66cdddd564-8vg7l</span>   0/1     ImagePullBackOff   0          3m15s</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="ex">my-release-minio-55cf49d57d-bmx5m</span>               1/1     Running            0          3m15s</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="connect-to-milvus" class="level2" data-number="24.4">
-<h2 data-number="24.4" class="anchored" data-anchor-id="connect-to-milvus"><span class="header-section-number">24.4</span> Connect to Milvus</h2>
-<p>Verify which local port the Milvus server is listening on. Replace the pod name with your own.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> kubectl get pod my-release-milvus-standalone-66cdddd564-8vg7l <span class="at">--template</span><span class="op">=</span><span class="st">'{{(index (index .spec.containers 0).ports 0).containerPort}}{{"\n"}}'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<!--
-sudo kubectl get pod my-release-milvus-standalone-66cdddd564-8vg7l --template='{{(index (index .spec.containers 0).ports 0).containerPort}}{{"\n"}}'
-
--->
-<p>Output:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">19530</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ul>
-<li><p>Open a new terminal window in VS Code (use the <code>+</code> icon above your terminal window)</p></li>
-<li><p>Now run the following command to forward a local port to the port that Milvus uses (use your milvus pod name).</p></li>
-</ul>
-<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> kubectl port-forward my-release-milvus-standalone-66cdddd564-8vg7l 19530:19530</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ul>
-<li>Don’t close this window (if you want to use the terminal, you can open a new window. You may later switch back to the other ternimal window -you can see the available terminal windows as cube icons to the right of your terminal)</li>
-</ul>
-</section>
-<section id="python-example-project" class="level2" data-number="24.5">
-<h2 data-number="24.5" class="anchored" data-anchor-id="python-example-project"><span class="header-section-number">24.5</span> Python example project</h2>
-<ul>
-<li>Change directory</li>
-</ul>
-<div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /mnt/vdb/github</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ul>
-<li>Create a new directory</li>
-</ul>
-<div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> milvus</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ul>
-<li>Change directory</li>
-</ul>
-<div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> milvus</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ul>
-<li>Get the Milvus Python starter code</li>
-</ul>
-<div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-L</span> <span class="at">-O</span> https://raw.githubusercontent.com/milvus-io/pymilvus/master/examples/hello_milvus.py</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ul>
-<li>We also download the .ipynb-Version:</li>
-</ul>
-<div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-L</span> <span class="at">-O</span> https://raw.githubusercontent.com/milvus-io/pymilvus/master/examples/hello_milvus.ipynb</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ul>
-<li>Change to the root user:</li>
-</ul>
-<div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> su</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ul>
-<li>Activate the milvus environment</li>
-</ul>
-<div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="ex">activate</span> milvus </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<!--
-
-- Open the file in VS Code: `/mnt/vdb/github/milvus/hello_milvus.py`
--->
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">NAME</span>                                            READY   STATUS    RESTARTS   AGE</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="ex">my-release-etcd-0</span>                               1/1     Running   0          5h29m</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="ex">my-release-milvus-standalone-66cdddd564-8vg7l</span>   1/1     Running   0          5h29m</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="ex">my-release-minio-55cf49d57d-dqmzz</span>               1/1     Running   0          5h29m</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Milvus is running (it may take a while until you see <code>1/1</code> below READY for all pods)!</p>
 
 
 </section>
