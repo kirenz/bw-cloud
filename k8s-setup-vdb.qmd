@@ -93,10 +93,13 @@ sudo install -o root -g root -m 0755 kubectl /mnt/vdb/bin/kubectl
 sudo ln -s /mnt/vdb/bin/kubectl /usr/local/bin/kubectl
 ```
 
+<!--
 OLD
 ```bash
 sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
 ```
+-->
+
 
 - Test to ensure the version you installed is up-to-date:
 
@@ -105,6 +108,15 @@ kubectl version --client --output=yaml
 ```
 
 ## Config file
+
+<!--
+
+- Take a look at the location of your config file
+
+```bash
+sudo kubectl get pod -v6 
+```
+-->
 
 - Set the config file to the correct path:
 
