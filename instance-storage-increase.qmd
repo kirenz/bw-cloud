@@ -97,7 +97,7 @@ sudo parted /dev/vdb mklabel gpt
 
 ```
 
-This will output: "Warning: The existing disk label on /dev/vdb will be destroyed and all data on this
+If you see this: "Warning: The existing disk label on /dev/vdb will be destroyed and all data on this
 disk will be lost. Do you want to continue?"
 
 - Type: `Yes`
