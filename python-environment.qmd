@@ -20,7 +20,7 @@ sudo su
 conda create -n ds python=3.10 pandas jupyter altair scikit-learn
 ```
 
-<!--
+- Restart VS Code to be able to use this environment in VS Code`s Jupyter Notebook 
 
 ## Create environment: de
 
@@ -52,7 +52,8 @@ conda activate milvus
 pip install numpy jupyter pymilvus
 ```
 
--->
+- Restart VS Code to be able to use this environment in VS Code`s Jupyter Notebook 
+
 
 <!--
 
