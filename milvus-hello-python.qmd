@@ -1,0 +1,86 @@
+# Milvus Python example
+
+
+## Connect to Milvus
+
+Verify which local port the Milvus server is listening on. Replace the pod name with your own.
+
+```bash
+sudo kubectl get pod my-release-milvus-standalone-66cdddd564-8vg7l --template='{{(index (index .spec.containers 0).ports 0).containerPort}}{{"\n"}}'
+```
+
+This should output:
+
+```bash
+19530
+```
+
+- Open a new terminal window in VS Code (use the `+` icon above your terminal window)
+
+- Now run the following command to forward a local port to the port that Milvus uses (use your Milvus pod name). 
+
+```bash
+sudo kubectl port-forward my-release-milvus-standalone-66cdddd564-8vg7l 19530:19530
+```
+
+- Don't close this window (if you want to use the terminal, you can simply open a new window). 
+
+Note: You may later switch back to a different ternimal window (they are displayed as cube icons at the right of your terminal window)
+
+
+## Python example project
+
+ - Open a new terminal window and create a new directory
+
+```bash
+mkdir /mnt/vdb/github/milvus
+```
+
+- Change permissions
+
+```bash
+sudo chmod -R 777 /mnt/vdb/github/milvus
+```
+
+- Change directory
+
+```bash
+cd /mnt/vdb/github/milvus
+```
+
+- Get the Milvus Python starter code
+
+<!--
+
+```bash
+curl -L -O https://raw.githubusercontent.com/milvus-io/pymilvus/master/examples/hello_milvus.py
+```
+
+-->
+
+```bash
+curl -L -O https://raw.githubusercontent.com/milvus-io/pymilvus/master/examples/hello_milvus.ipynb
+```
+
+<!--
+
+- Change to the root user:
+```bash
+sudo su
+```
+- Activate the milvus environment
+
+```bash
+activate milvus 
+```
+-->
+
+- Open the Jupyter Notebook file `hello_milvus.ipynb` in VS Code: `/mnt/vdb/github/milvus/hello_milvus.ipynb`
+
+
+- Run the cells in the Notebook
+
+
+<!--
+connections.connect("default", host="localhost", port=19530)
+-->
