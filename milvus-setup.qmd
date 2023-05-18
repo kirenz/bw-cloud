@@ -1,13 +1,16 @@
 # Milvus installation
 
 
-## Start a cluster
+## Prepare Kubernetes
+
+<!--
 
 - Set the config file to the correct path:
 
 ```bash
 export KUBECONFIG=/root/.kube/config
 ```
+-->
 
 - Ensure that the correct context is being used by running:
 
@@ -27,6 +30,7 @@ sudo kind create cluster
 
 
 ## Install Helm Chart for Milvus
+
 
 - Add the Milvus chart repository to Helm:
 
@@ -86,23 +90,55 @@ Verify which local port the Milvus server is listening on. Replace the pod name 
 sudo kubectl get pod my-release-milvus-standalone-66cdddd564-vbrgr --template='{{(index (index .spec.containers 0).ports 0).containerPort}}{{"\n"}}'
 ```
 
+<!--
+sudo kubectl get pod my-release-milvus-standalone-66cdddd564-8vg7l --template='{{(index (index .spec.containers 0).ports 0).containerPort}}{{"\n"}}'
+
+-->
+
 Output:
 
 ```bash
 19530
 ```
 
+
+NOT WORKiNG
+
 Open a new terminal and run the following command to forward a local port to the port that Milvus uses. Optionally, omit the designated port and use :19530 to let kubectl allocate a local port for you so that you don't have to manage port conflicts.
 
 ```bash
-sudo kubectl port-forward service/my-release-milvus 27017:19530
+sudo kubectl port-forward my-release-milvus-standalone-66cdddd564-vbrgr 27017:19530
 ```
 
+PROBLEM
 error: unable to forward port because pod is not running. Current status=Pending
 
 
-## Python
+## Python example project
+
+ - Change directory
 
 ```bash
-sudo wget https://github.com/milvus-io/pymilvus/blob/master/examples/hello_milvus.py
+cd /mnt/vdb/github
 ```
+
+
+- Create a new directory
+
+```bash
+mkdir milvus
+```
+
+- Change directory
+
+```bash
+cd milvus
+```
+
+- Get the Milvus Python starter code
+
+```bash
+curl -L -O https://raw.githubusercontent.com/milvus-io/pymilvus/master/examples/hello_milvus.py
+```
+
+- Open the file in VS Code: `/mnt/vdb/github/milvus/hello_milvus.py`
