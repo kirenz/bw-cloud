@@ -176,6 +176,12 @@ sudo docker network inspect -f '{{.IPAM.Config}}' kind
 [{172.20.0.0/16  172.20.0.1 map[]} {fc00:f853:ccd:e793::/64   map[]}]
 ```
 
+<!--
+
+[{172.18.0.0/16  172.18.0.1 map[]} {fc00:f853:ccd:e793::/64   map[]}]
+-->
+
+
 The output will contain a [CIDR](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing) such as 172.20.0.0/16. We want our loadbalancer IP range to come from this subclass. We can configure MetalLB, in my case, to use 172.20.255.200 to 172.20.255.250 (see YAML file below).
 
 - Next, create a new YAML-file called `metal-config.yaml` 
@@ -185,7 +191,7 @@ touch metal-config.yaml
 ```
 
 
-- In VS Code, open `metal-config.yaml` and insert the content below (change the IP addresses accordingly):  
+- In VS Code, open `/mnt/vdb/github/TheK8sBook/pods/metal-config.yaml` and insert the content below (change the IP addresses accordingly):  
 
 
 ```bash
