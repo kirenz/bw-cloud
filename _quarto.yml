@@ -33,7 +33,8 @@ book:
 
     - part: python.qmd
       chapters:
-        - python-miniconda-setup.qmd
+        - python-miniconda-setup-vdb.qmd
+        - python-environment.qmd
 
     - part: docker.qmd
       chapters:
@@ -52,7 +53,7 @@ book:
 
     - part: k8s.qmd
       chapters:
-        - k8s-setup.qmd
+        - k8s-setup-vdb.qmd
         - k8s-pod-hello.qmd
         - k8s-pod-multi-container.qmd
      
