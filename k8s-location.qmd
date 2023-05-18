@@ -1,0 +1,61 @@
+# Change docker location
+
+The standard data directory used for docker is `/var/lib/docker` on our virtual machine. Since this directory will store a lot of data it can become quite large. Therefore, we move the docker data directory to our volumne `mnt/vdb`.
+
+Here are the steps to move the directory:
+
+- Stop docker daemon
+
+```bash
+sudo systemctl stop docker
+
+```
+
+- Create a new docker directory in /mnt/vdb:
+
+```bash
+sudo mkdir -p /mnt/vdb/docker
+
+```
+
+- Make a copy of your current docker directory in the new location:
+
+```bash
+sudo rsync -a /var/lib/docker/ /mnt/vdb/docker
+
+```
+
+- Create a backup
+
+```bash
+sudo mv /var/lib/docker /var/lib/docker-backup
+```
+
+- Create a symbolic link (symlink):
+
+
+```bash
+sudo ln -s /mnt/vdb/docker /var/lib/docker
+```
+
+- Start docker:
+
+```bash
+sudo systemctl start docker
+```
+
+- Check if the docker image "hello-world" is still accessible:
+
+```bash
+sudo docker ps -a
+```
+
+You can now remove your backup:
+
+
+```bash
+sudo rm -rf /var/lib/docker-backup
+
+```
+
+That's it!
