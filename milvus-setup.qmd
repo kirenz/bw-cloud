@@ -77,89 +77,10 @@ sudo kubectl get pods
 This outputs:
 
 ```bash
-my-release-etcd-0                               1/1     Running            0          3m15s
-my-release-milvus-standalone-66cdddd564-8vg7l   0/1     ImagePullBackOff   0          3m15s
-my-release-minio-55cf49d57d-bmx5m               1/1     Running            0          3m15s
+NAME                                            READY   STATUS    RESTARTS   AGE
+my-release-etcd-0                               1/1     Running   0          5h29m
+my-release-milvus-standalone-66cdddd564-8vg7l   1/1     Running   0          5h29m
+my-release-minio-55cf49d57d-dqmzz               1/1     Running   0          5h29m
 ```
 
-## Connect to Milvus
-
-Verify which local port the Milvus server is listening on. Replace the pod name with your own.
-
-```bash
-sudo kubectl get pod my-release-milvus-standalone-66cdddd564-8vg7l --template='{{(index (index .spec.containers 0).ports 0).containerPort}}{{"\n"}}'
-```
-
-<!--
-sudo kubectl get pod my-release-milvus-standalone-66cdddd564-8vg7l --template='{{(index (index .spec.containers 0).ports 0).containerPort}}{{"\n"}}'
-
--->
-
-Output:
-
-```bash
-19530
-```
-
-- Open a new terminal window in VS Code (use the `+` icon above your terminal window)
-
-- Now run the following command to forward a local port to the port that Milvus uses (use your milvus pod name). 
-
-```bash
-sudo kubectl port-forward my-release-milvus-standalone-66cdddd564-8vg7l 19530:19530
-```
-
-- Don't close this window (if you want to use the terminal, you can open a new window. You may later switch back to the other ternimal window  -you can see the available terminal windows as cube icons to the right of your terminal)
-
-
-
-## Python example project
-
- - Change directory
-
-```bash
-cd /mnt/vdb/github
-```
-
-- Create a new directory
-
-```bash
-mkdir milvus
-```
-
-- Change directory
-
-```bash
-cd milvus
-```
-
-- Get the Milvus Python starter code
-
-```bash
-curl -L -O https://raw.githubusercontent.com/milvus-io/pymilvus/master/examples/hello_milvus.py
-```
-
-- We also download the .ipynb-Version:
-
-```bash
-curl -L -O https://raw.githubusercontent.com/milvus-io/pymilvus/master/examples/hello_milvus.ipynb
-```
-
-- Change to the root user:
-
-```bash
-sudo su
-```
-
-- Activate the milvus environment
-
-```bash
-activate milvus 
-```
-
-
-
-<!--
-
-- Open the file in VS Code: `/mnt/vdb/github/milvus/hello_milvus.py`
--->
+Milvus is running (it may take a while until you see `1/1` below READY for all pods)!
