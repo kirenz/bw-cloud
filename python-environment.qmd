@@ -1,28 +1,60 @@
 # Prepare programming environment
 
+
+
 ## Create environment: ds
 
-Run `sudo su`, that will open a shell as the superuser.
+- Run `sudo su`, that will open a shell as the superuser and activates the Miniconda base environment:
 
 ```bash
 sudo su
 ```
 
-We install some modules in a new environment. We call this new environment `ds` (short for data science). 
+- We install some modules in a new Miniconda environment. We call this new environment `ds` (for data science). 
 
 
 - Copy this code and run it in your terminal: 
 
 
 ```bash
-conda create -n ds python=3.10 pandas jupyter scikit-learn altair vega_datasets matplotlib seaborn
+conda create -n ds python=3.10 pandas jupyter altair scikit-learn
 ```
 
-Activate the new environment:
+<!--
+
+## Create environment: de
+
+- Run `sudo su`, that will open a shell as the superuser and activates the Miniconda base environment:
 
 ```bash
-conda activate ds
+sudo su
 ```
+
+- We install some modules in a new Miniconda environment. We call this new environment `milvus`. 
+
+
+- Copy this code and run it in your terminal: 
+
+
+```bash
+conda create -n milvus python=3.10 pip
+```
+
+- Activate the new environment:
+
+```bash
+conda activate milvus
+```
+
+- Install some packages with pip:
+
+```bash
+pip install numpy jupyter pymilvus
+```
+
+-->
+
+<!--
 
 ---
 
@@ -145,3 +177,5 @@ You can also manually specify an interpreter if Visual Studio Code doesn't locat
 
 
 If the steps described above should not work for you, take a look at other tips at [StackOverflow](https://stackoverflow.com/questions/43351596/activating-anaconda-environment-in-vscode).
+
+-->
