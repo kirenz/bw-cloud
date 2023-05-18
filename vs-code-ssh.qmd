@@ -33,7 +33,9 @@ Install all locally installed extensions on the SSH host:
 
 - Go to the Extensions view
 
-- Use the cloud button at the right of the "SSH: {Hostname}"" title bar. 
+- Go to the "LOCAL" and hide the extensions with the drop down button `>`
+
+- Use the cloud button at the right of the "SSH: {Hostname}" title bar. 
 
 - This will display a dropdown where you can select which locally installed extensions to install on your SSH host (select all).
 
