@@ -78,7 +78,7 @@ This outputs:
 
 ```bash
 my-release-etcd-0                               1/1     Running            0          3m15s
-my-release-milvus-standalone-66cdddd564-vbrgr   0/1     ImagePullBackOff   0          3m15s
+my-release-milvus-standalone-66cdddd564-8vg7l   0/1     ImagePullBackOff   0          3m15s
 my-release-minio-55cf49d57d-bmx5m               1/1     Running            0          3m15s
 ```
 
@@ -87,7 +87,7 @@ my-release-minio-55cf49d57d-bmx5m               1/1     Running            0    
 Verify which local port the Milvus server is listening on. Replace the pod name with your own.
 
 ```bash
-sudo kubectl get pod my-release-milvus-standalone-66cdddd564-vbrgr --template='{{(index (index .spec.containers 0).ports 0).containerPort}}{{"\n"}}'
+sudo kubectl get pod my-release-milvus-standalone-66cdddd564-8vg7l --template='{{(index (index .spec.containers 0).ports 0).containerPort}}{{"\n"}}'
 ```
 
 <!--
@@ -101,17 +101,16 @@ Output:
 19530
 ```
 
+- Open a new terminal window in VS Code (use the `+` icon above your terminal window)
 
-NOT WORKiNG
-
-Open a new terminal and run the following command to forward a local port to the port that Milvus uses. Optionally, omit the designated port and use :19530 to let kubectl allocate a local port for you so that you don't have to manage port conflicts.
+- Now run the following command to forward a local port to the port that Milvus uses (use your milvus pod name). 
 
 ```bash
-sudo kubectl port-forward my-release-milvus-standalone-66cdddd564-vbrgr 27017:19530
+sudo kubectl port-forward my-release-milvus-standalone-66cdddd564-8vg7l 19530:19530
 ```
 
-PROBLEM
-error: unable to forward port because pod is not running. Current status=Pending
+- Don't close this window (if you want to use the terminal, you can open a new window. You may later switch back to the other ternimal window  -you can see the available terminal windows as cube icons to the right of your terminal)
+
 
 
 ## Python example project
@@ -121,7 +120,6 @@ error: unable to forward port because pod is not running. Current status=Pending
 ```bash
 cd /mnt/vdb/github
 ```
-
 
 - Create a new directory
 
@@ -141,4 +139,27 @@ cd milvus
 curl -L -O https://raw.githubusercontent.com/milvus-io/pymilvus/master/examples/hello_milvus.py
 ```
 
+- We also download the .ipynb-Version:
+
+```bash
+curl -L -O https://raw.githubusercontent.com/milvus-io/pymilvus/master/examples/hello_milvus.ipynb
+```
+
+- Change to the root user:
+
+```bash
+sudo su
+```
+
+- Activate the milvus environment
+
+```bash
+activate milvus 
+```
+
+
+
+<!--
+
 - Open the file in VS Code: `/mnt/vdb/github/milvus/hello_milvus.py`
+-->
