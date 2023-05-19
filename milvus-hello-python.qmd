@@ -1,5 +1,19 @@
 # Milvus Python example
 
+This tutorial demonstrates the basic operations of PyMilvus, a Python SDK of Milvus. 
+
+You will learn how to:
+
+1. connect to Milvus
+2. create collection
+3. insert data
+4. create index
+5. search, query, and hybrid search on entities
+6. delete entities by PK
+7. drop collection
+
+
+Before running, make sure that you have a running Milvus instance.
 
 ## Connect to Milvus
 
@@ -30,7 +44,7 @@ Note: You may later switch back to a different ternimal window (they are display
 
 ## Python example project
 
- - Open a new terminal window and create a new directory
+- Open a new terminal window and create a new directory
 
 ```bash
 mkdir /mnt/vdb/github/milvus
