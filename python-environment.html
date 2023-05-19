@@ -358,7 +358,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#create-environment-ds" id="toc-create-environment-ds" class="nav-link active" data-scroll-target="#create-environment-ds"><span class="header-section-number">8.1</span> Create environment: ds</a></li>
-  <li><a href="#create-environment-de" id="toc-create-environment-de" class="nav-link" data-scroll-target="#create-environment-de"><span class="header-section-number">8.2</span> Create environment: de</a></li>
+  <li><a href="#create-environment-transformers" id="toc-create-environment-transformers" class="nav-link" data-scroll-target="#create-environment-transformers"><span class="header-section-number">8.2</span> Create environment: transformers</a></li>
+  <li><a href="#create-environment-de" id="toc-create-environment-de" class="nav-link" data-scroll-target="#create-environment-de"><span class="header-section-number">8.3</span> Create environment: de</a></li>
   </ul>
 <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/kirenz/bw-cloud/edit/main/python-environment.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/kirenz/bw-cloud/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
@@ -397,25 +398,60 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Restart VS Code to be able to use this environment in VS Code`s Jupyter Notebook</li>
 </ul>
 </section>
-<section id="create-environment-de" class="level2" data-number="8.2">
-<h2 data-number="8.2" class="anchored" data-anchor-id="create-environment-de"><span class="header-section-number">8.2</span> Create environment: de</h2>
+<section id="create-environment-transformers" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="create-environment-transformers"><span class="header-section-number">8.2</span> Create environment: transformers</h2>
+<ul>
+<li>Run <code>sudo su</code>:</li>
+</ul>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> su</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>We install some modules in a new Miniconda environment. We call this new environment <code>transformers</code>:</li>
+</ul>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> create <span class="at">-n</span> transformers python=3.10 pip <span class="at">--y</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>Activate the new environment:</li>
+</ul>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate transformers</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>Upgrade pip</li>
+</ul>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install <span class="at">--upgrade</span> pip</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<!--
+
+- Install the transformers library including Tensorflow with pip:
+
+```bash
+pip install 'transformers[tf-cpu]' ipykernel
+```
+-->
+<ul>
+<li>Install the transformers library including PyTorch with pip:</li>
+</ul>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install <span class="st">'transformers[torch]'</span> ipykernel</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>… this may take a while.</p>
+<ul>
+<li>Restart VS Code to be able to use this environment in VS Code`s Jupyter Notebook</li>
+</ul>
+</section>
+<section id="create-environment-de" class="level2" data-number="8.3">
+<h2 data-number="8.3" class="anchored" data-anchor-id="create-environment-de"><span class="header-section-number">8.3</span> Create environment: de</h2>
 <ul>
 <li>Run <code>sudo su</code>, that will open a shell as the superuser and activates the Miniconda base environment:</li>
 </ul>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> su</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> su</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li><p>We install some modules in a new Miniconda environment. We call this new environment <code>milvus</code>.</p></li>
 <li><p>Copy this code and run it in your terminal:</p></li>
 </ul>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> create <span class="at">-n</span> milvus python=3.10 pip</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> create <span class="at">-n</span> milvus python=3.10 pip</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li>Activate the new environment:</li>
 </ul>
-<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate milvus</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate milvus</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li>Install some packages with pip:</li>
 </ul>
-<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install numpy jupyter pymilvus</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install numpy jupyter pymilvus</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li>Restart VS Code to be able to use this environment in VS Code`s Jupyter Notebook</li>
 </ul>

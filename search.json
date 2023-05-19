@@ -196,11 +196,18 @@
     "text": "8.1 Create environment: ds\n\nRun sudo su, that will open a shell as the superuser and activates the Miniconda base environment:\n\nsudo su\n\nWe install some modules in a new Miniconda environment. We call this new environment ds (for data science).\nCopy this code and run it in your terminal:\n\nconda create -n ds python=3.10 pandas jupyter altair scikit-learn\n\nRestart VS Code to be able to use this environment in VS Code`s Jupyter Notebook"
   },
   {
+    "objectID": "python-environment.html#create-environment-transformers",
+    "href": "python-environment.html#create-environment-transformers",
+    "title": "8  Prepare programming environment",
+    "section": "8.2 Create environment: transformers",
+    "text": "8.2 Create environment: transformers\n\nRun sudo su:\n\nsudo su\n\nWe install some modules in a new Miniconda environment. We call this new environment transformers:\n\nconda create -n transformers python=3.10 pip --y\n\nActivate the new environment:\n\nconda activate transformers\n\nUpgrade pip\n\npip install --upgrade pip\n\n\nInstall the transformers library including PyTorch with pip:\n\npip install 'transformers[torch]' ipykernel\n… this may take a while.\n\nRestart VS Code to be able to use this environment in VS Code`s Jupyter Notebook"
+  },
+  {
     "objectID": "python-environment.html#create-environment-de",
     "href": "python-environment.html#create-environment-de",
     "title": "8  Prepare programming environment",
-    "section": "8.2 Create environment: de",
-    "text": "8.2 Create environment: de\n\nRun sudo su, that will open a shell as the superuser and activates the Miniconda base environment:\n\nsudo su\n\nWe install some modules in a new Miniconda environment. We call this new environment milvus.\nCopy this code and run it in your terminal:\n\nconda create -n milvus python=3.10 pip\n\nActivate the new environment:\n\nconda activate milvus\n\nInstall some packages with pip:\n\npip install numpy jupyter pymilvus\n\nRestart VS Code to be able to use this environment in VS Code`s Jupyter Notebook"
+    "section": "8.3 Create environment: de",
+    "text": "8.3 Create environment: de\n\nRun sudo su, that will open a shell as the superuser and activates the Miniconda base environment:\n\nsudo su\n\nWe install some modules in a new Miniconda environment. We call this new environment milvus.\nCopy this code and run it in your terminal:\n\nconda create -n milvus python=3.10 pip\n\nActivate the new environment:\n\nconda activate milvus\n\nInstall some packages with pip:\n\npip install numpy jupyter pymilvus\n\nRestart VS Code to be able to use this environment in VS Code`s Jupyter Notebook"
   },
   {
     "objectID": "docker.html#what-is-docker",
