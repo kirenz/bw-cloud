@@ -1,0 +1,29 @@
+# Milvus PDF
+
+Great! You have Milvus running in your Kubernetes cluster. Now, to store the text in Milvus, we need to first convert the text into a vector. The main function of Milvus is to handle vector data.
+
+This is generally a two-step process:
+
+1. Converting the text into vectors: Here, you would typically use a Natural Language Processing (NLP) model like BERT or GPT-3 to convert the text into vectors. You can use tools like the Hugging Face Transformers library to do this.
+
+
+2. Storing the vectors in Milvus: Once you have the vectors, you can use the Milvus Python SDK to insert the vectors into a collection in your Milvus instance.
+
+## Convert text into vectors
+
+Let's first start with converting the text into vectors. You can install the Hugging Face Transformers library with the following command:
+
+```python
+from transformers import BertTokenizer, BertModel
+import torch
+
+tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
+model = BertModel.from_pretrained('bert-base-uncased')
+
+text = "Your text here"
+inputs = tokenizer(text, return_tensors="pt")
+outputs = model(**inputs)
+
+vector = outputs.last_hidden_state.mean(dim=1).detach().numpy().tolist()[0]
+```
+
