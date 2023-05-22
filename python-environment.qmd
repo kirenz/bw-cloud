@@ -1,7 +1,6 @@
 # Prepare programming environment
 
 
-
 ## Create environment: ds
 
 - Run `sudo su`, that will open a shell as the superuser and activates the Miniconda base environment:
