@@ -1,0 +1,4 @@
+# Streamlit
+
+In this tutorial, we cover how to install Streamlit using Docker on Ubuntu. We simply follow the installation steps outlined in the [official Streamlit documentation](https://docs.streamlit.io/knowledge-base/tutorials/deploy/docker)
+
